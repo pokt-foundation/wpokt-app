@@ -6,7 +6,7 @@
 
 # Project Title
 
-One sentence summary of project
+Frontend for wPOCKT, allowing wPOKT purchasers to stake and crowdsource infrastructure for their favorite applications.
 <div>
   <a  href="https://godoc.org/github.com/pokt-network/pocket-core"><img src="https://img.shields.io/badge/godoc-reference-blue.svg"/></a>
   <a  href="https://goreportcard.com/report/github.com/pokt-network/pocket-core"><img src="https://goreportcard.com/badge/github.com/pokt-network/pocket-core"/></a>
@@ -30,31 +30,40 @@ Full Description
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Example usage
+### Available Scripts
 
-```
-The most basic example of how you would use the project
-```
+In the project directory, you can run:
 
-### Installation
+#### `yarn start`
 
-A step by step series of examples that tell you how to get a development env running
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Say what the step will be
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-```
-Give the step
-```
+#### `yarn test`
 
-And repeat
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```
-until finished
-```
+#### `yarn build`
 
-End with an example of getting data out of the system or using it for a demo
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Documentation
 
