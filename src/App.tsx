@@ -16,8 +16,8 @@ export default App;
 
 const Wrapper = styled.div`
   background-image: url(${PocktWorldImage});
-  background-position: center;
-  background-size: center;
+  background-position: top;
+  background-size: cover;
   height: 100vh;
   width: 100%;
   z-index: 0;
