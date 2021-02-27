@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 // Assets
 import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
@@ -8,40 +9,59 @@ import { ReactComponent as SandwichMenu } from 'assets/icons/sandwich_menu.svg';
 
 // Components
 import {
-    ConnectWalletButton,
-    LogoContainer,
-    MetaMaskImageContainer,
-    NavigationContainer,
-    NavigationItems,
-    SandwichMenuContainer,
+    StyledLink,
+    StyledConnectWalletButton,
+    StyledLogoContainer,
+    StyledMetaMaskImageContainer,
+    StyledNavigationContainer,
+    StyledNavigationItems,
+    StyledSandwichMenuContainer,
 
 } from './components';
 import { Flex } from 'components/Containers';
 
 const Navigation: React.FC = () => {
     return (
-        <NavigationContainer style={{ backgroundImage: `url(${NavigationBarImage})` }}>
-            <LogoContainer>
-                <LogoSvg />
-            </LogoContainer>
-            <NavigationItems>
+        <StyledNavigationContainer style={{ backgroundImage: `url(${NavigationBarImage})` }}>
+            <NavLink exact activeClassName='active' to='/'>
+                <StyledLogoContainer>
+                    <LogoSvg />
+                </StyledLogoContainer>
+            </NavLink>
+            <StyledNavigationItems>
                 <ul>
-                    <li>Propose App</li>
-                    <li>New Farm</li>
-                    <li>Stats</li>
-                    <li>My Farm</li>
+                    <li>
+                        <StyledLink exact activeClassName='active' to='/propose'>
+                            Propose App
+                        </StyledLink>
+                    </li>
+                    <li>
+                        <StyledLink exact activeClassName='active' to='/new-farm'>
+                            New Farm
+                        </StyledLink>
+                    </li>
+                    <li>
+                        <StyledLink exact activeClassName='active' to='/stats'>
+                            Stats
+                        </StyledLink>
+                    </li>
+                    <li>
+                        <StyledLink exact activeClassName='active' to='/my-farm'>
+                            My Farm
+                        </StyledLink>
+                    </li>
                 </ul>
-            </NavigationItems>
+            </StyledNavigationItems>
             <Flex align={'center'}>
-                <ConnectWalletButton>
+                <StyledConnectWalletButton>
                     Connect
-                    <MetaMaskImageContainer style={{ backgroundImage: `url(${MetaMaskImage})` }} />
-                </ConnectWalletButton>
-                <SandwichMenuContainer>
+                    <StyledMetaMaskImageContainer style={{ backgroundImage: `url(${MetaMaskImage})` }} />
+                </StyledConnectWalletButton>
+                <StyledSandwichMenuContainer>
                     <SandwichMenu />
-                </SandwichMenuContainer>
+                </StyledSandwichMenuContainer>
             </Flex>
-        </NavigationContainer>
+        </StyledNavigationContainer>
     )
 }
 

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { media } from 'components/breakpoints';
 import { colors } from 'components/theme';
 
-export const ConnectWalletButton = styled.button`
+export const StyledConnectWalletButton = styled.button`
     align-items: center;
     background: transparent;
     border: 3px solid ${colors.white};
@@ -49,7 +50,22 @@ export const ConnectWalletButton = styled.button`
     `}
 `;
 
-export const LogoContainer = styled.div`
+export const StyledLink = styled(NavLink)`
+    color: ${colors.white};
+    text-decoration: none;
+    transition: all .3s ease;
+
+    &:focus,
+    &:active,
+    &:hover {
+        color: ${colors.yellow};
+    }
+    &.active {
+        color: ${colors.yellow};
+    }
+`;
+
+export const StyledLogoContainer = styled.div`
     fill: ${colors.white};
     height: 19px;
     transition: all .3s ease;
@@ -78,7 +94,7 @@ export const LogoContainer = styled.div`
     `}
 `;
 
-export const MetaMaskImageContainer = styled.div`
+export const StyledMetaMaskImageContainer = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -106,7 +122,7 @@ export const MetaMaskImageContainer = styled.div`
     `}
 `
 
-export const NavigationContainer = styled.div`
+export const StyledNavigationContainer = styled.div`
     align-items: center;
     background-position: center;
     background-repeat: no-repeat;
@@ -133,7 +149,7 @@ export const NavigationContainer = styled.div`
     `}
 `;
 
-export const NavigationItems = styled.nav`
+export const StyledNavigationItems = styled.nav`
     color: ${colors.white};
     display: none;
     font-size: 10px;
@@ -190,7 +206,7 @@ export const NavigationItems = styled.nav`
     }
 `;
 
-export const SandwichMenuContainer = styled.div`
+export const StyledSandwichMenuContainer = styled.div`
     display: block;
     fill: ${colors.white};
     margin-left: 1em;
