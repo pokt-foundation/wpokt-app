@@ -20,7 +20,13 @@ import {
 } from './components';
 import { Flex } from 'components/Containers';
 
-const Navigation: React.FC = () => {
+interface INavigation {
+    setSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Navigation: React.FC<INavigation> = ({
+    setSidebar,
+}) => {
     return (
         <StyledNavigationContainer style={{ backgroundImage: `url(${NavigationBarImage})` }}>
             <NavLink exact activeClassName='active' to='/'>
@@ -57,7 +63,7 @@ const Navigation: React.FC = () => {
                     Connect
                     <StyledMetaMaskImageContainer style={{ backgroundImage: `url(${MetaMaskImage})` }} />
                 </StyledConnectWalletButton>
-                <StyledSandwichMenuContainer>
+                <StyledSandwichMenuContainer onClick={() => setSidebar(true)}>
                     <SandwichMenu />
                 </StyledSandwichMenuContainer>
             </Flex>

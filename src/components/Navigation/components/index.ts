@@ -55,9 +55,7 @@ export const StyledLink = styled(NavLink)`
     text-decoration: none;
     transition: all .3s ease;
 
-    &:focus,
-    &:active,
-    &:hover {
+    &:focus {
         color: ${colors.yellow};
     }
     &.active {
@@ -71,9 +69,7 @@ export const StyledLogoContainer = styled.div`
     transition: all .3s ease;
     width: 100px;
 
-    &:hover,
-    &:active,
-    &:focus {
+    &:hover {
         cursor: pointer;
         fill: ${colors.yellow};
     }

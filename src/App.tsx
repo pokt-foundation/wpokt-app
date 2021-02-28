@@ -1,17 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GlobalFonts from 'fonts/font';
 
 // Components
 import Navigation from 'components/Navigation';
+import Sidebar from 'components/Sidebar';
 import Wrapper from 'components/Wrapper';
 
 const App: React.FC = () => {
+  // State
+  const [ sidebar, setSidebar ] = React.useState<boolean>(false);
+
   return (
     <Wrapper>
       <GlobalFonts />
       <Router>
-        <Navigation />
+        <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
+        <Navigation setSidebar={setSidebar} />
         <Switch>
           <Route exact path='/'>
             <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
