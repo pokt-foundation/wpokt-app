@@ -6,37 +6,37 @@ interface ISpacer {
 }
 
 const Spacer = styled.div<ISpacer>`
-    height: 100px;
+    height: 10rem;
 
     ${props => props.size === 'xs' && css`
-        height: 10px;
+        height: 1rem;
 
         ${media.xs`
-            height: 15px;
+            height: 1.5rem;
         `}
     `}
 
     ${props => props.size === 'sm' && css`
-        height: 20px;
+        height: 2rem;
 
         ${media.xs`
-            height: 25px;
+            height: 2.5rem;
         `}
     `}
 
     ${props => props.size === 'md' && css`
-        height: 25px;
+        height: 2.5rem;
 
         ${media.xs`
-            height: 50px;
+            height: 5rem;
         `}
     `}
 
     ${props => props.size === 'lg' && css`
-        height: 75px;
+        height: 7.5rem;
 
         ${media.xs`
-            height: 100px;
+            height: 10rem;
         `}
     `}
 `;

@@ -7,8 +7,8 @@ import { colors } from 'components/theme';
 export const StyledCloseContainer = styled.div`
     fill: ${colors.white};
     position: absolute;
-    right: 20px;
-    top: 40px;
+    right: 2rem;
+    top: 4rem;
     transition: all .3s ease;
 
     &:hover,
@@ -37,11 +37,11 @@ export const StyledNav = styled.nav`
         color: ${colors.white};
         display: flex;
         flex-direction: column;
-        font-size: 18px;
-        height: 150px;
+        font-size: 1.8rem;
+        height: 15rem;
         justify-content: space-between;
         letter-spacing: 3px;
-        margin-top: 100px;
+        margin-top: 10rem;
 
         li {
             align-items: center;

@@ -10,12 +10,12 @@ export const StyledConnectWalletButton = styled.button`
     color: ${colors.white};
     display: flex;
     font-family: PixelSplitter;
-    font-size: 8px;
-    height: 32px;
+    font-size: .8rem;
+    height: 3.2rem;
     justify-content: space-around;
     letter-spacing: 3px;
     transition: all .3s ease;
-    width: 110px;
+    width: 11rem;
 
     &:hover,
     &:active,
@@ -26,27 +26,27 @@ export const StyledConnectWalletButton = styled.button`
     }
 
     ${media.xs`
-        font-size: 10px;
-        height: 38px;
-        width: 130px;
+        font-size: 1rem;
+        height: 3.8rem;
+        width: 13rem;
     `}
 
     ${media.md`
-        font-size: 12px;
+        font-size: 1.2rem;
         letter-spacing: 5px;
-        width: 150px;
+        width: 15rem;
     `}
 
     ${media.lg`
         letter-spacing: 6px;
-        height: 45px;
-        width: 190px;
+        height: 4.5rem;
+        width: 19rem;
     `}
 
     ${media.xl`
-        font-size: 14px;
-        height: 55px;
-        width: 225px;
+        font-size: 1.4rem;
+        height: 5.5rem;
+        width: 22.5rem;
     `}
 `;
 
@@ -65,9 +65,9 @@ export const StyledLink = styled(NavLink)`
 
 export const StyledLogoContainer = styled.div`
     fill: ${colors.white};
-    height: 19px;
+    height: 1.9rem;
     transition: all .3s ease;
-    width: 100px;
+    width: 10rem;
 
     &:hover {
         cursor: pointer;
@@ -75,18 +75,18 @@ export const StyledLogoContainer = styled.div`
     }
 
     ${media.xs`
-        height: 28px;
-        width: 150px;
+        height: 2.8rem;
+        width: 15rem;
     `}
 
     ${media.lg`
-        height: 37px;
-        width: 200px;
+        height: 3.7rem;
+        width: 20rem;
     `}
 
     ${media.xl`
-        height: 43px;
-        width: 225px;
+        height: 4.3rem;
+        width: 22.5rem;
     `}
 `;
 
@@ -94,27 +94,27 @@ export const StyledMetaMaskImageContainer = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 15px;
-    width: 15px;
+    height: 1.5rem;
+    width: 1.5rem;
 
     ${media.xs`
-        height: 20px;
-        width: 20px;
+        height: 2rem;
+        width: 2rem;
     `}
 
     ${media.md`
-        height: 25px;
-        width: 25px;
+        height: 2.5rem;
+        width: 2.5rem;
     `}
 
     ${media.lg`
-        height: 30px;
-        width: 30px;
+        height: 3rem;
+        width: 3rem;
     `}
 
     ${media.xl`
-        height: 35px;
-        width: 35px;
+        height: 3.5rem;
+        width: 3.5rem;
     `}
 `
 
@@ -124,11 +124,11 @@ export const StyledNavigationContainer = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    height: 80px;
+    height: 8rem;
     justify-content: space-between;
     padding: 0 1em;
     position: sticky;
-    top: 20px;
+    top: 2rem;
     width: auto;
     z-index: 999;
 
@@ -141,14 +141,14 @@ export const StyledNavigationContainer = styled.div`
     `}
 
     ${media.xl`
-        height: 100px;
+        height: 10rem;
     `}
 `;
 
 export const StyledNavigationItems = styled.nav`
     color: ${colors.white};
     display: none;
-    font-size: 10px;
+    font-size: 1rem;
     font-wight: 700;
     text-transform: uppercase;
 
@@ -157,29 +157,29 @@ export const StyledNavigationItems = styled.nav`
     `}
 
     ${media.md`
-        font-size: 12px;
+        font-size: 1.2rem;
     `}
 
     ${media.xl`
-        font-size: 14px;
+        font-size: 1.4rem;
     `}
 
     ul {
         align-items: center;
         display: flex;
         justify-content: space-between;
-        width: 400px;
+        width: 40rem;
 
         ${media.md`
-            width: 540px;
+            width: 54rem;
         `}
 
         ${media.lg`
-            width: 620px;
+            width: 62rem;
         `}
 
         ${media.xl`
-            width: 700px;
+            width: 70rem;
         `}
 
         li {
