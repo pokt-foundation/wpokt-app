@@ -7,6 +7,9 @@ import Navigation from 'components/Navigation';
 import Sidebar from 'components/Sidebar';
 import Wrapper from 'components/Wrapper';
 
+// Views
+import Deposit from 'views/Deposit';
+
 const App: React.FC = () => {
   // State
   const [ sidebar, setSidebar ] = React.useState<boolean>(false);
@@ -19,9 +22,7 @@ const App: React.FC = () => {
         <Navigation setSidebar={setSidebar} />
         <Switch>
           <Route exact path='/'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>Home</div>
-            </div>
+            <Deposit />
           </Route>
           <Route exact path='/propose'>
             <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
