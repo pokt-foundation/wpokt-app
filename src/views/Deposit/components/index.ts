@@ -102,16 +102,13 @@ export const StyledDepositInputContainer = styled.div`
         width: 100%;
     
         ${media.xs`
-            height: 90px;
+            height: 80px;
             font-size: 14px;
             padding: 2.5rem 3rem;
         `}
     
         ${media.sm`
-            align-items: center;
-            flex-direction: row;
             font-size: 16px;
-            height: 80px;
             padding: 3rem;
         `}
 
@@ -132,8 +129,9 @@ export const StyledDepositInputContainer = styled.div`
         position: block;
         transition: all .1s ease;
 
-        &:hover {
+        &:active {
             cursor: pointer;
+            transform: translateY(2px);
         }
 
         ${media.xs`
