@@ -29,25 +29,33 @@ const Sidebar: React.FC<ISidebar> = ({
             <StyledNav>
                 <ul>
                 <li>
-                    <SelectorSvg fill={window.location.pathname === '/propose' ? colors.yellow : 'transparent'} />
+                    <div style={{ height: '22px', width: '22px' }}>
+                        <SelectorSvg fill={window.location.pathname === '/propose' ? colors.yellow : 'transparent'} />
+                    </div>
                     <StyledLink onClick={() => setSidebar(false)} exact activeClassName='active' to='/propose'>
                         Propose App
                     </StyledLink>
                 </li>
                 <li>
-                    <SelectorSvg fill={window.location.pathname === '/new-farm' ? colors.yellow : 'transparent'} />
+                    <div style={{ height: '22px', width: '22px' }}>
+                        <SelectorSvg fill={window.location.pathname === '/new-farm' ? colors.yellow : 'transparent'} />
+                    </div>
                     <StyledLink onClick={() => setSidebar(false)} exact activeClassName='active' to='/new-farm'>
                         New Farm
                     </StyledLink>
                 </li>
                 <li>
-                    <SelectorSvg fill={window.location.pathname === '/stats' ? colors.yellow : 'transparent'} />
+                    <div style={{ height: '22px', width: '22px' }}>
+                        <SelectorSvg fill={window.location.pathname === '/stats' ? colors.yellow : 'transparent'} />
+                    </div>
                     <StyledLink onClick={() => setSidebar(false)} exact activeClassName='active' to='/stats'>
                         Stats
                     </StyledLink>
                 </li>
                 <li>
-                    <SelectorSvg fill={window.location.pathname === '/my-farm' ? colors.yellow : 'transparent'} />
+                    <div style={{ height: '22px', width: '22px' }}>
+                        <SelectorSvg fill={window.location.pathname === '/my-farm' ? colors.yellow : 'transparent'} />
+                    </div>
                     <StyledLink onClick={() => setSidebar(false)} exact activeClassName='active' to='/my-farm'>
                         My Farm
                     </StyledLink>
