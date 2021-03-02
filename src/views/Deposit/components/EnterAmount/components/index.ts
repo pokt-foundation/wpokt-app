@@ -2,30 +2,84 @@ import styled from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors } from 'components/theme';
 
-export const StyledDepositHeader = styled.div`
+export const StyledHeader = styled.div`
     align-items: flex-start;
     background: #000;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 75px;
     justify-content: space-between;
-    padding: 2rem 2rem 1.5rem;
-
-    ${media.xs`
-        height: 100px;
-        padding: 2.5rem 3rem;
-    `}
 
     ${media.sm`
         align-items: center;
         flex-direction: row;
-        height: 50px;
-        padding: 3rem;
+    `}
+`;
+
+export const StyledHeaderLeft = styled.div`
+    align-items: center;
+    display: flex;
+
+    div#enter-amount {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 2rem 1.5rem;
+
+        ${media.xs`
+            padding: 2rem 2.5rem;
+        `}
+
+        ${media.sm`
+            padding: 3rem;
+        `}
+    }
+`;
+
+export const StyledHeaderRight = styled.div`
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    ${media.sm`
+        flex-direction: row;
+        width: 34rem;
     `}
 
-    ${media.xl`
-        height: 60px;
+    ${media.md`
+        width: 43rem;
+    `}
+
+    ${media.lg`
+        width: 45rem;
+    `}
+
+    div#wallet-balance {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        padding: 1.5rem 2rem;
+
+        ${media.xs`
+            padding: 2.5rem 3rem;
+        `}
+
+        ${media.sm`
+            padding: 3rem 3rem 3rem 0;
+        `}
+    }
+`;
+
+export const StyledLine = styled.div`
+    background: ${colors.red};
+    height: 2px;
+    width: 100%;
+
+    ${media.sm`
+        display: none;
     `}
 `;
 

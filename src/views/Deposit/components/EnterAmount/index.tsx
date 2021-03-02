@@ -8,21 +8,29 @@ import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
 // Components
 import {
-    StyledDepositHeader,
+    StyledHeader,
+    StyledHeaderLeft,
+    StyledHeaderRight,
+    StyledLine,
     StyledDepositInputContainer,
     StyledMaxButton,
 } from './components';
-import { Flex } from 'components/Containers';
 import { H2, P2 } from 'components/Typography';
 
 export const EnterAmount: React.FC = () => {
     return (
         <>
-            <StyledDepositHeader>
-                <H2 color={colors.white}>Enter Amount</H2>
-                <Flex align={'center'}>
-                    <P2 color={colors.white}>Wallet balance: 2345.926562 wPOKT</P2>
-                    <StyledMaxButton>
+            <StyledHeader>
+                <StyledHeaderLeft>
+                    <div id={'enter-amount'}>
+                        <H2 color={colors.white}>Enter Amount</H2>
+                    </div>
+                </StyledHeaderLeft>
+                <StyledHeaderRight>
+                    <StyledLine />
+                    <div id={'wallet-balance'}>
+                        <P2 color={colors.white}>Wallet balance: 2345.926562 wPOKT</P2>
+                        <StyledMaxButton>
                         <div id={'max-svg'}>
                             <MaxSvg />
                         </div>
@@ -30,8 +38,9 @@ export const EnterAmount: React.FC = () => {
                             <SelectorSvg />
                         </div>
                     </StyledMaxButton>
-                </Flex>
-            </StyledDepositHeader>
+                    </div>
+                </StyledHeaderRight>
+            </StyledHeader>
             <StyledDepositInputContainer>
                 <input type="text" placeholder={'How much do you want to deposit?'} />
                 <button>
