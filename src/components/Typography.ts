@@ -7,6 +7,7 @@ interface ITypograhpy {
 
 export const H1 = styled.h1<ITypograhpy>`
     font-family: PixelSplitter;
+    letter-spacing: 1px;
 
     ${props => props.color && css`
         color: ${props.color};
@@ -16,6 +17,7 @@ export const H1 = styled.h1<ITypograhpy>`
 export const H2 = styled.h2<ITypograhpy>`
     font-family: PixelSplitter;
     font-size: 14px;
+    letter-spacing: 1px;
 
     ${props => props.color && css`
         color: ${props.color};
@@ -29,6 +31,7 @@ export const H2 = styled.h2<ITypograhpy>`
 export const P1 = styled.p<ITypograhpy>`
     font-family: PixelSplitter;
     font-size: 16px;
+    letter-spacing: 1px;
 
     ${props => props.color && css`
         color: ${props.color};
