@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 
 export const Card = styled.div`
@@ -8,17 +8,14 @@ export const Card = styled.div`
     box-sizing: border-box;
     margin: 0 auto;
     min-height: 10rem;
-    padding: 1rem;
     width: 30rem;
 
     ${media.xs`
         border: 5px solid #000000;
-        padding: 1.5rem;
         width: 48rem;
     `}
 
     ${media.sm`
-        padding: 3rem;
         width: 76rem;
     `}
 
@@ -33,4 +30,28 @@ export const Card = styled.div`
     ${media.xl`
         width: 180rem;
     `}
-`
+`;
+
+interface IInnerCardContainer {
+    borderBottom?: boolean;
+}
+
+export const InnerCardContainer = styled.div<IInnerCardContainer>`
+    padding: 1rem;
+
+    ${media.xs`
+        padding: 1.5rem;
+    `}
+
+    ${media.sm`
+        padding: 3rem;
+    `}
+
+    ${props => props.borderBottom && css`
+        border-bottom: 3px solid #000000;
+
+        ${media.xs`
+            border-bottom: 5px solid #000000;
+        `}
+    `}
+`;

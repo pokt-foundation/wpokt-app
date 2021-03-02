@@ -5,6 +5,7 @@ import { colors } from 'components/theme';
 export const StyledDepositHeader = styled.div`
     align-items: flex-start;
     background: #000;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     height: 75px;
@@ -41,6 +42,7 @@ export const StyledDepositInputContainer = styled.div`
     input {
         background: transparent;
         border: 3px solid #000000;
+        box-sizing: border-box;
         font-family: PixelSplitter;
         font-size: 9px;
         height: 60px;
@@ -73,10 +75,14 @@ export const StyledDepositInputContainer = styled.div`
     button {
         background: transparent;
         border: none;
-        margin: 1.5rem auto;
+        margin: 1.5rem auto 1rem;
         outline: none;
         position: block;
         transition: all .1s ease;
+
+        &:hover {
+            cursor: pointer;
+        }
 
         &:active {
             cursor: pointer;
@@ -84,7 +90,7 @@ export const StyledDepositInputContainer = styled.div`
         }
 
         ${media.xs`
-            margin: 2rem auto;
+            margin: 2rem auto 1rem;
         `}
 
         ${media.sm`

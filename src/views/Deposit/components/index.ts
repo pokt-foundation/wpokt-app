@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors } from 'components/theme';
 
-export { EnterAmount } from '../EnterAmount';
+export { EnterAmount } from './EnterAmount';
+export { InfoCard } from './InfoCard';
 
 interface IStyledButtonLarge {
     active: boolean;
