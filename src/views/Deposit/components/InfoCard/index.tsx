@@ -5,17 +5,20 @@ import { colors } from 'components/theme';
 
 // Components
 import {
+    SmallInfoCard,
+    SmallInfoCardExtraLinks,
     StyledFarmContainer,
     StyledHeader,
     StyledHeaderLeft,
     StyledHeaderRight,
     StyledLine,
     StyledRewardText,
+    StyledSmallInfoCardsContainer,
 } from './components';
 import { H1, P2 } from 'components/Typography';
 
 // Assets
-import {ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
+import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
 export const InfoCard: React.FC = () => {
     return (
@@ -37,6 +40,14 @@ export const InfoCard: React.FC = () => {
                     </div>
                 </StyledHeaderRight>
             </StyledHeader>
+            <StyledSmallInfoCardsContainer>
+                <SmallInfoCard statType={'question'} statTitle={'APY'} statContent={'55.4 %'} />
+                <SmallInfoCard statType={'multiplier'} statTitle={'Multiplier'} statContent={'1.0 X'} />
+                <SmallInfoCard statType={'question'} statTitle={'TOTAL STAKED'} statContent={'86,976.98 wpokt'} />
+                <SmallInfoCard statType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
+                <SmallInfoCard statType={'question'} statTitle={'time left'} statContent={'2 days'} />
+                <SmallInfoCardExtraLinks />
+            </StyledSmallInfoCardsContainer>
         </div>
     )
 }

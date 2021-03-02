@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors } from 'components/theme';
 
+export { SmallInfoCard, SmallInfoCardExtraLinks } from './SmallInfoCard';
+
 export const StyledFarmContainer = styled.div`
     height: 3rem;
     margin-right: 2rem;
@@ -113,5 +115,32 @@ export const StyledRewardText = styled.p`
 
     ${media.md`
         font-size: 24px;
+    `}
+`;
+
+
+export const StyledSmallInfoCardsContainer = styled.div`
+    align-items: center;
+    background: #fff;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    height: 33rem;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+
+    ${media.xs`
+        height: 40rem;
+        padding: 2rem;
+    `}
+
+    ${media.sm`
+        height: auto;
+    `}
+
+    ${media.md`
+        padding: 3rem;
     `}
 `;
