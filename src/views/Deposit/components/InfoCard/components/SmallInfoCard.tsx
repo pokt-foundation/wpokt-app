@@ -13,12 +13,14 @@ import { ReactComponent as QuestionMarkSvg } from 'assets/icons/question_mark.sv
 
 interface ISmallInfoCard {
     statContent: string;
+    statFill?: number;
     statTitle: string;
     statType: 'question' | 'multiplier';
 }
 
 export const SmallInfoCard: React.FC<ISmallInfoCard> = ({
     statContent,
+    statFill,
     statTitle,
     statType
 }) => {
@@ -29,6 +31,7 @@ export const SmallInfoCard: React.FC<ISmallInfoCard> = ({
                 {statType === 'question' ? <QuestionMarkSvg /> :<MultiplierSvg /> }
             </StyledSmallInfoCardHeader>
             <StyledSmallInfoCardContent>
+                <StyledInfoCardContentFill fill={statFill ? statFill : 0} />
                 <StyledStatText color={'#000'}>{statContent}</StyledStatText>
             </StyledSmallInfoCardContent>
         </StyledSmallInfoCard>
@@ -62,9 +65,27 @@ const StyledSmallInfoCard = styled.div`
 
 const StyledSmallInfoCardContent = styled.div`
     padding: 1.5rem 1rem;
+    position: relative;
 
     ${media.xs`
         padding: 2rem 1rem;
+    `}
+`;
+
+interface IStyledInfoCardContentFill {
+    fill: number;
+}
+
+const StyledInfoCardContentFill = styled.div<IStyledInfoCardContentFill>`
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: ${colors.green};
+    top: 0;
+    left: 0;
+
+    ${props => props.fill > 0 && css`
+        width: ${props.fill}%;
     `}
 `;
 
@@ -89,6 +110,7 @@ interface ITypograhpy {
 export const StyledStatText = styled.p<ITypograhpy>`
     font-family: PixelSplitter;
     font-size: 9px;
+    position: relative;
 
     ${media.xs`
         font-size: 14px;

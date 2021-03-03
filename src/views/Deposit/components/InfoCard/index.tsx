@@ -47,7 +47,7 @@ export const InfoCard: React.FC = () => {
                 <SmallInfoCard statType={'multiplier'} statTitle={'Multiplier'} statContent={'1.0 X'} />
                 <SmallInfoCard statType={'question'} statTitle={'TOTAL STAKED'} statContent={'86,976.98 wpokt'} />
                 <SmallInfoCard statType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
-                <SmallInfoCard statType={'question'} statTitle={'time left'} statContent={'2 days'} />
+                <SmallInfoCard statType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
                 <SmallInfoCardExtraLinks />
             </StyledSmallInfoCardsContainer>
             <StyledMoreInfoContainer>

@@ -45,9 +45,19 @@ const Deposit: React.FC = () => {
                     {actionType === 'deposit' && <EnterAmount />}
                 </InnerCardContainer>
                 <InnerCardContainer>
-                    {actionType === 'deposit' && <InfoCard />}
+                    {actionType === 'deposit' && (
+                        <>
+                            <InfoCard />
+                            <Spacer size={'md'} />
+                            <InfoCard />
+                            <Spacer size={'md'} />
+                            <InfoCard />
+                        </>
+                    )
+                }
                 </InnerCardContainer>
             </Card>
+            <Spacer size={'lg'} />
         </>
     )
 }

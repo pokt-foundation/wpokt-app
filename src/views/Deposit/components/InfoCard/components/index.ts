@@ -109,7 +109,7 @@ export const StyledMoreInfoContainer = styled.div`
     border: 3px solid #000000;
     border-top: none;
     display: flex;
-    height: 4rem;
+    height: 3.5rem;
     justify-content: flex-end;
     padding-right: 2rem;
     width: 100%;
@@ -123,6 +123,10 @@ export const StyledMoreInfoContainer = styled.div`
             }
         }
     }
+
+    ${media.xs`
+        height: 4rem;
+    `}
 `;
 
 export const StyledRewardText = styled.p`
@@ -142,11 +146,23 @@ export const StyledRewardText = styled.p`
 
 export const StyledSelectorContainer = styled.div`
     fill: ${colors.white};
-    height: 1.8rem;
-    margin-left: 2rem;
+    height: 1.2rem;
+    margin-left: 1.5rem;
     transform: rotate(90deg);
     transition: all .3s ease;
-    width: 1.8rem;
+    width: 1.2rem;
+
+    ${media.xs`
+        height: 1.5rem;
+        margin-left: 1.5rem;
+        width: 1.5rem;
+    `}
+
+    ${media.md`
+        height: 1.8rem;
+        margin-left: 2rem;
+        width: 1.8rem;
+    `}
 `;
 
 export const StyledSmallInfoCardsContainer = styled.div`
