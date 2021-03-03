@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import { media } from 'components/breakpoints';
 import { colors } from 'components/theme';
 
 // Components
@@ -12,12 +10,16 @@ import {
     StyledHeaderLeft,
     StyledHeaderRight,
     StyledLine,
+    StyledMoreInfoContainer,
     StyledRewardText,
+    StyledSelectorContainer,
     StyledSmallInfoCardsContainer,
 } from './components';
+import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
 
 // Assets
+import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
 export const InfoCard: React.FC = () => {
@@ -48,6 +50,14 @@ export const InfoCard: React.FC = () => {
                 <SmallInfoCard statType={'question'} statTitle={'time left'} statContent={'2 days'} />
                 <SmallInfoCardExtraLinks />
             </StyledSmallInfoCardsContainer>
+            <StyledMoreInfoContainer>
+                <Flex align={'center'} justify={'center'}>
+                    <P2 color={colors.white}>More Info</P2>
+                    <StyledSelectorContainer id={'selector-container'}>
+                        <SelectorSvg />
+                    </StyledSelectorContainer>
+                </Flex>
+            </StyledMoreInfoContainer>
         </div>
     )
 }

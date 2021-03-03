@@ -103,6 +103,28 @@ export const StyledLine = styled.div`
     `}
 `;
 
+export const StyledMoreInfoContainer = styled.div`
+    align-items: center;
+    background: ${colors.grey};
+    border: 3px solid #000000;
+    border-top: none;
+    display: flex;
+    height: 4rem;
+    justify-content: flex-end;
+    padding-right: 2rem;
+    width: 100%;
+
+    div {
+        &:hover {
+            cursor: pointer;
+
+            div#selector-container {
+                transform: rotate(90deg) translateX(-2px);
+            }
+        }
+    }
+`;
+
 export const StyledRewardText = styled.p`
     color: ${colors.white};
     font-family: PixelSplitter;
@@ -118,6 +140,14 @@ export const StyledRewardText = styled.p`
     `}
 `;
 
+export const StyledSelectorContainer = styled.div`
+    fill: ${colors.white};
+    height: 1.8rem;
+    margin-left: 2rem;
+    transform: rotate(90deg);
+    transition: all .3s ease;
+    width: 1.8rem;
+`;
 
 export const StyledSmallInfoCardsContainer = styled.div`
     align-items: center;
