@@ -19,9 +19,11 @@ export const H1 = styled.h1<ITypograhpy>`
         letter-spacing: 3px;
     `}
 
-    ${props => props.color && css`
-        color: ${props.color};
-    `}
+    ${(props) =>
+        props.color &&
+        css`
+            color: ${props.color};
+        `}
 `;
 
 export const H2 = styled.h2<ITypograhpy>`
@@ -39,9 +41,11 @@ export const H2 = styled.h2<ITypograhpy>`
         letter-spacing: 3px;
     `}
 
-    ${props => props.color && css`
-        color: ${props.color};
-    `}
+    ${(props) =>
+        props.color &&
+        css`
+            color: ${props.color};
+        `}
 `;
 
 export const P1 = styled.p<ITypograhpy>`
@@ -49,9 +53,11 @@ export const P1 = styled.p<ITypograhpy>`
     font-size: 16px;
     letter-spacing: 1px;
 
-    ${props => props.color && css`
-        color: ${props.color};
-    `}
+    ${(props) =>
+        props.color &&
+        css`
+            color: ${props.color};
+        `}
 `;
 
 export const P2 = styled.p<ITypograhpy>`
@@ -67,7 +73,9 @@ export const P2 = styled.p<ITypograhpy>`
         font-size: 14px;
     `}
 
-    ${props => props.color && css`
-        color: ${props.color};
-    `}
+    ${(props) =>
+        props.color &&
+        css`
+            color: ${props.color};
+        `}
 `;

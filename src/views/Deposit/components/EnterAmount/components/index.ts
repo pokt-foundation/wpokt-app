@@ -24,13 +24,13 @@ export const StyledDepositInputContainer = styled.div`
         outline: none;
         padding: 2rem;
         width: 100%;
-    
+
         ${media.xs`
             height: 80px;
             font-size: 14px;
             padding: 2.5rem 3rem;
         `}
-    
+
         ${media.sm`
             font-size: 16px;
             padding: 3rem;
@@ -51,7 +51,7 @@ export const StyledDepositInputContainer = styled.div`
         margin: 1.5rem auto 1rem;
         outline: none;
         position: block;
-        transition: all .1s ease;
+        transition: all 0.1s ease;
 
         &:hover {
             cursor: pointer;
@@ -191,10 +191,10 @@ export const StyledMaxButton = styled.button`
         align-items: center;
         display: flex;
         fill: ${colors.yellow};
-        height: .8rem;
-        margin-left: .8rem;
+        height: 0.8rem;
+        margin-left: 0.8rem;
         transform: rotate(90deg);
-        transition: all .2s ease;
+        transition: all 0.2s ease;
         width: 1rem;
 
         ${media.xs`

@@ -59,5 +59,5 @@ export const InfoCard: React.FC = () => {
                 </Flex>
             </StyledMoreInfoContainer>
         </div>
-    )
-}
+    );
+};

@@ -149,7 +149,7 @@ export const StyledSelectorContainer = styled.div`
     height: 1.2rem;
     margin-left: 1.5rem;
     transform: rotate(90deg);
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     width: 1.2rem;
 
     ${media.xs`

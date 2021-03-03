@@ -16,7 +16,6 @@ import {
     StyledNavigationContainer,
     StyledNavigationItems,
     StyledSandwichMenuContainer,
-
 } from './components';
 import { Flex } from 'components/Containers';
 
@@ -24,12 +23,10 @@ interface INavigation {
     setSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navigation: React.FC<INavigation> = ({
-    setSidebar,
-}) => {
+const Navigation: React.FC<INavigation> = ({ setSidebar }) => {
     return (
         <StyledNavigationContainer style={{ backgroundImage: `url(${NavigationBarImage})` }}>
-            <NavLink exact activeClassName='active' to='/'>
+            <NavLink exact activeClassName="active" to="/">
                 <StyledLogoContainer>
                     <LogoSvg />
                 </StyledLogoContainer>
@@ -37,22 +34,22 @@ const Navigation: React.FC<INavigation> = ({
             <StyledNavigationItems>
                 <ul>
                     <li>
-                        <StyledLink exact activeClassName='active' to='/propose'>
+                        <StyledLink exact activeClassName="active" to="/propose">
                             Propose App
                         </StyledLink>
                     </li>
                     <li>
-                        <StyledLink exact activeClassName='active' to='/new-farm'>
+                        <StyledLink exact activeClassName="active" to="/new-farm">
                             New Farm
                         </StyledLink>
                     </li>
                     <li>
-                        <StyledLink exact activeClassName='active' to='/stats'>
+                        <StyledLink exact activeClassName="active" to="/stats">
                             Stats
                         </StyledLink>
                     </li>
                     <li>
-                        <StyledLink exact activeClassName='active' to='/my-farm'>
+                        <StyledLink exact activeClassName="active" to="/my-farm">
                             My Farm
                         </StyledLink>
                     </li>
@@ -68,7 +65,7 @@ const Navigation: React.FC<INavigation> = ({
                 </StyledSandwichMenuContainer>
             </Flex>
         </StyledNavigationContainer>
-    )
-}
+    );
+};
 
 export default Navigation;

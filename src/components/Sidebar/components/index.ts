@@ -3,13 +3,12 @@ import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors } from 'components/theme';
 
-
 export const StyledCloseContainer = styled.div`
     fill: ${colors.white};
     position: absolute;
     right: 2rem;
     top: 4rem;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:hover,
     &:active,
@@ -21,7 +20,7 @@ export const StyledCloseContainer = styled.div`
 export const StyledLink = styled(NavLink)`
     color: ${colors.white};
     text-decoration: none;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     margin-left: 1em;
 
     &:focus {
@@ -54,7 +53,7 @@ export const StyledNav = styled.nav`
 interface IStyledSidebarBackground {
     active: boolean;
 }
-  
+
 export const StyledSidebarBackground = styled.div<IStyledSidebarBackground>`
     align-items: flex-start;
     background: rgba(0, 0, 0, 0.9);
@@ -67,9 +66,11 @@ export const StyledSidebarBackground = styled.div<IStyledSidebarBackground>`
     width: 100%;
     z-index: 9999;
 
-    ${props => props.active && css`
-        display: flex;
-    `}
+    ${(props) =>
+        props.active &&
+        css`
+            display: flex;
+        `}
 
     ${media.sm`
         display: none;

@@ -31,13 +31,13 @@ export const EnterAmount: React.FC = () => {
                     <div id={'wallet-balance'}>
                         <P2 color={colors.white}>Wallet balance: 2345.926562 wPOKT</P2>
                         <StyledMaxButton>
-                        <div id={'max-svg'}>
-                            <MaxSvg />
-                        </div>
-                        <div id={'max-selector-svg'}>
-                            <SelectorSvg />
-                        </div>
-                    </StyledMaxButton>
+                            <div id={'max-svg'}>
+                                <MaxSvg />
+                            </div>
+                            <div id={'max-selector-svg'}>
+                                <SelectorSvg />
+                            </div>
+                        </StyledMaxButton>
                     </div>
                 </StyledHeaderRight>
             </StyledHeader>
@@ -48,5 +48,5 @@ export const EnterAmount: React.FC = () => {
                 </button>
             </StyledDepositInputContainer>
         </>
-    )
-}
+    );
+};

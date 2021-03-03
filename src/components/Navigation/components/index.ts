@@ -10,11 +10,11 @@ export const StyledConnectWalletButton = styled.button`
     color: ${colors.white};
     display: flex;
     font-family: PixelSplitter;
-    font-size: .8rem;
+    font-size: 0.8rem;
     height: 3.2rem;
     justify-content: space-around;
     letter-spacing: 3px;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     width: 11rem;
 
     &:hover,
@@ -53,7 +53,7 @@ export const StyledConnectWalletButton = styled.button`
 export const StyledLink = styled(NavLink)`
     color: ${colors.white};
     text-decoration: none;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:focus {
         color: ${colors.yellow};
@@ -66,7 +66,7 @@ export const StyledLink = styled(NavLink)`
 export const StyledLogoContainer = styled.div`
     fill: ${colors.white};
     height: 1.9rem;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     width: 10rem;
 
     &:hover {
@@ -116,7 +116,7 @@ export const StyledMetaMaskImageContainer = styled.div`
         height: 3.5rem;
         width: 3.5rem;
     `}
-`
+`;
 
 export const StyledNavigationContainer = styled.div`
     align-items: center;
@@ -183,7 +183,7 @@ export const StyledNavigationItems = styled.nav`
         `}
 
         li {
-            transition: all .3s ease;
+            transition: all 0.3s ease;
             letter-spacing: 3px;
 
             ${media.md`
@@ -206,7 +206,7 @@ export const StyledSandwichMenuContainer = styled.div`
     display: block;
     fill: ${colors.white};
     margin-left: 1em;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:hover,
     &:active,

@@ -18,16 +18,18 @@ export const StyledButtonLarge = styled.button<IStyledButtonLarge>`
     letter-spacing: 3px;
     outline: none;
     position: relative;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     width: 50%;
 
     &:hover {
         cursor: pointer;
     }
 
-    ${props => props.active && css`
-        background: ${colors.yellowLight};
-    `}
+    ${(props) =>
+        props.active &&
+        css`
+            background: ${colors.yellowLight};
+        `}
 
     ${media.xs`
         font-size: 10px;

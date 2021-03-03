@@ -18,25 +18,20 @@ interface ISmallInfoCard {
     statType: 'question' | 'multiplier';
 }
 
-export const SmallInfoCard: React.FC<ISmallInfoCard> = ({
-    statContent,
-    statFill,
-    statTitle,
-    statType
-}) => {
+export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill, statTitle, statType }) => {
     return (
         <StyledSmallInfoCard>
             <StyledSmallInfoCardHeader>
                 <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
-                {statType === 'question' ? <QuestionMarkSvg /> :<MultiplierSvg /> }
+                {statType === 'question' ? <QuestionMarkSvg /> : <MultiplierSvg />}
             </StyledSmallInfoCardHeader>
             <StyledSmallInfoCardContent>
                 <StyledInfoCardContentFill fill={statFill ? statFill : 0} />
                 <StyledStatText color={'#000'}>{statContent}</StyledStatText>
             </StyledSmallInfoCardContent>
         </StyledSmallInfoCard>
-    )
-}
+    );
+};
 
 const StyledSmallInfoCard = styled.div`
     border: 3px solid #000000;
@@ -84,9 +79,11 @@ const StyledInfoCardContentFill = styled.div<IStyledInfoCardContentFill>`
     top: 0;
     left: 0;
 
-    ${props => props.fill > 0 && css`
-        width: ${props.fill}%;
-    `}
+    ${(props) =>
+        props.fill > 0 &&
+        css`
+            width: ${props.fill}%;
+        `}
 `;
 
 const StyledSmallInfoCardHeader = styled.div`
@@ -133,9 +130,11 @@ export const StyledStatText = styled.p<ITypograhpy>`
         font-size: 18px;
     `}
 
-    ${props => props.color && css`
-        color: ${props.color};
-    `}
+    ${(props) =>
+        props.color &&
+        css`
+            color: ${props.color};
+        `}
 `;
 
 export const SmallInfoCardExtraLinks: React.FC = () => {
@@ -151,8 +150,8 @@ export const SmallInfoCardExtraLinks: React.FC = () => {
                 <CaretSvg />
             </StyledExtraLinksButton>
         </StyledExtraLinksContainer>
-    )
-}
+    );
+};
 
 const StyledExtraLinksContainer = styled.div`
     align-items: center;

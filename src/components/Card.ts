@@ -47,11 +47,13 @@ export const InnerCardContainer = styled.div<IInnerCardContainer>`
         padding: 3rem;
     `}
 
-    ${props => props.borderBottom && css`
-        border-bottom: 3px solid #000000;
+    ${(props) =>
+        props.borderBottom &&
+        css`
+            border-bottom: 3px solid #000000;
 
-        ${media.xs`
+            ${media.xs`
             border-bottom: 5px solid #000000;
         `}
-    `}
+        `}
 `;

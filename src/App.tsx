@@ -11,43 +11,122 @@ import Wrapper from 'components/Wrapper';
 import Deposit from 'views/Deposit';
 
 const App: React.FC = () => {
-  // State
-  const [ sidebar, setSidebar ] = React.useState<boolean>(false);
-
-  return (
-    <Wrapper>
-      <GlobalFonts />
-      <Router>
-        <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
-        <Navigation setSidebar={setSidebar} />
-        <Switch>
-          <Route exact path='/'>
-            <Deposit />
-          </Route>
-          <Route exact path='/propose'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>Propose App</div>
-            </div>
-          </Route>
-          <Route exact path='/new-farm'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>New Farm</div>
-            </div>
-          </Route>
-          <Route exact path='/stats'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>Stats</div>
-            </div>
-          </Route>
-          <Route exact path='/my-farm'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>My Farm</div>
-            </div>
-          </Route>
-        </Switch>
-      </Router>
-    </Wrapper>
-  );
-}
+    // State
+    const [sidebar, setSidebar] = React.useState<boolean>(false);
+    return (
+        <Wrapper>
+            <GlobalFonts />
+            <Router>
+                <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
+                <Navigation setSidebar={setSidebar} />
+                <Switch>
+                    <Route exact path="/">
+                        <Deposit />
+                    </Route>
+                    <Route exact path="/propose">
+                        <div
+                            style={{
+                                alignItems: 'center',
+                                display: 'flex',
+                                height: '100vh',
+                                justifyContent: 'center',
+                                width: '100%',
+                            }}
+                        >
+                            <div
+                                style={{
+                                    alignItems: 'center',
+                                    background: 'white',
+                                    display: 'flex',
+                                    height: '50px',
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
+                                    width: '200px',
+                                }}
+                            >
+                                Propose App
+                            </div>
+                        </div>
+                    </Route>
+                    <Route exact path="/new-farm">
+                        <div
+                            style={{
+                                alignItems: 'center',
+                                display: 'flex',
+                                height: '100vh',
+                                justifyContent: 'center',
+                                width: '100%',
+                            }}
+                        >
+                            <div
+                                style={{
+                                    alignItems: 'center',
+                                    background: 'white',
+                                    display: 'flex',
+                                    height: '50px',
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
+                                    width: '200px',
+                                }}
+                            >
+                                New Farm
+                            </div>
+                        </div>
+                    </Route>
+                    <Route exact path="/stats">
+                        <div
+                            style={{
+                                alignItems: 'center',
+                                display: 'flex',
+                                height: '100vh',
+                                justifyContent: 'center',
+                                width: '100%',
+                            }}
+                        >
+                            <div
+                                style={{
+                                    alignItems: 'center',
+                                    background: 'white',
+                                    display: 'flex',
+                                    height: '50px',
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
+                                    width: '200px',
+                                }}
+                            >
+                                Stats
+                            </div>
+                        </div>
+                    </Route>
+                    <Route exact path="/my-farm">
+                        <div
+                            style={{
+                                alignItems: 'center',
+                                display: 'flex',
+                                height: '100vh',
+                                justifyContent: 'center',
+                                width: '100%',
+                            }}
+                        >
+                            <div
+                                style={{
+                                    alignItems: 'center',
+                                    background: 'white',
+                                    display: 'flex',
+                                    height: '50px',
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
+                                    width: '200px',
+                                }}
+                            >
+                                My Farm
+                            </div>
+                        </div>
+                    </Route>
+                </Switch>
+            </Router>
+        </Wrapper>
+    );
+};
 
 export default App;
