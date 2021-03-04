@@ -5,7 +5,6 @@ import { colors } from 'components/theme';
 import { ReactComponent as CloseSvg } from 'assets/icons/close.svg';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
-// Components
 import { StyledCloseContainer, StyledLink, StyledNav, StyledSidebarBackground } from './components';
 
 interface ISidebar {

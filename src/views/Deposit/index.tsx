@@ -10,7 +10,6 @@ import { Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
 
 const Deposit: React.FC = () => {
-  // State
   const [actionType, setActionType] = React.useState<'deposit' | 'withdraw'>('deposit');
 
   return (
