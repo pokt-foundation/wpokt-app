@@ -2,20 +2,20 @@ import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 
 export const Card = styled.div`
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.6);
-    border: 3px solid #000000;
-    box-sizing: border-box;
-    margin: 0 auto;
-    min-height: 10rem;
-    width: 30rem;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.6);
+  border: 3px solid #000000;
+  box-sizing: border-box;
+  margin: 0 auto;
+  min-height: 10rem;
+  width: 30rem;
 
-    ${media.xs`
+  ${media.xs`
         border: 5px solid #000000;
         width: 48rem;
     `}
 
-    ${media.sm`
+  ${media.sm`
         width: 76rem;
     `}
 
@@ -33,27 +33,27 @@ export const Card = styled.div`
 `;
 
 interface IInnerCardContainer {
-    borderBottom?: boolean;
+  borderBottom?: boolean;
 }
 
 export const InnerCardContainer = styled.div<IInnerCardContainer>`
-    padding: 1rem;
+  padding: 1rem;
 
-    ${media.xs`
+  ${media.xs`
         padding: 1.5rem;
     `}
 
-    ${media.sm`
+  ${media.sm`
         padding: 3rem;
     `}
 
     ${(props) =>
-        props.borderBottom &&
-        css`
-            border-bottom: 3px solid #000000;
+    props.borderBottom &&
+    css`
+      border-bottom: 3px solid #000000;
 
-            ${media.xs`
+      ${media.xs`
             border-bottom: 5px solid #000000;
         `}
-        `}
+    `}
 `;

@@ -12,36 +12,36 @@ import { ReactComponent as MultiplierSvg } from 'assets/icons/multiplier.svg';
 import { ReactComponent as QuestionMarkSvg } from 'assets/icons/question_mark.svg';
 
 interface ISmallInfoCard {
-    statContent: string;
-    statFill?: number;
-    statTitle: string;
-    statType: 'question' | 'multiplier';
+  statContent: string;
+  statFill?: number;
+  statTitle: string;
+  statType: 'question' | 'multiplier';
 }
 
 export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill, statTitle, statType }) => {
-    return (
-        <StyledSmallInfoCard>
-            <StyledSmallInfoCardHeader>
-                <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
-                {statType === 'question' ? <QuestionMarkSvg /> : <MultiplierSvg />}
-            </StyledSmallInfoCardHeader>
-            <StyledSmallInfoCardContent>
-                <StyledInfoCardContentFill fill={statFill ? statFill : 0} />
-                <StyledStatText color={'#000'}>{statContent}</StyledStatText>
-            </StyledSmallInfoCardContent>
-        </StyledSmallInfoCard>
-    );
+  return (
+    <StyledSmallInfoCard>
+      <StyledSmallInfoCardHeader>
+        <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
+        {statType === 'question' ? <QuestionMarkSvg /> : <MultiplierSvg />}
+      </StyledSmallInfoCardHeader>
+      <StyledSmallInfoCardContent>
+        <StyledInfoCardContentFill fill={statFill ? statFill : 0} />
+        <StyledStatText color={'#000'}>{statContent}</StyledStatText>
+      </StyledSmallInfoCardContent>
+    </StyledSmallInfoCard>
+  );
 };
 
 const StyledSmallInfoCard = styled.div`
-    border: 3px solid #000000;
-    width: 12rem;
+  border: 3px solid #000000;
+  width: 12rem;
 
-    ${media.xs`
+  ${media.xs`
         width: 19rem;
     `}
 
-    ${media.sm`
+  ${media.sm`
         width: 12.5rem;
     `}
 
@@ -59,61 +59,61 @@ const StyledSmallInfoCard = styled.div`
 `;
 
 const StyledSmallInfoCardContent = styled.div`
-    padding: 1.5rem 1rem;
-    position: relative;
+  padding: 1.5rem 1rem;
+  position: relative;
 
-    ${media.xs`
+  ${media.xs`
         padding: 2rem 1rem;
     `}
 `;
 
 interface IStyledInfoCardContentFill {
-    fill: number;
+  fill: number;
 }
 
 const StyledInfoCardContentFill = styled.div<IStyledInfoCardContentFill>`
-    position: absolute;
-    width: 0%;
-    height: 100%;
-    background: ${colors.green};
-    top: 0;
-    left: 0;
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background: ${colors.green};
+  top: 0;
+  left: 0;
 
-    ${(props) =>
-        props.fill > 0 &&
-        css`
-            width: ${props.fill}%;
-        `}
+  ${(props) =>
+    props.fill > 0 &&
+    css`
+      width: ${props.fill}%;
+    `}
 `;
 
 const StyledSmallInfoCardHeader = styled.div`
-    align-items: center;
-    background: #000;
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+  align-items: center;
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
 
-    svg {
-        &:hover {
-            cursor: pointer;
-        }
+  svg {
+    &:hover {
+      cursor: pointer;
     }
+  }
 `;
 
 interface ITypograhpy {
-    color?: string;
+  color?: string;
 }
 
 export const StyledStatText = styled.p<ITypograhpy>`
-    font-family: PixelSplitter;
-    font-size: 9px;
-    position: relative;
+  font-family: PixelSplitter;
+  font-size: 9px;
+  position: relative;
 
-    ${media.xs`
+  ${media.xs`
         font-size: 14px;
     `}
 
-    ${media.sm`
+  ${media.sm`
         font-size: 9px;
     `}
 
@@ -131,57 +131,57 @@ export const StyledStatText = styled.p<ITypograhpy>`
     `}
 
     ${(props) =>
-        props.color &&
-        css`
-            color: ${props.color};
-        `}
+    props.color &&
+    css`
+      color: ${props.color};
+    `}
 `;
 
 export const SmallInfoCardExtraLinks: React.FC = () => {
-    return (
-        <StyledExtraLinksContainer>
-            <StyledExtraLinksButton>
-                Stats
-                <CaretSvg />
-            </StyledExtraLinksButton>
-            <Spacer size={'xs'} />
-            <StyledExtraLinksButton>
-                FAQ
-                <CaretSvg />
-            </StyledExtraLinksButton>
-        </StyledExtraLinksContainer>
-    );
+  return (
+    <StyledExtraLinksContainer>
+      <StyledExtraLinksButton>
+        Stats
+        <CaretSvg />
+      </StyledExtraLinksButton>
+      <Spacer size={'xs'} />
+      <StyledExtraLinksButton>
+        FAQ
+        <CaretSvg />
+      </StyledExtraLinksButton>
+    </StyledExtraLinksContainer>
+  );
 };
 
 const StyledExtraLinksContainer = styled.div`
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 9rem;
-    justify-content: center;
-    width: 12rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 9rem;
+  justify-content: center;
+  width: 12rem;
 
-    ${media.xs`
+  ${media.xs`
         height: 10rem;
         width: 19rem;
     `}
 
-    ${media.sm`
+  ${media.sm`
         display: none;
     `}
 `;
 
 const StyledExtraLinksButton = styled.button`
-    align-items: center;
-    background: #000;
-    border: none;
-    color: ${colors.white};
-    display: flex;
-    font-family: PixelSplitter;
-    font-size: 14px;
-    height: 5rem;
-    justify-content: space-between;
-    outline: none;
-    padding: 0 2rem;
-    width: 100%;
+  align-items: center;
+  background: #000;
+  border: none;
+  color: ${colors.white};
+  display: flex;
+  font-family: PixelSplitter;
+  font-size: 14px;
+  height: 5rem;
+  justify-content: space-between;
+  outline: none;
+  padding: 0 2rem;
+  width: 100%;
 `;

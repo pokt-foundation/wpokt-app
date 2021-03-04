@@ -6,32 +6,32 @@ export { EnterAmount } from './EnterAmount';
 export { InfoCard } from './InfoCard';
 
 interface IStyledButtonLarge {
-    active: boolean;
+  active: boolean;
 }
 
 export const StyledButtonLarge = styled.button<IStyledButtonLarge>`
-    background: transparent;
-    border: none;
-    font-family: PixelSplitter;
-    font-size: 8px;
-    height: 40px;
-    letter-spacing: 3px;
-    outline: none;
-    position: relative;
-    transition: all 0.3s ease;
-    width: 50%;
+  background: transparent;
+  border: none;
+  font-family: PixelSplitter;
+  font-size: 8px;
+  height: 40px;
+  letter-spacing: 3px;
+  outline: none;
+  position: relative;
+  transition: all 0.3s ease;
+  width: 50%;
 
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 
-    ${(props) =>
-        props.active &&
-        css`
-            background: ${colors.yellowLight};
-        `}
+  ${(props) =>
+    props.active &&
+    css`
+      background: ${colors.yellowLight};
+    `}
 
-    ${media.xs`
+  ${media.xs`
         font-size: 10px;
         height: 50px;
         letter-spacing: 7px;
@@ -58,21 +58,21 @@ export const StyledButtonLarge = styled.button<IStyledButtonLarge>`
 `;
 
 export const StyledSelectorContainer = styled.div`
-    height: 14px;
-    left: 10px;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 14px;
+  height: 14px;
+  left: 10px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
 
-    ${media.xs`
+  ${media.xs`
         height: 16px;
         left: 12px;
         width: 16px;
     `}
 
-    ${media.sm`
+  ${media.sm`
         height: 22px;
         left: 20px;
         width: 22px;
