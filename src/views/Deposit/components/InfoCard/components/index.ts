@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { media } from 'components/breakpoints';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 export { SmallInfoCard, SmallInfoCardExtraLinks } from './SmallInfoCard';
 
 export const StyledFarmContainer = styled.div`
-  height: 3rem;
-  margin-right: 2rem;
-  width: 3.2rem;
+  height: ${7 * GU}px;
+  margin-right: ${5 * GU}px;
+  width: ${8 * GU}px;
 
   ${media.sm`
-        height: 4rem;
-        margin-right: 2rem;
-        width: 4.2rem;
+        height: ${10 * GU}px;
+        margin-right: ${5 * GU}px;
+        width: ${10 * GU}px;
     `}
 `;
 
@@ -38,14 +38,14 @@ export const StyledHeaderLeft = styled.div`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: 2rem 2rem 1.5rem;
+    padding: ${5 * GU}px ${5 * GU}px ${4 * GU}px;
 
     ${media.xs`
-            padding: 2rem 2.5rem;
+            padding: ${5 * GU}px ${6 * GU}px;
         `}
 
     ${media.sm`
-            padding: 3rem;
+            padding: ${7 * GU}px;
         `}
   }
 `;
@@ -58,19 +58,19 @@ export const StyledHeaderRight = styled.div`
 
   ${media.sm`
         flex-direction: row;
-        width: 43rem;
+        width: ${107 * GU}px;
     `}
 
   ${media.md`
-        width: 60rem;
+        width: ${150 * GU}px;
     `}
 
     ${media.lg`
-        width: 80rem;
+        width: ${200 * GU}px;
     `}
 
     ${media.xl`
-        width: 140rem;
+        width: ${350 * GU}px;
     `}
 
     div#estimated-reward {
@@ -79,39 +79,39 @@ export const StyledHeaderRight = styled.div`
     justify-content: space-between;
     width: 100%;
 
-    padding: 1.5rem 2rem;
+    padding: ${4 * GU}px ${5 * GU}px;
 
     ${media.xs`
-            padding: 2.5rem 3rem;
+            padding: ${6 * GU}px ${7 * GU}px;
         `}
 
     ${media.sm`
-            padding: 3rem 3rem 3rem 0;
+            padding: ${7 * GU}px ${7 * GU}px ${7 * GU}px 0;
         `}
   }
 `;
 
 export const StyledLine = styled.div`
   background: ${colors.red};
-  height: 2px;
+  height: ${0.5 * GU}px;
   width: 100%;
 
   ${media.sm`
-        height: 22px;
-        margin: 0 1rem 0 0;
-        width: 4px;
+        height: ${5 * GU}px;
+        margin: 0 ${2 * GU}px 0 0;
+        width: ${GU}px;
     `}
 `;
 
 export const StyledMoreInfoContainer = styled.div`
   align-items: center;
   background: ${colors.grey};
-  border: 3px solid #000000;
+  border: ${GU}px solid #000000;
   border-top: none;
   display: flex;
-  height: 3.5rem;
+  height: ${9 * GU}px;
   justify-content: flex-end;
-  padding-right: 2rem;
+  padding-right: ${5 * GU}px;
   width: 100%;
 
   div {
@@ -125,61 +125,61 @@ export const StyledMoreInfoContainer = styled.div`
   }
 
   ${media.xs`
-        height: 4rem;
+        height: ${10 * GU}px;
     `}
 `;
 
 export const StyledRewardText = styled.p`
   color: ${colors.white};
   font-family: PixelSplitter;
-  font-size: 10px;
+  font-size: 1rem;
   letter-spacing: 1px;
 
   ${media.xs`
-        font-size: 16px;
+        font-size: 1.6rem;
     `}
 
   ${media.md`
-        font-size: 24px;
+        font-size: 2.4rem;
     `}
 `;
 
 export const StyledSelectorContainer = styled.div`
   fill: ${colors.white};
-  height: 1.2rem;
-  margin-left: 1.5rem;
+  height: ${3 * GU}px;
+  margin-left: ${4 * GU}px;
   transform: rotate(90deg);
   transition: all 0.3s ease;
-  width: 1.2rem;
+  width: ${3 * GU}px;
 
   ${media.xs`
-        height: 1.5rem;
-        margin-left: 1.5rem;
-        width: 1.5rem;
+        height: ${4 * GU}px;
+        margin-left: ${4 * GU}px;
+        width: ${4 * GU}px;
     `}
 
   ${media.md`
-        height: 1.8rem;
-        margin-left: 2rem;
-        width: 1.8rem;
+        height: ${4 * GU}px;
+        margin-left: ${5 * GU}px;
+        width: ${4 * GU}px;
     `}
 `;
 
 export const StyledSmallInfoCardsContainer = styled.div`
   align-items: center;
   background: #fff;
-  border: 3px solid #000000;
+  border: ${GU}px solid #000000;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  height: 33rem;
+  height: ${90 * GU}px;
   justify-content: space-between;
-  padding: 1rem;
+  padding: ${2 * GU}px;
   width: 100%;
 
   ${media.xs`
-        height: 40rem;
-        padding: 2rem;
+        height: ${100 * GU}px;
+        padding: ${5 * GU}px;
     `}
 
   ${media.sm`
@@ -187,6 +187,6 @@ export const StyledSmallInfoCardsContainer = styled.div`
     `}
 
     ${media.md`
-        padding: 3rem;
+        padding: ${7 * GU}px;
     `}
 `;

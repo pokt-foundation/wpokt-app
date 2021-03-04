@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GlobalFonts from 'fonts/font';
+import { GU } from 'components/theme';
 
 // Components
 import Navigation from 'components/Navigation';
@@ -38,10 +39,10 @@ const App: React.FC = () => {
                   alignItems: 'center',
                   background: 'white',
                   display: 'flex',
-                  height: '50px',
+                  height: `${12 * GU}px`,
                   justifyContent: 'center',
                   textAlign: 'center',
-                  width: '200px',
+                  width: `${50 * GU}px`,
                 }}
               >
                 Propose App
@@ -63,10 +64,10 @@ const App: React.FC = () => {
                   alignItems: 'center',
                   background: 'white',
                   display: 'flex',
-                  height: '50px',
+                  height: `${12 * GU}px`,
                   justifyContent: 'center',
                   textAlign: 'center',
-                  width: '200px',
+                  width: `${50 * GU}px`,
                 }}
               >
                 New Farm
@@ -88,10 +89,10 @@ const App: React.FC = () => {
                   alignItems: 'center',
                   background: 'white',
                   display: 'flex',
-                  height: '50px',
+                  height: `${12 * GU}px`,
                   justifyContent: 'center',
                   textAlign: 'center',
-                  width: '200px',
+                  width: `${50 * GU}px`,
                 }}
               >
                 Stats
@@ -113,10 +114,10 @@ const App: React.FC = () => {
                   alignItems: 'center',
                   background: 'white',
                   display: 'flex',
-                  height: '50px',
+                  height: `${12 * GU}px`,
                   justifyContent: 'center',
                   textAlign: 'center',
-                  width: '200px',
+                  width: `${50 * GU}px`,
                 }}
               >
                 My Farm

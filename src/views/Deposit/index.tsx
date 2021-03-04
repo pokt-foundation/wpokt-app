@@ -31,7 +31,7 @@ const Deposit: React.FC = () => {
               Withdraw
             </StyledButtonLarge>
           </Flex>
-          <Spacer size={'md'} />
+          <Spacer size={'sm'} />
           {actionType === 'deposit' && <EnterAmount />}
         </InnerCardContainer>
         <InnerCardContainer>

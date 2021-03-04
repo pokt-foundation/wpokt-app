@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 export { EnterAmount } from './EnterAmount';
 export { InfoCard } from './InfoCard';
@@ -13,8 +13,8 @@ export const StyledButtonLarge = styled.button<IStyledButtonLarge>`
   background: transparent;
   border: none;
   font-family: PixelSplitter;
-  font-size: 8px;
-  height: 40px;
+  font-size: 0.8rem;
+  height: ${10 * GU}px;
   letter-spacing: 3px;
   outline: none;
   position: relative;
@@ -32,49 +32,48 @@ export const StyledButtonLarge = styled.button<IStyledButtonLarge>`
     `}
 
   ${media.xs`
-        font-size: 10px;
-        height: 50px;
+        font-size: 1rem;
+        height: ${12 * GU}px;
         letter-spacing: 7px;
     `}
 
     ${media.sm`
-        font-size: 14px;
+        font-size: 1.4rem;
         letter-spacing: 14px;
     `}
 
     ${media.md`
-        font-size: 16px;
+        font-size: 1.6rem;
         letter-spacing: 16px;
     `}
 
     ${media.lg`
-        font-size: 18px;
+        font-size: 1.8rem;
     `}
 
     ${media.xl`
-        font-size: 20px;
-        height: 60px;
+        font-size: 2rem;
+        height: ${15 * GU}px;
     `}
 `;
 
 export const StyledSelectorContainer = styled.div`
-  height: 14px;
-  left: 10px;
+  height: ${3 * GU}px;
+  left: ${3 * GU}px;
   overflow: hidden;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 14px;
+  width: ${3 * GU}px;
 
   ${media.xs`
-        height: 16px;
-        left: 12px;
-        width: 16px;
+        height: ${4 * GU}px;
+        width: ${4 * GU}px;
     `}
 
   ${media.sm`
-        height: 22px;
-        left: 20px;
-        width: 22px;
+        height: ${5 * GU}px;
+        left: ${5 * GU}px;
+        width: ${5 * GU}px;
     `}
 `;

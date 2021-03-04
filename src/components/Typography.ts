@@ -7,15 +7,15 @@ interface ITypograhpy {
 
 export const H1 = styled.h1<ITypograhpy>`
   font-family: PixelSplitter;
-  font-size: 14px;
+  font-size: 1.4rem;
   letter-spacing: 1px;
 
   ${media.sm`
-        font-size: 18px;
+        font-size: 1.8rem;
     `}
 
   ${media.md`
-        font-size: 24px;
+        font-size: 2.4rem;
         letter-spacing: 3px;
     `}
 
@@ -28,16 +28,16 @@ export const H1 = styled.h1<ITypograhpy>`
 
 export const H2 = styled.h2<ITypograhpy>`
   font-family: PixelSplitter;
-  font-size: 10px;
+  font-size: 1rem;
   letter-spacing: 1px;
-  line-height: 14px;
+  line-height: 1.4rem;
 
   ${media.sm`
-        font-size: 12px;
+        font-size: 1.2rem;
     `}
 
   ${media.md`
-        font-size: 16px;
+        font-size: 1.6rem;
         letter-spacing: 3px;
     `}
 
@@ -50,7 +50,7 @@ export const H2 = styled.h2<ITypograhpy>`
 
 export const P1 = styled.p<ITypograhpy>`
   font-family: PixelSplitter;
-  font-size: 16px;
+  font-size: 1.6rem;
   letter-spacing: 1px;
 
   ${(props) =>
@@ -62,15 +62,15 @@ export const P1 = styled.p<ITypograhpy>`
 
 export const P2 = styled.p<ITypograhpy>`
   font-family: PixelSplitter;
-  font-size: 8px;
-  line-height: 12px;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
 
   ${media.xs`
-        font-size: 10px;
+        font-size: 1rem;
     `}
 
   ${media.md`
-        font-size: 14px;
+        font-size: 1.4rem;
     `}
 
     ${(props) =>

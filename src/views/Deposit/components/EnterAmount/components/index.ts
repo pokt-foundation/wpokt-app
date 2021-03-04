@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { media } from 'components/breakpoints';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 export const StyledDepositInputContainer = styled.div`
   align-items: center;
@@ -14,41 +14,41 @@ export const StyledDepositInputContainer = styled.div`
 
   input {
     background: transparent;
-    border: 3px solid #000000;
+    border: ${GU}px solid #000000;
     box-sizing: border-box;
     font-family: PixelSplitter;
-    font-size: 9px;
-    height: 60px;
+    font-size: 0.9rem;
+    height: ${15 * GU}px;
     justify-content: space-between;
     letter-spacing: 1px;
     outline: none;
-    padding: 2rem;
+    padding: ${5 * GU}px;
     width: 100%;
 
     ${media.xs`
-            height: 80px;
-            font-size: 14px;
-            padding: 2.5rem 3rem;
+            height: ${20 * GU}px;
+            font-size: 1.4rem;
+            padding: ${6 * GU}px ${8 * GU}px;
         `}
 
     ${media.sm`
-            font-size: 16px;
-            padding: 3rem;
+            font-size: 1.6rem;
+            padding: ${8 * GU}px;
         `}
 
         ${media.md`
-            font-size: 18px;
+            font-size: 1.8rem;
         `}
     
         ${media.xl`
-            height: 90px;
+            height: ${22 * GU}px;
         `}
   }
 
   button {
     background: transparent;
     border: none;
-    margin: 1.5rem auto 1rem;
+    margin: ${4 * GU}px auto ${3 * GU}px;
     outline: none;
     position: block;
     transition: all 0.1s ease;
@@ -63,13 +63,13 @@ export const StyledDepositInputContainer = styled.div`
     }
 
     ${media.xs`
-            margin: 2rem auto 1rem;
+            margin: ${5 * GU}px auto ${3 * GU}px;
         `}
 
     ${media.sm`
             position: absolute;
             margin: 0;
-            right: 20px;
+            right: ${5 * GU}px;
             top: 50%;
             transform: translateY(-50%);
 
@@ -106,14 +106,14 @@ export const StyledHeaderLeft = styled.div`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: 2rem 2rem 1.5rem;
+    padding: ${5 * GU}px ${5 * GU}px ${4 * GU}px;
 
     ${media.xs`
-            padding: 2rem 2.5rem;
+            padding: ${5 * GU}px ${6 * GU}px;
         `}
 
     ${media.sm`
-            padding: 3rem;
+            padding: ${7 * GU}px;
         `}
   }
 `;
@@ -126,15 +126,15 @@ export const StyledHeaderRight = styled.div`
 
   ${media.sm`
         flex-direction: row;
-        width: 34rem;
+        width: ${85 * GU}px;
     `}
 
   ${media.md`
-        width: 43rem;
+        width: ${107 * GU}px;
     `}
 
     ${media.lg`
-        width: 45rem;
+        width: ${112 * GU}px;
     `}
 
     div#wallet-balance {
@@ -143,21 +143,21 @@ export const StyledHeaderRight = styled.div`
     justify-content: space-between;
     width: 100%;
 
-    padding: 1.5rem 2rem;
+    padding: ${4 * GU}px ${5 * GU}px;
 
     ${media.xs`
-            padding: 2.5rem 3rem;
+            padding: ${6 * GU}px ${7 * GU}px;
         `}
 
     ${media.sm`
-            padding: 3rem 3rem 3rem 0;
+            padding: ${7 * GU}px ${7 * GU}px ${7 * GU}px 0;
         `}
   }
 `;
 
 export const StyledLine = styled.div`
   background: ${colors.red};
-  height: 2px;
+  height: ${0.5 * GU}px;
   width: 100%;
 
   ${media.sm`
@@ -170,20 +170,20 @@ export const StyledMaxButton = styled.button`
   background: transparent;
   border: none;
   display: flex;
-  height: 1.5rem;
+  height: ${4 * GU}px;
   justify-content: center;
-  margin-left: 1rem;
+  margin-left: ${3 * GU}px;
   outline: none;
 
   div#max-svg {
     align-items: center;
     display: flex;
-    height: 1rem;
-    width: 2.7rem;
+    height: ${3 * GU}px;
+    width: ${7 * GU}px;
 
     ${media.xs`
-            height: 2rem;
-            width: 5.4rem;
+            height: ${5 * GU}px;
+            width: ${13 * GU}px;
         `}
   }
 
@@ -191,15 +191,15 @@ export const StyledMaxButton = styled.button`
     align-items: center;
     display: flex;
     fill: ${colors.yellow};
-    height: 0.8rem;
-    margin-left: 0.8rem;
+    height: ${2 * GU}px;
+    margin-left: ${2 * GU}px;
     transform: rotate(90deg);
     transition: all 0.2s ease;
-    width: 1rem;
+    width: ${2 * GU}px;
 
     ${media.xs`
-            height: 1.6rem;
-            width: 1.6rem;
+            height: ${5 * GU}px;
+            width: ${5 * GU}px;
         `}
   }
 
@@ -220,11 +220,11 @@ export const StyledMaxButton = styled.button`
   }
 
   ${media.xs`
-        height: 2rem;
-        margin-left: 2rem;
+        height: ${5 * GU}px;
+        margin-left: ${5 * GU}px;
     `}
 
   ${media.sm`
-        margin-left: 1rem;
+        margin-left: ${3 * GU}px;
     `}
 `;

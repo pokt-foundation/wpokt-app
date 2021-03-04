@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 // Components
 import Spacer from 'components/Spacer';
@@ -34,36 +34,36 @@ export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill,
 };
 
 const StyledSmallInfoCard = styled.div`
-  border: 3px solid #000000;
-  width: 12rem;
+  border: ${GU}px solid #000000;
+  width: ${32 * GU}px;
 
   ${media.xs`
-        width: 19rem;
+        width: ${47 * GU}px;
     `}
 
   ${media.sm`
-        width: 12.5rem;
+        width: ${31 * GU}px;
     `}
 
     ${media.md`
-        width: 16.5rem;
+        width: ${41 * GU}px;
     `}
 
     ${media.lg`
-        width: 20rem;
+        width: ${50 * GU}px;
     `}
 
     ${media.xl`
-        width: 30rem;
+        width: ${75 * GU}px;
     `}
 `;
 
 const StyledSmallInfoCardContent = styled.div`
-  padding: 1.5rem 1rem;
+  padding: ${4 * GU}px ${2 * GU}px;
   position: relative;
 
   ${media.xs`
-        padding: 2rem 1rem;
+        padding: ${5 * GU}px ${2 * GU}px;
     `}
 `;
 
@@ -90,8 +90,9 @@ const StyledSmallInfoCardHeader = styled.div`
   align-items: center;
   background: #000;
   display: flex;
+  height: ${12 * GU}px;
   justify-content: space-between;
-  padding: 1rem;
+  padding: ${2 * GU}px;
 
   svg {
     &:hover {
@@ -106,28 +107,30 @@ interface ITypograhpy {
 
 export const StyledStatText = styled.p<ITypograhpy>`
   font-family: PixelSplitter;
-  font-size: 9px;
+  font-size: 1rem;
+  line-height: 12px;
   position: relative;
 
   ${media.xs`
-        font-size: 14px;
+        font-size: 1.4rem;
     `}
 
   ${media.sm`
-        font-size: 9px;
+        font-size: 0.9rem;
     `}
 
     ${media.md`
-        font-size: 12px;
+        font-size: 1.2rem;
         letter-spacing: 1px;
+        line-height: 15px;
     `}
 
     ${media.lg`
-        font-size: 14px;
+        font-size: 1.4rem;
     `}
 
     ${media.xl`
-        font-size: 18px;
+        font-size: 1.8rem;
     `}
 
     ${(props) =>
@@ -157,13 +160,13 @@ const StyledExtraLinksContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 9rem;
+  height: ${22 * GU}px;
   justify-content: center;
-  width: 12rem;
+  width: ${30 * GU}px;
 
   ${media.xs`
-        height: 10rem;
-        width: 19rem;
+        height: ${25 * GU}px;
+        width: ${47 * GU}px;
     `}
 
   ${media.sm`
@@ -178,10 +181,10 @@ const StyledExtraLinksButton = styled.button`
   color: ${colors.white};
   display: flex;
   font-family: PixelSplitter;
-  font-size: 14px;
-  height: 5rem;
+  font-size: 1.4rem;
+  height: ${12 * GU}px;
   justify-content: space-between;
   outline: none;
-  padding: 0 2rem;
+  padding: 0 ${5 * GU}px;
   width: 100%;
 `;

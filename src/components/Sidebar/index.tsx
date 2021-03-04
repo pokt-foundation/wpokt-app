@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 // Assets
 import { ReactComponent as CloseSvg } from 'assets/icons/close.svg';
@@ -20,7 +20,7 @@ const Sidebar: React.FC<ISidebar> = ({ setSidebar, sidebar }) => {
       <StyledNav>
         <ul>
           <li>
-            <div style={{ height: '22px', width: '22px' }}>
+            <div style={{ height: `${5 * GU}px`, width: `${5 * GU}px` }}>
               <SelectorSvg fill={window.location.pathname === '/propose' ? colors.yellow : 'transparent'} />
             </div>
             <StyledLink onClick={() => setSidebar(false)} exact activeClassName="active" to="/propose">
@@ -28,7 +28,7 @@ const Sidebar: React.FC<ISidebar> = ({ setSidebar, sidebar }) => {
             </StyledLink>
           </li>
           <li>
-            <div style={{ height: '22px', width: '22px' }}>
+            <div style={{ height: `${5 * GU}px`, width: `${5 * GU}px` }}>
               <SelectorSvg fill={window.location.pathname === '/new-farm' ? colors.yellow : 'transparent'} />
             </div>
             <StyledLink onClick={() => setSidebar(false)} exact activeClassName="active" to="/new-farm">
@@ -36,7 +36,7 @@ const Sidebar: React.FC<ISidebar> = ({ setSidebar, sidebar }) => {
             </StyledLink>
           </li>
           <li>
-            <div style={{ height: '22px', width: '22px' }}>
+            <div style={{ height: `${5 * GU}px`, width: `${5 * GU}px` }}>
               <SelectorSvg fill={window.location.pathname === '/stats' ? colors.yellow : 'transparent'} />
             </div>
             <StyledLink onClick={() => setSidebar(false)} exact activeClassName="active" to="/stats">
@@ -44,7 +44,7 @@ const Sidebar: React.FC<ISidebar> = ({ setSidebar, sidebar }) => {
             </StyledLink>
           </li>
           <li>
-            <div style={{ height: '22px', width: '22px' }}>
+            <div style={{ height: `${5 * GU}px`, width: `${5 * GU}px` }}>
               <SelectorSvg fill={window.location.pathname === '/my-farm' ? colors.yellow : 'transparent'} />
             </div>
             <StyledLink onClick={() => setSidebar(false)} exact activeClassName="active" to="/my-farm">

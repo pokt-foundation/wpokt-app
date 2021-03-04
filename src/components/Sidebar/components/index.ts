@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 export const StyledCloseContainer = styled.div`
   fill: ${colors.white};
   position: absolute;
-  right: 2rem;
-  top: 4rem;
+  right: ${4 * GU}px;
+  top: ${11 * GU}px;
   transition: all 0.3s ease;
 
   &:hover,
@@ -21,7 +21,7 @@ export const StyledLink = styled(NavLink)`
   color: ${colors.white};
   text-decoration: none;
   transition: all 0.3s ease;
-  margin-left: 1em;
+  margin-left: ${5 * GU}px;
 
   &:focus {
     color: ${colors.yellow};
@@ -36,11 +36,11 @@ export const StyledNav = styled.nav`
     color: ${colors.white};
     display: flex;
     flex-direction: column;
-    font-size: 1.8rem;
-    height: 15rem;
+    font-size: ${4 * GU}px;
+    height: ${37 * GU}px;
     justify-content: space-between;
     letter-spacing: 3px;
-    margin-top: 10rem;
+    margin-top: ${25 * GU}px;
 
     li {
       align-items: center;
@@ -56,7 +56,7 @@ interface IStyledSidebarBackground {
 
 export const StyledSidebarBackground = styled.div<IStyledSidebarBackground>`
   align-items: flex-start;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   display: none;
   height: 100%;
   justify-content: center;

@@ -6,3 +6,5 @@ export const colors = {
   yellowLight: '#FCCB28',
   white: '#fff',
 };
+
+export const GU = 4;

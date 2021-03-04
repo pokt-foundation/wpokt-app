@@ -1,52 +1,53 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { media } from 'components/breakpoints';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 export const StyledConnectWalletButton = styled.button`
   align-items: center;
   background: transparent;
-  border: 3px solid ${colors.white};
+  border: ${0.5 * GU}px solid ${colors.white};
   color: ${colors.white};
   display: flex;
   font-family: PixelSplitter;
   font-size: 0.8rem;
-  height: 3.2rem;
+  height: ${8 * GU}px;
   justify-content: space-around;
   letter-spacing: 3px;
   transition: all 0.3s ease;
-  width: 11rem;
+  width: ${27 * GU}px;
 
   &:hover,
   &:active,
   &:focus {
-    border: 3px solid ${colors.yellow};
+    border: ${GU}px solid ${colors.yellow};
     color: ${colors.yellow};
     cursor: pointer;
   }
 
   ${media.xs`
         font-size: 1rem;
-        height: 3.8rem;
-        width: 13rem;
+        height: ${9 * GU}px;
+        width: ${32 * GU}px;
     `}
 
   ${media.md`
         font-size: 1.2rem;
         letter-spacing: 5px;
-        width: 15rem;
+        width: ${37 * GU}px;
     `}
 
     ${media.lg`
         letter-spacing: 6px;
-        height: 4.5rem;
-        width: 19rem;
+        height: ${11 * GU}px;
+        width: ${47 * GU}px;
     `}
 
     ${media.xl`
+        border: ${GU}px solid ${colors.white};
         font-size: 1.4rem;
-        height: 5.5rem;
-        width: 22.5rem;
+        height: ${13 * GU}px;
+        width: ${56 * GU}px;
     `}
 `;
 
@@ -55,6 +56,9 @@ export const StyledLink = styled(NavLink)`
   text-decoration: none;
   transition: all 0.3s ease;
 
+  &:hover {
+    color: ${colors.yellow};
+  }
   &:focus {
     color: ${colors.yellow};
   }
@@ -65,9 +69,9 @@ export const StyledLink = styled(NavLink)`
 
 export const StyledLogoContainer = styled.div`
   fill: ${colors.white};
-  height: 1.9rem;
+  height: ${5 * GU}px;
   transition: all 0.3s ease;
-  width: 10rem;
+  width: ${25 * GU}px;
 
   &:hover {
     cursor: pointer;
@@ -75,18 +79,18 @@ export const StyledLogoContainer = styled.div`
   }
 
   ${media.xs`
-        height: 2.8rem;
-        width: 15rem;
+        height: ${7 * GU}px;
+        width: ${37 * GU}px;
     `}
 
   ${media.lg`
-        height: 3.7rem;
-        width: 20rem;
+        height: ${9 * GU}px;
+        width: ${50 * GU}px;
     `}
 
     ${media.xl`
-        height: 4.3rem;
-        width: 22.5rem;
+        height: ${10 * GU}px;
+        width: ${56 * GU}px;
     `}
 `;
 
@@ -94,27 +98,27 @@ export const StyledMetaMaskImageContainer = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: ${3 * GU}px;
+  width: ${3 * GU}px;
 
   ${media.xs`
-        height: 2rem;
-        width: 2rem;
+        height: ${5 * GU}px;
+        width: ${5 * GU}px;
     `}
 
   ${media.md`
-        height: 2.5rem;
-        width: 2.5rem;
+        height: ${6 * GU}px;
+        width: ${6 * GU}px;
     `}
 
     ${media.lg`
-        height: 3rem;
-        width: 3rem;
+        height: ${7 * GU}px;
+        width: ${7 * GU}px;
     `}
 
     ${media.xl`
-        height: 3.5rem;
-        width: 3.5rem;
+        height: ${8 * GU}px;
+        width: ${8 * GU}px;
     `}
 `;
 
@@ -124,24 +128,24 @@ export const StyledNavigationContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  height: 8rem;
+  height: ${20 * GU}px;
   justify-content: space-between;
-  padding: 0 1em;
+  padding: 0 ${4 * GU}px;
   position: sticky;
-  top: 2rem;
+  top: ${5 * GU}px;
   width: auto;
   z-index: 999;
 
   ${media.md`
-        padding: 0 2em;
+        padding: 0 ${5 * GU}px;
     `}
 
   ${media.lg`
-        padding: 0 4em;
+        padding: 0 ${10 * GU}px;
     `}
 
     ${media.xl`
-        height: 10rem;
+        height: ${25 * GU}px;
     `}
 `;
 
@@ -168,18 +172,18 @@ export const StyledNavigationItems = styled.nav`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    width: 40rem;
+    width: ${100 * GU}px;
 
     ${media.md`
-            width: 54rem;
+            width: ${135 * GU}px;
         `}
 
     ${media.lg`
-            width: 62rem;
+            width: ${155 * GU}px;
         `}
 
         ${media.xl`
-            width: 70rem;
+            width: ${175 * GU}px;
         `}
 
         li {
