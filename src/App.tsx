@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import 'styled-components/macro';
+import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
 import { GU } from 'components/theme';
 
@@ -26,24 +28,24 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/propose">
             <div
-              style={{
-                alignItems: 'center',
-                display: 'flex',
-                height: '100vh',
-                justifyContent: 'center',
-                width: '100%',
-              }}
+              css={`
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                width: 100%;
+              `}
             >
               <div
-                style={{
-                  alignItems: 'center',
-                  background: 'white',
-                  display: 'flex',
-                  height: `${12 * GU}px`,
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  width: `${50 * GU}px`,
-                }}
+                css={`
+                  align-items: center;
+                  background: white;
+                  display: flex;
+                  height: ${12 * GU}px;
+                  justify-content: center;
+                  text-align: center;
+                  width: ${50 * GU}px;
+                `}
               >
                 Propose App
               </div>
@@ -51,24 +53,24 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/new-farm">
             <div
-              style={{
-                alignItems: 'center',
-                display: 'flex',
-                height: '100vh',
-                justifyContent: 'center',
-                width: '100%',
-              }}
+              css={`
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                width: 100%;
+              `}
             >
               <div
-                style={{
-                  alignItems: 'center',
-                  background: 'white',
-                  display: 'flex',
-                  height: `${12 * GU}px`,
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  width: `${50 * GU}px`,
-                }}
+                css={`
+                  align-items: center;
+                  background: white;
+                  display: flex;
+                  height: ${12 * GU}px;
+                  justify-content: center;
+                  text-align: center;
+                  width: ${50 * GU}px;
+                `}
               >
                 New Farm
               </div>
@@ -76,24 +78,24 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/stats">
             <div
-              style={{
-                alignItems: 'center',
-                display: 'flex',
-                height: '100vh',
-                justifyContent: 'center',
-                width: '100%',
-              }}
+              css={`
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                width: 100%;
+              `}
             >
               <div
-                style={{
-                  alignItems: 'center',
-                  background: 'white',
-                  display: 'flex',
-                  height: `${12 * GU}px`,
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  width: `${50 * GU}px`,
-                }}
+                css={`
+                  align-items: center;
+                  background: white;
+                  display: flex;
+                  height: ${12 * GU}px;
+                  justify-content: center;
+                  text-align: center;
+                  width: ${50 * GU}px;
+                `}
               >
                 Stats
               </div>
@@ -101,24 +103,24 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/my-farm">
             <div
-              style={{
-                alignItems: 'center',
-                display: 'flex',
-                height: '100vh',
-                justifyContent: 'center',
-                width: '100%',
-              }}
+              css={`
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                width: 100%;
+              `}
             >
               <div
-                style={{
-                  alignItems: 'center',
-                  background: 'white',
-                  display: 'flex',
-                  height: `${12 * GU}px`,
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  width: `${50 * GU}px`,
-                }}
+                css={`
+                  align-items: center;
+                  background: white;
+                  display: flex;
+                  height: ${12 * GU}px;
+                  justify-content: center;
+                  text-align: center;
+                  width: ${50 * GU}px;
+                `}
               >
                 My Farm
               </div>

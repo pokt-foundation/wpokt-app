@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import 'styled-components/macro';
 
 // Assets
 import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
@@ -25,7 +26,11 @@ interface INavigation {
 
 const Navigation: React.FC<INavigation> = ({ setSidebar }) => {
   return (
-    <StyledNavigationContainer style={{ backgroundImage: `url(${NavigationBarImage})` }}>
+    <StyledNavigationContainer
+      css={`
+        background-image: url(${NavigationBarImage});
+      `}
+    >
       <NavLink exact activeClassName="active" to="/">
         <StyledLogoContainer>
           <LogoSvg />
@@ -58,7 +63,11 @@ const Navigation: React.FC<INavigation> = ({ setSidebar }) => {
       <Flex align={'center'}>
         <StyledConnectWalletButton>
           Connect
-          <StyledMetaMaskImageContainer style={{ backgroundImage: `url(${MetaMaskImage})` }} />
+          <StyledMetaMaskImageContainer
+            css={`
+              background-image: url(${MetaMaskImage});
+            `}
+          />
         </StyledConnectWalletButton>
         <StyledSandwichMenuContainer onClick={() => setSidebar(true)}>
           <SandwichMenu />

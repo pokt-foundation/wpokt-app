@@ -1,4 +1,5 @@
 import React from 'react';
+import 'styled-components/macro';
 
 // Assets
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
@@ -20,13 +21,21 @@ const Deposit: React.FC = () => {
           <Flex align={'center'} justify={'center'}>
             <StyledButtonLarge onClick={() => setActionType('deposit')} active={actionType === 'deposit'}>
               <StyledSelectorContainer>
-                <SelectorSvg style={{ fill: actionType === 'deposit' ? '#000' : 'transparent' }} />
+                <SelectorSvg
+                  css={`
+                    fill: ${actionType === 'deposit' ? '#000' : 'transparent'};
+                  `}
+                />
               </StyledSelectorContainer>
               Deposit
             </StyledButtonLarge>
             <StyledButtonLarge onClick={() => setActionType('withdraw')} active={actionType === 'withdraw'}>
               <StyledSelectorContainer>
-                <SelectorSvg style={{ fill: actionType === 'withdraw' ? '#000' : 'transparent' }} />
+                <SelectorSvg
+                  css={`
+                    fill: ${actionType === 'withdraw' ? '#000' : 'transparent'};
+                  `}
+                />
               </StyledSelectorContainer>
               Withdraw
             </StyledButtonLarge>
