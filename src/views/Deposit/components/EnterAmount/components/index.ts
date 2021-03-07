@@ -21,7 +21,6 @@ export const StyledDepositInputContainer = styled.div`
     height: ${15 * GU}px;
     justify-content: space-between;
     letter-spacing: 1px;
-    outline: none;
     padding: ${5 * GU}px;
     width: 100%;
 
@@ -49,7 +48,6 @@ export const StyledDepositInputContainer = styled.div`
     background: transparent;
     border: none;
     margin: ${4 * GU}px auto ${3 * GU}px;
-    outline: none;
     position: block;
     transition: all 0.1s ease;
 
@@ -173,7 +171,6 @@ export const StyledMaxButton = styled.button`
   height: ${4 * GU}px;
   justify-content: center;
   margin-left: ${3 * GU}px;
-  outline: none;
 
   div#max-svg {
     align-items: center;

@@ -206,9 +206,13 @@ export const StyledNavigationItems = styled.nav`
   }
 `;
 
-export const StyledSandwichMenuContainer = styled.div`
-  display: block;
+export const StyledSandwichMenuContainer = styled.button`
+  align-items: center;
+  background: transparent;
+  border: none;
+  display: flex;
   fill: ${colors.white};
+  justify-content: center;
   margin-left: 1em;
   transition: all 0.3s ease;
 

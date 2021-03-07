@@ -3,8 +3,13 @@ import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
-export const StyledCloseContainer = styled.div`
+export const StyledCloseContainer = styled.button`
+  align-items: center;
+  background: transparent;
+  border: none;
+  display: flex;
   fill: ${colors.white};
+  justify-content: center;
   position: absolute;
   right: ${4 * GU}px;
   top: ${11 * GU}px;

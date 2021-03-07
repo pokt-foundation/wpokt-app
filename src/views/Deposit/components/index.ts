@@ -16,7 +16,6 @@ export const StyledButtonLarge = styled.button<IStyledButtonLarge>`
   font-size: 0.8rem;
   height: ${10 * GU}px;
   letter-spacing: 3px;
-  outline: none;
   position: relative;
   transition: all 0.3s ease;
   width: 50%;

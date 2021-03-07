@@ -184,7 +184,6 @@ const StyledExtraLinksButton = styled.button`
   font-size: 1.4rem;
   height: ${12 * GU}px;
   justify-content: space-between;
-  outline: none;
   padding: 0 ${5 * GU}px;
   width: 100%;
 `;
