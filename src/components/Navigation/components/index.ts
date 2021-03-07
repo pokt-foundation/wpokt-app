@@ -26,29 +26,29 @@ export const StyledConnectWalletButton = styled.button`
   }
 
   ${media.xs`
-        font-size: 1rem;
-        height: ${9 * GU}px;
-        width: ${32 * GU}px;
-    `}
+    font-size: 1rem;
+    height: ${9 * GU}px;
+    width: ${32 * GU}px;
+  `}
 
   ${media.md`
-        font-size: 1.2rem;
-        letter-spacing: 5px;
-        width: ${37 * GU}px;
-    `}
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    width: ${37 * GU}px;
+  `}
 
-    ${media.lg`
-        letter-spacing: 6px;
-        height: ${11 * GU}px;
-        width: ${47 * GU}px;
-    `}
+  ${media.lg`
+    letter-spacing: 6px;
+    height: ${11 * GU}px;
+    width: ${47 * GU}px;
+  `}
 
-    ${media.xl`
-        border: ${GU}px solid ${colors.white};
-        font-size: 1.4rem;
-        height: ${13 * GU}px;
-        width: ${56 * GU}px;
-    `}
+  ${media.xl`
+    border: ${GU}px solid ${colors.white};
+    font-size: 1.4rem;
+    height: ${13 * GU}px;
+    width: ${56 * GU}px;
+  `}
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -79,19 +79,19 @@ export const StyledLogoContainer = styled.div`
   }
 
   ${media.xs`
-        height: ${7 * GU}px;
-        width: ${37 * GU}px;
-    `}
+    height: ${7 * GU}px;
+    width: ${37 * GU}px;
+  `}
 
   ${media.lg`
-        height: ${9 * GU}px;
-        width: ${50 * GU}px;
-    `}
+    height: ${9 * GU}px;
+    width: ${50 * GU}px;
+  `}
 
-    ${media.xl`
-        height: ${10 * GU}px;
-        width: ${56 * GU}px;
-    `}
+  ${media.xl`
+    height: ${10 * GU}px;
+    width: ${56 * GU}px;
+  `}
 `;
 
 export const StyledMetaMaskImageContainer = styled.div`
@@ -102,24 +102,24 @@ export const StyledMetaMaskImageContainer = styled.div`
   width: ${3 * GU}px;
 
   ${media.xs`
-        height: ${5 * GU}px;
-        width: ${5 * GU}px;
-    `}
+    height: ${5 * GU}px;
+    width: ${5 * GU}px;
+  `}
 
   ${media.md`
-        height: ${6 * GU}px;
-        width: ${6 * GU}px;
-    `}
+    height: ${6 * GU}px;
+    width: ${6 * GU}px;
+  `}
 
-    ${media.lg`
-        height: ${7 * GU}px;
-        width: ${7 * GU}px;
-    `}
+  ${media.lg`
+    height: ${7 * GU}px;
+    width: ${7 * GU}px;
+  `}
 
-    ${media.xl`
-        height: ${8 * GU}px;
-        width: ${8 * GU}px;
-    `}
+  ${media.xl`
+    height: ${8 * GU}px;
+    width: ${8 * GU}px;
+  `}
 `;
 
 export const StyledNavigationContainer = styled.div`
@@ -137,16 +137,16 @@ export const StyledNavigationContainer = styled.div`
   z-index: 999;
 
   ${media.md`
-        padding: 0 ${5 * GU}px;
-    `}
+    padding: 0 ${5 * GU}px;
+  `}
 
   ${media.lg`
-        padding: 0 ${10 * GU}px;
-    `}
+    padding: 0 ${10 * GU}px;
+  `}
 
-    ${media.xl`
-        height: ${25 * GU}px;
-    `}
+  ${media.xl`
+    height: ${25 * GU}px;
+  `}
 `;
 
 export const StyledNavigationItems = styled.nav`
@@ -157,48 +157,48 @@ export const StyledNavigationItems = styled.nav`
   text-transform: uppercase;
 
   ${media.sm`
-        display: block;
-    `}
+    display: block;
+  `}
 
   ${media.md`
-        font-size: 1.2rem;
-    `}
+    font-size: 1.2rem;
+  `}
 
-    ${media.xl`
-        font-size: 1.4rem;
-    `}
+  ${media.xl`
+    font-size: 1.4rem;
+  `}
 
-    ul {
+  ul {
     align-items: center;
     display: flex;
     justify-content: space-between;
     width: ${100 * GU}px;
 
     ${media.md`
-            width: ${135 * GU}px;
-        `}
+      width: ${135 * GU}px;
+    `}
 
     ${media.lg`
-            width: ${155 * GU}px;
-        `}
+      width: ${155 * GU}px;
+    `}
 
-        ${media.xl`
-            width: ${175 * GU}px;
-        `}
+    ${media.xl`
+      width: ${175 * GU}px;
+    `}
 
-        li {
+    li {
       transition: all 0.3s ease;
       letter-spacing: 3px;
 
       ${media.md`
-                letter-spacing: 5px;
-            `}
+        letter-spacing: 5px;
+      `}
 
       ${media.lg`
-                letter-spacing: 6px;
-            `}
-            
-            &:hover {
+          letter-spacing: 6px;
+      `}
+                
+      &:hover {
         color: ${colors.yellow};
         cursor: pointer;
       }
@@ -220,6 +220,6 @@ export const StyledSandwichMenuContainer = styled.div`
   }
 
   ${media.sm`
-        display: none;
-    `}
+    display: none;
+  `}
 `;

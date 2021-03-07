@@ -73,6 +73,6 @@ export const StyledSidebarBackground = styled.div<IStyledSidebarBackground>`
     `}
 
   ${media.sm`
-        display: none;
-    `}
+    display: none;
+  `}
 `;

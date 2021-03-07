@@ -11,15 +11,15 @@ export const H1 = styled.h1<ITypograhpy>`
   letter-spacing: 1px;
 
   ${media.sm`
-        font-size: 1.8rem;
-    `}
+    font-size: 1.8rem;
+  `}
 
   ${media.md`
-        font-size: 2.4rem;
-        letter-spacing: 3px;
-    `}
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+  `}
 
-    ${(props) =>
+  ${(props) =>
     props.color &&
     css`
       color: ${props.color};
@@ -33,15 +33,15 @@ export const H2 = styled.h2<ITypograhpy>`
   line-height: 1.4rem;
 
   ${media.sm`
-        font-size: 1.2rem;
-    `}
+    font-size: 1.2rem;
+  `}
 
   ${media.md`
-        font-size: 1.6rem;
-        letter-spacing: 3px;
-    `}
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+  `}
 
-    ${(props) =>
+  ${(props) =>
     props.color &&
     css`
       color: ${props.color};
@@ -73,7 +73,7 @@ export const P2 = styled.p<ITypograhpy>`
         font-size: 1.4rem;
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.color &&
     css`
       color: ${props.color};

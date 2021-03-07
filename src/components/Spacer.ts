@@ -13,8 +13,8 @@ const Spacer = styled.div<ISpacer>`
       height: ${2 * GU}px;
 
       ${media.xs`
-            height: ${3 * GU}px;
-        `}
+        height: ${3 * GU}px;
+      `}
     `}
 
   ${(props) =>
@@ -23,28 +23,28 @@ const Spacer = styled.div<ISpacer>`
       height: ${5 * GU}px;
 
       ${media.xs`
-            height: ${6 * GU}px;
-        `}
+        height: ${6 * GU}px;
+      `}
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.size === 'md' &&
     css`
       height: ${6 * GU}px;
 
       ${media.xs`
-            height: ${12 * GU}px;
-        `}
+        height: ${12 * GU}px;
+      `}
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.size === 'lg' &&
     css`
       height: ${18 * GU}px;
 
       ${media.xs`
-            height: ${25 * GU}px;
-        `}
+        height: ${25 * GU}px;
+      `}
     `}
 `;
 

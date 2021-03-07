@@ -22,14 +22,14 @@ export const Flex = styled.div<IFlex>`
       flex-direction: ${props.direction};
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.full === true &&
     css`
       height: 100%;
       width: 100%;
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.justify &&
     css`
       justify-content: ${props.justify};

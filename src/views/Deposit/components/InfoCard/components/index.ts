@@ -10,10 +10,10 @@ export const StyledFarmContainer = styled.div`
   width: ${8 * GU}px;
 
   ${media.sm`
-        height: ${10 * GU}px;
-        margin-right: ${5 * GU}px;
-        width: ${10 * GU}px;
-    `}
+    height: ${10 * GU}px;
+    margin-right: ${5 * GU}px;
+    width: ${10 * GU}px;
+  `}
 `;
 
 export const StyledHeader = styled.div`
@@ -25,9 +25,9 @@ export const StyledHeader = styled.div`
   justify-content: space-between;
 
   ${media.sm`
-        align-items: center;
-        flex-direction: row;
-    `}
+    align-items: center;
+    flex-direction: row;
+  `}
 `;
 
 export const StyledHeaderLeft = styled.div`
@@ -41,12 +41,12 @@ export const StyledHeaderLeft = styled.div`
     padding: ${5 * GU}px ${5 * GU}px ${4 * GU}px;
 
     ${media.xs`
-            padding: ${5 * GU}px ${6 * GU}px;
-        `}
+      padding: ${5 * GU}px ${6 * GU}px;
+    `}
 
     ${media.sm`
-            padding: ${7 * GU}px;
-        `}
+      padding: ${7 * GU}px;
+    `}
   }
 `;
 
@@ -57,23 +57,23 @@ export const StyledHeaderRight = styled.div`
   width: 100%;
 
   ${media.sm`
-        flex-direction: row;
-        width: ${107 * GU}px;
-    `}
+    flex-direction: row;
+    width: ${107 * GU}px;
+  `}
 
   ${media.md`
-        width: ${150 * GU}px;
-    `}
+    width: ${150 * GU}px;
+  `}
 
-    ${media.lg`
-        width: ${200 * GU}px;
-    `}
+  ${media.lg`
+    width: ${200 * GU}px;
+  `}
 
-    ${media.xl`
-        width: ${350 * GU}px;
-    `}
+  ${media.xl`
+    width: ${350 * GU}px;
+  `}
 
-    div#estimated-reward {
+  div#estimated-reward {
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -82,12 +82,12 @@ export const StyledHeaderRight = styled.div`
     padding: ${4 * GU}px ${5 * GU}px;
 
     ${media.xs`
-            padding: ${6 * GU}px ${7 * GU}px;
-        `}
+      padding: ${6 * GU}px ${7 * GU}px;
+    `}
 
     ${media.sm`
-            padding: ${7 * GU}px ${7 * GU}px ${7 * GU}px 0;
-        `}
+      padding: ${7 * GU}px ${7 * GU}px ${7 * GU}px 0;
+    `}
   }
 `;
 
@@ -97,10 +97,10 @@ export const StyledLine = styled.div`
   width: 100%;
 
   ${media.sm`
-        height: ${5 * GU}px;
-        margin: 0 ${2 * GU}px 0 0;
-        width: ${GU}px;
-    `}
+    height: ${5 * GU}px;
+    margin: 0 ${2 * GU}px 0 0;
+    width: ${GU}px;
+  `}
 `;
 
 export const StyledMoreInfoContainer = styled.div`
@@ -125,8 +125,8 @@ export const StyledMoreInfoContainer = styled.div`
   }
 
   ${media.xs`
-        height: ${10 * GU}px;
-    `}
+    height: ${10 * GU}px;
+  `}
 `;
 
 export const StyledRewardText = styled.p`
@@ -136,12 +136,12 @@ export const StyledRewardText = styled.p`
   letter-spacing: 1px;
 
   ${media.xs`
-        font-size: 1.6rem;
-    `}
+    font-size: 1.6rem;
+  `}
 
   ${media.md`
-        font-size: 2.4rem;
-    `}
+    font-size: 2.4rem;
+  `}
 `;
 
 export const StyledSelectorContainer = styled.div`
@@ -153,16 +153,16 @@ export const StyledSelectorContainer = styled.div`
   width: ${3 * GU}px;
 
   ${media.xs`
-        height: ${4 * GU}px;
-        margin-left: ${4 * GU}px;
-        width: ${4 * GU}px;
-    `}
+    height: ${4 * GU}px;
+    margin-left: ${4 * GU}px;
+    width: ${4 * GU}px;
+  `}
 
   ${media.md`
-        height: ${4 * GU}px;
-        margin-left: ${5 * GU}px;
-        width: ${4 * GU}px;
-    `}
+    height: ${4 * GU}px;
+    margin-left: ${5 * GU}px;
+    width: ${4 * GU}px;
+  `}
 `;
 
 export const StyledSmallInfoCardsContainer = styled.div`
@@ -178,15 +178,15 @@ export const StyledSmallInfoCardsContainer = styled.div`
   width: 100%;
 
   ${media.xs`
-        height: ${100 * GU}px;
-        padding: ${5 * GU}px;
-    `}
+    height: ${100 * GU}px;
+    padding: ${5 * GU}px;
+  `}
 
   ${media.sm`
-        height: auto;
-    `}
+    height: auto;
+  `}
 
-    ${media.md`
-        padding: ${7 * GU}px;
-    `}
+  ${media.md`
+    padding: ${7 * GU}px;
+  `}
 `;

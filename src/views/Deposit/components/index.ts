@@ -32,29 +32,29 @@ export const StyledButtonLarge = styled.button<IStyledButtonLarge>`
     `}
 
   ${media.xs`
-        font-size: 1rem;
-        height: ${12 * GU}px;
-        letter-spacing: 7px;
-    `}
+    font-size: 1rem;
+    height: ${12 * GU}px;
+    letter-spacing: 7px;
+  `}
 
-    ${media.sm`
-        font-size: 1.4rem;
-        letter-spacing: 14px;
-    `}
+  ${media.sm`
+    font-size: 1.4rem;
+    letter-spacing: 14px;
+  `}
 
-    ${media.md`
-        font-size: 1.6rem;
-        letter-spacing: 16px;
-    `}
+  ${media.md`
+    font-size: 1.6rem;
+    letter-spacing: 16px;
+  `}
 
-    ${media.lg`
-        font-size: 1.8rem;
-    `}
+  ${media.lg`
+    font-size: 1.8rem;
+  `}
 
-    ${media.xl`
-        font-size: 2rem;
-        height: ${15 * GU}px;
-    `}
+  ${media.xl`
+    font-size: 2rem;
+    height: ${15 * GU}px;
+  `}
 `;
 
 export const StyledSelectorContainer = styled.div`
@@ -67,13 +67,13 @@ export const StyledSelectorContainer = styled.div`
   width: ${3 * GU}px;
 
   ${media.xs`
-        height: ${4 * GU}px;
-        width: ${4 * GU}px;
-    `}
+    height: ${4 * GU}px;
+    width: ${4 * GU}px;
+  `}
 
   ${media.sm`
-        height: ${5 * GU}px;
-        left: ${5 * GU}px;
-        width: ${5 * GU}px;
-    `}
+    height: ${5 * GU}px;
+    left: ${5 * GU}px;
+    width: ${5 * GU}px;
+  `}
 `;

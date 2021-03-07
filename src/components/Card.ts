@@ -12,24 +12,24 @@ export const Card = styled.div`
   width: ${80 * GU}px;
 
   ${media.xs`
-        width: ${120 * GU}px;
-    `}
+    width: ${120 * GU}px;
+	`}
 
   ${media.sm`
-        width: ${190 * GU}px;
-    `}
+    width: ${190 * GU}px;
+  `}
 
-    ${media.md`
-        width: ${247 * GU}px;
-    `}
+	${media.md`
+		width: ${247 * GU}px;
+	`}
 
-    ${media.lg`
-        width: ${300 * GU}px;
-    `}
+	${media.lg`
+		width: ${300 * GU}px;
+	`}
 
-    ${media.xl`
-        width: ${450 * GU}px;
-    `}
+	${media.xl`
+		width: ${450 * GU}px;
+	`}
 `;
 
 interface IInnerCardContainer {
@@ -40,14 +40,14 @@ export const InnerCardContainer = styled.div<IInnerCardContainer>`
   padding: ${2 * GU}px;
 
   ${media.xs`
-        padding: ${3 * GU}px;
-    `}
+    padding: ${3 * GU}px;
+  `}
 
   ${media.sm`
-        padding: ${7 * GU}px;
-    `}
+    padding: ${7 * GU}px;
+  `}
 
-    ${(props) =>
+  ${(props) =>
     props.borderBottom &&
     css`
       border-bottom: ${GU}px solid #000000;

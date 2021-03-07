@@ -9,8 +9,8 @@ export const StyledDepositInputContainer = styled.div`
   display: flex;
 
   ${media.sm`
-        position: relative;
-    `}
+    position: relative;
+  `}
 
   input {
     background: transparent;
@@ -26,23 +26,23 @@ export const StyledDepositInputContainer = styled.div`
     width: 100%;
 
     ${media.xs`
-            height: ${20 * GU}px;
-            font-size: 1.4rem;
-            padding: ${6 * GU}px ${8 * GU}px;
-        `}
+      height: ${20 * GU}px;
+      font-size: 1.4rem;
+      padding: ${6 * GU}px ${8 * GU}px;
+    `}
 
     ${media.sm`
-            font-size: 1.6rem;
-            padding: ${8 * GU}px;
-        `}
+      font-size: 1.6rem;
+      padding: ${8 * GU}px;
+    `}
 
-        ${media.md`
-            font-size: 1.8rem;
-        `}
-    
-        ${media.xl`
-            height: ${22 * GU}px;
-        `}
+    ${media.md`
+      font-size: 1.8rem;
+    `}
+
+    ${media.xl`
+      height: ${22 * GU}px;
+    `}
   }
 
   button {
@@ -63,24 +63,24 @@ export const StyledDepositInputContainer = styled.div`
     }
 
     ${media.xs`
-            margin: ${5 * GU}px auto ${3 * GU}px;
-        `}
+      margin: ${5 * GU}px auto ${3 * GU}px;
+    `}
 
     ${media.sm`
-            position: absolute;
-            margin: 0;
-            right: ${5 * GU}px;
-            top: 50%;
-            transform: translateY(-50%);
+      position: absolute;
+      margin: 0;
+      right: ${5 * GU}px;
+      top: 50%;
+      transform: translateY(-50%);
 
-            &:hover {
-                transform: translateY(-52%);
-            }
+      &:hover {
+          transform: translateY(-52%);
+      }
 
-            &:active {
-                transform: translateY(-48%);
-            }
-        `}
+      &:active {
+          transform: translateY(-48%);
+      }
+    `}
   }
 `;
 
@@ -93,9 +93,9 @@ export const StyledHeader = styled.div`
   justify-content: space-between;
 
   ${media.sm`
-        align-items: center;
-        flex-direction: row;
-    `}
+    align-items: center;
+    flex-direction: row;
+  `}
 `;
 
 export const StyledHeaderLeft = styled.div`
@@ -109,12 +109,12 @@ export const StyledHeaderLeft = styled.div`
     padding: ${5 * GU}px ${5 * GU}px ${4 * GU}px;
 
     ${media.xs`
-            padding: ${5 * GU}px ${6 * GU}px;
-        `}
+      padding: ${5 * GU}px ${6 * GU}px;
+    `}
 
     ${media.sm`
-            padding: ${7 * GU}px;
-        `}
+      padding: ${7 * GU}px;
+    `}
   }
 `;
 
@@ -125,19 +125,19 @@ export const StyledHeaderRight = styled.div`
   width: 100%;
 
   ${media.sm`
-        flex-direction: row;
-        width: ${85 * GU}px;
-    `}
+    flex-direction: row;
+    width: ${85 * GU}px;
+  `}
 
   ${media.md`
-        width: ${107 * GU}px;
-    `}
+    width: ${107 * GU}px;
+  `}
 
-    ${media.lg`
-        width: ${112 * GU}px;
-    `}
+  ${media.lg`
+    width: ${112 * GU}px;
+  `}
 
-    div#wallet-balance {
+  div#wallet-balance {
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -146,12 +146,12 @@ export const StyledHeaderRight = styled.div`
     padding: ${4 * GU}px ${5 * GU}px;
 
     ${media.xs`
-            padding: ${6 * GU}px ${7 * GU}px;
-        `}
+      padding: ${6 * GU}px ${7 * GU}px;
+    `}
 
     ${media.sm`
-            padding: ${7 * GU}px ${7 * GU}px ${7 * GU}px 0;
-        `}
+      padding: ${7 * GU}px ${7 * GU}px ${7 * GU}px 0;
+    `}
   }
 `;
 
@@ -161,8 +161,8 @@ export const StyledLine = styled.div`
   width: 100%;
 
   ${media.sm`
-        display: none;
-    `}
+    display: none;
+  `}
 `;
 
 export const StyledMaxButton = styled.button`
@@ -182,9 +182,9 @@ export const StyledMaxButton = styled.button`
     width: ${7 * GU}px;
 
     ${media.xs`
-            height: ${5 * GU}px;
-            width: ${13 * GU}px;
-        `}
+      height: ${5 * GU}px;
+      width: ${13 * GU}px;
+    `}
   }
 
   div#max-selector-svg {
@@ -198,9 +198,9 @@ export const StyledMaxButton = styled.button`
     width: ${2 * GU}px;
 
     ${media.xs`
-            height: ${5 * GU}px;
-            width: ${5 * GU}px;
-        `}
+      height: ${5 * GU}px;
+      width: ${5 * GU}px;
+    `}
   }
 
   &:hover {
@@ -220,11 +220,11 @@ export const StyledMaxButton = styled.button`
   }
 
   ${media.xs`
-        height: ${5 * GU}px;
-        margin-left: ${5 * GU}px;
-    `}
+    height: ${5 * GU}px;
+    margin-left: ${5 * GU}px;
+  `}
 
   ${media.sm`
-        margin-left: ${3 * GU}px;
-    `}
+    margin-left: ${3 * GU}px;
+  `}
 `;
