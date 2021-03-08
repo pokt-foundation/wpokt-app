@@ -10,16 +10,21 @@ const RETRY_EVERY = 3000
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL })
 
 export function useFarmStats(farmAddress) {
-  const [totalStaked, setTotalStaked] = useState(0)
   const [apy, setAPY] = useState(0)
   const [tvl, setTVL] = useState(0)
+  const [totalStaked, setTotalStaked] = useState(0)
+  const [rewardUnlockRate, setRewardUnlockRate] = useState(0)
+  const [daysLeft, setDaysLeft] = useState(0)
 
   const FARM_STATS_QUERY = gql`
     query {
       tokenGeysers(id: "${farmAddress}") {
-        staked
         apy
         tvl
+        staked
+        bonusPeriodSec
+        createdTimestamp
+        totalUnlockedRewards
       }
     }
   `
@@ -27,6 +32,8 @@ export function useFarmStats(farmAddress) {
   useEffect(() => {
     let cancelled = false
     let retryTimer
+    let farmDaysLeft = 0
+
     async function fetchFarmStats() {
       try {
         const result = await graphqlClient.query(FARM_STATS_QUERY).toPromise()
@@ -35,12 +42,31 @@ export function useFarmStats(farmAddress) {
           return
         }
 
-        const { staked, apy, tvl } = result.data
+        const [{ 
+          apy, 
+          tvl,
+          staked, 
+          bonusPeriodSec,
+          createdTimestamp,
+          totalUnlockedRewards, 
+        }] = result.data.tokenGeysers
+
+        const unlockRate = totalUnlockedRewards / 30;
+        
+        const today = new Date();
+        const farmEndDate = new Date((createdTimestamp + bonusPeriodSec) * 1000)
+        const farmTimeLeft = farmEndDate - today;
+
+        if (farmTimeLeft > 0) {
+          farmDaysLeft = Math.ceil(farmTimeLeft / (1000 * 60 * 60 * 24)); 
+        }
 
         if (!cancelled) {
-          setTotalStaked(staked)
           setAPY(apy)
           setTVL(tvl)
+          setTotalStaked(staked)
+          setDaysLeft(farmDaysLeft)
+          setRewardUnlockRate(unlockRate)
         }
       } catch (err) {
         retryTimer = setTimeout(fetchFarmStats, RETRY_EVERY)
@@ -55,5 +81,5 @@ export function useFarmStats(farmAddress) {
     }
   })
 
-  return { totalStaked, apy, tvl }
+  return { apy, tvl, totalStaked, rewardUnlockRate, daysLeft }
 }
