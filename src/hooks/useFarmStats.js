@@ -42,6 +42,7 @@ export function useFarmStats(farmAddress) {
           return
         }
 
+        // Read all necessary data from the subgraph call.
         const [{ 
           apy, 
           tvl,
@@ -51,16 +52,21 @@ export function useFarmStats(farmAddress) {
           totalUnlockedRewards, 
         }] = result.data.tokenGeysers
 
+        // Calculate unlocked rewards per month.
         const unlockRate = totalUnlockedRewards / 30;
         
+        // Get today's date
         const today = new Date();
+        
+        // Calculate farm end date based on the bonus period (at this time, all rewards are unlocked)
         const farmEndDate = new Date((createdTimestamp + bonusPeriodSec) * 1000)
         const farmTimeLeft = farmEndDate - today;
 
+        // Return days left, if any (otherwise, remains at 0)
         if (farmTimeLeft > 0) {
           farmDaysLeft = Math.ceil(farmTimeLeft / (1000 * 60 * 60 * 24)); 
         }
-
+        
         if (!cancelled) {
           setAPY(apy)
           setTVL(tvl)
