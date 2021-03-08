@@ -6,7 +6,7 @@
 
 # Project Title
 
-Frontend for wPOCKT, allowing wPOKT purchasers to stake and crowdsource infrastructure for their favorite applications.
+Frontend for wPOKT, allowing wPOKT purchasers to stake and crowdsource infrastructure for their favorite applications.
 <div>
   <a  href="https://godoc.org/github.com/pokt-network/pocket-core"><img src="https://img.shields.io/badge/godoc-reference-blue.svg"/></a>
   <a  href="https://goreportcard.com/report/github.com/pokt-network/pocket-core"><img src="https://goreportcard.com/badge/github.com/pokt-network/pocket-core"/></a>
