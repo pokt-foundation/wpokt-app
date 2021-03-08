@@ -1,43 +1,50 @@
 import styled, { css } from 'styled-components';
-import { media } from './breakpoints';
+import { media } from 'components/breakpoints';
+import { GU } from 'components/theme';
 
 interface ISpacer {
-    size?: 'xs' | 'sm' | 'md' | 'lg';
+  size: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 const Spacer = styled.div<ISpacer>`
-    height: 10rem;
+  ${(props) =>
+    props.size === 'xs' &&
+    css`
+      height: ${2 * GU}px;
 
-    ${props => props.size === 'xs' && css`
-        height: 1rem;
-
-        ${media.xs`
-            height: 1.5rem;
-        `}
+      ${media.xs`
+        height: ${3 * GU}px;
+      `}
     `}
 
-    ${props => props.size === 'sm' && css`
-        height: 2rem;
+  ${(props) =>
+    props.size === 'sm' &&
+    css`
+      height: ${5 * GU}px;
 
-        ${media.xs`
-            height: 2.5rem;
-        `}
+      ${media.xs`
+        height: ${6 * GU}px;
+      `}
     `}
 
-    ${props => props.size === 'md' && css`
-        height: 2.5rem;
+  ${(props) =>
+    props.size === 'md' &&
+    css`
+      height: ${6 * GU}px;
 
-        ${media.xs`
-            height: 5rem;
-        `}
+      ${media.xs`
+        height: ${12 * GU}px;
+      `}
     `}
 
-    ${props => props.size === 'lg' && css`
-        height: 7.5rem;
+  ${(props) =>
+    props.size === 'lg' &&
+    css`
+      height: ${18 * GU}px;
 
-        ${media.xs`
-            height: 10rem;
-        `}
+      ${media.xs`
+        height: ${25 * GU}px;
+      `}
     `}
 `;
 
