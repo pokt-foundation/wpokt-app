@@ -1,4 +1,5 @@
 import React from 'react';
+import 'styled-components/macro';
 import { colors } from 'components/theme';
 
 // Components
@@ -51,12 +52,23 @@ export const InfoCard: React.FC = () => {
         <SmallInfoCardExtraLinks />
       </StyledSmallInfoCardsContainer>
       <StyledMoreInfoContainer>
-        <Flex align={'center'} justify={'center'}>
-          <P2 color={colors.white}>More Info</P2>
-          <StyledSelectorContainer id={'selector-container'}>
-            <SelectorSvg />
-          </StyledSelectorContainer>
-        </Flex>
+        <button
+          css={`
+            background: transparent;
+            border: none;
+
+            &:hover {
+              cursor: pointer;
+            }
+          `}
+        >
+          <Flex align={'center'} justify={'center'}>
+            <P2 color={colors.white}>More Info</P2>
+            <StyledSelectorContainer id={'selector-container'}>
+              <SelectorSvg />
+            </StyledSelectorContainer>
+          </Flex>
+        </button>
       </StyledMoreInfoContainer>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
@@ -23,7 +23,33 @@ export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill,
     <StyledSmallInfoCard>
       <StyledSmallInfoCardHeader>
         <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
-        {statType === 'question' ? <QuestionMarkSvg /> : <MultiplierSvg />}
+        {statType === 'question' ? (
+          <button
+            css={`
+              background: transparent;
+              border: none;
+
+              &:hover {
+                cursor: pointer;
+              }
+            `}
+          >
+            <QuestionMarkSvg />
+          </button>
+        ) : (
+          <button
+            css={`
+              background: transparent;
+              border: none;
+
+              &:hover {
+                cursor: pointer;
+              }
+            `}
+          >
+            <MultiplierSvg />
+          </button>
+        )}
       </StyledSmallInfoCardHeader>
       <StyledSmallInfoCardContent>
         <StyledInfoCardContentFill fill={statFill ? statFill : 0} />
