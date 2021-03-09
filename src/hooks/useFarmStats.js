@@ -1,13 +1,30 @@
 import { useEffect, useState } from 'react'
 
+import JSBI from 'jsbi'
 import gql from 'graphql-tag'
 import { Client } from 'urql'
 
 import { WPOKT_SUBGRAPH_URL } from 'util/constants'
 
 const RETRY_EVERY = 3000
+const DAYS_IN_MONTH = 30
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL })
+
+function buildFarmStatsQuery(farmAddress) {
+  return gql`
+  query {
+    tokenGeysers(id: "${farmAddress}") {
+      apy
+      tvl
+      staked
+      bonusPeriodSec
+      createdTimestamp
+      totalUnlockedRewards
+    }
+  }
+`
+}
 
 export function useFarmStats(farmAddress) {
   const [apy, setAPY] = useState(0)
@@ -16,18 +33,7 @@ export function useFarmStats(farmAddress) {
   const [rewardUnlockRate, setRewardUnlockRate] = useState(0)
   const [daysLeft, setDaysLeft] = useState(0)
 
-  const FARM_STATS_QUERY = gql`
-    query {
-      tokenGeysers(id: "${farmAddress}") {
-        apy
-        tvl
-        staked
-        bonusPeriodSec
-        createdTimestamp
-        totalUnlockedRewards
-      }
-    }
-  `
+  const FARM_STATS_QUERY = buildFarmStatsQuery(farmAddress);
 
   useEffect(() => {
     let cancelled = false
@@ -53,7 +59,7 @@ export function useFarmStats(farmAddress) {
         }] = result.data.tokenGeysers
 
         // Calculate unlocked rewards per month.
-        const unlockRate = totalUnlockedRewards / 30;
+        const unlockRate = totalUnlockedRewards / DAYS_IN_MONTH;
         
         // Get today's date
         const today = new Date();
@@ -67,10 +73,12 @@ export function useFarmStats(farmAddress) {
           farmDaysLeft = Math.ceil(farmTimeLeft / (1000 * 60 * 60 * 24)); 
         }
         
+        const _totalStaked = JSBI.BigInt(staked);
+
         if (!cancelled) {
           setAPY(apy)
           setTVL(tvl)
-          setTotalStaked(staked)
+          setTotalStaked(_totalStaked)
           setDaysLeft(farmDaysLeft)
           setRewardUnlockRate(unlockRate)
         }
@@ -85,7 +93,7 @@ export function useFarmStats(farmAddress) {
       cancelled = true
       clearTimeout(retryTimer)
     }
-  })
+  }, [FARM_STATS_QUERY])
 
   return { apy, tvl, totalStaked, rewardUnlockRate, daysLeft }
 }
