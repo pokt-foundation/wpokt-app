@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import 'styled-components/macro';
+import { onboard } from 'libs/connector';
 
 // Assets
 import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
@@ -25,6 +26,17 @@ interface INavigation {
 }
 
 const Navigation: React.FC<INavigation> = ({ setSidebar }) => {
+  const [address, setAddress] = React.useState<string>('');
+  const onConnect = async () => {
+    console.log('connect');
+    await onboard.walletSelect();
+    const checkResponse = await onboard.walletCheck();
+    console.log('Ready to connect', checkResponse);
+    const currentState = onboard.getState();
+    console.log(currentState);
+    setAddress(currentState.address);
+  };
+
   return (
     <StyledNavigationContainer
       css={`
@@ -61,8 +73,8 @@ const Navigation: React.FC<INavigation> = ({ setSidebar }) => {
         </ul>
       </StyledNavigationItems>
       <Flex align={'center'}>
-        <StyledConnectWalletButton>
-          Connect
+        <StyledConnectWalletButton onClick={onConnect}>
+          {address === '' ? 'Connect' : `${address.slice(0, 5)}...`}
           <StyledMetaMaskImageContainer
             css={`
               background-image: url(${MetaMaskImage});

@@ -20,7 +20,7 @@ export const StyledConnectWalletButton = styled.button`
   &:hover,
   &:active,
   &:focus {
-    border: ${GU}px solid ${colors.yellow};
+    border: ${0.5 * GU}px solid ${colors.yellow};
     color: ${colors.yellow};
     cursor: pointer;
   }
