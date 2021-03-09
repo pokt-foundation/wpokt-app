@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react'
 
 import JSBI from 'jsbi'
+import { BigIntish } from './types'
+
 import gql from 'graphql-tag'
 import { Client } from 'urql'
 
 import { WPOKT_SUBGRAPH_URL } from 'util/constants'
 
 const RETRY_EVERY = 3000
-const DAYS_IN_MONTH = 30
+const DAYS_IN_ONE_MONTH = 30
+const ONE_DAY = 86400000
+const ZERO_BIG_INT = JSBI.BigInt(0)
 
-const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL })
+const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL || 
+  'https://api.thegraph.com/subgraphs/name/crisog/alpha-rinkeby-subgraph' })
 
-function buildFarmStatsQuery(farmAddress) {
+function buildFarmStatsQuery(farmAddress: string) {
   return gql`
   query {
     tokenGeysers(id: "${farmAddress}") {
@@ -26,18 +31,27 @@ function buildFarmStatsQuery(farmAddress) {
 `
 }
 
-export function useFarmStats(farmAddress) {
-  const [apy, setAPY] = useState(0)
-  const [tvl, setTVL] = useState(0)
-  const [totalStaked, setTotalStaked] = useState(0)
-  const [rewardUnlockRate, setRewardUnlockRate] = useState(0)
+type FarmStatsResponse = {
+  apy: BigIntish,
+  tvl: BigIntish,
+  staked: BigIntish,
+  bonusPeriodSec: number,
+  createdTimestamp: number,
+  totalUnlockedRewards: BigIntish
+}
+
+export function useFarmStats(farmAddress: string) {
+  const [apy, setAPY] = useState(ZERO_BIG_INT)
+  const [tvl, setTVL] = useState(ZERO_BIG_INT)
+  const [totalStaked, setTotalStaked] = useState(ZERO_BIG_INT)
+  const [rewardUnlockRate, setRewardUnlockRate] = useState(ZERO_BIG_INT)
   const [daysLeft, setDaysLeft] = useState(0)
 
   const FARM_STATS_QUERY = buildFarmStatsQuery(farmAddress);
 
   useEffect(() => {
     let cancelled = false
-    let retryTimer
+    let retryTimer: NodeJS.Timeout
     let farmDaysLeft = 0
 
     async function fetchFarmStats() {
@@ -48,7 +62,6 @@ export function useFarmStats(farmAddress) {
           return
         }
 
-        // Read all necessary data from the subgraph call.
         const [{ 
           apy, 
           tvl,
@@ -56,31 +69,33 @@ export function useFarmStats(farmAddress) {
           bonusPeriodSec,
           createdTimestamp,
           totalUnlockedRewards, 
-        }] = result.data.tokenGeysers
-
-        // Calculate unlocked rewards per month.
-        const unlockRate = totalUnlockedRewards / DAYS_IN_MONTH;
+        }]: [FarmStatsResponse] = result.data.tokenGeysers
         
-        // Get today's date
+        const parsedAPY = JSBI.BigInt(String(apy));
+        const parsedTVL = JSBI.BigInt(String(tvl));
+        const parsedStaked = JSBI.BigInt(String(staked));
+
+        const parsedTotalUnlockedRewards = JSBI.BigInt(String(totalUnlockedRewards));
+
+        const _unlockRate = JSBI.divide(parsedTotalUnlockedRewards, JSBI.BigInt(DAYS_IN_ONE_MONTH));
+        
         const today = new Date();
         
         // Calculate farm end date based on the bonus period (at this time, all rewards are unlocked)
         const farmEndDate = new Date((createdTimestamp + bonusPeriodSec) * 1000)
-        const farmTimeLeft = farmEndDate - today;
+        const farmTimeLeft = farmEndDate.getTime() - today.getTime();
 
         // Return days left, if any (otherwise, remains at 0)
         if (farmTimeLeft > 0) {
-          farmDaysLeft = Math.ceil(farmTimeLeft / (1000 * 60 * 60 * 24)); 
+          farmDaysLeft = Math.ceil(farmTimeLeft / ONE_DAY); 
         }
-        
-        const _totalStaked = JSBI.BigInt(staked);
 
         if (!cancelled) {
-          setAPY(apy)
-          setTVL(tvl)
-          setTotalStaked(_totalStaked)
+          setAPY(parsedAPY)
+          setTVL(parsedTVL)
+          setTotalStaked(parsedStaked)
           setDaysLeft(farmDaysLeft)
-          setRewardUnlockRate(unlockRate)
+          setRewardUnlockRate(_unlockRate)
         }
       } catch (err) {
         retryTimer = setTimeout(fetchFarmStats, RETRY_EVERY)
