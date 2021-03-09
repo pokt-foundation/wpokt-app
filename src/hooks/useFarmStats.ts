@@ -13,7 +13,7 @@ const ONE_DAY = 86400000
 const ZERO_BIG_INT = BigInt(0)
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL || 
-  'https://api.thegraph.com/subgraphs/name/crisog/alpha-rinkeby-subgraph' })
+  'Your farm subgraph URL' })
 
 function buildFarmStatsQuery(farmAddress: string) {
   return gql`
@@ -70,9 +70,9 @@ export function useFarmStats(farmAddress: string) {
           totalUnlockedRewards, 
         }]: [FarmStatsResponse] = result.data.tokenGeysers
         
-        const parsedAPY = BigInt(String(apy));
-        const parsedTVL = BigInt(String(tvl));
-        const parsedStaked = BigInt(String(staked));
+        const parsedAPY = BigInt(apy);
+        const parsedTVL = BigInt(tvl);
+        const parsedStaked = BigInt(staked);
 
         const parsedTotalUnlockedRewards = BigInt(totalUnlockedRewards);
 
