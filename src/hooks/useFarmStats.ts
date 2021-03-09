@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import JSBI from 'jsbi'
 import { BigIntish } from './types'
 
 import gql from 'graphql-tag'
@@ -11,7 +10,7 @@ import { WPOKT_SUBGRAPH_URL } from 'util/constants'
 const RETRY_EVERY = 3000
 const DAYS_IN_ONE_MONTH = 30
 const ONE_DAY = 86400000
-const ZERO_BIG_INT = JSBI.BigInt(0)
+const ZERO_BIG_INT = BigInt(0)
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL || 
   'https://api.thegraph.com/subgraphs/name/crisog/alpha-rinkeby-subgraph' })
@@ -71,13 +70,13 @@ export function useFarmStats(farmAddress: string) {
           totalUnlockedRewards, 
         }]: [FarmStatsResponse] = result.data.tokenGeysers
         
-        const parsedAPY = JSBI.BigInt(String(apy));
-        const parsedTVL = JSBI.BigInt(String(tvl));
-        const parsedStaked = JSBI.BigInt(String(staked));
+        const parsedAPY = BigInt(String(apy));
+        const parsedTVL = BigInt(String(tvl));
+        const parsedStaked = BigInt(String(staked));
 
-        const parsedTotalUnlockedRewards = JSBI.BigInt(String(totalUnlockedRewards));
+        const parsedTotalUnlockedRewards = BigInt(totalUnlockedRewards);
 
-        const _unlockRate = JSBI.divide(parsedTotalUnlockedRewards, JSBI.BigInt(DAYS_IN_ONE_MONTH));
+        const unlockRate = parsedTotalUnlockedRewards / BigInt(DAYS_IN_ONE_MONTH);
         
         const today = new Date();
         
@@ -95,7 +94,7 @@ export function useFarmStats(farmAddress: string) {
           setTVL(parsedTVL)
           setTotalStaked(parsedStaked)
           setDaysLeft(farmDaysLeft)
-          setRewardUnlockRate(_unlockRate)
+          setRewardUnlockRate(unlockRate)
         }
       } catch (err) {
         retryTimer = setTimeout(fetchFarmStats, RETRY_EVERY)
