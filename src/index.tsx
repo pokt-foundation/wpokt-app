@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Web3Provider } from 'contexts/Web3Context';
+import { Web3Provider } from 'contexts';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

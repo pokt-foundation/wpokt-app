@@ -1,11 +1,9 @@
 import React from 'react';
 import { ethers } from 'ethers';
 import { API } from 'bnc-notify';
+import { Web3Context } from 'contexts/Web3Context';
 import { initOnboard, initNotify } from 'libs/connector';
 import { Wallet, API as OnboardAPI } from 'libs/faces';
-import { ContextValues } from 'contexts/faces';
-
-export const Web3Context = React.createContext<ContextValues>({});
 
 // eslint-disable-next-line
 let provider: any;

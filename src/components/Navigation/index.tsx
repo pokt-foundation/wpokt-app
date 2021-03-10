@@ -20,12 +20,17 @@ import {
 } from './components';
 import { Flex } from 'components/Containers';
 
+// Context
+import { Web3Context } from 'contexts/Web3Context';
+
 interface INavigation {
   readyToTransact: () => Promise<boolean | undefined>;
   setSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
+  const { address } = React.useContext(Web3Context);
+
   return (
     <StyledNavigationContainer
       css={`
@@ -63,7 +68,7 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
       </StyledNavigationItems>
       <Flex align={'center'}>
         <StyledConnectWalletButton onClick={readyToTransact}>
-          Connect
+          {address ? `${address?.slice(0, 5)}...` : 'Connect'}
           <StyledMetaMaskImageContainer
             css={`
               background-image: url(${MetaMaskImage});

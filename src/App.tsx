@@ -4,12 +4,14 @@ import 'styled-components/macro';
 import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
 import { GU } from 'components/theme';
-import { Web3Context } from 'contexts/Web3Context';
 
 // Components
 import Navigation from 'components/Navigation';
 import Sidebar from 'components/Sidebar';
 import Wrapper from 'components/Wrapper';
+
+// Context
+import { Web3Context } from 'contexts/Web3Context';
 
 // Views
 import Deposit from 'views/Deposit';
