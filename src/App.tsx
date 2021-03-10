@@ -11,7 +11,7 @@ import Sidebar from 'components/Sidebar';
 import Wrapper from 'components/Wrapper';
 
 // Context
-import { Web3Context } from 'contexts/Web3Context';
+import { Web3Context } from 'contexts/Web3';
 
 // Views
 import Deposit from 'views/Deposit';
@@ -76,7 +76,7 @@ const App: React.FC = () => {
                   width: ${50 * GU}px;
                 `}
               >
-                {address ? address : 'Propose App'}
+                Propose App
               </div>
             </div>
           </Route>

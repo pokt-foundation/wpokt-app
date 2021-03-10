@@ -21,7 +21,7 @@ import {
 import { Flex } from 'components/Containers';
 
 // Context
-import { Web3Context } from 'contexts/Web3Context';
+import { Web3Context } from 'contexts/Web3';
 
 interface INavigation {
   readyToTransact: () => Promise<boolean | undefined>;

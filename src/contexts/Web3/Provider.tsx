@@ -1,7 +1,7 @@
 import React from 'react';
 import { ethers } from 'ethers';
 import { API } from 'bnc-notify';
-import { Web3Context } from 'contexts/Web3Context';
+import { Web3Context } from 'contexts/Web3';
 import { initOnboard, initNotify } from 'libs/connector';
 import { Wallet, API as OnboardAPI } from 'libs/types';
 
