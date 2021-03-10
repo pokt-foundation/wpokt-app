@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ethers } from 'ethers';
 import { API } from 'bnc-notify';
-import getSigner from 'libs/signer';
 import { initOnboard, initNotify } from 'libs/connector';
-import { Wallet,  API as OnboardAPI } from 'libs/faces';
+import { Wallet, API as OnboardAPI } from 'libs/faces';
+import { ContextValues } from 'contexts/faces';
 
-export const Web3Context = React.createContext({});
+export const Web3Context = React.createContext<ContextValues>({});
 
+// eslint-disable-next-line
 let provider: any;
 
 export const Web3Provider: React.FC = ({ children }) => {
-  const [address, setAddress] = useState(null);
-  const [network, setNetwork] = useState(null);
-  const [balance, setBalance] = useState(null);
-  const [wallet, setWallet] = useState({});
+  const [address, setAddress] = React.useState(null);
+  const [network, setNetwork] = React.useState(null);
+  const [balance, setBalance] = React.useState(null);
+  const [wallet, setWallet] = React.useState<Wallet | Record<string, never>>({});
 
-  const [onboard, setOnboard] = useState<OnboardAPI | null>(null);
-  const [notify, setNotify] = useState<API | null>(null);
+  const [onboard, setOnboard] = React.useState<OnboardAPI | null>(null);
+  const [notify, setNotify] = React.useState<API | null>(null);
 
-  const [toAddress, setToAddress] = useState('');
+  // const [toAddress, setToAddress] = React.useState('');
 
-  useEffect(() => {
+  React.useEffect(() => {
     const onboard = initOnboard({
-      address: setAddress as unknown as (address: string) => void,
-      network: setNetwork as unknown as (networkId: number) => void,
-      balance: setBalance as unknown as (balance: string) => void,
+      address: (setAddress as unknown) as (address: string) => void,
+      network: (setNetwork as unknown) as (networkId: number) => void,
+      balance: (setBalance as unknown) as (balance: string) => void,
       wallet: (wallet: Wallet) => {
         if (wallet.provider) {
           setWallet(wallet);
@@ -42,13 +43,12 @@ export const Web3Provider: React.FC = ({ children }) => {
         }
       },
     });
-
     setOnboard(onboard);
 
     setNotify(initNotify());
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const previouslySelectedWallet = window.localStorage.getItem('selectedWallet');
 
     if (previouslySelectedWallet && onboard) {
@@ -56,101 +56,100 @@ export const Web3Provider: React.FC = ({ children }) => {
     }
   }, [onboard]);
 
-//   async function sendHash() {
-//     if (!toAddress) {
-//       alert('An Ethereum address to send Eth to is required.');
-//       return;
-//     }
+  //   async function sendHash() {
+  //     if (!toAddress) {
+  //       alert('An Ethereum address to send Eth to is required.');
+  //       return;
+  //     }
 
-//     const signer = getSigner(provider);
+  //     const signer = getSigner(provider);
 
-//     const { hash } = await signer.sendTransaction({
-//       to: toAddress,
-//       value: 1000000000000000,
-//     });
+  //     const { hash } = await signer.sendTransaction({
+  //       to: toAddress,
+  //       value: 1000000000000000,
+  //     });
 
+  //     const { emitter } = notify.hash(hash);
 
-//     const { emitter } = notify.hash(hash);
+  //     emitter.on('txPool', (transaction) => ({
+  //       // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
+  //       // or you could use onclick for when someone clicks on the notification itself
+  //       onclick: () => window.open(`https://rinkeby.etherscan.io/tx/${transaction.hash}`),
+  //     }));
 
-//     emitter.on('txPool', (transaction) => ({
-//       // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
-//       // or you could use onclick for when someone clicks on the notification itself
-//       onclick: () => window.open(`https://rinkeby.etherscan.io/tx/${transaction.hash}`),
-//     }));
+  //     emitter.on('txSent', console.log);
+  //     emitter.on('txConfirmed', console.log);
+  //     emitter.on('txSpeedUp', console.log);
+  //     emitter.on('txCancel', console.log);
+  //     emitter.on('txFailed', console.log);
 
-//     emitter.on('txSent', console.log);
-//     emitter.on('txConfirmed', console.log);
-//     emitter.on('txSpeedUp', console.log);
-//     emitter.on('txCancel', console.log);
-//     emitter.on('txFailed', console.log);
+  //     // emitter.on("all", event => {
+  //     //   console.log("ALLLLLLL", event)
+  //     // })
+  //   }
 
-//     // emitter.on("all", event => {
-//     //   console.log("ALLLLLLL", event)
-//     // })
-//   }
+  //   async function sendInternalTransaction() {
+  //     if (!toAddress) {
+  //       // eslint-disable-next-line no-alert
+  //       alert('An Ethereum address to send Eth to is required.');
+  //       return;
+  //     }
 
-//   async function sendInternalTransaction() {
-//     if (!toAddress) {
-//       // eslint-disable-next-line no-alert
-//       alert('An Ethereum address to send Eth to is required.');
-//       return;
-//     }
+  //     const { hash } = await internalTransferContract.internalTransfer(toAddress, {
+  //       value: 1000000000000000,
+  //     });
 
-//     const { hash } = await internalTransferContract.internalTransfer(toAddress, {
-//       value: 1000000000000000,
-//     });
+  //     const { emitter } = notify.hash(hash);
 
-//     const { emitter } = notify.hash(hash);
+  //     emitter.on('txSent', console.log);
+  //     emitter.on('txPool', console.log);
+  //     emitter.on('txConfirmed', console.log);
+  //     emitter.on('txSpeedUp', console.log);
+  //     emitter.on('txCancel', console.log);
+  //     emitter.on('txFailed', console.log);
+  //   }
 
-//     emitter.on('txSent', console.log);
-//     emitter.on('txPool', console.log);
-//     emitter.on('txConfirmed', console.log);
-//     emitter.on('txSpeedUp', console.log);
-//     emitter.on('txCancel', console.log);
-//     emitter.on('txFailed', console.log);
-//   }
+  //   async function sendTransaction() {
+  //     if (!toAddress) {
+  //       alert('An Ethereum address to send Eth to is required.');
+  //     }
 
-//   async function sendTransaction() {
-//     if (!toAddress) {
-//       alert('An Ethereum address to send Eth to is required.');
-//     }
+  //     const signer = getSigner(provider);
 
-//     const signer = getSigner(provider);
+  //     const txDetails = {
+  //       to: toAddress,
+  //       value: 1000000000000000,
+  //     };
 
-//     const txDetails = {
-//       to: toAddress,
-//       value: 1000000000000000,
-//     };
+  //     const sendTransaction = () => signer.sendTransaction(txDetails).then((tx: { hash: string; }) => tx.hash);
 
-//     const sendTransaction = () => signer.sendTransaction(txDetails).then((tx: { hash: string; }) => tx.hash);
+  //     const gasPrice = () => provider.getGasPrice().then((res: { toString: () => any; }) => res.toString());
 
-//     const gasPrice = () => provider.getGasPrice().then((res: { toString: () => any; }) => res.toString());
+  //     const estimateGas = () => provider.estimateGas(txDetails).then((res: { toString: () => any; }) => res.toString());
 
-//     const estimateGas = () => provider.estimateGas(txDetails).then((res: { toString: () => any; }) => res.toString());
+  //     const { emitter } = await notify.transaction({
+  //       sendTransaction,
+  //       gasPrice,
+  //       estimateGas,
+  //       balance: onboard?.getState().balance,
+  //       txDetails,
+  //     });
 
-//     const { emitter } = await notify.transaction({
-//       sendTransaction,
-//       gasPrice,
-//       estimateGas,
-//       balance: onboard?.getState().balance,
-//       txDetails,
-//     });
-
-//     emitter.on('txRequest', console.log);
-//     emitter.on('nsfFail', console.log);
-//     emitter.on('txRepeat', console.log);
-//     emitter.on('txAwaitingApproval', console.log);
-//     emitter.on('txConfirmReminder', console.log);
-//     emitter.on('txSendFail', console.log);
-//     emitter.on('txError', console.log);
-//     emitter.on('txUnderPriced', console.log);
-//     emitter.on('txSent', console.log);
-//     emitter.on('txPool', console.log);
-//     emitter.on('txConfirmed', console.log);
-//     emitter.on('txSpeedUp', console.log);
-//     emitter.on('txCancel', console.log);
-//     emitter.on('txFailed', console.log);
-//   }
+  //     emitter.on('txRequest', console.log);
+  //     emitter.on('nsfFail', console.log);
+  //     emitter.on('txRepeat', console.log);
+  //     emitter.on('txAwaitingApproval', console.log);
+  //     emitter.on('txConfirmReminder', console.log);
+  //     emitter.on('txSendFail', console.log);
+  //     emitter.on('txError', console.log);
+  //     emitter.on('txUnderPriced', console.log);
+  //     emitter.on('txSent', console.log);
+  //     emitter.on('txPool', console.log);
+  //     emitter.on('txConfirmed', console.log);
+  //     emitter.on('txSpeedUp', console.log);
+  //     emitter.on('txCancel', console.log);
+  //     emitter.on('txFailed', console.log);
+  //   }
 
   return (
     <Web3Context.Provider

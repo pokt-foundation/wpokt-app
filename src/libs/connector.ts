@@ -1,13 +1,13 @@
-import Notify from 'bnc-notify';
+import Notify, { API } from 'bnc-notify';
 import Onboard from 'bnc-onboard';
 import getRpcUrl from 'libs/rpc';
-import { Subscriptions } from 'libs/faces';
+import { Subscriptions, API as OnboardAPI } from 'libs/faces';
 
 const networkId = 4;
 const rpcUrl = getRpcUrl(networkId);
-const dappId = process.env.NEXT_PUBLIC_BN_ONBOARD_API_KEY;
+const dappId = process.env.ONBOARD_API_KEY;
 
-export function initOnboard(subscriptions: Subscriptions) {
+export function initOnboard(subscriptions: Subscriptions): OnboardAPI {
   const onboard = Onboard;
   return onboard({
     dappId,
@@ -70,7 +70,7 @@ export function initOnboard(subscriptions: Subscriptions) {
   });
 }
 
-export function initNotify() {
+export function initNotify(): API {
   const notify = Notify;
   return notify({
     dappId,

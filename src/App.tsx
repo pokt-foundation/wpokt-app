@@ -4,6 +4,7 @@ import 'styled-components/macro';
 import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
 import { GU } from 'components/theme';
+import { Web3Context } from 'contexts/Web3Context';
 
 // Components
 import Navigation from 'components/Navigation';
@@ -14,14 +15,40 @@ import Wrapper from 'components/Wrapper';
 import Deposit from 'views/Deposit';
 
 const App: React.FC = () => {
+  // Context
+  const {
+    address,
+    network,
+    balance,
+    onboard,
+    provider,
+    // wallet,
+    // notify
+  } = React.useContext(Web3Context);
+
   // State
   const [sidebar, setSidebar] = React.useState<boolean>(false);
+
+  async function readyToTransact() {
+    console.log(`
+      ${address}
+      ${network}
+      ${balance}
+    `);
+    if (!provider) {
+      const walletSelected = await onboard?.walletSelect();
+      if (!walletSelected) return false;
+    }
+
+    const ready = await onboard?.walletCheck();
+    return ready;
+  }
   return (
     <Wrapper>
       <GlobalFonts />
       <Router>
         <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
-        <Navigation setSidebar={setSidebar} />
+        <Navigation readyToTransact={readyToTransact} setSidebar={setSidebar} />
         <Switch>
           <Route exact path="/">
             <Deposit />
@@ -47,7 +74,7 @@ const App: React.FC = () => {
                   width: ${50 * GU}px;
                 `}
               >
-                Propose App
+                {address ? address : 'Propose App'}
               </div>
             </div>
           </Route>
