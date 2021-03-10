@@ -1,7 +1,7 @@
 import Notify, { API } from 'bnc-notify';
 import Onboard from 'bnc-onboard';
 import getRpcUrl from 'libs/rpc';
-import { Subscriptions, API as OnboardAPI } from 'libs/faces';
+import { Subscriptions, API as OnboardAPI } from 'libs/types';
 
 const networkId = 4;
 const rpcUrl = getRpcUrl(networkId);

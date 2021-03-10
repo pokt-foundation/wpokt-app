@@ -1,6 +1,6 @@
 import React from 'react';
 import { API } from 'bnc-notify';
-import { API as OnboardAPI, Wallet } from 'libs/faces';
+import { API as OnboardAPI, Wallet } from 'libs/types';
 
 export interface ContextValues {
   address: string | null;

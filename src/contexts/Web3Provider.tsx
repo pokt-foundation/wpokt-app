@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import { API } from 'bnc-notify';
 import { Web3Context } from 'contexts/Web3Context';
 import { initOnboard, initNotify } from 'libs/connector';
-import { Wallet, API as OnboardAPI } from 'libs/faces';
+import { Wallet, API as OnboardAPI } from 'libs/types';
 
 // eslint-disable-next-line
 let provider: any;
