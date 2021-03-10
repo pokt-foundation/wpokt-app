@@ -1,4 +1,5 @@
 import React from 'react';
+import BigNumber from 'utils/bignumber';
 import { colors } from 'components/theme';
 
 // Assets
@@ -17,7 +18,15 @@ import {
 } from './components';
 import { H2, P2 } from 'components/Typography';
 
+// Contexts
+import { BalanceContext } from 'contexts/Balance';
+
+// Utils
+import { bnToDec } from 'utils';
+
 export const EnterAmount: React.FC = () => {
+  const { wpoktBalance } = React.useContext(BalanceContext);
+
   return (
     <>
       <StyledHeader>
@@ -29,7 +38,11 @@ export const EnterAmount: React.FC = () => {
         <StyledHeaderRight>
           <StyledLine />
           <div id={'wallet-balance'}>
-            <P2 color={colors.white}>Wallet balance: 2345.926562 wPOKT</P2>
+            <P2 color={colors.white}>
+              {wpoktBalance
+                ? `Wallet balance: ${bnToDec(new BigNumber(wpoktBalance))} wPOKT`
+                : 'Wallet balance: connect wallet'}
+            </P2>
             <StyledMaxButton>
               <div id={'max-svg'}>
                 <MaxSvg />
