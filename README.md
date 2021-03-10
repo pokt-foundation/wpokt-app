@@ -28,6 +28,11 @@ Frontend for wPOKT, allowing wPOKT purchasers to stake and crowdsource infrastru
 
 Full Description
 
+## Rinkeby Addresses
+wPOKT: `0x2f363dd061cc8b3411c3c91c0cfac0fa1b62f656`\
+TokenGeyser: `0x746218704841983de2ca941dd91598e68c369025`\
+wPOKT Pool: `0x7c2cf434e98940ad08ae3f26986235628b0904e7`
+
 ## Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
