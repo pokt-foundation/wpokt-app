@@ -10,7 +10,7 @@ import { getTimeRemaining } from 'util/helpers';
 import { WPOKT_SUBGRAPH_URL } from 'util/constants';
 
 const RETRY_EVERY = 3000;
-const DAYS_IN_ONE_MONTH = 30;
+const DAYS_IN_MONTH = dayjs().daysInMonth();
 const ZERO_BIG_INT = BigInt(0);
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL || 'Your farm subgraph URL' });
@@ -70,7 +70,7 @@ export function useFarmStats(farmAddress: string) {
 
         const parsedTotalUnlockedRewards = BigInt(totalUnlockedRewards);
 
-        const unlockRate = parsedTotalUnlockedRewards / BigInt(DAYS_IN_ONE_MONTH);
+        const unlockRate = parsedTotalUnlockedRewards / BigInt(DAYS_IN_MONTH);
 
         const today = dayjs();
 
