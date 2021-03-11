@@ -1,1 +1,0 @@
-export type BigIntish = bigint | { toString: () => string } | string | number
