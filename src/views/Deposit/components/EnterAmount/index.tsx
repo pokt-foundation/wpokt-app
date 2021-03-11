@@ -26,6 +26,16 @@ import { bnToDec } from 'utils';
 
 export const EnterAmount: React.FC = () => {
   const { wpoktBalance } = React.useContext(BalanceContext);
+  const [wpoktInputValue, setWpoktInputValue] = React.useState<string>('');
+
+  // Handlers
+  const onDeposit = () => {
+    console.log(wpoktInputValue);
+  };
+
+  const onMaxValue = () => {
+    setWpoktInputValue(bnToDec(new BigNumber(wpoktBalance)).toString());
+  };
 
   return (
     <>
@@ -43,7 +53,7 @@ export const EnterAmount: React.FC = () => {
                 ? `Wallet balance: ${bnToDec(new BigNumber(wpoktBalance))} wPOKT`
                 : 'Wallet balance: connect wallet'}
             </P2>
-            <StyledMaxButton>
+            <StyledMaxButton onClick={onMaxValue}>
               <div id={'max-svg'}>
                 <MaxSvg />
               </div>
@@ -55,8 +65,15 @@ export const EnterAmount: React.FC = () => {
         </StyledHeaderRight>
       </StyledHeader>
       <StyledDepositInputContainer>
-        <input type="text" placeholder={'How much do you want to deposit?'} />
-        <button>
+        <input
+          placeholder={'How much do you want to deposit?'}
+          type={'number'}
+          min={'0'}
+          step={'0.01'}
+          value={wpoktInputValue}
+          onChange={(e) => setWpoktInputValue(e.target.value)}
+        />
+        <button onClick={onDeposit}>
           <DepositButtonSvg />
         </button>
       </StyledDepositInputContainer>

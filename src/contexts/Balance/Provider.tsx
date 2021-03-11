@@ -43,12 +43,13 @@ export const BalanceProvider: React.FC = ({ children }) => {
     [wpoktBalance],
   );
 
-  React.useEffect(() => {
+  React.useEffect((): (() => void) => {
     if (address && provider) {
       fetchBalances(address, provider);
       const refreshInterval = setInterval(() => fetchBalances(address, provider), 10000);
       return () => clearInterval(refreshInterval);
     }
+    return () => null;
     // eslint-disable-next-line
   }, [address, provider]);
 
