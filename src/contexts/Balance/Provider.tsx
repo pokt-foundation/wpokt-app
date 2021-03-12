@@ -1,25 +1,18 @@
 import React from 'react';
 
-import ERC20ABI from './ERC20.json';
-
 // Constants
 import { wpoktAddress } from 'constants/index';
 
 // Context
 import { Web3Context } from 'contexts/Web3';
 import { BalanceContext } from './Context';
-import { ethers, ContractInterface } from 'ethers';
+
+// Utils
+import { getERC20Contract } from 'utils';
 
 export const BalanceProvider: React.FC = ({ children }) => {
   const { address, provider } = React.useContext(Web3Context);
   const [wpoktBalance, setWpoktBalance] = React.useState<string>();
-
-  // eslint-disable-next-line
-  const getERC20Contract = (provider: any, address: string) => {
-    const contract = new ethers.Contract(address, (ERC20ABI.abi as unknown) as ContractInterface, provider);
-
-    return contract;
-  };
 
   // eslint-disable-next-line
   const getBalance = async (provider: any, tokenAddress: string, userAddress: string): Promise<string> => {

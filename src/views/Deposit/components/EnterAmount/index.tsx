@@ -18,23 +18,32 @@ import {
 } from './components';
 import { H2, P2 } from 'components/Typography';
 
+// Constants
+import { tokenGeyser, wpoktAddress } from 'constants/index';
+
 // Contexts
 import { BalanceContext } from 'contexts/Balance';
+import { Web3Context } from 'contexts/Web3';
 
 // Utils
-import { bnToDec } from 'utils';
+import { bnToDec, getAllowance } from 'utils';
 
 export const EnterAmount: React.FC = () => {
   const { wpoktBalance } = React.useContext(BalanceContext);
   const [wpoktInputValue, setWpoktInputValue] = React.useState<string>('');
+  const { address, provider } = React.useContext(Web3Context);
 
   // Handlers
   const onDeposit = () => {
     console.log(wpoktInputValue);
   };
 
-  const onMaxValue = () => {
+  const onMaxValue = async () => {
     setWpoktInputValue(bnToDec(new BigNumber(wpoktBalance)).toString());
+    if (address && provider) {
+      const allowance = await getAllowance(address, tokenGeyser, wpoktAddress, provider);
+      console.log(allowance);
+    }
   };
 
   return (
