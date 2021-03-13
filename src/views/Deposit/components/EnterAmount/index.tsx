@@ -3,7 +3,8 @@ import BigNumber from 'utils/bignumber';
 import { colors } from 'components/theme';
 
 // Assets
-import { ReactComponent as DepositButtonSvg } from 'assets/icons/deposit_button.svg';
+import { ReactComponent as DepositButtonActiveSvg } from 'assets/icons/deposit_button_active.svg';
+import { ReactComponent as DepositButtonDisabledSvg } from 'assets/icons/deposit_button_disabled.svg';
 import { ReactComponent as MaxSvg } from 'assets/icons/max.svg';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
@@ -30,13 +31,23 @@ import { approve, bnToDec, decToBn, getAllowance, stake } from 'utils';
 
 export const EnterAmount: React.FC = () => {
   const { wpoktBalance } = React.useContext(BalanceContext);
+  const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
   const [wpoktInputValue, setWpoktInputValue] = React.useState<string>('');
   const { address, onboard, provider, signer } = React.useContext(Web3Context);
+
+  // Effects
+  React.useEffect(() => {
+    if (wpoktInputValue === '' || wpoktInputValue === '0') {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [wpoktInputValue]);
 
   // Handlers
   const onDeposit = async () => {
     onboard?.walletCheck();
-    if (address && provider && wpoktInputValue !== '') {
+    if (address && provider && !isDisabled) {
       const allowance = await getAllowance(address, TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, provider);
       if (+decToBn(+wpoktInputValue) > +allowance && signer) {
         const isComfirmed = await approve(
@@ -95,8 +106,8 @@ export const EnterAmount: React.FC = () => {
           value={wpoktInputValue}
           onChange={(e) => setWpoktInputValue(e.target.value)}
         />
-        <button onClick={onDeposit}>
-          <DepositButtonSvg />
+        <button disabled={isDisabled} onClick={onDeposit}>
+          {isDisabled ? <DepositButtonActiveSvg /> : <DepositButtonDisabledSvg />}
         </button>
       </StyledDepositInputContainer>
     </>

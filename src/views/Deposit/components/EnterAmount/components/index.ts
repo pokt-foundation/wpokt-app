@@ -72,13 +72,25 @@ export const StyledDepositInputContainer = styled.div`
       transform: translateY(-50%);
 
       &:hover {
-          transform: translateY(-52%);
+        transform: translateY(-52%);
       }
 
       &:active {
-          transform: translateY(-48%);
+        transform: translateY(-48%);
       }
     `}
+
+    &:disabled {
+      cursor: not-allowed !important;
+
+      &:hover {
+        transform: translateY(-50%) !important;
+      }
+
+      &:active {
+        transform: translateY(-50%) !important;
+      }
+    }
   }
 `;
 

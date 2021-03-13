@@ -19,8 +19,6 @@ export const Web3Provider: React.FC = ({ children }) => {
   const [onboard, setOnboard] = React.useState<OnboardAPI | null>(null);
   const [notify, setNotify] = React.useState<API | null>(null);
 
-  // const [toAddress, setToAddress] = React.useState('');
-
   React.useEffect(() => {
     const onboard = initOnboard({
       address: (setAddress as unknown) as (address: string) => void,
