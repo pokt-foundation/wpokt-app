@@ -24,18 +24,35 @@ export const getTokenGeyserContract = (provider: Provider, address: string): eth
   return contract;
 };
 
-export const stake = async (stakeAmount: string, provider: Provider): Promise<boolean> => {
-  return true;
+// eslint-disable-next-line
+export const stake = async (stakeAmount: string, tokenAddress: string, signer: any): Promise<boolean> => {
+  try {
+    const tokenContract = getTokenGeyserContract(signer, tokenAddress);
+    return (
+      tokenContract
+        // .approve(spenderAddress, ethers.constants.MaxUint256)
+        .stake(stakeAmount, '0x')
+        .then((response: ContractTransaction) => {
+          response.wait();
+          console.log(response);
+          return true;
+        })
+    );
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
 };
 
 export const approve = async (
   approvalAmount: string,
   spenderAddress: string,
   tokenAddress: string,
-  provider: Provider,
+  // eslint-disable-next-line
+  signer: any,
 ): Promise<boolean> => {
   try {
-    const tokenContract = getERC20Contract(provider, tokenAddress);
+    const tokenContract = getERC20Contract(signer, tokenAddress);
     return (
       tokenContract
         // .approve(spenderAddress, ethers.constants.MaxUint256)

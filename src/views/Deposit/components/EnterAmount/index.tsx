@@ -26,7 +26,7 @@ import { BalanceContext } from 'contexts/Balance';
 import { Web3Context } from 'contexts/Web3';
 
 // Utils
-import { bnToDec, decToBn, getAllowance, approve } from 'utils';
+import { approve, bnToDec, decToBn, getAllowance, stake } from 'utils';
 
 export const EnterAmount: React.FC = () => {
   const { wpoktBalance } = React.useContext(BalanceContext);
@@ -39,15 +39,16 @@ export const EnterAmount: React.FC = () => {
     if (address && provider) {
       const allowance = await getAllowance(address, TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, provider);
       if (+decToBn(+wpoktInputValue) > +allowance) {
-        const receipt = await approve(
+        const isComfirmed = await approve(
           decToBn(+wpoktInputValue).toString(),
           TOKEN_GEYSER_ADDRESS,
           WPOKT_ADDRESS,
           signer,
         );
-        console.log(receipt);
+        console.log(isComfirmed);
       } else {
-        console.log(allowance);
+        const isComfirmed = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
+        console.log(isComfirmed);
       }
     }
   };
