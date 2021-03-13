@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from '@ethersproject/abstract-provider';
 
 // Constants
 import { WPOKT_ADDRESS } from 'constants/index';
@@ -14,8 +15,7 @@ export const BalanceProvider: React.FC = ({ children }) => {
   const { address, provider } = React.useContext(Web3Context);
   const [wpoktBalance, setWpoktBalance] = React.useState<string>();
 
-  // eslint-disable-next-line
-  const getBalance = async (provider: any, tokenAddress: string, userAddress: string): Promise<string> => {
+  const getBalance = async (provider: Provider, tokenAddress: string, userAddress: string): Promise<string> => {
     const tokenContract = getERC20Contract(provider, tokenAddress);
     try {
       const balance = await tokenContract.balanceOf(userAddress);
@@ -27,8 +27,7 @@ export const BalanceProvider: React.FC = ({ children }) => {
   };
 
   const fetchBalances = React.useCallback(
-    // eslint-disable-next-line
-    async (userAddress: string, provider: any) => {
+    async (userAddress: string, provider: Provider) => {
       const balance = await getBalance(provider, WPOKT_ADDRESS as string, userAddress);
       setWpoktBalance(balance);
     },

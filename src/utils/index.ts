@@ -1,11 +1,8 @@
 import { ethers, ContractInterface, ContractTransaction } from 'ethers';
+import { Provider } from '@ethersproject/abstract-provider';
 import BigNumber from 'utils/bignumber';
 import ERC20ABI from 'abis/ERC20.json';
 import TokenGeyserABI from 'abis/TokenGeyser.json';
-
-interface TransactionReceipt {
-  status: boolean;
-}
 
 export const bnToDec = (bn: BigNumber, decimals = 18): number => {
   return bn.dividedBy(new BigNumber(10).pow(decimals)).toNumber();
@@ -15,40 +12,27 @@ export const decToBn = (dec: number, decimals = 18): BigNumber => {
   return new BigNumber(dec).multipliedBy(new BigNumber(10).pow(decimals));
 };
 
-// eslint-disable-next-line
-export const getERC20Contract = (provider: any, address: string) => {
+export const getERC20Contract = (provider: Provider, address: string): ethers.Contract => {
   const contract = new ethers.Contract(address, (ERC20ABI as unknown) as ContractInterface, provider);
 
   return contract;
 };
 
-export const getTokenGeyserContract = (provider: any, address: string) => {
+export const getTokenGeyserContract = (provider: Provider, address: string): ethers.Contract => {
   const contract = new ethers.Contract(address, (TokenGeyserABI as unknown) as ContractInterface, provider);
 
   return contract;
 };
 
-const sleep = (ms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
-// eslint-disable-next-line
-export const waitTransaction = async (provider: any, txHash: string): Promise<boolean> => {
-  let txReceipt: TransactionReceipt | null = null;
-  while (txReceipt === null) {
-    const r = await provider.getTransactionReceipt(txHash);
-    txReceipt = r;
-    await sleep(2000);
-  }
-  return txReceipt.status;
+export const stake = async (stakeAmount: string, provider: Provider): Promise<boolean> => {
+  return true;
 };
 
 export const approve = async (
   approvalAmount: string,
   spenderAddress: string,
   tokenAddress: string,
-  // eslint-disable-next-line
-  provider: any,
+  provider: Provider,
 ): Promise<boolean> => {
   try {
     const tokenContract = getERC20Contract(provider, tokenAddress);
@@ -63,7 +47,7 @@ export const approve = async (
         })
     );
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return false;
   }
 };
@@ -72,8 +56,7 @@ export const getAllowance = async (
   userAddress: string,
   spenderAddress: string,
   tokenAddress: string,
-  // eslint-disable-next-line
-  provider: any,
+  provider: Provider,
 ): Promise<string> => {
   try {
     const tokenContract = getERC20Contract(provider, tokenAddress);

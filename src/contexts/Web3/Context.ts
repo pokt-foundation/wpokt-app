@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from '@ethersproject/abstract-provider';
 import { API } from 'bnc-notify';
 import { API as OnboardAPI, Wallet } from 'libs/types';
 
@@ -10,8 +11,7 @@ export interface ContextValues {
   onboard: OnboardAPI | null;
   wallet: Wallet | Record<string, never>;
   notify: API | null;
-  // eslint-disable-next-line
-  provider: any;
+  provider: Provider | null;
   // eslint-disable-next-line
   signer: any;
 }
