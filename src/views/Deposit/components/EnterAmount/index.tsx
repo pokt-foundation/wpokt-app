@@ -36,9 +36,9 @@ export const EnterAmount: React.FC = () => {
   // Handlers
   const onDeposit = async () => {
     onboard?.walletCheck();
-    if (address && provider) {
+    if (address && provider && wpoktInputValue !== '') {
       const allowance = await getAllowance(address, TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, provider);
-      if (+decToBn(+wpoktInputValue) > +allowance) {
+      if (+decToBn(+wpoktInputValue) > +allowance && signer) {
         const isComfirmed = await approve(
           decToBn(+wpoktInputValue).toString(),
           TOKEN_GEYSER_ADDRESS,
@@ -47,8 +47,10 @@ export const EnterAmount: React.FC = () => {
         );
         console.log(isComfirmed);
       } else {
-        const isComfirmed = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
-        console.log(isComfirmed);
+        if (signer) {
+          const isComfirmed = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
+          console.log(isComfirmed);
+        }
       }
     }
   };

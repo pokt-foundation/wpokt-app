@@ -1,4 +1,4 @@
-import { ethers, ContractInterface, ContractTransaction } from 'ethers';
+import { ethers, ContractInterface, ContractTransaction, Signer } from 'ethers';
 import { Provider } from '@ethersproject/abstract-provider';
 import BigNumber from 'utils/bignumber';
 import ERC20ABI from 'abis/ERC20.json';
@@ -12,32 +12,26 @@ export const decToBn = (dec: number, decimals = 18): BigNumber => {
   return new BigNumber(dec).multipliedBy(new BigNumber(10).pow(decimals));
 };
 
-export const getERC20Contract = (provider: Provider, address: string): ethers.Contract => {
-  const contract = new ethers.Contract(address, (ERC20ABI as unknown) as ContractInterface, provider);
+export const getERC20Contract = (signerOrProvider: Signer | Provider, address: string): ethers.Contract => {
+  const contract = new ethers.Contract(address, (ERC20ABI as unknown) as ContractInterface, signerOrProvider);
 
   return contract;
 };
 
-export const getTokenGeyserContract = (provider: Provider, address: string): ethers.Contract => {
-  const contract = new ethers.Contract(address, (TokenGeyserABI as unknown) as ContractInterface, provider);
+export const getTokenGeyserContract = (signer: Signer, address: string): ethers.Contract => {
+  const contract = new ethers.Contract(address, (TokenGeyserABI as unknown) as ContractInterface, signer);
 
   return contract;
 };
 
-// eslint-disable-next-line
-export const stake = async (stakeAmount: string, tokenAddress: string, signer: any): Promise<boolean> => {
+export const stake = async (stakeAmount: string, tokenAddress: string, signer: Signer): Promise<boolean> => {
   try {
     const tokenContract = getTokenGeyserContract(signer, tokenAddress);
-    return (
-      tokenContract
-        // .approve(spenderAddress, ethers.constants.MaxUint256)
-        .stake(stakeAmount, '0x')
-        .then((response: ContractTransaction) => {
-          response.wait();
-          console.log(response);
-          return true;
-        })
-    );
+    return tokenContract.stake(stakeAmount, '0x').then((response: ContractTransaction) => {
+      response.wait();
+      console.log(response);
+      return true;
+    });
   } catch (e) {
     console.error(e);
     return false;
@@ -48,8 +42,7 @@ export const approve = async (
   approvalAmount: string,
   spenderAddress: string,
   tokenAddress: string,
-  // eslint-disable-next-line
-  signer: any,
+  signer: Signer,
 ): Promise<boolean> => {
   try {
     const tokenContract = getERC20Contract(signer, tokenAddress);

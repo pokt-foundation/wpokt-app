@@ -1,5 +1,5 @@
 import React from 'react';
-import { ethers } from 'ethers';
+import { ethers, Signer } from 'ethers';
 import { Provider } from '@ethersproject/abstract-provider';
 import { API } from 'bnc-notify';
 import { Web3Context } from 'contexts/Web3';
@@ -8,8 +8,7 @@ import getSigner from 'libs/signer';
 import { Wallet, API as OnboardAPI } from 'libs/types';
 
 let provider: Provider | null;
-// eslint-disable-next-line
-let signer: any;
+let signer: Signer | null;
 
 export const Web3Provider: React.FC = ({ children }) => {
   const [address, setAddress] = React.useState(null);
@@ -41,6 +40,7 @@ export const Web3Provider: React.FC = ({ children }) => {
           }
         } else {
           provider = null;
+          signer = null;
           setWallet({});
         }
       },
