@@ -1,6 +1,7 @@
 import { ethers, ContractInterface, ContractTransaction } from 'ethers';
 import BigNumber from 'utils/bignumber';
 import ERC20ABI from 'abis/ERC20.json';
+import TokenGeyserABI from 'abis/TokenGeyser.json';
 
 interface TransactionReceipt {
   status: boolean;
@@ -16,7 +17,13 @@ export const decToBn = (dec: number, decimals = 18): BigNumber => {
 
 // eslint-disable-next-line
 export const getERC20Contract = (provider: any, address: string) => {
-  const contract = new ethers.Contract(address, (ERC20ABI.abi as unknown) as ContractInterface, provider);
+  const contract = new ethers.Contract(address, (ERC20ABI as unknown) as ContractInterface, provider);
+
+  return contract;
+};
+
+export const getTokenGeyserContract = (provider: any, address: string) => {
+  const contract = new ethers.Contract(address, (TokenGeyserABI as unknown) as ContractInterface, provider);
 
   return contract;
 };

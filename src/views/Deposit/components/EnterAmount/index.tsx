@@ -38,11 +38,16 @@ export const EnterAmount: React.FC = () => {
     onboard?.walletCheck();
     if (address && provider) {
       const allowance = await getAllowance(address, TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, provider);
-      console.log(wpoktInputValue);
-      console.log(allowance);
       if (+decToBn(+wpoktInputValue) > +allowance) {
-        const tx = await approve(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, signer);
-        console.log(tx);
+        const receipt = await approve(
+          decToBn(+wpoktInputValue).toString(),
+          TOKEN_GEYSER_ADDRESS,
+          WPOKT_ADDRESS,
+          signer,
+        );
+        console.log(receipt);
+      } else {
+        console.log(allowance);
       }
     }
   };
