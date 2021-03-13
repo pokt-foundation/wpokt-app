@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Constants
-import { wpoktAddress } from 'constants/index';
+import { WPOKT_ADDRESS } from 'constants/index';
 
 // Context
 import { Web3Context } from 'contexts/Web3';
@@ -29,7 +29,7 @@ export const BalanceProvider: React.FC = ({ children }) => {
   const fetchBalances = React.useCallback(
     // eslint-disable-next-line
     async (userAddress: string, provider: any) => {
-      const balance = await getBalance(provider, wpoktAddress as string, userAddress);
+      const balance = await getBalance(provider, WPOKT_ADDRESS as string, userAddress);
       setWpoktBalance(balance);
     },
     // eslint-disable-next-line

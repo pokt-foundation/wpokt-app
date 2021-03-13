@@ -8,10 +8,12 @@ export interface ContextValues {
   // eslint-disable-next-line
   balance: any;
   onboard: OnboardAPI | null;
-  // eslint-disable-next-line
-  provider: any;
   wallet: Wallet | Record<string, never>;
   notify: API | null;
+  // eslint-disable-next-line
+  provider: any;
+  // eslint-disable-next-line
+  signer: any;
 }
 
 export const Web3Context = React.createContext<ContextValues>({
@@ -19,7 +21,8 @@ export const Web3Context = React.createContext<ContextValues>({
   network: 1,
   balance: '',
   onboard: null,
-  provider: null,
   wallet: {},
   notify: null,
+  provider: null,
+  signer: null,
 });

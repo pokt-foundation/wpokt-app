@@ -1,4 +1,4 @@
-import { ethers, ContractInterface } from 'ethers';
+import { ethers, ContractInterface, ContractTransaction } from 'ethers';
 import BigNumber from 'utils/bignumber';
 import ERC20ABI from 'abis/ERC20.json';
 
@@ -8,6 +8,10 @@ interface TransactionReceipt {
 
 export const bnToDec = (bn: BigNumber, decimals = 18): number => {
   return bn.dividedBy(new BigNumber(10).pow(decimals)).toNumber();
+};
+
+export const decToBn = (dec: number, decimals = 18): BigNumber => {
+  return new BigNumber(dec).multipliedBy(new BigNumber(10).pow(decimals));
 };
 
 // eslint-disable-next-line
@@ -33,37 +37,26 @@ export const waitTransaction = async (provider: any, txHash: string): Promise<bo
 };
 
 export const approve = async (
-  userAddress: string,
+  approvalAmount: string,
   spenderAddress: string,
   tokenAddress: string,
   // eslint-disable-next-line
   provider: any,
-  onTxHash?: (txHash: string) => void,
 ): Promise<boolean> => {
   try {
     const tokenContract = getERC20Contract(provider, tokenAddress);
     return (
       tokenContract
-        .approve(spenderAddress, ethers.constants.MaxUint256)
-        // eslint-disable-next-line
-      .send({ from: userAddress, gas: 80000 }, async (error: any, txHash: string) => {
-          if (error) {
-            console.log('ERC20 could not be approved', error);
-            onTxHash && onTxHash('');
-            return false;
-          }
-          if (onTxHash) {
-            onTxHash(txHash);
-          }
-          const status = await waitTransaction(provider, txHash);
-          if (!status) {
-            console.log('Approval transaction failed.');
-            return false;
-          }
+        // .approve(spenderAddress, ethers.constants.MaxUint256)
+        .approve(spenderAddress, approvalAmount)
+        .then((response: ContractTransaction) => {
+          response.wait();
+          console.log(response);
           return true;
         })
     );
   } catch (e) {
+    console.log(e);
     return false;
   }
 };

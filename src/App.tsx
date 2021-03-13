@@ -19,9 +19,6 @@ import Deposit from 'views/Deposit';
 const App: React.FC = () => {
   // Context
   const {
-    address,
-    network,
-    balance,
     onboard,
     provider,
     // wallet,
@@ -32,11 +29,6 @@ const App: React.FC = () => {
   const [sidebar, setSidebar] = React.useState<boolean>(false);
 
   async function readyToTransact() {
-    console.log(`
-      ${address}
-      ${network}
-      ${balance}
-    `);
     if (!provider) {
       const walletSelected = await onboard?.walletSelect();
       if (!walletSelected) return false;
