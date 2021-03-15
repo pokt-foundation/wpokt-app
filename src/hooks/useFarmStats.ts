@@ -11,9 +11,9 @@ import { WPOKT_SUBGRAPH_URL } from 'util/constants';
 
 const RETRY_EVERY = 3000;
 const DAYS_IN_MONTH = dayjs().daysInMonth();
-const ZERO_BIG_INT = BigInt(0);
+const ZERO = 0n;
 
-const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL || 'Your farm subgraph URL' });
+const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
 function buildFarmStatsQuery(farmAddress: string) {
   return gql`
@@ -40,10 +40,10 @@ type FarmStatsResponse = {
 };
 
 export function useFarmStats(farmAddress: string) {
-  const [apy, setAPY] = useState(ZERO_BIG_INT);
-  const [tvl, setTVL] = useState(ZERO_BIG_INT);
-  const [totalStaked, setTotalStaked] = useState(ZERO_BIG_INT);
-  const [rewardUnlockRate, setRewardUnlockRate] = useState(ZERO_BIG_INT);
+  const [apy, setAPY] = useState(ZERO);
+  const [tvl, setTVL] = useState(ZERO);
+  const [totalStaked, setTotalStaked] = useState(ZERO);
+  const [rewardUnlockRate, setRewardUnlockRate] = useState(ZERO);
   const [timeRemaining, setTimeRemaining] = useState({});
 
   const FARM_STATS_QUERY = buildFarmStatsQuery(farmAddress);
