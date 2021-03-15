@@ -44,13 +44,13 @@ export function useFarmStats(farmAddress: string) {
   const [tvl, setTVL] = useState(ZERO);
   const [totalStaked, setTotalStaked] = useState(ZERO);
   const [rewardUnlockRate, setRewardUnlockRate] = useState(ZERO);
-  const [timeRemaining, setTimeRemaining] = useState({});
+  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>();
 
   const FARM_STATS_QUERY = buildFarmStatsQuery(farmAddress);
 
   useEffect(() => {
     let cancelled = false;
-    let retryTimer: NodeJS.Timeout;
+    let retryTimer: ReturnType<typeof setTimeout>;
 
     async function fetchFarmStats() {
       try {
