@@ -28,14 +28,14 @@ import { BalanceContext } from 'contexts/Balance';
 import { Web3Context } from 'contexts/Web3';
 
 // Utils
-import { approve, bnToDec, decToBn, getAllowance, stake } from 'utils';
+import { approve, bnToDec, decToBn, getAllowance, getNotification, stake } from 'utils';
 
 export const EnterAmount: React.FC = () => {
   const { wpoktBalance } = React.useContext(BalanceContext);
   const [isApproved, setIsApproved] = React.useState<boolean>(true);
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
   const [wpoktInputValue, setWpoktInputValue] = React.useState<string>('');
-  const { address, onboard, provider, signer } = React.useContext(Web3Context);
+  const { address, onboard, provider, notify, signer } = React.useContext(Web3Context);
 
   // Should probably a separated hook
   const useApproval = async () => {
@@ -64,19 +64,29 @@ export const EnterAmount: React.FC = () => {
     onboard?.walletCheck();
     if (address && provider && !isDisabled) {
       if (isApproved && signer) {
-        const isComfirmed = await approve(
+        const response = await approve(
           decToBn(+wpoktInputValue).toString(),
           TOKEN_GEYSER_ADDRESS,
           WPOKT_ADDRESS,
           signer,
         );
-        console.log(isComfirmed);
+        if (typeof response === 'boolean') {
+          console.log(response);
+        } else {
+          if (notify) {
+            getNotification(notify, response);
+          }
+        }
       } else {
         if (signer) {
-          const isComfirmed = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
-          console.log(isComfirmed);
-          if (isComfirmed) {
-            setWpoktInputValue('');
+          const response = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
+          if (typeof response === 'boolean') {
+            console.log(response);
+          } else {
+            if (notify) {
+              getNotification(notify, response);
+              setWpoktInputValue('');
+            }
           }
         }
       }

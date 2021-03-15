@@ -5,7 +5,7 @@ import { Subscriptions, API as OnboardAPI } from 'libs/types';
 
 const networkId = 4;
 const rpcUrl = getRpcUrl(networkId);
-const dappId = process.env.ONBOARD_API_KEY;
+const dappId = process.env.REACT_APP_ONBOARD_API_KEY;
 
 export function initOnboard(subscriptions: Subscriptions): OnboardAPI {
   const onboard = Onboard;
