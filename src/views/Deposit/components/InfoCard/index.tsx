@@ -23,10 +23,15 @@ import { H1, P2 } from 'components/Typography';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
-export const InfoCard: React.FC = () => {
+interface IInfoCard {
+  farmSelected: boolean;
+  setFarmSelected: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const InfoCard: React.FC<IInfoCard> = ({ farmSelected, setFarmSelected }) => {
   return (
     <div>
-      <StyledHeader>
+      <StyledHeader onClick={() => setFarmSelected(!farmSelected)} farmSelected={farmSelected}>
         <StyledHeaderLeft>
           <div id={'farm-title'}>
             <StyledFarmContainer>

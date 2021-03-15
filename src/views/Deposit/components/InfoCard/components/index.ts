@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
@@ -16,18 +16,34 @@ export const StyledFarmContainer = styled.div`
   `}
 `;
 
-export const StyledHeader = styled.div`
+interface IStyledHeader {
+  farmSelected: boolean;
+}
+
+export const StyledHeader = styled.div<IStyledHeader>`
   align-items: flex-start;
   background: #000;
+  border: ${GU}px solid #000000;
+  border-bottom: none;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   ${media.sm`
     align-items: center;
     flex-direction: row;
   `}
+
+  ${(props) =>
+    props.farmSelected &&
+    css`
+      background: ${colors.yellow};
+    `}
 `;
 
 export const StyledHeaderLeft = styled.div`

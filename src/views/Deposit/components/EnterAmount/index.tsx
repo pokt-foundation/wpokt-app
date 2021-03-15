@@ -32,7 +32,12 @@ import { Web3Context } from 'contexts/Web3';
 // Utils
 import { approve, bnToDec, decToBn, getAllowance, getNotification, stake } from 'utils';
 
-export const EnterAmount: React.FC = () => {
+interface IEnterAmount {
+  farmSelected: boolean;
+  setFarmSelected: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, setFarmSelected }) => {
   const { wpoktBalance } = React.useContext(BalanceContext);
   const [isApproved, setIsApproved] = React.useState<boolean>(true);
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
@@ -41,7 +46,7 @@ export const EnterAmount: React.FC = () => {
 
   // Should probably a separated hook
   const useApproval = async () => {
-    if (address && provider && !isDisabled) {
+    if (address && provider && !isDisabled && farmSelected) {
       const allowance = await getAllowance(address, TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, provider);
       if (+decToBn(+wpoktInputValue) > +allowance) {
         setIsApproved(true);
@@ -54,17 +59,17 @@ export const EnterAmount: React.FC = () => {
 
   // Effects
   React.useEffect(() => {
-    if (wpoktInputValue === '' || wpoktInputValue === '0') {
+    if (wpoktInputValue === '' || wpoktInputValue === '0' || !farmSelected) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
     }
-  }, [wpoktInputValue]);
+  }, [wpoktInputValue, farmSelected]);
 
   // Handlers
   const onDeposit = async () => {
     onboard?.walletCheck();
-    if (address && provider && !isDisabled) {
+    if (address && provider && !isDisabled && farmSelected) {
       if (isApproved && signer) {
         const response = await approve(
           decToBn(+wpoktInputValue).toString(),
@@ -88,6 +93,7 @@ export const EnterAmount: React.FC = () => {
             if (notify) {
               getNotification(notify, response);
               setWpoktInputValue('');
+              setFarmSelected(false);
             }
           }
         }

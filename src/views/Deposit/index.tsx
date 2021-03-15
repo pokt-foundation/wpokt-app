@@ -12,6 +12,7 @@ import Spacer from 'components/Spacer';
 
 const Deposit: React.FC = () => {
   const [actionType, setActionType] = React.useState<'deposit' | 'withdraw'>('deposit');
+  const [farmSelected, setFarmSelected] = React.useState<boolean>(false);
 
   return (
     <>
@@ -41,16 +42,13 @@ const Deposit: React.FC = () => {
             </StyledButtonLarge>
           </Flex>
           <Spacer size={'sm'} />
-          {actionType === 'deposit' && <EnterAmount />}
+          {actionType === 'deposit' && <EnterAmount farmSelected={farmSelected} setFarmSelected={setFarmSelected} />}
         </InnerCardContainer>
         <InnerCardContainer>
           {actionType === 'deposit' && (
             <>
-              <InfoCard />
+              <InfoCard farmSelected={farmSelected} setFarmSelected={setFarmSelected} />
               <Spacer size={'md'} />
-              <InfoCard />
-              <Spacer size={'md'} />
-              <InfoCard />
             </>
           )}
         </InnerCardContainer>
