@@ -5,6 +5,7 @@ import { BigIntish, TimeRemaining } from 'util/types';
 import dayjs from 'dayjs';
 import gql from 'graphql-tag';
 import { Client } from 'urql';
+import { DocumentNode } from 'graphql';
 
 import { getTimeRemaining } from 'util/helpers';
 import { WPOKT_SUBGRAPH_URL } from 'util/constants';
@@ -15,7 +16,7 @@ const ZERO = 0n;
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
-const FARM_STATS_QUERY: any = gql`
+const FARM_STATS_QUERY: DocumentNode = gql`
   query FARM_STATS($farmAddress: string) {
     tokenGeysers(id: $farmAddress) {
       apy
