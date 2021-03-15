@@ -1,9 +1,11 @@
 import React from 'react';
 import 'styled-components/macro';
 import BigNumber from 'utils/bignumber';
-import { colors, GU } from 'components/theme';
+import { colors } from 'components/theme';
 
 // Assets
+import { ReactComponent as ApproveButtonActiveSvg } from 'assets/icons/approve_button_active.svg';
+import { ReactComponent as ApproveButtonDisabledSvg } from 'assets/icons/approve_button_disabled.svg';
 import { ReactComponent as DepositButtonActiveSvg } from 'assets/icons/deposit_button_active.svg';
 import { ReactComponent as DepositButtonDisabledSvg } from 'assets/icons/deposit_button_disabled.svg';
 import { ReactComponent as MaxSvg } from 'assets/icons/max.svg';
@@ -134,16 +136,8 @@ export const EnterAmount: React.FC = () => {
           onChange={(e) => setWpoktInputValue(e.target.value)}
         />
         {isApproved ? (
-          <button
-            css={`
-              background: white !important;
-              height: ${10 * GU}px;
-              width: ${20 * GU}px;
-            `}
-            disabled={isDisabled}
-            onClick={onDeposit}
-          >
-            Approve
+          <button disabled={isDisabled} onClick={onDeposit}>
+            {isDisabled ? <ApproveButtonActiveSvg /> : <ApproveButtonDisabledSvg />}
           </button>
         ) : (
           <button disabled={isDisabled} onClick={onDeposit}>
