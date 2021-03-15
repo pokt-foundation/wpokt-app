@@ -15,10 +15,9 @@ const ZERO = 0n;
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
-function buildFarmStatsQuery(farmAddress: string) {
-  return gql`
-  query {
-    tokenGeysers(id: "${farmAddress}") {
+const FARM_STATS_QUERY: any = gql`
+  query FARM_STATS($farmAddress: string) {
+    tokenGeysers(id: $farmAddress) {
       apy
       tvl
       staked
@@ -28,7 +27,6 @@ function buildFarmStatsQuery(farmAddress: string) {
     }
   }
 `;
-}
 
 type FarmStatsResponse = {
   apy: BigIntish;
@@ -46,15 +44,13 @@ export function useFarmStats(farmAddress: string) {
   const [rewardUnlockRate, setRewardUnlockRate] = useState(ZERO);
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>();
 
-  const FARM_STATS_QUERY = buildFarmStatsQuery(farmAddress);
-
   useEffect(() => {
     let cancelled = false;
     let retryTimer: ReturnType<typeof setTimeout>;
 
     async function fetchFarmStats() {
       try {
-        const result = await graphqlClient.query(FARM_STATS_QUERY).toPromise();
+        const result = await graphqlClient.query(FARM_STATS_QUERY, { farmAddress }).toPromise();
 
         if (!result?.data) {
           return;
@@ -98,7 +94,7 @@ export function useFarmStats(farmAddress: string) {
       cancelled = true;
       clearTimeout(retryTimer);
     };
-  }, [FARM_STATS_QUERY]);
+  }, [farmAddress]);
 
   return { apy, tvl, totalStaked, rewardUnlockRate, timeRemaining };
 }
