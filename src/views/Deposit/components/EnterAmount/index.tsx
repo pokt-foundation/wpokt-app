@@ -1,6 +1,7 @@
 import React from 'react';
+import 'styled-components/macro';
 import BigNumber from 'utils/bignumber';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 // Assets
 import { ReactComponent as DepositButtonActiveSvg } from 'assets/icons/deposit_button_active.svg';
@@ -31,9 +32,23 @@ import { approve, bnToDec, decToBn, getAllowance, stake } from 'utils';
 
 export const EnterAmount: React.FC = () => {
   const { wpoktBalance } = React.useContext(BalanceContext);
+  const [isApproved, setIsApproved] = React.useState<boolean>(true);
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
   const [wpoktInputValue, setWpoktInputValue] = React.useState<string>('');
   const { address, onboard, provider, signer } = React.useContext(Web3Context);
+
+  // Should probably a separated hook
+  const useApproval = async () => {
+    if (address && provider && !isDisabled) {
+      const allowance = await getAllowance(address, TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, provider);
+      if (+decToBn(+wpoktInputValue) > +allowance) {
+        setIsApproved(true);
+      } else {
+        setIsApproved(false);
+      }
+    }
+  };
+  useApproval();
 
   // Effects
   React.useEffect(() => {
@@ -48,8 +63,7 @@ export const EnterAmount: React.FC = () => {
   const onDeposit = async () => {
     onboard?.walletCheck();
     if (address && provider && !isDisabled) {
-      const allowance = await getAllowance(address, TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, provider);
-      if (+decToBn(+wpoktInputValue) > +allowance && signer) {
+      if (isApproved && signer) {
         const isComfirmed = await approve(
           decToBn(+wpoktInputValue).toString(),
           TOKEN_GEYSER_ADDRESS,
@@ -61,6 +75,9 @@ export const EnterAmount: React.FC = () => {
         if (signer) {
           const isComfirmed = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
           console.log(isComfirmed);
+          if (isComfirmed) {
+            setWpoktInputValue('');
+          }
         }
       }
     }
@@ -106,9 +123,23 @@ export const EnterAmount: React.FC = () => {
           value={wpoktInputValue}
           onChange={(e) => setWpoktInputValue(e.target.value)}
         />
-        <button disabled={isDisabled} onClick={onDeposit}>
-          {isDisabled ? <DepositButtonActiveSvg /> : <DepositButtonDisabledSvg />}
-        </button>
+        {isApproved ? (
+          <button
+            css={`
+              background: white !important;
+              height: ${10 * GU}px;
+              width: ${20 * GU}px;
+            `}
+            disabled={isDisabled}
+            onClick={onDeposit}
+          >
+            Approve
+          </button>
+        ) : (
+          <button disabled={isDisabled} onClick={onDeposit}>
+            {isDisabled ? <DepositButtonActiveSvg /> : <DepositButtonDisabledSvg />}
+          </button>
+        )}
       </StyledDepositInputContainer>
     </>
   );

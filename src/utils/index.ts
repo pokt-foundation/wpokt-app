@@ -27,11 +27,10 @@ export const getTokenGeyserContract = (signer: Signer, address: string): ethers.
 export const stake = async (stakeAmount: string, tokenAddress: string, signer: Signer): Promise<boolean> => {
   try {
     const tokenContract = getTokenGeyserContract(signer, tokenAddress);
-    return tokenContract.stake(stakeAmount, '0x').then((response: ContractTransaction) => {
-      response.wait();
-      console.log(response);
-      return true;
-    });
+    const response: ContractTransaction = await tokenContract.stake(stakeAmount, '0x');
+    await response.wait();
+    console.log(response);
+    return true;
   } catch (e) {
     console.error(e);
     return false;
@@ -46,16 +45,11 @@ export const approve = async (
 ): Promise<boolean> => {
   try {
     const tokenContract = getERC20Contract(signer, tokenAddress);
-    return (
-      tokenContract
-        // .approve(spenderAddress, ethers.constants.MaxUint256)
-        .approve(spenderAddress, approvalAmount)
-        .then((response: ContractTransaction) => {
-          response.wait();
-          console.log(response);
-          return true;
-        })
-    );
+    // .approve(spenderAddress, ethers.constants.MaxUint256)
+    const response: ContractTransaction = await tokenContract.approve(spenderAddress, approvalAmount);
+    await response.wait();
+    console.log(response);
+    return true;
   } catch (e) {
     console.error(e);
     return false;
