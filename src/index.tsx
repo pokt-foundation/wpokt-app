@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Contexts
 import { Web3Provider } from 'contexts/Web3';
 import { BalanceProvider } from 'contexts/Balance';
 

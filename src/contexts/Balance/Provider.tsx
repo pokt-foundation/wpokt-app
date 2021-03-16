@@ -1,14 +1,11 @@
 import React from 'react';
 import { Provider } from '@ethersproject/abstract-provider';
 
-// Constants
 import { WPOKT_ADDRESS } from 'constants/index';
 
-// Context
 import { Web3Context } from 'contexts/Web3';
 import { BalanceContext } from './Context';
 
-// Utils
 import { getERC20Contract } from 'utils';
 
 export const BalanceProvider: React.FC = ({ children }) => {

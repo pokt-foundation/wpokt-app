@@ -2,7 +2,6 @@ import React from 'react';
 import 'styled-components/macro';
 import { colors } from 'components/theme';
 
-// Components
 import {
   SmallInfoCard,
   SmallInfoCardExtraLinks,
@@ -19,7 +18,6 @@ import {
 import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
 
-// Assets
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 

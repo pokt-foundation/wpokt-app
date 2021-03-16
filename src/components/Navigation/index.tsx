@@ -2,13 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import 'styled-components/macro';
 
-// Assets
 import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
 import MetaMaskImage from 'assets/images/metamask.png';
 import NavigationBarImage from 'assets/images/navigation_bar_long.png';
 import { ReactComponent as SandwichMenu } from 'assets/icons/sandwich_menu.svg';
 
-// Components
 import {
   StyledLink,
   StyledConnectWalletButton,
@@ -20,7 +18,6 @@ import {
 } from './components';
 import { Flex } from 'components/Containers';
 
-// Context
 import { Web3Context } from 'contexts/Web3';
 
 interface INavigation {

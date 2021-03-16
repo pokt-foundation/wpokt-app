@@ -5,7 +5,6 @@ import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
 import { GU } from 'components/theme';
 
-// Components
 import Navigation from 'components/Navigation';
 import Sidebar from 'components/Sidebar';
 import Wrapper from 'components/Wrapper';

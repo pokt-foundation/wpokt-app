@@ -3,10 +3,8 @@ import styled, { css } from 'styled-components/macro';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
-// Components
 import Spacer from 'components/Spacer';
 
-// Assets
 import { ReactComponent as CaretSvg } from 'assets/icons/caret.svg';
 import { ReactComponent as MultiplierSvg } from 'assets/icons/multiplier.svg';
 import { ReactComponent as QuestionMarkSvg } from 'assets/icons/question_mark.svg';

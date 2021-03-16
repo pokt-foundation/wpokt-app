@@ -2,7 +2,6 @@ import React from 'react';
 import 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 
-// Assets
 import { ReactComponent as CloseSvg } from 'assets/icons/close.svg';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 

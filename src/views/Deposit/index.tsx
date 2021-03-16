@@ -1,10 +1,8 @@
 import React from 'react';
 import 'styled-components/macro';
 
-// Assets
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
-// Components
 import { EnterAmount, InfoCard, StyledButtonLarge, StyledSelectorContainer } from './components';
 import { Card, InnerCardContainer } from 'components/Card';
 import { Flex } from 'components/Containers';

@@ -3,7 +3,6 @@ import 'styled-components/macro';
 import BigNumber from 'utils/bignumber';
 import { colors } from 'components/theme';
 
-// Assets
 import { ReactComponent as ApproveButtonActiveSvg } from 'assets/icons/approve_button_active.svg';
 import { ReactComponent as ApproveButtonDisabledSvg } from 'assets/icons/approve_button_disabled.svg';
 import { ReactComponent as DepositButtonActiveSvg } from 'assets/icons/deposit_button_active.svg';
@@ -11,7 +10,6 @@ import { ReactComponent as DepositButtonDisabledSvg } from 'assets/icons/deposit
 import { ReactComponent as MaxSvg } from 'assets/icons/max.svg';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
-// Components
 import {
   StyledHeader,
   StyledHeaderLeft,
