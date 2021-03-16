@@ -22,14 +22,11 @@ import {
 } from './components';
 import { H2, P2 } from 'components/Typography';
 
-// Constants
 import { TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS } from 'constants/index';
 
-// Contexts
 import { BalanceContext } from 'contexts/Balance';
 import { Web3Context } from 'contexts/Web3';
 
-// Utils
 import { approve, bnToDec, decToBn, getAllowance, getNotification, stake } from 'utils';
 
 interface IEnterAmount {
@@ -57,7 +54,6 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, setFarmSelec
   };
   useApproval();
 
-  // Effects
   React.useEffect(() => {
     if (wpoktInputValue === '' || wpoktInputValue === '0' || !farmSelected) {
       setIsDisabled(true);
@@ -66,7 +62,6 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, setFarmSelec
     }
   }, [wpoktInputValue, farmSelected]);
 
-  // Handlers
   const onDeposit = async () => {
     onboard?.walletCheck();
     if (address && provider && !isDisabled && farmSelected) {

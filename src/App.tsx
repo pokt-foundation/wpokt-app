@@ -10,22 +10,13 @@ import Navigation from 'components/Navigation';
 import Sidebar from 'components/Sidebar';
 import Wrapper from 'components/Wrapper';
 
-// Context
 import { Web3Context } from 'contexts/Web3';
 
-// Views
 import Deposit from 'views/Deposit';
 
 const App: React.FC = () => {
-  // Context
-  const {
-    onboard,
-    provider,
-    // wallet,
-    // notify
-  } = React.useContext(Web3Context);
+  const { onboard, provider } = React.useContext(Web3Context);
 
-  // State
   const [sidebar, setSidebar] = React.useState<boolean>(false);
 
   async function readyToTransact() {
