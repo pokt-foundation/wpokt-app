@@ -31,6 +31,7 @@ export const Web3Context = React.createContext<ContextValues>({
 
 let provider: Provider | null;
 let signer: Signer | null;
+const WPOKT_SELECTED_WALLET = 'WPOKT_SELECTED_WALLET';
 
 export const Web3Provider: React.FC = ({ children }) => {
   const [address, setAddress] = React.useState(null);
@@ -56,7 +57,7 @@ export const Web3Provider: React.FC = ({ children }) => {
           signer = getSigner(ethersProvider);
 
           if (wallet.name) {
-            window.localStorage.setItem('selectedWallet', wallet.name);
+            window.localStorage.setItem(WPOKT_SELECTED_WALLET, wallet.name);
           }
         } else {
           provider = null;
@@ -71,7 +72,7 @@ export const Web3Provider: React.FC = ({ children }) => {
   }, []);
 
   React.useEffect(() => {
-    const previouslySelectedWallet = window.localStorage.getItem('selectedWallet');
+    const previouslySelectedWallet = window.localStorage.getItem(WPOKT_SELECTED_WALLET);
 
     if (previouslySelectedWallet && onboard) {
       onboard.walletSelect(previouslySelectedWallet);
