@@ -2,10 +2,32 @@ import React from 'react';
 import { ethers, Signer } from 'ethers';
 import { Provider } from '@ethersproject/abstract-provider';
 import { API } from 'bnc-notify';
-import { Web3Context } from 'contexts/Web3';
 import { initOnboard, initNotify } from 'libs/connector';
 import getSigner from 'libs/signer';
-import { Wallet, API as OnboardAPI } from 'libs/types';
+import { API as OnboardAPI, Wallet } from 'libs/types';
+
+export interface ContextValues {
+  address: string | null;
+  network: number | null;
+  // eslint-disable-next-line
+  balance: any;
+  onboard: OnboardAPI | null;
+  wallet: Wallet | Record<string, never>;
+  notify: API | null;
+  provider: Provider | null;
+  signer: Signer | null;
+}
+
+export const Web3Context = React.createContext<ContextValues>({
+  address: '',
+  network: 1,
+  balance: '',
+  onboard: null,
+  wallet: {},
+  notify: null,
+  provider: null,
+  signer: null,
+});
 
 let provider: Provider | null;
 let signer: Signer | null;

@@ -4,9 +4,15 @@ import { Provider } from '@ethersproject/abstract-provider';
 import { WPOKT_ADDRESS } from 'constants/index';
 
 import { Web3Context } from 'contexts/Web3';
-import { BalanceContext } from './Context';
 
 import { getERC20Contract } from 'utils';
+
+export interface ContextValues {
+  // eslint-disable-next-line
+  wpoktBalance?: any;
+}
+
+export const BalanceContext = React.createContext<ContextValues>({});
 
 export const BalanceProvider: React.FC = ({ children }) => {
   const { address, provider } = React.useContext(Web3Context);
