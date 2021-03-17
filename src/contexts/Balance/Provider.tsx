@@ -23,14 +23,10 @@ export const BalanceProvider: React.FC = ({ children }) => {
     }
   };
 
-  const fetchBalances = React.useCallback(
-    async (userAddress: string, provider: Provider) => {
-      const balance = await getBalance(provider, WPOKT_ADDRESS as string, userAddress);
-      setWpoktBalance(balance);
-    },
-    // eslint-disable-next-line
-    [wpoktBalance],
-  );
+  const fetchBalances = React.useCallback(async (userAddress: string, provider: Provider) => {
+    const balance = await getBalance(provider, WPOKT_ADDRESS as string, userAddress);
+    setWpoktBalance(balance);
+  }, []);
 
   React.useEffect((): (() => void) => {
     if (address && provider) {
@@ -39,8 +35,7 @@ export const BalanceProvider: React.FC = ({ children }) => {
       return () => clearInterval(refreshInterval);
     }
     return () => null;
-    // eslint-disable-next-line
-  }, [address, provider]);
+  }, [address, fetchBalances, provider]);
 
   return (
     <BalanceContext.Provider
