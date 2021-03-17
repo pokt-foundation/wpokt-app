@@ -53,12 +53,12 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, setFarmSelec
   useApproval();
 
   React.useEffect(() => {
-    if (wpoktInputValue === '' || wpoktInputValue === '0' || !farmSelected) {
+    if (wpoktInputValue === '' || wpoktInputValue === '0' || !farmSelected || !address || !provider) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
     }
-  }, [wpoktInputValue, farmSelected]);
+  }, [address, farmSelected, provider, wpoktInputValue]);
 
   const onDeposit = async () => {
     onboard?.walletCheck();
