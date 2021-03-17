@@ -22,31 +22,13 @@ export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill,
       <StyledSmallInfoCardHeader>
         <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
         {statType === 'question' ? (
-          <button
-            css={`
-              background: transparent;
-              border: none;
-
-              &:hover {
-                cursor: pointer;
-              }
-            `}
-          >
+          <StyledSmallInfoCardButton>
             <QuestionMarkSvg />
-          </button>
+          </StyledSmallInfoCardButton>
         ) : (
-          <button
-            css={`
-              background: transparent;
-              border: none;
-
-              &:hover {
-                cursor: pointer;
-              }
-            `}
-          >
+          <StyledSmallInfoCardButton>
             <MultiplierSvg />
-          </button>
+          </StyledSmallInfoCardButton>
         )}
       </StyledSmallInfoCardHeader>
       <StyledSmallInfoCardContent>
@@ -89,6 +71,15 @@ const StyledSmallInfoCardContent = styled.div`
   ${media.xs`
         padding: ${5 * GU}px ${2 * GU}px;
     `}
+`;
+
+const StyledSmallInfoCardButton = styled.button`
+  background: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 interface IStyledInfoCardContentFill {
