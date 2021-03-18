@@ -18,20 +18,15 @@ export const BalanceProvider: React.FC = ({ children }) => {
   const { address, provider } = React.useContext(Web3Context);
   const [wpoktBalance, setWpoktBalance] = React.useState<string>();
 
-  const getBalance = async (provider: Provider, tokenAddress: string, userAddress: string): Promise<string> => {
-    const tokenContract = getERC20Contract(provider, tokenAddress);
+  const fetchBalances = React.useCallback(async (userAddress: string, provider: Provider) => {
+    const tokenContract = getERC20Contract(provider, WPOKT_ADDRESS as string);
     try {
       const balance = await tokenContract.balanceOf(userAddress);
-      return balance.toString();
+      setWpoktBalance(balance.toString());
     } catch (e) {
       console.error(e);
-      return '0';
+      setWpoktBalance('0');
     }
-  };
-
-  const fetchBalances = React.useCallback(async (userAddress: string, provider: Provider) => {
-    const balance = await getBalance(provider, WPOKT_ADDRESS as string, userAddress);
-    setWpoktBalance(balance);
   }, []);
 
   React.useEffect((): (() => void) => {
