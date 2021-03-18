@@ -18,7 +18,7 @@ const App: React.FC = () => {
 
   const [sidebar, setSidebar] = React.useState<boolean>(false);
 
-  async function readyToTransact() {
+  const readyToTransact = React.useCallback(async (onboard, provider): Promise<boolean> => {
     if (!provider) {
       const walletSelected = await onboard?.walletSelect();
       if (!walletSelected) return false;
@@ -26,16 +26,21 @@ const App: React.FC = () => {
 
     const ready = await onboard?.walletCheck();
     return ready;
-  }
+  }, []);
+
+  React.useEffect(() => {
+    readyToTransact(onboard, provider);
+  }, [onboard, provider, readyToTransact]);
+
   return (
     <Wrapper>
       <GlobalFonts />
       <Router>
         <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
-        <Navigation readyToTransact={readyToTransact} setSidebar={setSidebar} />
+        <Navigation readyToTransact={() => readyToTransact(onboard, provider)} setSidebar={setSidebar} />
         <Switch>
           <Route exact path="/">
-            <Deposit />
+            <Deposit readyToTransact={readyToTransact} />
           </Route>
           <Route exact path="/propose">
             <div

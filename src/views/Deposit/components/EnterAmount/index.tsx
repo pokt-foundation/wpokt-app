@@ -1,5 +1,6 @@
 import React from 'react';
 import 'styled-components/macro';
+import { Provider } from '@ethersproject/abstract-provider';
 import BigNumber from 'utils/bignumber';
 import { colors } from 'components/theme';
 
@@ -24,15 +25,17 @@ import { TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS } from 'constants/index';
 
 import { BalanceContext } from 'contexts/Balance';
 import { Web3Context } from 'contexts/Web3';
+import { API as OnboardAPI } from 'libs/types';
 
 import { approve, bnToDec, decToBn, getAllowance, getNotification, stake } from 'utils';
 
 interface IEnterAmount {
   farmSelected: boolean;
+  readyToTransact: (onboard: OnboardAPI | null, provider: Provider | null) => Promise<boolean>;
   setFarmSelected: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, setFarmSelected }) => {
+export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTransact, setFarmSelected }) => {
   const { wpoktBalance } = React.useContext(BalanceContext);
   const [isApproved, setIsApproved] = React.useState<boolean>(true);
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
@@ -53,7 +56,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, setFarmSelec
   useApproval();
 
   React.useEffect(() => {
-    if (wpoktInputValue === '' || wpoktInputValue === '0' || !farmSelected || !address || !provider) {
+    if (wpoktInputValue === '' || wpoktInputValue === '0' || !farmSelected) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
@@ -61,7 +64,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, setFarmSelec
   }, [address, farmSelected, provider, wpoktInputValue]);
 
   const onDeposit = async () => {
-    onboard?.walletCheck();
+    readyToTransact(onboard, provider);
     if (address && provider && !isDisabled && farmSelected) {
       if (isApproved && signer) {
         const response = await approve(
