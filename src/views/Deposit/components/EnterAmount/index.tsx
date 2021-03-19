@@ -1,7 +1,7 @@
 import React from 'react';
 import 'styled-components/macro';
+import TokenAmount from 'token-amount';
 import { Provider } from '@ethersproject/abstract-provider';
-import BigNumber from 'utils/bignumber';
 import { colors } from 'components/theme';
 
 import { ReactComponent as ApproveButtonActiveSvg } from 'assets/icons/approve_button_active.svg';
@@ -27,7 +27,7 @@ import { BalanceContext } from 'contexts/Balance';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
-import { bnToDec, decToBn, stake } from 'utils';
+import { stake } from 'utils';
 
 import useApproval from 'hooks/useApproval';
 
@@ -65,7 +65,11 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
     readyToTransact(onboard, provider);
     if (address && signer && !isDisabled && farmSelected) {
       if (isApproved) {
-        const response = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
+        const dummyToken = new TokenAmount('1', 0);
+        const convertedAmount = dummyToken.convert(wpoktInputValue, 18).value;
+        const response = await stake(convertedAmount, TOKEN_GEYSER_ADDRESS, signer);
+        setWpoktInputValue('');
+        setFarmSelected(false);
         console.log(response);
       } else {
         onApprove();
@@ -74,7 +78,8 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
   };
 
   const onMaxValue = () => {
-    setWpoktInputValue(bnToDec(new BigNumber(wpoktBalance)).toString());
+    const amount = new TokenAmount(wpoktBalance, 18);
+    setWpoktInputValue(amount.format({ commify: false }));
   };
 
   return (
@@ -90,7 +95,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
           <div id={'wallet-balance'}>
             <P2 color={colors.white}>
               {wpoktBalance
-                ? `Wallet balance: ${bnToDec(new BigNumber(wpoktBalance))} wPOKT`
+                ? `Wallet balance: ${new TokenAmount(wpoktBalance, 18, { symbol: 'wPOKT' })}`
                 : 'Wallet balance: connect wallet'}
             </P2>
             <StyledMaxButton onClick={onMaxValue}>

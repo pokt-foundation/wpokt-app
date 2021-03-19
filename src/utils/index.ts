@@ -1,16 +1,7 @@
 import { ethers, ContractInterface, ContractTransaction, Signer } from 'ethers';
 import { Provider } from '@ethersproject/abstract-provider';
-import BigNumber from 'utils/bignumber';
 import ERC20ABI from 'abis/ERC20.json';
 import TokenGeyserABI from 'abis/TokenGeyser.json';
-
-export const bnToDec = (bn: BigNumber, decimals = 18): number => {
-  return bn.dividedBy(new BigNumber(10).pow(decimals)).toNumber();
-};
-
-export const decToBn = (dec: number, decimals = 18): BigNumber => {
-  return new BigNumber(dec).multipliedBy(new BigNumber(10).pow(decimals));
-};
 
 /**
  * Shorten an Ethereum address. `charsLength` allows to change the number of
