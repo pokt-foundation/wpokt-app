@@ -21,13 +21,15 @@ import {
 } from './components';
 import { H2, P2 } from 'components/Typography';
 
-import { TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS } from 'constants/index';
+import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import { BalanceContext } from 'contexts/Balance';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
-import { approve, bnToDec, decToBn, getAllowance, getNotification, stake } from 'utils';
+import { bnToDec, decToBn, stake } from 'utils';
+
+import useApproval from 'hooks/useApproval';
 
 interface IEnterAmount {
   farmSelected: boolean;
@@ -37,23 +39,10 @@ interface IEnterAmount {
 
 export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTransact, setFarmSelected }) => {
   const { wpoktBalance } = React.useContext(BalanceContext);
-  const [isApproved, setIsApproved] = React.useState<boolean>(true);
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
   const [wpoktInputValue, setWpoktInputValue] = React.useState<string>('');
-  const { address, onboard, provider, notify, signer } = React.useContext(Web3Context);
-
-  // Should probably a separated hook
-  const useApproval = async () => {
-    if (address && provider && !isDisabled && farmSelected) {
-      const allowance = await getAllowance(address, TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS, provider);
-      if (+decToBn(+wpoktInputValue) > +allowance) {
-        setIsApproved(true);
-      } else {
-        setIsApproved(false);
-      }
-    }
-  };
-  useApproval();
+  const { address, onboard, provider, signer } = React.useContext(Web3Context);
+  const { isApproved, isApproving, onApprove } = useApproval();
 
   React.useEffect(() => {
     if (wpoktInputValue === '' || wpoktInputValue === '0' || !farmSelected) {
@@ -61,38 +50,25 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
     } else {
       setIsDisabled(false);
     }
-  }, [address, farmSelected, provider, wpoktInputValue]);
+  }, [address, farmSelected, wpoktInputValue]);
+
+  // This is a placeholder, which will eventually launch the transaction status modal
+  React.useEffect(() => {
+    if (isApproving) {
+      console.log('Approving...');
+    } else if (isApproved) {
+      console.log('Approved');
+    }
+  }, [isApproving, isApproved]);
 
   const onDeposit = async () => {
     readyToTransact(onboard, provider);
-    if (address && provider && !isDisabled && farmSelected) {
-      if (isApproved && signer) {
-        const response = await approve(
-          decToBn(+wpoktInputValue).toString(),
-          TOKEN_GEYSER_ADDRESS,
-          WPOKT_ADDRESS,
-          signer,
-        );
-        if (typeof response === 'boolean') {
-          console.log(response);
-        } else {
-          if (notify) {
-            getNotification(notify, response);
-          }
-        }
+    if (address && signer && !isDisabled && farmSelected) {
+      if (isApproved) {
+        const response = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
+        console.log(response);
       } else {
-        if (signer) {
-          const response = await stake(decToBn(+wpoktInputValue).toString(), TOKEN_GEYSER_ADDRESS, signer);
-          if (typeof response === 'boolean') {
-            console.log(response);
-          } else {
-            if (notify) {
-              getNotification(notify, response);
-              setWpoktInputValue('');
-              setFarmSelected(false);
-            }
-          }
-        }
+        onApprove();
       }
     }
   };
@@ -137,7 +113,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
           value={wpoktInputValue}
           onChange={(e) => setWpoktInputValue(e.target.value)}
         />
-        {isApproved ? (
+        {!isApproved ? (
           <button disabled={isDisabled} onClick={onDeposit}>
             {isDisabled ? <ApproveButtonActiveSvg /> : <ApproveButtonDisabledSvg />}
           </button>

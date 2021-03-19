@@ -64,17 +64,17 @@ export const stake = async (
   }
 };
 
-export const approve = async (
-  approvalAmount: string,
-  spenderAddress: string,
-  tokenAddress: string,
-  signer: Signer,
-): Promise<boolean | ContractTransaction> => {
+export const approve = async (spenderAddress: string, tokenAddress: string, signer: Signer): Promise<boolean> => {
   try {
     const tokenContract = getERC20Contract(signer, tokenAddress);
-    // .approve(spenderAddress, ethers.constants.MaxUint256)
-    const response: ContractTransaction = await tokenContract.approve(spenderAddress, approvalAmount);
-    return response;
+    const transaction: ContractTransaction = await tokenContract.approve(spenderAddress, ethers.constants.MaxUint256);
+    console.log(transaction);
+    const { status } = await transaction.wait();
+    if (status === 1) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (e) {
     console.error(e);
     return false;
@@ -89,7 +89,7 @@ export const getAllowance = async (
 ): Promise<string> => {
   try {
     const tokenContract = getERC20Contract(provider, tokenAddress);
-    const balance: BigNumber = await tokenContract.allowance(userAddress, spenderAddress);
+    const balance = await tokenContract.allowance(userAddress, spenderAddress);
     return balance.toString();
   } catch (e) {
     console.error(e);
