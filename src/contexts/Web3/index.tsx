@@ -1,8 +1,7 @@
 import React from 'react';
 import { ethers, Signer } from 'ethers';
 import { Provider } from '@ethersproject/abstract-provider';
-import { API } from 'bnc-notify';
-import { initOnboard, initNotify } from 'libs/connector';
+import { initOnboard } from 'libs/connector';
 import getSigner from 'libs/signer';
 import { API as OnboardAPI, Wallet } from 'libs/types';
 
@@ -13,7 +12,6 @@ export interface ContextValues {
   balance: any;
   onboard: OnboardAPI | null;
   wallet: Wallet | Record<string, never>;
-  notify: API | null;
   provider: Provider | null;
   signer: Signer | null;
 }
@@ -24,7 +22,6 @@ export const Web3Context = React.createContext<ContextValues>({
   balance: '',
   onboard: null,
   wallet: {},
-  notify: null,
   provider: null,
   signer: null,
 });
@@ -40,7 +37,6 @@ export const Web3Provider: React.FC = ({ children }) => {
   const [wallet, setWallet] = React.useState<Wallet | Record<string, never>>({});
 
   const [onboard, setOnboard] = React.useState<OnboardAPI | null>(null);
-  const [notify, setNotify] = React.useState<API | null>(null);
 
   React.useEffect(() => {
     const onboard = initOnboard({
@@ -67,8 +63,6 @@ export const Web3Provider: React.FC = ({ children }) => {
       },
     });
     setOnboard(onboard);
-
-    setNotify(initNotify());
   }, []);
 
   React.useEffect(() => {
@@ -87,7 +81,6 @@ export const Web3Provider: React.FC = ({ children }) => {
         balance,
         wallet,
         onboard,
-        notify,
         provider,
         signer,
       }}

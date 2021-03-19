@@ -1,4 +1,3 @@
-import Notify, { API } from 'bnc-notify';
 import Onboard from 'bnc-onboard';
 import getRpcUrl from 'libs/rpc';
 import { Subscriptions, API as OnboardAPI } from 'libs/types';
@@ -67,13 +66,5 @@ export function initOnboard(subscriptions: Subscriptions): OnboardAPI {
       { checkName: 'network' },
       { checkName: 'balance', minimumBalance: '100000' },
     ],
-  });
-}
-
-export function initNotify(): API {
-  const notify = Notify;
-  return notify({
-    dappId: DAPP_ID,
-    networkId: NETWORK_ID,
   });
 }

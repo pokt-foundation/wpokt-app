@@ -1,6 +1,5 @@
 import { ethers, ContractInterface, ContractTransaction, Signer } from 'ethers';
 import { Provider } from '@ethersproject/abstract-provider';
-import { API } from 'bnc-notify';
 import BigNumber from 'utils/bignumber';
 import ERC20ABI from 'abis/ERC20.json';
 import TokenGeyserABI from 'abis/TokenGeyser.json';
@@ -56,8 +55,13 @@ export const stake = async (
 ): Promise<boolean | ContractTransaction> => {
   try {
     const tokenContract = getTokenGeyserContract(signer, tokenAddress);
-    const response: ContractTransaction = await tokenContract.stake(stakeAmount, '0x');
-    return response;
+    const transaction: ContractTransaction = await tokenContract.stake(stakeAmount, '0x');
+    const { status } = await transaction.wait();
+    if (status === 1) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (e) {
     console.error(e);
     return false;
@@ -95,21 +99,4 @@ export const getAllowance = async (
     console.error(e);
     return '0';
   }
-};
-
-export const getNotification = (notify: API, response: ContractTransaction): void => {
-  const { emitter } = notify.hash(response.hash);
-  emitter.on('txPool', (transaction) => {
-    return {
-      // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
-      // or you could use onclick for when someone clicks on the notification itself
-      onclick: () => window.open(`https://rinkeby.etherscan.io/tx/${transaction.hash}`),
-    };
-  });
-
-  emitter.on('txSent', console.log);
-  emitter.on('txConfirmed', console.log);
-  emitter.on('txSpeedUp', console.log);
-  emitter.on('txCancel', console.log);
-  emitter.on('txFailed', console.log);
 };
