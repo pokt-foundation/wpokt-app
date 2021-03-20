@@ -95,7 +95,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
           <div id={'wallet-balance'}>
             <P2 color={colors.white}>
               {wpoktBalance
-                ? `Wallet balance: ${new TokenAmount(wpoktBalance, 18, { symbol: 'wPOKT' })}`
+                ? `Wallet balance: ${TokenAmount.format(wpoktBalance, 18, { symbol: 'wPOKT' })}`
                 : 'Wallet balance: connect wallet'}
             </P2>
             <StyledMaxButton onClick={onMaxValue}>
