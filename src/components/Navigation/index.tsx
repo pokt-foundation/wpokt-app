@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import 'styled-components/macro';
 
 import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
-import MetaMaskImage from 'assets/images/metamask.png';
 import NavigationBarImage from 'assets/images/navigation_bar_long.png';
 import { ReactComponent as SandwichMenu } from 'assets/icons/sandwich_menu.svg';
 
@@ -68,11 +67,7 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
       <Flex align={'center'}>
         <StyledConnectWalletButton connected={address ? true : false} onClick={readyToTransact}>
           {address ? shortenAddress(address) : 'Connect'}
-          <StyledMetaMaskImageContainer
-            css={`
-              background-image: url(${MetaMaskImage});
-            `}
-          />
+          <StyledMetaMaskImageContainer />
         </StyledConnectWalletButton>
         <StyledSandwichMenuContainer onClick={() => setSidebar(true)}>
           <SandwichMenu />

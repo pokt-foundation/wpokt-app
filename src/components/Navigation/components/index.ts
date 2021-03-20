@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
+import MetaMaskImage from 'assets/images/metamask.png';
+
 interface IStyledConnectWalletButton {
   connected: boolean;
 }
@@ -118,6 +120,7 @@ export const StyledLogoContainer = styled.div`
 `;
 
 export const StyledMetaMaskImageContainer = styled.div`
+  background-image: url(${MetaMaskImage});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
