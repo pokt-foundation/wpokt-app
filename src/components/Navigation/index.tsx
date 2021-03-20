@@ -66,8 +66,8 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
         </ul>
       </StyledNavigationItems>
       <Flex align={'center'}>
-        <StyledConnectWalletButton connected={address ? true : false} onClick={readyToTransact}>
-          {address ? shortenAddress(address) : 'Connect'}
+        <StyledConnectWalletButton onClick={readyToTransact}>
+          {address ? shortenAddress(address, 3) : 'Connect'}
           <StyledMetaMaskImageContainer
             css={`
               background-image: url(${MetaMaskImage});
