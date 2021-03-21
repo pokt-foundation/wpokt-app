@@ -1,9 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
-export const StyledConnectWalletButton = styled.button`
+interface IStyledConnectWalletButton {
+  connected: boolean;
+}
+
+export const StyledConnectWalletButton = styled.button<IStyledConnectWalletButton>`
   align-items: center;
   background: transparent;
   border: ${0.5 * GU}px solid ${colors.white};
@@ -11,13 +15,12 @@ export const StyledConnectWalletButton = styled.button`
   color: ${colors.white};
   display: flex;
   font-family: PixelSplitter;
-  font-size: 0.6rem;
-  height: ${8 * GU}px;
+  font-size: 0.8rem;
+  height: ${9 * GU}px;
   justify-content: space-around;
   letter-spacing: 3px;
   transition: all 0.3s ease;
-  width: ${30 * GU}px;
-
+  width: ${27 * GU}px;
   &:hover,
   &:active,
   &:focus {
@@ -25,35 +28,42 @@ export const StyledConnectWalletButton = styled.button`
     color: ${colors.yellow};
     cursor: pointer;
   }
-
   ${media.xs`
-    font-size: .8rem;
-    height: ${9 * GU}px;
+    font-size: 1rem;
     width: ${38 * GU}px;
   `}
-
   ${media.sm`
     width: ${32 * GU}px;
   `}
-
   ${media.md`
     font-size: 1.2rem;
     letter-spacing: 5px;
     width: ${43 * GU}px;
   `}
-
   ${media.lg`
     letter-spacing: 6px;
     height: ${11 * GU}px;
     width: ${50 * GU}px;
   `}
-
   ${media.xl`
     border: ${GU}px solid ${colors.white};
     font-size: 1.4rem;
     height: ${13 * GU}px;
     width: ${56 * GU}px;
   `}
+  ${(props) =>
+    props.connected &&
+    css`
+      ${media.xs`
+        font-size: 0.8rem;
+      `}
+      ${media.md`
+        font-size: 0.9rem;
+      `}
+      ${media.xl`
+        font-size: 1.1rem;
+      `}
+    `}
 `;
 
 export const StyledLink = styled(NavLink)`
