@@ -27,7 +27,7 @@ import { BalanceContext } from 'contexts/Balance';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
-import { stake } from 'utils';
+import { parseInputValue, stake } from 'utils';
 
 import useApproval from 'hooks/useApproval';
 
@@ -65,9 +65,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
     readyToTransact(onboard, provider);
     if (address && signer && !isDisabled && farmSelected) {
       if (isApproved) {
-        const dummyToken = new TokenAmount('1', 0);
-        const convertedAmount = dummyToken.convert(wpoktInputValue, 18).value;
-        const response = await stake(convertedAmount, TOKEN_GEYSER_ADDRESS, signer);
+        const response = await stake(parseInputValue(wpoktInputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
         setWpoktInputValue('');
         setFarmSelected(false);
         console.log(response);

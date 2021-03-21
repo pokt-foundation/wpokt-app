@@ -1,7 +1,32 @@
-import { ethers, ContractInterface, ContractTransaction, Signer } from 'ethers';
+import { BigNumber, ContractInterface, ContractTransaction, ethers, Signer, utils as EthersUtils } from 'ethers';
 import { Provider } from '@ethersproject/abstract-provider';
 import ERC20ABI from 'abis/ERC20.json';
 import TokenGeyserABI from 'abis/TokenGeyser.json';
+
+function bigNum(value: string | number): BigNumber {
+  return BigNumber.from(value);
+}
+
+/**
+ * Format a decimal-based number back to a big number
+ *
+ * @param {string} value the number
+ * @param {number} decimals number of decimal places
+ * @returns {BN} value converted to it's normal representation
+ */
+function parseUnits(value: string, decimals: number): BigNumber {
+  try {
+    return EthersUtils.parseUnits(value, decimals);
+  } catch (err) {
+    return bigNum(-1);
+  }
+}
+
+export function parseInputValue(inputValue: string, decimals: number): BigNumber {
+  const trimmedValue = inputValue.trim();
+
+  return parseUnits(trimmedValue || '0', decimals);
+}
 
 /**
  * Shorten an Ethereum address. `charsLength` allows to change the number of
