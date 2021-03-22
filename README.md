@@ -6,7 +6,7 @@
 
 # Project Title
 
-Frontend for wPOCKT, allowing wPOKT purchasers to stake and crowdsource infrastructure for their favorite applications.
+Frontend for wPOKT, allowing wPOKT purchasers to stake and crowdsource infrastructure for their favorite applications.
 <div>
   <a  href="https://godoc.org/github.com/pokt-network/pocket-core"><img src="https://img.shields.io/badge/godoc-reference-blue.svg"/></a>
   <a  href="https://goreportcard.com/report/github.com/pokt-network/pocket-core"><img src="https://goreportcard.com/badge/github.com/pokt-network/pocket-core"/></a>
@@ -27,6 +27,11 @@ Frontend for wPOCKT, allowing wPOKT purchasers to stake and crowdsource infrastr
 </div>
 
 Full Description
+
+## Rinkeby Addresses
+wPOKT: `0x2f363dd061cc8b3411c3c91c0cfac0fa1b62f656`\
+TokenGeyser: `0x746218704841983de2ca941dd91598e68c369025`\
+wPOKT Pool: `0x7c2cf434e98940ad08ae3f26986235628b0904e7`
 
 ## Getting Started
 
