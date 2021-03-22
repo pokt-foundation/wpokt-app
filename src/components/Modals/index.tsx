@@ -6,14 +6,14 @@ import ConfirmDeposit from './ConfirmDeposit';
 import { ModalsContext } from 'contexts/Modals';
 
 const Modals: React.FC = () => {
-  const { modalOpen, changeModalOpen } = React.useContext(ModalsContext);
+  const { modalOpen, onCloseModal, selectedModal } = React.useContext(ModalsContext);
 
   return (
     <>
       {modalOpen && (
         <>
-          <StyledBackground onClick={changeModalOpen} />
-          <ConfirmDeposit />
+          <StyledBackground onClick={onCloseModal} />
+          {selectedModal === 'CONFIRM_DEPOSIT' && <ConfirmDeposit />}
         </>
       )}
     </>
