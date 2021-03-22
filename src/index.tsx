@@ -4,11 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Web3Provider } from 'contexts/Web3';
+import { BalanceProvider } from 'contexts/Balance';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Web3Provider>
+      <BalanceProvider>
+        <App />
+      </BalanceProvider>
+    </Web3Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

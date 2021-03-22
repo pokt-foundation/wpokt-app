@@ -1,57 +1,55 @@
 import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
+import { GU } from 'components/theme';
 
 export const Card = styled.div`
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.6);
-    border: 3px solid #000000;
-    box-sizing: border-box;
-    margin: 0 auto;
-    min-height: 10rem;
-    width: 30rem;
+  backdrop-filter: blur(${3 * GU}px);
+  background: rgba(255, 255, 255, 0.6);
+  border: ${GU}px solid #000000;
+  box-sizing: border-box;
+  margin: 0 auto;
+  min-height: ${25 * GU};
+  width: ${80 * GU}px;
 
-    ${media.xs`
-        border: 5px solid #000000;
-        width: 48rem;
-    `}
+  ${media.xs`
+    width: ${120 * GU}px;
+	`}
 
-    ${media.sm`
-        width: 76rem;
-    `}
+  ${media.sm`
+    width: ${190 * GU}px;
+  `}
 
-    ${media.md`
-        width: 99rem;
-    `}
+	${media.md`
+		width: ${247 * GU}px;
+	`}
 
-    ${media.lg`
-        width: 120rem;
-    `}
+	${media.lg`
+		width: ${300 * GU}px;
+	`}
 
-    ${media.xl`
-        width: 180rem;
-    `}
+	${media.xl`
+		width: ${450 * GU}px;
+	`}
 `;
 
 interface IInnerCardContainer {
-    borderBottom?: boolean;
+  borderBottom?: boolean;
 }
 
 export const InnerCardContainer = styled.div<IInnerCardContainer>`
-    padding: 1rem;
+  padding: ${2 * GU}px;
 
-    ${media.xs`
-        padding: 1.5rem;
-    `}
+  ${media.xs`
+    padding: ${3 * GU}px;
+  `}
 
-    ${media.sm`
-        padding: 3rem;
-    `}
+  ${media.sm`
+    padding: ${7 * GU}px;
+  `}
 
-    ${props => props.borderBottom && css`
-        border-bottom: 3px solid #000000;
-
-        ${media.xs`
-            border-bottom: 5px solid #000000;
-        `}
+  ${(props) =>
+    props.borderBottom &&
+    css`
+      border-bottom: ${GU}px solid #000000;
     `}
 `;

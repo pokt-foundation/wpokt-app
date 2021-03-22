@@ -1,53 +1,151 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import 'styled-components/macro';
+import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
+import { GU } from 'components/theme';
 
-// Components
 import Navigation from 'components/Navigation';
 import Sidebar from 'components/Sidebar';
 import Wrapper from 'components/Wrapper';
 
-// Views
+import { Web3Context } from 'contexts/Web3';
+
 import Deposit from 'views/Deposit';
 
 const App: React.FC = () => {
-  // State
-  const [ sidebar, setSidebar ] = React.useState<boolean>(false);
+  const { onboard, provider } = React.useContext(Web3Context);
+
+  const [sidebar, setSidebar] = React.useState<boolean>(false);
+
+  const readyToTransact = React.useCallback(async (onboard, provider): Promise<boolean> => {
+    if (!provider) {
+      const walletSelected = await onboard?.walletSelect();
+      if (!walletSelected) return false;
+    }
+
+    const ready = await onboard?.walletCheck();
+    return ready;
+  }, []);
+
+  React.useEffect(() => {
+    readyToTransact(onboard, provider);
+  }, [onboard, provider, readyToTransact]);
 
   return (
     <Wrapper>
       <GlobalFonts />
       <Router>
         <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
-        <Navigation setSidebar={setSidebar} />
+        <Navigation readyToTransact={() => readyToTransact(onboard, provider)} setSidebar={setSidebar} />
         <Switch>
-          <Route exact path='/'>
-            <Deposit />
+          <Route exact path="/">
+            <Deposit readyToTransact={readyToTransact} />
           </Route>
-          <Route exact path='/propose'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>Propose App</div>
+          <Route exact path="/propose">
+            <div
+              css={`
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                width: 100%;
+              `}
+            >
+              <div
+                css={`
+                  align-items: center;
+                  background: white;
+                  display: flex;
+                  height: ${12 * GU}px;
+                  justify-content: center;
+                  text-align: center;
+                  width: ${50 * GU}px;
+                `}
+              >
+                Propose App
+              </div>
             </div>
           </Route>
-          <Route exact path='/new-farm'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>New Farm</div>
+          <Route exact path="/new-farm">
+            <div
+              css={`
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                width: 100%;
+              `}
+            >
+              <div
+                css={`
+                  align-items: center;
+                  background: white;
+                  display: flex;
+                  height: ${12 * GU}px;
+                  justify-content: center;
+                  text-align: center;
+                  width: ${50 * GU}px;
+                `}
+              >
+                New Farm
+              </div>
             </div>
           </Route>
-          <Route exact path='/stats'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>Stats</div>
+          <Route exact path="/stats">
+            <div
+              css={`
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                width: 100%;
+              `}
+            >
+              <div
+                css={`
+                  align-items: center;
+                  background: white;
+                  display: flex;
+                  height: ${12 * GU}px;
+                  justify-content: center;
+                  text-align: center;
+                  width: ${50 * GU}px;
+                `}
+              >
+                Stats
+              </div>
             </div>
           </Route>
-          <Route exact path='/my-farm'>
-            <div style={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center', width: '100%' }}>
-              <div style={{ alignItems: 'center', background: 'white', display: 'flex', height: '50px', justifyContent: 'center', textAlign: 'center', width: '200px' }}>My Farm</div>
+          <Route exact path="/my-farm">
+            <div
+              css={`
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                width: 100%;
+              `}
+            >
+              <div
+                css={`
+                  align-items: center;
+                  background: white;
+                  display: flex;
+                  height: ${12 * GU}px;
+                  justify-content: center;
+                  text-align: center;
+                  width: ${50 * GU}px;
+                `}
+              >
+                My Farm
+              </div>
             </div>
           </Route>
         </Switch>
       </Router>
     </Wrapper>
   );
-}
+};
 
 export default App;
