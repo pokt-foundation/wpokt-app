@@ -24,6 +24,7 @@ import { H2, P2 } from 'components/Typography';
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import { BalanceContext } from 'contexts/Balance';
+import { ModalsContext } from 'contexts/Modals';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
@@ -38,11 +39,14 @@ interface IEnterAmount {
 }
 
 export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTransact, setFarmSelected }) => {
+  const { onSelectModal } = React.useContext(ModalsContext);
+  const { address, onboard, provider, signer } = React.useContext(Web3Context);
   const { wpoktBalance } = React.useContext(BalanceContext);
+
+  const { isApproved, isApproving, onApprove } = useApproval();
+
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
   const [wpoktInputValue, setWpoktInputValue] = React.useState<string>('');
-  const { address, onboard, provider, signer } = React.useContext(Web3Context);
-  const { isApproved, isApproving, onApprove } = useApproval();
 
   React.useEffect(() => {
     if (wpoktInputValue === '' || wpoktInputValue === '0') {
@@ -62,14 +66,15 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
     }
   }, [isApproving, isApproved]);
 
-  const onDeposit = async () => {
+  const onConfirmDeposit = async () => {
     readyToTransact(onboard, provider);
     if (address && signer && !isDisabled && farmSelected) {
       if (isApproved) {
-        const response = await stake(parseInputValue(wpoktInputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
-        setWpoktInputValue('');
-        setFarmSelected(false);
-        console.log(response);
+        // const response = await stake(parseInputValue(wpoktInputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
+        // setWpoktInputValue('');
+        // setFarmSelected(false);
+        // console.log(response);
+        onSelectModal('CONFIRM_DEPOSIT');
       } else {
         onApprove();
       }
@@ -118,11 +123,11 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
           onChange={(e) => setWpoktInputValue(e.target.value)}
         />
         {!isApproved ? (
-          <button disabled={isDisabled} onClick={onDeposit}>
+          <button disabled={isDisabled} onClick={onConfirmDeposit}>
             {isDisabled ? <ApproveButtonActiveSvg /> : <ApproveButtonDisabledSvg />}
           </button>
         ) : (
-          <button disabled={isDisabled} onClick={onDeposit}>
+          <button disabled={isDisabled} onClick={onConfirmDeposit}>
             {isDisabled ? <DepositButtonActiveSvg /> : <DepositButtonDisabledSvg />}
           </button>
         )}

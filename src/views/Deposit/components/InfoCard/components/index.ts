@@ -30,10 +30,6 @@ export const StyledHeader = styled.div<IStyledHeader>`
   flex-direction: column;
   justify-content: space-between;
 
-  &:hover {
-    cursor: pointer;
-  }
-
   ${media.sm`
     align-items: center;
     flex-direction: row;
