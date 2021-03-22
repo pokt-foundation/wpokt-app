@@ -4,14 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { Web3Provider } from 'contexts/Web3';
 import { BalanceProvider } from 'contexts/Balance';
+import { ModalsProvider } from 'contexts/Modals';
+import { Web3Provider } from 'contexts/Web3';
 
 ReactDOM.render(
   <React.StrictMode>
     <Web3Provider>
       <BalanceProvider>
-        <App />
+        <ModalsProvider>
+          <App />
+        </ModalsProvider>
       </BalanceProvider>
     </Web3Provider>
   </React.StrictMode>,
