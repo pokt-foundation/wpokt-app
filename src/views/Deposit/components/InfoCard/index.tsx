@@ -35,7 +35,7 @@ export const InfoCard: React.FC<IInfoCard> = ({ farmSelected, setFarmSelected })
             <StyledFarmContainer>
               <FarmSvg />
             </StyledFarmContainer>
-            <H1 color={colors.white}>Vale’s Farm</H1>
+            <H1 color={colors.white}>Genesis Farm</H1>
           </div>
         </StyledHeaderLeft>
         <StyledHeaderRight>
