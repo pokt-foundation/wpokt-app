@@ -17,6 +17,7 @@ export const H1 = styled.h1<ITypograhpy>`
   ${media.md`
     font-size: 2.4rem;
     letter-spacing: 3px;
+    line-height: 30px;
   `}
 
   ${(props) =>

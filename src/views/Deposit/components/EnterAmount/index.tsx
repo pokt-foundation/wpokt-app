@@ -21,14 +21,10 @@ import {
 } from './components';
 import { H2, P2 } from 'components/Typography';
 
-import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
-
 import { BalanceContext } from 'contexts/Balance';
 import { ModalsContext } from 'contexts/Modals';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
-
-import { parseInputValue, stake } from 'utils';
 
 import useApproval from 'hooks/useApproval';
 
@@ -51,6 +47,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
   React.useEffect(() => {
     if (wpoktInputValue === '' || wpoktInputValue === '0') {
       setIsDisabled(true);
+      setFarmSelected(false);
     } else {
       setIsDisabled(false);
       setFarmSelected(true);
@@ -70,10 +67,6 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
     readyToTransact(onboard, provider);
     if (address && signer && !isDisabled && farmSelected) {
       if (isApproved) {
-        // const response = await stake(parseInputValue(wpoktInputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
-        // setWpoktInputValue('');
-        // setFarmSelected(false);
-        // console.log(response);
         onSelectModal('CONFIRM_DEPOSIT');
       } else {
         onApprove();
@@ -124,11 +117,11 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
         />
         {!isApproved ? (
           <button disabled={isDisabled} onClick={onConfirmDeposit}>
-            {isDisabled ? <ApproveButtonActiveSvg /> : <ApproveButtonDisabledSvg />}
+            {isDisabled ? <ApproveButtonDisabledSvg /> : <ApproveButtonActiveSvg />}
           </button>
         ) : (
           <button disabled={isDisabled} onClick={onConfirmDeposit}>
-            {isDisabled ? <DepositButtonActiveSvg /> : <DepositButtonDisabledSvg />}
+            {isDisabled ? <DepositButtonDisabledSvg /> : <DepositButtonActiveSvg />}
           </button>
         )}
       </StyledDepositInputContainer>

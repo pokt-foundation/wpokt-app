@@ -18,7 +18,7 @@ export const StyledCloseContainer = styled.button`
   &:hover,
   &:active,
   &:focus {
-    color: ${colors.yellow};
+    fill: ${colors.yellow};
   }
 `;
 
