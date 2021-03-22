@@ -45,12 +45,13 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
   const { isApproved, isApproving, onApprove } = useApproval();
 
   React.useEffect(() => {
-    if (wpoktInputValue === '' || wpoktInputValue === '0' || !farmSelected) {
+    if (wpoktInputValue === '' || wpoktInputValue === '0') {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
+      setFarmSelected(true);
     }
-  }, [address, farmSelected, wpoktInputValue]);
+  }, [address, setFarmSelected, wpoktInputValue]);
 
   // This is a placeholder, which will eventually launch the transaction status modal
   React.useEffect(() => {
