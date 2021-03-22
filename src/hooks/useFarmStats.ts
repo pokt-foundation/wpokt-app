@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import { BigIntish, TimeRemaining } from 'util/types';
+import { BigIntish, TimeRemaining } from 'utils/types';
 
 import dayjs from 'dayjs';
 import gql from 'graphql-tag';
 import { Client } from 'urql';
 import { DocumentNode } from 'graphql';
 
-import { getTimeRemaining } from 'util/helpers';
-import { WPOKT_SUBGRAPH_URL } from 'util/constants';
+import { getTimeRemaining } from 'utils/helpers';
+import { WPOKT_SUBGRAPH_URL } from 'constants/index';
 
 const RETRY_EVERY = 3000;
 const DAYS_IN_MONTH = dayjs().daysInMonth();

@@ -1,4 +1,4 @@
-import { getTimeRemaining } from 'util/helpers';
+import { getTimeRemaining } from 'utils/helpers';
 import { TimeRemaining } from './types';
 
 import dayjs from 'dayjs';
