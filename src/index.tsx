@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 
 import { BalanceProvider } from 'contexts/Balance';
 import { DepositWithdrawalProvider } from 'contexts/DepositWithdrawal';
-import { ModalsProvider } from 'contexts/Modals';
 import { Web3Provider } from 'contexts/Web3';
 
 ReactDOM.render(
@@ -14,9 +13,7 @@ ReactDOM.render(
     <Web3Provider>
       <BalanceProvider>
         <DepositWithdrawalProvider>
-          <ModalsProvider>
-            <App />
-          </ModalsProvider>
+          <App />
         </DepositWithdrawalProvider>
       </BalanceProvider>
     </Web3Provider>

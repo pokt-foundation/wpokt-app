@@ -23,7 +23,6 @@ import { H2, P2 } from 'components/Typography';
 
 import { BalanceContext } from 'contexts/Balance';
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
-import { ModalsContext } from 'contexts/Modals';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
@@ -36,8 +35,7 @@ interface IEnterAmount {
 }
 
 export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTransact, setFarmSelected }) => {
-  const { onSelectModal } = React.useContext(ModalsContext);
-  const { inputValue, onChangeInput } = React.useContext(DepositWithdrawalContext);
+  const { inputValue, onChangeInput, onSelectModal } = React.useContext(DepositWithdrawalContext);
   const { address, onboard, provider, signer } = React.useContext(Web3Context);
   const { wpoktBalance } = React.useContext(BalanceContext);
 

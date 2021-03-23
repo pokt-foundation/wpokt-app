@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ConfirmDeposit from './ConfirmDeposit';
+import TransactionWaiting from './TransactionWaiting';
 
-import { ModalsContext } from 'contexts/Modals';
+import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 
 const Modals: React.FC = () => {
-  const { modalOpen, onCloseModal, selectedModal } = React.useContext(ModalsContext);
+  const { modalOpen, onCloseModal, selectedModal } = React.useContext(DepositWithdrawalContext);
 
   return (
     <>
@@ -14,6 +15,7 @@ const Modals: React.FC = () => {
         <>
           <StyledBackground onClick={onCloseModal} />
           {selectedModal === 'CONFIRM_DEPOSIT' && <ConfirmDeposit />}
+          {selectedModal === 'TRANSACTION_WAITING' && <TransactionWaiting />}
         </>
       )}
     </>

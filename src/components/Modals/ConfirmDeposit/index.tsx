@@ -22,14 +22,12 @@ import Spacer from 'components/Spacer';
 import { H1, H2, P2 } from 'components/Typography';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
-import { ModalsContext } from 'contexts/Modals';
 import { Web3Context } from 'contexts/Web3';
 
 import { shortenAddress } from 'utils';
 
 const ConfirmDeposit: React.FC = () => {
-  const { onCloseModal } = React.useContext(ModalsContext);
-  const { inputValue, onDeposit } = React.useContext(DepositWithdrawalContext);
+  const { inputValue, onCloseModal, onDeposit } = React.useContext(DepositWithdrawalContext);
   const { address } = React.useContext(Web3Context);
 
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
@@ -50,11 +48,6 @@ const ConfirmDeposit: React.FC = () => {
     } else {
       setIsCopied(false);
     }
-  };
-
-  const onHandleDeposit = async () => {
-    await onDeposit();
-    onCloseModal();
   };
 
   return (
@@ -134,7 +127,7 @@ const ConfirmDeposit: React.FC = () => {
           <P2 color={colors.white}>Deposit</P2>
         </StyledDetailHeader>
         <StyledContentContainer>
-          <P2 color={'#000'}>{inputValue}</P2>
+          <P2 color={'#000'}>{inputValue} wPOKT</P2>
         </StyledContentContainer>
         <Spacer size={'xs'} />
         <StyledDetailHeader>
@@ -149,7 +142,7 @@ const ConfirmDeposit: React.FC = () => {
           </Flex>
         </StyledContentContainer>
         <StyledDepositButtonContainer>
-          <button onClick={onHandleDeposit}>
+          <button onClick={onDeposit}>
             <DepositButtonActiveSvg />
           </button>
         </StyledDepositButtonContainer>
