@@ -22,6 +22,7 @@ import {
 import { H2, P2 } from 'components/Typography';
 
 import { BalanceContext } from 'contexts/Balance';
+import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { ModalsContext } from 'contexts/Modals';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
@@ -36,23 +37,23 @@ interface IEnterAmount {
 
 export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTransact, setFarmSelected }) => {
   const { onSelectModal } = React.useContext(ModalsContext);
+  const { inputValue, onChangeInput } = React.useContext(DepositWithdrawalContext);
   const { address, onboard, provider, signer } = React.useContext(Web3Context);
   const { wpoktBalance } = React.useContext(BalanceContext);
 
   const { isApproved, isApproving, onApprove } = useApproval();
 
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
-  const [wpoktInputValue, setWpoktInputValue] = React.useState<string>('');
 
   React.useEffect(() => {
-    if (wpoktInputValue === '' || wpoktInputValue === '0') {
+    if (inputValue === '' || inputValue === '0') {
       setIsDisabled(true);
       setFarmSelected(false);
     } else {
       setIsDisabled(false);
       setFarmSelected(true);
     }
-  }, [address, setFarmSelected, wpoktInputValue]);
+  }, [address, setFarmSelected, inputValue]);
 
   // This is a placeholder, which will eventually launch the transaction status modal
   React.useEffect(() => {
@@ -76,7 +77,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
 
   const onMaxValue = () => {
     const amount = new TokenAmount(wpoktBalance, 18);
-    setWpoktInputValue(amount.format({ commify: false }));
+    onChangeInput(amount.format({ commify: false }));
   };
 
   return (
@@ -112,8 +113,8 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
           type={'number'}
           min={'0'}
           step={'0.01'}
-          value={wpoktInputValue}
-          onChange={(e) => setWpoktInputValue(e.target.value)}
+          value={inputValue}
+          onChange={(e) => onChangeInput(e.target.value)}
         />
         {!isApproved ? (
           <button disabled={isDisabled} onClick={onConfirmDeposit}>

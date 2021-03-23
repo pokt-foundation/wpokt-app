@@ -82,6 +82,14 @@ export const StyledModalContainer = styled.div`
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: ${120 * GU}px;
+  width: ${75 * GU}px;
   z-index: 10000;
+
+  ${media.sm`
+    width: ${100 * GU}px;
+  `}
+
+  ${media.lg`
+    width: ${120 * GU}px;
+  `}
 `;

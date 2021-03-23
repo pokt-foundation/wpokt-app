@@ -24,10 +24,18 @@ export const ModalsProvider: React.FC = ({ children }) => {
   const [selectedModal, setSelectedModal] = React.useState<IModalType>('');
 
   React.useEffect(() => {
-    document.body.addEventListener('keydown', onCloseModal);
+    document.body.addEventListener('keyup', function (e) {
+      if (e.key === 'Escape') {
+        onCloseModal();
+      }
+    });
 
     return function cleanup() {
-      document.body.removeEventListener('keydown', onCloseModal);
+      document.body.removeEventListener('keyup', function (e) {
+        if (e.key === 'Escape') {
+          onCloseModal();
+        }
+      });
     };
   }, []);
 

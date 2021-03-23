@@ -7,10 +7,6 @@ import { ReactComponent as CloseSvg } from 'assets/icons/close.svg';
 import { ReactComponent as DepositButtonActiveSvg } from 'assets/icons/deposit_button_active.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
-import { Flex } from 'components/Containers';
-import Spacer from 'components/Spacer';
-import { H1, H2, P2 } from 'components/Typography';
-
 import {
   StyledCloseContainer,
   StyledCoinContainer,
@@ -20,22 +16,20 @@ import {
   StyledFarmContainer,
   StyledModalContainer,
 } from './components';
-// import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+import { Flex } from 'components/Containers';
+import Spacer from 'components/Spacer';
+import { H1, H2, P2 } from 'components/Typography';
 
+import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { ModalsContext } from 'contexts/Modals';
+import { Web3Context } from 'contexts/Web3';
 
-// import { parseInputValue, stake } from 'utils';
+import { shortenAddress } from 'utils';
 
 const ConfirmDeposit: React.FC = () => {
   const { onCloseModal } = React.useContext(ModalsContext);
-
-  const onDeposit = async () => {
-    // const response = await stake(parseInputValue(wpoktInputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
-    // setWpoktInputValue('');
-    // setFarmSelected(false);
-    // console.log(response);
-    console.log('Deposit');
-  };
+  const { inputValue, onDeposit } = React.useContext(DepositWithdrawalContext);
+  const { address } = React.useContext(Web3Context);
 
   return (
     <StyledModalContainer>
@@ -64,7 +58,7 @@ const ConfirmDeposit: React.FC = () => {
             <CloseSvg />
           </StyledCloseContainer>
         </div>
-        <Spacer size={'sm'} />
+        <Spacer size={'xs'} />
         <div
           css={`
             align-items: center;
@@ -109,19 +103,19 @@ const ConfirmDeposit: React.FC = () => {
             </StyledContentContainer>
           </div>
         </Flex>
-        <Spacer size={'sm'} />
+        <Spacer size={'xs'} />
         <StyledDetailHeader>
           <P2 color={colors.white}>Deposit</P2>
         </StyledDetailHeader>
         <StyledContentContainer>
-          <P2 color={'#000'}>7,876.820174829907907176 w POKT</P2>
+          <P2 color={'#000'}>{inputValue}</P2>
         </StyledContentContainer>
-        <Spacer size={'sm'} />
+        <Spacer size={'xs'} />
         <StyledDetailHeader>
           <P2 color={colors.white}>Address</P2>
         </StyledDetailHeader>
         <StyledContentContainer>
-          <P2 color={'#000'}>0x2434a85bdb0a09f58565dee6b5252e941bbec709</P2>
+          <P2 color={'#000'}>{address ? shortenAddress(address, 12) : ''}</P2>
         </StyledContentContainer>
         <StyledDepositButtonContainer>
           <button onClick={onDeposit}>
