@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 
 import { BigIntish, TimeRemaining } from 'utils/types';
 
@@ -39,13 +39,13 @@ type FarmStatsResponse = {
 };
 
 export function useFarmStats(farmAddress: string) {
-  const [apy, setAPY] = useState(ZERO);
-  const [tvl, setTVL] = useState(ZERO);
-  const [totalStaked, setTotalStaked] = useState(ZERO);
-  const [rewardUnlockRate, setRewardUnlockRate] = useState(ZERO);
-  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>();
+  const [apy, setAPY] = React.useState(ZERO);
+  const [tvl, setTVL] = React.useState(ZERO);
+  const [totalStaked, setTotalStaked] = React.useState(ZERO);
+  const [rewardUnlockRate, setRewardUnlockRate] = React.useState(ZERO);
+  const [timeRemaining, setTimeRemaining] = React.useState<TimeRemaining>();
 
-  useEffect(() => {
+  React.useEffect(() => {
     let cancelled = false;
     let retryTimer: ReturnType<typeof setTimeout>;
 
