@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
 interface IFlex {
-  align?: string;
+  align?: 'flex-start' | 'center' | 'flex-end';
   direction?: string;
   full?: boolean;
-  justify?: string;
+  justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between';
 }
 
 export const Flex = styled.div<IFlex>`

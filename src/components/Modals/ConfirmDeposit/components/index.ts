@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 import { media } from 'components/breakpoints';
 
@@ -28,9 +28,35 @@ export const StyledCoinContainer = styled.div`
   margin-right: ${4 * GU}px;
 `;
 
-export const StyledContentContainer = styled.div`
+interface IStyledContentContainer {
+  copied?: boolean;
+}
+
+export const StyledContentContainer = styled.div<IStyledContentContainer>`
   border-bottom: ${GU}px solid #000000;
+  box-sizing: border-box;
   padding: ${4 * GU}px;
+
+  button {
+    background: transparent;
+    border: none;
+
+    ${(props) =>
+      props.copied &&
+      css`
+        background: #000;
+        border-radius: 5px;
+        color: ${colors.white};
+        font-family: PixelSplitter;
+        font-size: 0.8rem;
+        height: ${5 * GU}px;
+        width: ${16 * GU}px;
+      `}
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const StyledDepositButtonContainer = styled.div`

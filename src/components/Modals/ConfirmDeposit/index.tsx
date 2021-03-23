@@ -4,6 +4,7 @@ import { colors, GU } from 'components/theme';
 
 import { ReactComponent as CoinSvg } from 'assets/icons/coin.svg';
 import { ReactComponent as CloseSvg } from 'assets/icons/close.svg';
+import { ReactComponent as CopySvg } from 'assets/icons/copy.svg';
 import { ReactComponent as DepositButtonActiveSvg } from 'assets/icons/deposit_button_active.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
@@ -30,6 +31,31 @@ const ConfirmDeposit: React.FC = () => {
   const { onCloseModal } = React.useContext(ModalsContext);
   const { inputValue, onDeposit } = React.useContext(DepositWithdrawalContext);
   const { address } = React.useContext(Web3Context);
+
+  const [isCopied, setIsCopied] = React.useState<boolean>(false);
+
+  const onCopy = () => {
+    if (address && !isCopied) {
+      try {
+        const elem = document.createElement('textarea');
+        document.body.appendChild(elem);
+        elem.value = address;
+        elem.select();
+        document.execCommand('copy');
+        document.body.removeChild(elem);
+        setIsCopied(true);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      setIsCopied(false);
+    }
+  };
+
+  const onHandleDeposit = async () => {
+    await onDeposit();
+    onCloseModal();
+  };
 
   return (
     <StyledModalContainer>
@@ -114,11 +140,16 @@ const ConfirmDeposit: React.FC = () => {
         <StyledDetailHeader>
           <P2 color={colors.white}>Address</P2>
         </StyledDetailHeader>
-        <StyledContentContainer>
-          <P2 color={'#000'}>{address ? shortenAddress(address, 12) : ''}</P2>
+        <StyledContentContainer copied={isCopied}>
+          <Flex align={'center'} justify={'space-between'}>
+            <P2 id={'address'} color={'#000'}>
+              {address ? shortenAddress(address, 10) : ''}
+            </P2>
+            <button onClick={onCopy}>{!isCopied ? <CopySvg /> : 'Copied!'}</button>
+          </Flex>
         </StyledContentContainer>
         <StyledDepositButtonContainer>
-          <button onClick={onDeposit}>
+          <button onClick={onHandleDeposit}>
             <DepositButtonActiveSvg />
           </button>
         </StyledDepositButtonContainer>
