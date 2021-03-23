@@ -17,7 +17,7 @@ const ZERO = 0n;
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
 const FARM_STATS_QUERY: DocumentNode = gql`
-  query FARM_STATS($farmAddress: string) {
+  query FARM_STATS($farmAddress: ID) {
     tokenGeysers(id: $farmAddress) {
       apy
       tvl
@@ -35,7 +35,7 @@ type FarmStatsResponse = {
   staked: BigIntish;
   bonusPeriodSec: number;
   createdTimestamp: number;
-  totalUnlockedRewards: BigIntish;
+  totalUnlockedRewards: string;
 };
 
 export function useFarmStats(farmAddress: string) {
@@ -60,6 +60,7 @@ export function useFarmStats(farmAddress: string) {
         const [{ apy, tvl, staked, bonusPeriodSec, createdTimestamp, totalUnlockedRewards }]: [
           FarmStatsResponse,
         ] = result.data.tokenGeysers;
+        console.log(result.data.tokenGeysers);
 
         const parsedAPY = BigInt(apy);
         const parsedTVL = BigInt(tvl);

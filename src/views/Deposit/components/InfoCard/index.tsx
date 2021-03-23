@@ -1,4 +1,5 @@
 import React from 'react';
+import TokenAmount from 'token-amount';
 import 'styled-components/macro';
 import { colors } from 'components/theme';
 
@@ -21,11 +22,17 @@ import { H1, P2 } from 'components/Typography';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
+import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+
+import { useFarmStats } from 'hooks/useFarmStats';
+
 interface IInfoCard {
   farmSelected: boolean;
 }
 
 export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
+  const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+
   return (
     <div>
       <StyledHeader farmSelected={farmSelected}>
@@ -46,9 +53,13 @@ export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
-        <SmallInfoCard statType={'question'} statTitle={'APY'} statContent={'55.4 %'} />
+        <SmallInfoCard statType={'question'} statTitle={'APY'} statContent={`${apy.toString()}%`} />
         <SmallInfoCard statType={'multiplier'} statTitle={'Multiplier'} statContent={'1.0 X'} />
-        <SmallInfoCard statType={'question'} statTitle={'TOTAL STAKED'} statContent={'86,976.98 wpokt'} />
+        <SmallInfoCard
+          statType={'question'}
+          statTitle={'TOTAL STAKED'}
+          statContent={TokenAmount.format(totalStaked, 18, { symbol: 'wPOKT' })}
+        />
         <SmallInfoCard statType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
         <SmallInfoCard statType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
         <SmallInfoCardExtraLinks />
