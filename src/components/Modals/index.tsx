@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ConfirmDeposit from './ConfirmDeposit';
-import TransactionWaiting from './TransactionWaiting';
+import TransactionStatus from './TransactionStatus';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 
@@ -15,7 +15,9 @@ const Modals: React.FC = () => {
         <>
           <StyledBackground onClick={onCloseModal} />
           {selectedModal === 'CONFIRM_DEPOSIT' && <ConfirmDeposit />}
-          {selectedModal === 'TRANSACTION_WAITING' && <TransactionWaiting />}
+          {(selectedModal === 'TRANSACTION_WAITING' ||
+            selectedModal === 'TRANSACTION_APPROVED' ||
+            selectedModal === 'TRANSACTION_REJECTED') && <TransactionStatus type={selectedModal} />}
         </>
       )}
     </>

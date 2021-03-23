@@ -2,12 +2,10 @@ import React from 'react';
 import { Signer, ContractTransaction } from 'ethers';
 
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
-
 import useWallet from 'hooks/useWallet';
-
 import { parseInputValue, stake } from 'utils';
 
-type IModalType = '' | 'CONFIRM_DEPOSIT' | 'TRANSACTION_WAITING';
+type IModalType = '' | 'CONFIRM_DEPOSIT' | 'TRANSACTION_WAITING' | 'TRANSACTION_APPROVED' | 'TRANSACTION_REJECTED';
 
 export interface ContextValues {
   inputValue: string;
@@ -74,6 +72,14 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
         setModalOpen(true);
         setSelectedModal(modalType);
         break;
+      case 'TRANSACTION_APPROVED':
+        setModalOpen(true);
+        setSelectedModal(modalType);
+        break;
+      case 'TRANSACTION_REJECTED':
+        setModalOpen(true);
+        setSelectedModal(modalType);
+        break;
 
       default:
         setModalOpen(false);
@@ -93,9 +99,12 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
         return response;
       } else {
         onSelectModal('TRANSACTION_WAITING');
-        console.log('waiting');
-        await response.wait();
-        console.log('Complete');
+        const { status } = await response.wait();
+        if (status === 1) {
+          onSelectModal('TRANSACTION_APPROVED');
+        } else {
+          onSelectModal('TRANSACTION_REJECTED');
+        }
       }
       setInputValue('');
       return response;
