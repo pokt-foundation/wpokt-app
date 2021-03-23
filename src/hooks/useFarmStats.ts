@@ -17,7 +17,7 @@ const ZERO = 0n;
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
 const FARM_STATS_QUERY: DocumentNode = gql`
-  query FARM_STATS($farmAddress: string) {
+  query FARM_STATS($farmAddress: ID!) {
     tokenGeysers(id: $farmAddress) {
       apy
       tvl
