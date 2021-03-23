@@ -8,6 +8,7 @@ import { parseInputValue, stake } from 'utils';
 type IModalType = '' | 'CONFIRM_DEPOSIT' | 'TRANSACTION_WAITING' | 'TRANSACTION_APPROVED' | 'TRANSACTION_REJECTED';
 
 export interface ContextValues {
+  displayValue: string;
   inputValue: string;
   onChangeInput: (amount: string) => string;
   onDeposit: () => Promise<boolean | ContractTransaction | undefined>;
@@ -19,6 +20,7 @@ export interface ContextValues {
 }
 
 export const DepositWithdrawalContext = React.createContext<ContextValues>({
+  displayValue: '',
   inputValue: '',
   onChangeInput: (amount) => {
     return amount;
@@ -38,6 +40,7 @@ export const DepositWithdrawalContext = React.createContext<ContextValues>({
 export const DepositWithdrawalProvider: React.FC = ({ children }) => {
   const { signer }: { signer: Signer | null } = useWallet();
   const [inputValue, setInputValue] = React.useState<string>('');
+  const [displayValue, setDisplayValue] = React.useState<string>('');
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
   const [selectedModal, setSelectedModal] = React.useState<IModalType>('');
@@ -94,7 +97,9 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
 
   const onDeposit = async (): Promise<boolean | ContractTransaction> => {
     if (signer) {
+      setDisplayValue(inputValue);
       const response = await stake(parseInputValue(inputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
+      setInputValue('');
       if (typeof response === 'boolean') {
         return response;
       } else {
@@ -106,7 +111,6 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
           onSelectModal('TRANSACTION_REJECTED');
         }
       }
-      setInputValue('');
       return response;
     } else {
       return false;
@@ -116,6 +120,7 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
   return (
     <DepositWithdrawalContext.Provider
       value={{
+        displayValue,
         inputValue,
         onChangeInput,
         onDeposit,

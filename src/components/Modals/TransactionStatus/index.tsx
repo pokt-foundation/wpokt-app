@@ -27,7 +27,7 @@ interface ITransactionStatus {
 }
 
 const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
-  const { inputValue, onCloseModal } = React.useContext(DepositWithdrawalContext);
+  const { displayValue, onCloseModal } = React.useContext(DepositWithdrawalContext);
 
   return (
     <StyledModalContainer>
@@ -64,7 +64,7 @@ const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
         </StyledIconsContainer>
         <Spacer size={'md'} />
         <P1 center={true} color={colors.white}>
-          Deposit {inputValue} wPOKT
+          Deposit {displayValue} wPOKT
         </P1>
       </StyledInnerContainer>
     </StyledModalContainer>
