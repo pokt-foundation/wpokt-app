@@ -12,7 +12,7 @@ import Wrapper from 'components/Wrapper';
 
 import { Web3Context } from 'contexts/Web3';
 
-import DepositWithdrawal from 'views/DepositWithdrawal';
+import DepositWithdraw from 'views/DepositWithdraw';
 
 const App: React.FC = () => {
   const { onboard, provider } = React.useContext(Web3Context);
@@ -42,7 +42,7 @@ const App: React.FC = () => {
           <Navigation readyToTransact={() => readyToTransact(onboard, provider)} setSidebar={setSidebar} />
           <Switch>
             <Route exact path="/">
-              <DepositWithdrawal readyToTransact={readyToTransact} />
+              <DepositWithdraw readyToTransact={readyToTransact} />
             </Route>
             <Route exact path="/propose">
               <div

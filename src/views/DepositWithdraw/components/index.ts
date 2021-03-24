@@ -3,7 +3,7 @@ import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
 export { EnterAmount } from './EnterAmount';
-export { InfoCard } from './InfoCard';
+export { InfoCard as DepositInfoCard } from './Deposit/InfoCard';
 
 interface IStyledButtonLarge {
   active: boolean;
