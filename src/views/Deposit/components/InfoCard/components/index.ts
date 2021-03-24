@@ -115,7 +115,11 @@ export const StyledLine = styled.div`
   `}
 `;
 
-export const StyledMoreInfoContainer = styled.div`
+interface IStyledMoreInfoContainer {
+  showMore: boolean;
+}
+
+export const StyledMoreInfoContainer = styled.div<IStyledMoreInfoContainer>`
   align-items: center;
   background: ${colors.grey};
   border: ${GU}px solid #000000;
@@ -139,6 +143,12 @@ export const StyledMoreInfoContainer = styled.div`
   ${media.xs`
     height: ${10 * GU}px;
   `}
+
+  ${(props) =>
+    props.showMore &&
+    css`
+      border-bottom: none;
+    `}
 `;
 
 export const StyledRewardText = styled.p`
@@ -184,14 +194,12 @@ export const StyledSmallInfoCardsContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  height: ${90 * GU}px;
   justify-content: space-between;
-  padding: ${2 * GU}px;
+  padding: ${2 * GU}px ${2 * GU}px 0;
   width: 100%;
 
   ${media.xs`
-    height: ${100 * GU}px;
-    padding: ${5 * GU}px;
+    padding: ${5 * GU}px ${5 * GU}px 0;
   `}
 
   ${media.sm`
@@ -199,6 +207,6 @@ export const StyledSmallInfoCardsContainer = styled.div`
   `}
 
   ${media.md`
-    padding: ${7 * GU}px;
+    padding: ${7 * GU}px ${7 * GU}px 0;
   `}
 `;

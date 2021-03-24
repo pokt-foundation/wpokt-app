@@ -13,15 +13,15 @@ interface ISmallInfoCard {
   statContent: string;
   statFill?: number;
   statTitle: string;
-  statType: 'question' | 'multiplier';
+  iconType: 'question' | 'caret';
 }
 
-export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill, statTitle, statType }) => {
+export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill, statTitle, iconType }) => {
   return (
     <StyledSmallInfoCard>
       <StyledSmallInfoCardHeader>
         <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
-        {statType === 'question' ? (
+        {iconType === 'question' ? (
           <StyledSmallInfoCardButton>
             <QuestionMarkSvg />
           </StyledSmallInfoCardButton>
@@ -41,27 +41,30 @@ export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill,
 
 const StyledSmallInfoCard = styled.div`
   border: ${GU}px solid #000000;
+  margin-bottom: ${2 * GU}px;
   width: ${32 * GU}px;
 
   ${media.xs`
-        width: ${47 * GU}px;
-    `}
+    margin-bottom: ${5 * GU}px;
+    width: ${47 * GU}px;
+  `}
 
   ${media.sm`
-        width: ${31 * GU}px;
-    `}
+    width: ${31 * GU}px;
+  `}
 
-    ${media.md`
-        width: ${41 * GU}px;
-    `}
+  ${media.md`
+    margin-bottom: ${7 * GU}px;
+    width: ${41 * GU}px;
+  `}
 
-    ${media.lg`
-        width: ${50 * GU}px;
-    `}
+  ${media.lg`
+    width: ${50 * GU}px;
+  `}
 
-    ${media.xl`
-        width: ${75 * GU}px;
-    `}
+  ${media.xl`
+    width: ${75 * GU}px;
+  `}
 `;
 
 const StyledSmallInfoCardContent = styled.div`
@@ -155,9 +158,13 @@ export const StyledStatText = styled.p<ITypograhpy>`
     `}
 `;
 
-export const SmallInfoCardExtraLinks: React.FC = () => {
+interface ISmallInfoCardExtraLinks {
+  showOnDesktop?: boolean;
+}
+
+export const SmallInfoCardExtraLinks: React.FC<ISmallInfoCardExtraLinks> = ({ showOnDesktop }) => {
   return (
-    <StyledExtraLinksContainer>
+    <StyledExtraLinksContainer showOnDesktop={showOnDesktop}>
       <StyledExtraLinksButton>
         Stats
         <CaretSvg />
@@ -171,21 +178,51 @@ export const SmallInfoCardExtraLinks: React.FC = () => {
   );
 };
 
-const StyledExtraLinksContainer = styled.div`
+interface IStyledExtraLinksContainer {
+  showOnDesktop?: boolean;
+}
+
+const StyledExtraLinksContainer = styled.div<IStyledExtraLinksContainer>`
   align-items: center;
-  display: flex;
+  margin-bottom: ${2 * GU}px;
+  display: none;
   flex-direction: column;
   height: ${22 * GU}px;
   justify-content: center;
   width: ${30 * GU}px;
 
   ${media.xs`
-        height: ${25 * GU}px;
-        width: ${47 * GU}px;
-    `}
+    height: ${25 * GU}px;
+    margin-bottom: ${5 * GU}px;
+    width: ${47 * GU}px;
+  `}
 
   ${media.sm`
+    display: flex;
+    width: ${31 * GU}px;
+  `}
+
+  ${media.md`
+    margin-bottom: ${7 * GU}px;
+    width: ${41 * GU}px;
+  `}
+
+  ${media.lg`
+    width: ${50 * GU}px;
+  `}
+
+  ${media.xl`
+    width: ${75 * GU}px;
+  `}
+
+  ${(props) =>
+    !props.showOnDesktop &&
+    css`
+      display: flex;
+
+      ${media.sm`
         display: none;
+      `}
     `}
 `;
 

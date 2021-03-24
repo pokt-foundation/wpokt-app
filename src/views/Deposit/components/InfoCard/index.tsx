@@ -32,6 +32,7 @@ interface IInfoCard {
 
 export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
   const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const [showMore, setShowMore] = React.useState<boolean>(false);
 
   return (
     <div>
@@ -53,19 +54,20 @@ export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
-        <SmallInfoCard statType={'question'} statTitle={'APY'} statContent={`${apy.toString()}%`} />
-        <SmallInfoCard statType={'multiplier'} statTitle={'Multiplier'} statContent={'1.0 X'} />
+        <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${apy.toString()}%`} />
+        <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
         <SmallInfoCard
-          statType={'question'}
+          iconType={'question'}
           statTitle={'TOTAL STAKED'}
           statContent={TokenAmount.format(totalStaked, 18, { symbol: 'wPOKT' })}
         />
-        <SmallInfoCard statType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
-        <SmallInfoCard statType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
+        <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
+        <SmallInfoCard iconType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
         <SmallInfoCardExtraLinks />
       </StyledSmallInfoCardsContainer>
-      <StyledMoreInfoContainer>
+      <StyledMoreInfoContainer showMore={showMore}>
         <button
+          onClick={() => setShowMore(!showMore)}
           css={`
             background: transparent;
             border: none;
@@ -83,6 +85,17 @@ export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
           </Flex>
         </button>
       </StyledMoreInfoContainer>
+      {showMore && (
+        <>
+          <StyledSmallInfoCardsContainer>
+            <SmallInfoCard iconType={'question'} statTitle={'Farm Ownership'} statContent={'12%'} />
+            <SmallInfoCard iconType={'caret'} statTitle={'Apps'} statContent={'12'} />
+            <SmallInfoCard iconType={'question'} statTitle={'Usage'} statContent={'55.4%'} />
+            <SmallInfoCard iconType={'question'} statTitle={'xxxxxx'} statContent={'00.00'} />
+            <SmallInfoCardExtraLinks showOnDesktop={true} />
+          </StyledSmallInfoCardsContainer>
+        </>
+      )}
     </div>
   );
 };
