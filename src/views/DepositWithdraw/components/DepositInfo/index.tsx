@@ -3,6 +3,9 @@ import TokenAmount from 'token-amount';
 import 'styled-components/macro';
 import { colors } from 'components/theme';
 
+import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
+import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
+
 import {
   SmallInfoCard,
   SmallInfoCardExtraLinks,
@@ -18,9 +21,6 @@ import {
 } from './components';
 import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
-
-import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
-import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
