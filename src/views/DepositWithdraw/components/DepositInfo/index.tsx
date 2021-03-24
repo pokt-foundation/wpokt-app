@@ -26,11 +26,11 @@ import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import { useFarmStats } from 'hooks/useFarmStats';
 
-interface IInfoCard {
+interface IDepositInfo {
   farmSelected: boolean;
 }
 
-export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
+export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
   const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(false);
 

@@ -5,7 +5,7 @@ import { API as OnboardAPI } from 'libs/types';
 
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
-import { EnterAmount, DepositInfoCard, StyledButtonLarge, StyledSelectorContainer } from './components';
+import { EnterAmount, DepositInfo, StyledButtonLarge, StyledSelectorContainer, WithdrawInfo } from './components';
 import { Card, InnerCardContainer } from 'components/Card';
 import { Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
@@ -66,10 +66,11 @@ const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
         <InnerCardContainer>
           {actionType === 'deposit' && (
             <>
-              <DepositInfoCard farmSelected={farmSelected} />
+              <DepositInfo farmSelected={farmSelected} />
               <Spacer size={'md'} />
             </>
           )}
+          {actionType === 'withdraw' && <WithdrawInfo />}
         </InnerCardContainer>
       </Card>
       <Spacer size={'lg'} />
