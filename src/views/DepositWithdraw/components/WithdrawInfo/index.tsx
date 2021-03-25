@@ -1,4 +1,5 @@
 import React from 'react';
+import 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 
 import { ReactComponent as EthereumSvg } from 'assets/icons/ethereum.svg';
@@ -41,7 +42,6 @@ export const WithdrawInfo: React.FC<IWithdraw> = ({ farmSelected }) => {
         >
           <div
             css={`
-              box-sizing: border-box;
               min-height: 50px;
               margin-right: ${5 * GU}px;
               min-width: 32px;

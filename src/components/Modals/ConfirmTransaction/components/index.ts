@@ -45,7 +45,7 @@ export const StyledContentContainer = styled.div<IStyledContentContainer>`
       props.copied &&
       css`
         background: #000;
-        border-radius: 5px;
+        border-radius: ${2 * GU}px;
         color: ${colors.white};
         font-family: PixelSplitter;
         font-size: 0.8rem;

@@ -56,7 +56,6 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
     }
   }, [address, setFarmSelected, inputValue]);
 
-  // This is a placeholder, which will eventually launch the transaction status modal
   React.useEffect(() => {
     if (isApproving) {
       console.log('Approving...');
