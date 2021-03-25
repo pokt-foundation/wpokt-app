@@ -69,7 +69,6 @@ const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
           {actionType === 'deposit' && (
             <>
               <DepositInfo farmSelected={farmSelected} />
-              <Spacer size={'md'} />
             </>
           )}
           {actionType === 'withdraw' && <WithdrawInfo farmSelected={farmSelected} />}
