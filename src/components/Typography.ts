@@ -107,3 +107,21 @@ export const P2 = styled.p<ITypograhpy>`
       color: ${props.color};
     `}
 `;
+
+export const P3 = styled.p<ITypograhpy>`
+  font-family: PixelSplitter;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+
+  ${(props) =>
+    props.center &&
+    css`
+      text-align: center;
+    `}
+
+  ${(props) =>
+    props.color &&
+    css`
+      color: ${props.color};
+    `}
+`;
