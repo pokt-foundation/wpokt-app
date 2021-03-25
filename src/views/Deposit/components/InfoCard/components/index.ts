@@ -30,10 +30,6 @@ export const StyledHeader = styled.div<IStyledHeader>`
   flex-direction: column;
   justify-content: space-between;
 
-  &:hover {
-    cursor: pointer;
-  }
-
   ${media.sm`
     align-items: center;
     flex-direction: row;
@@ -74,19 +70,19 @@ export const StyledHeaderRight = styled.div`
 
   ${media.sm`
     flex-direction: row;
-    width: ${107 * GU}px;
+    width: ${104 * GU}px;
   `}
 
   ${media.md`
-    width: ${150 * GU}px;
+    width: ${140 * GU}px;
   `}
 
   ${media.lg`
-    width: ${200 * GU}px;
+    width: ${190 * GU}px;
   `}
 
   ${media.xl`
-    width: ${350 * GU}px;
+    width: ${340 * GU}px;
   `}
 
   div#estimated-reward {

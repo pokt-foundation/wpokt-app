@@ -57,7 +57,7 @@ const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
         <InnerCardContainer>
           {actionType === 'deposit' && (
             <>
-              <InfoCard farmSelected={farmSelected} setFarmSelected={setFarmSelected} />
+              <InfoCard farmSelected={farmSelected} />
               <Spacer size={'md'} />
             </>
           )}

@@ -5,6 +5,7 @@ import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
 import { GU } from 'components/theme';
 
+import Modals from 'components/Modals';
 import Navigation from 'components/Navigation';
 import Sidebar from 'components/Sidebar';
 import Wrapper from 'components/Wrapper';
@@ -33,118 +34,121 @@ const App: React.FC = () => {
   }, [onboard, provider, readyToTransact]);
 
   return (
-    <Wrapper>
+    <>
       <GlobalFonts />
-      <Router>
-        <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
-        <Navigation readyToTransact={() => readyToTransact(onboard, provider)} setSidebar={setSidebar} />
-        <Switch>
-          <Route exact path="/">
-            <Deposit readyToTransact={readyToTransact} />
-          </Route>
-          <Route exact path="/propose">
-            <div
-              css={`
-                align-items: center;
-                display: flex;
-                height: 100vh;
-                justify-content: center;
-                width: 100%;
-              `}
-            >
+      <Wrapper>
+        <Router>
+          <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
+          <Navigation readyToTransact={() => readyToTransact(onboard, provider)} setSidebar={setSidebar} />
+          <Switch>
+            <Route exact path="/">
+              <Deposit readyToTransact={readyToTransact} />
+            </Route>
+            <Route exact path="/propose">
               <div
                 css={`
                   align-items: center;
-                  background: white;
                   display: flex;
-                  height: ${12 * GU}px;
+                  height: 100vh;
                   justify-content: center;
-                  text-align: center;
-                  width: ${50 * GU}px;
+                  width: 100%;
                 `}
               >
-                Propose App
+                <div
+                  css={`
+                    align-items: center;
+                    background: white;
+                    display: flex;
+                    height: ${12 * GU}px;
+                    justify-content: center;
+                    text-align: center;
+                    width: ${50 * GU}px;
+                  `}
+                >
+                  Propose App
+                </div>
               </div>
-            </div>
-          </Route>
-          <Route exact path="/new-farm">
-            <div
-              css={`
-                align-items: center;
-                display: flex;
-                height: 100vh;
-                justify-content: center;
-                width: 100%;
-              `}
-            >
+            </Route>
+            <Route exact path="/new-farm">
               <div
                 css={`
                   align-items: center;
-                  background: white;
                   display: flex;
-                  height: ${12 * GU}px;
+                  height: 100vh;
                   justify-content: center;
-                  text-align: center;
-                  width: ${50 * GU}px;
+                  width: 100%;
                 `}
               >
-                New Farm
+                <div
+                  css={`
+                    align-items: center;
+                    background: white;
+                    display: flex;
+                    height: ${12 * GU}px;
+                    justify-content: center;
+                    text-align: center;
+                    width: ${50 * GU}px;
+                  `}
+                >
+                  New Farm
+                </div>
               </div>
-            </div>
-          </Route>
-          <Route exact path="/stats">
-            <div
-              css={`
-                align-items: center;
-                display: flex;
-                height: 100vh;
-                justify-content: center;
-                width: 100%;
-              `}
-            >
+            </Route>
+            <Route exact path="/stats">
               <div
                 css={`
                   align-items: center;
-                  background: white;
                   display: flex;
-                  height: ${12 * GU}px;
+                  height: 100vh;
                   justify-content: center;
-                  text-align: center;
-                  width: ${50 * GU}px;
+                  width: 100%;
                 `}
               >
-                Stats
+                <div
+                  css={`
+                    align-items: center;
+                    background: white;
+                    display: flex;
+                    height: ${12 * GU}px;
+                    justify-content: center;
+                    text-align: center;
+                    width: ${50 * GU}px;
+                  `}
+                >
+                  Stats
+                </div>
               </div>
-            </div>
-          </Route>
-          <Route exact path="/my-farm">
-            <div
-              css={`
-                align-items: center;
-                display: flex;
-                height: 100vh;
-                justify-content: center;
-                width: 100%;
-              `}
-            >
+            </Route>
+            <Route exact path="/my-farm">
               <div
                 css={`
                   align-items: center;
-                  background: white;
                   display: flex;
-                  height: ${12 * GU}px;
+                  height: 100vh;
                   justify-content: center;
-                  text-align: center;
-                  width: ${50 * GU}px;
+                  width: 100%;
                 `}
               >
-                My Farm
+                <div
+                  css={`
+                    align-items: center;
+                    background: white;
+                    display: flex;
+                    height: ${12 * GU}px;
+                    justify-content: center;
+                    text-align: center;
+                    width: ${50 * GU}px;
+                  `}
+                >
+                  My Farm
+                </div>
               </div>
-            </div>
-          </Route>
-        </Switch>
-      </Router>
-    </Wrapper>
+            </Route>
+          </Switch>
+        </Router>
+      </Wrapper>
+      <Modals />
+    </>
   );
 };
 

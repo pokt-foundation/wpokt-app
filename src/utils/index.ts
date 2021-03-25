@@ -72,12 +72,7 @@ export const stake = async (
   try {
     const tokenContract = getTokenGeyserContract(signer, tokenAddress);
     const transaction: ContractTransaction = await tokenContract.stake(stakeAmount, '0x');
-    const { status } = await transaction.wait();
-    if (status === 1) {
-      return true;
-    } else {
-      return false;
-    }
+    return transaction;
   } catch (e) {
     console.error(e);
     return false;
