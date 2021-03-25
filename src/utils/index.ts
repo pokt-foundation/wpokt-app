@@ -65,13 +65,28 @@ export const getTokenGeyserContract = (signer: Signer, address: string): ethers.
 };
 
 export const stake = async (
-  stakeAmount: string,
+  amount: string,
   tokenAddress: string,
   signer: Signer,
 ): Promise<boolean | ContractTransaction> => {
   try {
     const tokenContract = getTokenGeyserContract(signer, tokenAddress);
-    const transaction: ContractTransaction = await tokenContract.stake(stakeAmount, '0x');
+    const transaction: ContractTransaction = await tokenContract.stake(amount, '0x');
+    return transaction;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+};
+
+export const unstake = async (
+  amount: string,
+  tokenAddress: string,
+  signer: Signer,
+): Promise<boolean | ContractTransaction> => {
+  try {
+    const tokenContract = getTokenGeyserContract(signer, tokenAddress);
+    const transaction: ContractTransaction = await tokenContract.unstake(amount, '0x');
     return transaction;
   } catch (e) {
     console.error(e);

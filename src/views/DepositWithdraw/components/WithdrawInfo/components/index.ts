@@ -3,6 +3,7 @@ import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
 export { SmallInfoCard, SmallInfoCardExtraLinks } from './SmallInfoCard';
+export { MediumInfoCard } from './MediumInfoCard';
 
 export const StyledContentContainer = styled.div`
   align-items: center;

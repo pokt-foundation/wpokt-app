@@ -10,12 +10,14 @@ import { Card, InnerCardContainer } from 'components/Card';
 import { Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
 
+import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
+
 interface IDeposit {
   readyToTransact: (onboard: OnboardAPI | null, provider: Provider | null) => Promise<boolean>;
 }
 
 const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
-  const [actionType, setActionType] = React.useState<'deposit' | 'withdraw'>('deposit');
+  const { actionType, onSetActionType } = React.useContext(DepositWithdrawalContext);
   const [farmSelected, setFarmSelected] = React.useState<boolean>(false);
 
   return (
@@ -24,7 +26,7 @@ const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
       <Card>
         <InnerCardContainer borderBottom={true}>
           <Flex align={'center'} justify={'center'}>
-            <StyledButtonLarge onClick={() => setActionType('deposit')} active={actionType === 'deposit'}>
+            <StyledButtonLarge onClick={() => onSetActionType('deposit')} active={actionType === 'deposit'}>
               <StyledSelectorContainer>
                 <SelectorSvg
                   css={`
@@ -34,7 +36,7 @@ const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
               </StyledSelectorContainer>
               Deposit
             </StyledButtonLarge>
-            <StyledButtonLarge onClick={() => setActionType('withdraw')} active={actionType === 'withdraw'}>
+            <StyledButtonLarge onClick={() => onSetActionType('withdraw')} active={actionType === 'withdraw'}>
               <StyledSelectorContainer>
                 <SelectorSvg
                   css={`
@@ -70,7 +72,7 @@ const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
               <Spacer size={'md'} />
             </>
           )}
-          {actionType === 'withdraw' && <WithdrawInfo />}
+          {actionType === 'withdraw' && <WithdrawInfo farmSelected={farmSelected} />}
         </InnerCardContainer>
       </Card>
       <Spacer size={'lg'} />

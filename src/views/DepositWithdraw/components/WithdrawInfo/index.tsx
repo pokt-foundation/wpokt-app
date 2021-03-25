@@ -1,14 +1,11 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import { colors, GU } from 'components/theme';
-import { media } from 'components/breakpoints';
 
-import { ReactComponent as ChestSvg } from 'assets/icons/chest.svg';
 import { ReactComponent as EthereumSvg } from 'assets/icons/ethereum.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
-import { ReactComponent as RewardsSvg } from 'assets/icons/rewards.svg';
 
 import {
+  MediumInfoCard,
   SmallInfoCard,
   SmallInfoCardExtraLinks,
   StyledContentContainer,
@@ -20,12 +17,15 @@ import {
   StyledRewardText,
   StyledSmallInfoCardsContainer,
 } from './components';
-import Spacer from 'components/Spacer';
-import { H1, H2, P1, P2 } from 'components/Typography';
+import { H1, P2 } from 'components/Typography';
 
 import { Web3Context } from 'contexts/Web3';
 
-export const WithdrawInfo: React.FC = () => {
+interface IWithdraw {
+  farmSelected: boolean;
+}
+
+export const WithdrawInfo: React.FC<IWithdraw> = ({ farmSelected }) => {
   const { address } = React.useContext(Web3Context);
 
   return (
@@ -52,16 +52,20 @@ export const WithdrawInfo: React.FC = () => {
           <P2 color={colors.white}>Connect your Ethereum wallet to withdraw your funds</P2>
         </div>
       ) : (
-        <WithdrawFarm />
+        <WithdrawFarm farmSelected={farmSelected} />
       )}
     </>
   );
 };
 
-const WithdrawFarm: React.FC = () => {
+interface IWithdrawFarm {
+  farmSelected: boolean;
+}
+
+const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
   return (
     <div>
-      <StyledHeader farmSelected={true}>
+      <StyledHeader farmSelected={farmSelected}>
         <StyledHeaderLeft>
           <div id={'farm-title'}>
             <StyledFarmContainer>
@@ -95,61 +99,3 @@ const WithdrawFarm: React.FC = () => {
     </div>
   );
 };
-
-interface IMediumInfoCard {
-  amount: string;
-  header: string;
-  icon: 'chest' | 'rewards';
-}
-
-const MediumInfoCard: React.FC<IMediumInfoCard> = ({ amount, header, icon }) => {
-  return (
-    <StyledMediumInfoCardContainer>
-      {icon === 'chest' ? <ChestSvg /> : <RewardsSvg />}
-      <div>
-        <H2 color={colors.white}>{header}</H2>
-        <Spacer size={'xs'} />
-        <P2 color={colors.white}>{amount}</P2>
-      </div>
-    </StyledMediumInfoCardContainer>
-  );
-};
-
-const StyledMediumInfoCardContainer = styled.div`
-  align-items: center;
-  background: #000;
-  box-sizing: border-box;
-  display: flex;
-  height: ${27 * GU}px;
-  justify-content: flex-start;
-  margin-bottom: ${2 * GU}px;
-  padding: 0 ${6 * GU}px;
-  width: ${68 * GU}px;
-
-  ${media.xs`
-    margin-bottom: ${5 * GU}px;
-    width: ${100 * GU}px;
-  `}
-
-  ${media.sm`
-    width: ${52 * GU}px;
-  `}
-
-  ${media.md`
-    height: ${28 * GU}px;
-    margin-bottom: ${7 * GU}px;
-    width: ${70 * GU}px;
-  `}
-
-  ${media.lg`
-    width: ${98 * GU}px;
-  `}
-
-  ${media.xl`
-    width: ${170 * GU}px;
-  `}
-
-  div {
-    margin-left: ${6 * GU}px;
-  }
-`;
