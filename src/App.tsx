@@ -13,7 +13,7 @@ import Wrapper from 'components/Wrapper';
 import { Web3Context } from 'contexts/Web3';
 
 import DepositWithdraw from 'views/DepositWithdraw';
-import MyFarm from 'views/MyFarm';
+import MyFarms from 'views/MyFarms';
 
 const App: React.FC = () => {
   const { onboard, provider } = React.useContext(Web3Context);
@@ -121,7 +121,7 @@ const App: React.FC = () => {
               </div>
             </Route>
             <Route exact path="/my-farms">
-              <MyFarm />
+              <MyFarms />
             </Route>
           </Switch>
         </Router>

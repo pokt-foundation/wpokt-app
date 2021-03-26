@@ -160,11 +160,12 @@ export const StyledStatText = styled.p<ITypograhpy>`
 
 interface ISmallInfoCardExtraLinks {
   showOnDesktop?: boolean;
+  showOnMobile?: boolean;
 }
 
-export const SmallInfoCardExtraLinks: React.FC<ISmallInfoCardExtraLinks> = ({ showOnDesktop }) => {
+export const SmallInfoCardExtraLinks: React.FC<ISmallInfoCardExtraLinks> = ({ showOnDesktop, showOnMobile }) => {
   return (
-    <StyledExtraLinksContainer showOnDesktop={showOnDesktop}>
+    <StyledExtraLinksContainer showOnDesktop={showOnDesktop} showOnMobile={showOnMobile}>
       <StyledExtraLinksButton>
         Stats
         <CaretSvg />
@@ -180,6 +181,7 @@ export const SmallInfoCardExtraLinks: React.FC<ISmallInfoCardExtraLinks> = ({ sh
 
 interface IStyledExtraLinksContainer {
   showOnDesktop?: boolean;
+  showOnMobile?: boolean;
 }
 
 const StyledExtraLinksContainer = styled.div<IStyledExtraLinksContainer>`
@@ -223,6 +225,12 @@ const StyledExtraLinksContainer = styled.div<IStyledExtraLinksContainer>`
       ${media.sm`
         display: none;
       `}
+    `}
+
+  ${(props) =>
+    props.showOnMobile &&
+    css`
+      display: flex;
     `}
 `;
 

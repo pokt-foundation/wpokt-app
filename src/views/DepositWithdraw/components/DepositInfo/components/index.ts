@@ -2,8 +2,6 @@ import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
-export { SmallInfoCard, SmallInfoCardExtraLinks } from './SmallInfoCard';
-
 export const StyledFarmContainer = styled.div`
   height: ${7 * GU}px;
   margin-right: ${5 * GU}px;

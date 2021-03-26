@@ -2,6 +2,31 @@ import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
+export const StyledContentContainer = styled.div`
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  ${media.sm`
+    width: ${104 * GU}px;
+  `}
+
+  ${media.md`
+    width: ${138 * GU}px;
+  `}
+
+  ${media.lg`
+    width: ${164 * GU}px;
+  `}
+
+  ${media.xl`
+    width: ${240 * GU}px;
+  `}
+`;
+
 export const StyledFarmContainer = styled.div`
   height: ${7 * GU}px;
   margin-right: ${5 * GU}px;
@@ -125,5 +150,29 @@ export const StyledStakedText = styled.p`
 
   ${media.md`
     font-size: 2.4rem;
+  `}
+`;
+
+export const StyledSmallInfoCardsContainer = styled.div`
+  align-items: center;
+  background: #fff;
+  border: ${GU}px solid #000000;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: ${2 * GU}px ${2 * GU}px 0;
+  width: 100%;
+
+  ${media.xs`
+    padding: ${5 * GU}px ${5 * GU}px 0;
+  `}
+
+  ${media.sm`
+    height: auto;
+  `}
+
+  ${media.md`
+    padding: ${7 * GU}px ${7 * GU}px 0;
   `}
 `;

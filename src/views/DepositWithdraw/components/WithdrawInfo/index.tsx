@@ -6,9 +6,6 @@ import { ReactComponent as EthereumSvg } from 'assets/icons/ethereum.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
 import {
-  MediumInfoCard,
-  SmallInfoCard,
-  SmallInfoCardExtraLinks,
   StyledContentContainer,
   StyledFarmContainer,
   StyledHeader,
@@ -18,6 +15,7 @@ import {
   StyledRewardText,
   StyledSmallInfoCardsContainer,
 } from './components';
+import { MediumInfoCard, SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import { H1, P2 } from 'components/Typography';
 
 import { Web3Context } from 'contexts/Web3';
@@ -89,7 +87,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
           <SmallInfoCard iconType={'question'} statTitle={'Farm Ownership'} statContent={'4%'} />
           <SmallInfoCard iconType={'caret'} statTitle={'Duration'} statContent={'2 Days Left'} statFill={38} />
           <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
-          <SmallInfoCardExtraLinks />
+          <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={true} />
         </StyledContentContainer>
         <div>
           <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Deposit'} icon={'chest'} />
