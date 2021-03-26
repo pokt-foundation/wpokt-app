@@ -3,7 +3,7 @@ import { media } from 'components/breakpoints';
 import { GU } from 'components/theme';
 
 export { SmallInfoCard, SmallInfoCardExtraLinks } from './SmallInfoCard';
-export { MediumInfoCard } from './MediumInfoCard';
+export { MediumInfoCard, MediumDepositWithdrawLinks, MediumStatsFaqLinks } from './MediumInfoCard';
 
 export const Card = styled.div`
   backdrop-filter: blur(${3 * GU}px);

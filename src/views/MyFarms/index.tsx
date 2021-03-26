@@ -13,7 +13,15 @@ import {
   StyledSmallInfoCardsContainer,
   StyledStakedText,
 } from './components';
-import { Card, InnerCardContainer, SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
+import {
+  Card,
+  InnerCardContainer,
+  MediumDepositWithdrawLinks,
+  MediumInfoCard,
+  MediumStatsFaqLinks,
+  SmallInfoCard,
+  SmallInfoCardExtraLinks,
+} from 'components/Cards';
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
@@ -53,7 +61,11 @@ const MyFarms: React.FC = () => {
               <SmallInfoCard iconType={'question'} statTitle={'Duration'} statContent={'54 Days'} statFill={38} />
               <SmallInfoCardExtraLinks />
             </StyledContentContainer>
-            <div>Test</div>
+            <div>
+              <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Yield Earned'} icon={'rake'} />
+              <MediumDepositWithdrawLinks />
+              <MediumStatsFaqLinks />
+            </div>
           </StyledSmallInfoCardsContainer>
         </InnerCardContainer>
       </Card>

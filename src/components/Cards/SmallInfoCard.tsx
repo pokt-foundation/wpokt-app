@@ -246,4 +246,8 @@ const StyledExtraLinksButton = styled.button`
   justify-content: space-between;
   padding: 0 ${5 * GU}px;
   width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
