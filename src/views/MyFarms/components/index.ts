@@ -53,6 +53,10 @@ export const StyledHeader = styled.div<IStyledHeader>`
   flex-direction: column;
   justify-content: space-between;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   ${media.sm`
     align-items: center;
     flex-direction: row;
@@ -136,6 +140,23 @@ export const StyledLine = styled.div`
     margin: 0 ${2 * GU}px 0 0;
     width: ${GU}px;
   `}
+`;
+
+interface IStyledSelectorContainer {
+  farmSelected: boolean;
+}
+
+export const StyledSelectorContainer = styled.div<IStyledSelectorContainer>`
+  fill: #fff;
+  height: ${5 * GU}px;
+  margin-left: ${5 * GU}px;
+  width: ${5 * GU}px;
+
+  ${(props) =>
+    props.farmSelected &&
+    css`
+      transform: rotate(90deg);
+    `}
 `;
 
 export const StyledStakedText = styled.p`
