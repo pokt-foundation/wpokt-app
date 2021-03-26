@@ -13,7 +13,7 @@ import {
   StyledSmallInfoCardsContainer,
   StyledStakedText,
 } from './components';
-import { Card, InnerCardContainer } from 'components/Cards';
+import { Card, InnerCardContainer, SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
@@ -41,19 +41,19 @@ const MyFarms: React.FC = () => {
             </StyledHeaderRight>
           </StyledHeader>
           <StyledSmallInfoCardsContainer>
-            {/* <StyledContentContainer>
+            <StyledContentContainer>
               <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={'10%'} />
               <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
-              <SmallInfoCard iconType={'question'} statTitle={'Farm Ownership'} statContent={'4%'} />
-              <SmallInfoCard iconType={'caret'} statTitle={'Duration'} statContent={'2 Days Left'} statFill={38} />
+              <SmallInfoCard iconType={'question'} statTitle={'Total Staked'} statContent={'23,456.3 wpokt'} />
+              <SmallInfoCard iconType={'caret'} statTitle={'Max Relays/Day'} statContent={'1 M'} />
               <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
+              <SmallInfoCard iconType={'question'} statTitle={'Supported APps'} statContent={'12'} />
+              <SmallInfoCard iconType={'question'} statTitle={'Rewards unlocked'} statContent={'30%'} />
+              <SmallInfoCard iconType={'question'} statTitle={'Farm ownership'} statContent={'14%'} />
+              <SmallInfoCard iconType={'question'} statTitle={'Duration'} statContent={'54 Days'} statFill={38} />
               <SmallInfoCardExtraLinks />
             </StyledContentContainer>
-            <div>
-              <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Deposit'} icon={'chest'} />
-              <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Rewards Claimed'} icon={'rewards'} />
-            </div> */}
-            test
+            <div>Test</div>
           </StyledSmallInfoCardsContainer>
         </InnerCardContainer>
       </Card>
