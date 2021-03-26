@@ -14,6 +14,7 @@ import { Web3Context } from 'contexts/Web3';
 
 import DepositWithdraw from 'views/DepositWithdraw';
 import MyFarms from 'views/MyFarms';
+import Stats from 'views/Stats';
 
 const App: React.FC = () => {
   const { onboard, provider } = React.useContext(Web3Context);
@@ -96,29 +97,7 @@ const App: React.FC = () => {
               </div>
             </Route>
             <Route exact path="/stats">
-              <div
-                css={`
-                  align-items: center;
-                  display: flex;
-                  height: 100vh;
-                  justify-content: center;
-                  width: 100%;
-                `}
-              >
-                <div
-                  css={`
-                    align-items: center;
-                    background: white;
-                    display: flex;
-                    height: ${12 * GU}px;
-                    justify-content: center;
-                    text-align: center;
-                    width: ${50 * GU}px;
-                  `}
-                >
-                  Stats
-                </div>
-              </div>
+              <Stats />
             </Route>
             <Route exact path="/my-farms">
               <MyFarms />
