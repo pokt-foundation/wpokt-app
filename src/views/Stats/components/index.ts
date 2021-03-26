@@ -1,6 +1,26 @@
 import styled, { css } from 'styled-components';
+import { ResponsiveContainer } from 'recharts';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
+
+export const StyledChartContainer = styled(ResponsiveContainer)`
+  min-height: ${75 * GU}px;
+  max-height: ${75 * GU}px;
+
+  ${media.sm`
+    min-height: ${100 * GU}px;
+    max-height: ${100 * GU}px;
+  `}
+
+  ${media.md`
+    min-height: ${125 * GU}px;
+    max-height: ${125 * GU}px;
+  `}
+
+  ${media.xl`
+    max-width: ${160 * GU}px;
+  `}
+`;
 
 export const StyledContentContainer = styled.div`
   align-items: center;

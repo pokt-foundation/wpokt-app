@@ -7,6 +7,7 @@ import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
 import {
   StyledContentContainer,
+  StyledChartContainer,
   StyledFarmContainer,
   StyledHeader,
   StyledHeaderLeft,
@@ -49,7 +50,7 @@ const Stats: React.FC = () => {
               <StyledLine />
               <div id={'estimated-reward'}>
                 <P2 color={colors.white}>Total Staked</P2>
-                <Flex>
+                <Flex align={'center'}>
                   <StyledStakedText color={colors.white}>2,669.830235 wPOKT</StyledStakedText>
                   <StyledSelectorContainer farmSelected={farmSelected}>
                     <SelectorSvg />
@@ -73,11 +74,11 @@ const Stats: React.FC = () => {
                   size={'sm'}
                 />
               </StyledContentContainer>
-              <div>
-                <LineChart width={1000} height={450} data={data} margin={{ top: 50, right: 30, left: 20, bottom: 5 }}>
+              <StyledChartContainer>
+                <LineChart data={data} margin={{ top: 50, right: 30, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="time" height={75} tickMargin={15} />
-                  <YAxis tickMargin={15} />
+                  <XAxis dataKey="time" height={75} stroke={'#000'} tickMargin={15} />
+                  <YAxis stroke={'#000'} tickMargin={15} />
                   <Tooltip />
                   <Line
                     dot={{ strokeWidth: 2 * GU }}
@@ -87,7 +88,7 @@ const Stats: React.FC = () => {
                     stroke={colors.yellow}
                   />
                 </LineChart>
-              </div>
+              </StyledChartContainer>
             </StyledSmallInfoCardsContainer>
           )}
         </InnerCardContainer>

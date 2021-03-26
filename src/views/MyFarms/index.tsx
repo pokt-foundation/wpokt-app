@@ -59,7 +59,7 @@ const MyFarms: React.FC = () => {
               <StyledLine />
               <div id={'estimated-reward'}>
                 <P2 color={colors.white}>Total Staked</P2>
-                <Flex>
+                <Flex align={'center'}>
                   <StyledStakedText color={colors.white}>2,669.830235 wPOKT</StyledStakedText>
                   <StyledSelectorContainer farmSelected={farmSelected}>
                     <SelectorSvg />
