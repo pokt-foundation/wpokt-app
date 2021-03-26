@@ -10,10 +10,6 @@ export const StyledContentContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  ${media.lg`
-    width: ${184 * GU}px;
-  `}
-
   ${media.xl`
     width: ${250 * GU}px;
   `}

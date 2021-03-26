@@ -1,5 +1,6 @@
 import React from 'react';
-import { colors } from 'components/theme';
+import { CartesianGrid, LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
+import { colors, GU } from 'components/theme';
 
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
@@ -19,6 +20,13 @@ import { Flex } from 'components/Containers';
 import { Card, InnerCardContainer, MediumInfoCard } from 'components/Cards';
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
+
+const data = [
+  { time: 'Day 1', rewards: 1 },
+  { time: 'Day 2', rewards: 2 },
+  { time: 'Day 3', rewards: 4 },
+  { time: 'Day 4', rewards: 3 },
+];
 
 const Stats: React.FC = () => {
   const [farmSelected, setFarmSelected] = React.useState<boolean>(false);
@@ -65,7 +73,21 @@ const Stats: React.FC = () => {
                   size={'sm'}
                 />
               </StyledContentContainer>
-              <div>Graph</div>
+              <div>
+                <LineChart width={1000} height={450} data={data} margin={{ top: 50, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="time" height={75} tickMargin={15} />
+                  <YAxis tickMargin={15} />
+                  <Tooltip />
+                  <Line
+                    dot={{ strokeWidth: 2 * GU }}
+                    strokeWidth={GU}
+                    type={'linear'}
+                    dataKey="rewards"
+                    stroke={colors.yellow}
+                  />
+                </LineChart>
+              </div>
             </StyledSmallInfoCardsContainer>
           )}
         </InnerCardContainer>
