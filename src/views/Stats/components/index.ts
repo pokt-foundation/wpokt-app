@@ -10,20 +10,12 @@ export const StyledContentContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  ${media.sm`
-    width: ${104 * GU}px;
-  `}
-
-  ${media.md`
-    width: ${138 * GU}px;
-  `}
-
   ${media.lg`
-    width: ${164 * GU}px;
+    width: ${184 * GU}px;
   `}
 
   ${media.xl`
-    width: ${240 * GU}px;
+    width: ${250 * GU}px;
   `}
 `;
 
@@ -180,6 +172,7 @@ export const StyledSmallInfoCardsContainer = styled.div`
   border: ${GU}px solid #000000;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: ${2 * GU}px ${2 * GU}px 0;
@@ -195,5 +188,9 @@ export const StyledSmallInfoCardsContainer = styled.div`
 
   ${media.md`
     padding: ${7 * GU}px ${7 * GU}px 0;
+  `}
+
+  ${media.lg`
+    flex-direction: row;
   `}
 `;

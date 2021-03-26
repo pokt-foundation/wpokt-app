@@ -60,7 +60,7 @@ const MyFarms: React.FC = () => {
               <div id={'estimated-reward'}>
                 <P2 color={colors.white}>Total Staked</P2>
                 <Flex>
-                  <StyledStakedText color={colors.white}>2,669.830235wPOKT</StyledStakedText>
+                  <StyledStakedText color={colors.white}>2,669.830235 wPOKT</StyledStakedText>
                   <StyledSelectorContainer farmSelected={farmSelected}>
                     <SelectorSvg />
                   </StyledSelectorContainer>
@@ -83,7 +83,7 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCardExtraLinks />
               </StyledContentContainer>
               <div>
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Yield Earned'} icon={'rake'} />
+                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Yield Earned'} icon={'rake'} size={'md'} />
                 <MediumDepositWithdrawLinks onDepositWithdrawLink={onDepositWithdrawLink} />
                 <MediumStatsFaqLinks />
               </div>

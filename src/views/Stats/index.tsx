@@ -16,7 +16,7 @@ import {
   StyledStakedText,
 } from './components';
 import { Flex } from 'components/Containers';
-import { Card, InnerCardContainer } from 'components/Cards';
+import { Card, InnerCardContainer, MediumInfoCard } from 'components/Cards';
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
@@ -42,7 +42,7 @@ const Stats: React.FC = () => {
               <div id={'estimated-reward'}>
                 <P2 color={colors.white}>Total Staked</P2>
                 <Flex>
-                  <StyledStakedText color={colors.white}>2,669.830235wPOKT</StyledStakedText>
+                  <StyledStakedText color={colors.white}>2,669.830235 wPOKT</StyledStakedText>
                   <StyledSelectorContainer farmSelected={farmSelected}>
                     <SelectorSvg />
                   </StyledSelectorContainer>
@@ -52,7 +52,19 @@ const Stats: React.FC = () => {
           </StyledHeader>
           {farmSelected && (
             <StyledSmallInfoCardsContainer>
-              <StyledContentContainer>Cards</StyledContentContainer>
+              <StyledContentContainer>
+                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Staked'} icon={'chest'} size={'sm'} />
+                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total  Rewards'} icon={'star'} size={'sm'} />
+                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Locked Rewards'} icon={'padlock'} size={'sm'} />
+                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Unlocked Rewards'} icon={'key'} size={'sm'} />
+                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Duration'} icon={'clock'} size={'sm'} />
+                <MediumInfoCard
+                  amount={'5,563.865330 wPOKT'}
+                  header={'Reward unlock Rate'}
+                  icon={'diamond'}
+                  size={'sm'}
+                />
+              </StyledContentContainer>
               <div>Graph</div>
             </StyledSmallInfoCardsContainer>
           )}

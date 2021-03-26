@@ -90,8 +90,8 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
           <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={true} />
         </StyledContentContainer>
         <div>
-          <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Deposit'} icon={'chest'} />
-          <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Rewards Claimed'} icon={'rewards'} />
+          <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Deposit'} icon={'chest'} size={'md'} />
+          <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Rewards Claimed'} icon={'rewards'} size={'md'} />
         </div>
       </StyledSmallInfoCardsContainer>
     </div>
