@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { colors } from 'components/theme';
 
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
@@ -25,7 +26,17 @@ import {
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
+import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
+
 const MyFarms: React.FC = () => {
+  const history = useHistory();
+  const { onSetActionType } = React.useContext(DepositWithdrawalContext);
+
+  const onDepositWithdrawLink = (actionType: 'deposit' | 'withdraw') => {
+    onSetActionType(actionType);
+    history.replace('/');
+  };
+
   return (
     <>
       <Spacer size={'md'} />
@@ -63,7 +74,7 @@ const MyFarms: React.FC = () => {
             </StyledContentContainer>
             <div>
               <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Yield Earned'} icon={'rake'} />
-              <MediumDepositWithdrawLinks />
+              <MediumDepositWithdrawLinks onDepositWithdrawLink={onDepositWithdrawLink} />
               <MediumStatsFaqLinks />
             </div>
           </StyledSmallInfoCardsContainer>

@@ -71,10 +71,14 @@ const StyledMediumInfoCardContainer = styled.div`
   }
 `;
 
-export const MediumDepositWithdrawLinks: React.FC = () => {
+interface IMediumDepositWithdrawLinks {
+  onDepositWithdrawLink: (actionType: 'deposit' | 'withdraw') => void;
+}
+
+export const MediumDepositWithdrawLinks: React.FC<IMediumDepositWithdrawLinks> = ({ onDepositWithdrawLink }) => {
   return (
     <StyledLinksContainer>
-      <StyledLinkButton color={colors.green}>
+      <StyledLinkButton color={colors.green} onClick={() => onDepositWithdrawLink('deposit')}>
         <P2 color={colors.white}>Deposit</P2>
         <div
           css={`
@@ -85,7 +89,7 @@ export const MediumDepositWithdrawLinks: React.FC = () => {
           <CaretSvg />
         </div>
       </StyledLinkButton>
-      <StyledLinkButton color={colors.red}>
+      <StyledLinkButton color={colors.red} onClick={() => onDepositWithdrawLink('withdraw')}>
         <P2 color={colors.white}>Withdraw</P2>
         <div
           css={`
