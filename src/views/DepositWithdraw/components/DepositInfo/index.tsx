@@ -1,5 +1,4 @@
 import React from 'react';
-import TokenAmount from 'token-amount';
 import 'styled-components/macro';
 import { colors } from 'components/theme';
 
@@ -22,16 +21,12 @@ import {
 import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
 
-import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
-
-import { useFarmStats } from 'hooks/useFarmStats';
-
 interface IDepositInfo {
   farmSelected: boolean;
 }
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
-  const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  // const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(false);
 
   return (
@@ -54,13 +49,9 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
-        <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${apy.toString()}%`} />
+        <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={'50%'} />
         <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
-        <SmallInfoCard
-          iconType={'question'}
-          statTitle={'TOTAL STAKED'}
-          statContent={TokenAmount.format(totalStaked, 18, { symbol: 'wPOKT' })}
-        />
+        <SmallInfoCard iconType={'question'} statTitle={'TOTAL STAKED'} statContent={'12345 wPOKT'} />
         <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
         <SmallInfoCard iconType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
         <SmallInfoCardExtraLinks />

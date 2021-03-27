@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BigIntish, TimeRemaining } from 'utils/types';
+import { TimeRemaining } from 'utils/types';
 
 import dayjs from 'dayjs';
 import gql from 'graphql-tag';
@@ -9,10 +9,11 @@ import { DocumentNode } from 'graphql';
 
 import { getTimeRemaining } from 'utils/helpers';
 import { WPOKT_SUBGRAPH_URL } from 'constants/index';
+import { BigNumber } from 'bignumber.js';
 
 const RETRY_EVERY = 3000;
-const DAYS_IN_MONTH = dayjs().daysInMonth();
-const ZERO = 0n;
+const DAYS_IN_MONTH = new BigNumber(dayjs().daysInMonth());
+const ZERO = new BigNumber(0);
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
@@ -29,10 +30,12 @@ const FARM_STATS_QUERY: DocumentNode = gql`
   }
 `;
 
+type BigNumberish = BigNumber.Value;
+
 type FarmStatsResponse = {
-  apy: BigIntish;
-  tvl: BigIntish;
-  staked: BigIntish;
+  apy: BigNumberish;
+  tvl: BigNumberish;
+  staked: BigNumberish;
   bonusPeriodSec: number;
   createdTimestamp: number;
   totalUnlockedRewards: string;
@@ -62,13 +65,13 @@ export function useFarmStats(farmAddress: string) {
         ] = result.data.tokenGeysers;
         console.log(result.data.tokenGeysers);
 
-        const parsedAPY = BigInt(apy);
-        const parsedTVL = BigInt(tvl);
-        const parsedStaked = BigInt(staked);
+        const parsedAPY = new BigNumber(apy);
+        const parsedTVL = new BigNumber(tvl);
+        const parsedStaked = new BigNumber(staked);
 
-        const parsedTotalUnlockedRewards = BigInt(totalUnlockedRewards);
+        const parsedTotalUnlockedRewards = new BigNumber(totalUnlockedRewards);
 
-        const unlockRate = parsedTotalUnlockedRewards / BigInt(DAYS_IN_MONTH);
+        const unlockRate = parsedTotalUnlockedRewards.div(DAYS_IN_MONTH);
 
         const today = dayjs();
 

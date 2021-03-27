@@ -110,6 +110,7 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
       setDisplayValue(inputValue);
       const response = await stake(parseInputValue(inputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
       setInputValue('');
+
       if (typeof response === 'boolean') {
         return response;
       } else {

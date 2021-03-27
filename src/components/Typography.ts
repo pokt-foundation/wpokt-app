@@ -100,7 +100,7 @@ export const P2 = styled.p<ITypograhpy>`
     css`
       text-align: center;
     `}
-
+    
   ${(props) =>
     props.color &&
     css`
