@@ -35,6 +35,41 @@ export const StyledContentContainer = styled.div`
   `}
 `;
 
+export const StyledExpandButton = styled.button`
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: ${9 * GU}px;
+  top: ${180 * GU}px;
+
+  ${media.xs`
+    right: ${12 * GU}px;
+    top: ${200 * GU}px;
+  `}
+
+  ${media.sm`
+    right: ${12 * GU}px;
+    top: ${105 * GU}px;
+  `}
+
+  ${media.md`
+    right: ${15 * GU}px;
+    top: ${115 * GU}px;
+  `}
+
+  ${media.lg`
+    top: ${80 * GU}px;
+  `}
+
+  ${media.xl`
+    top: ${10 * GU}px;
+  `}
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const StyledFarmContainer = styled.div`
   height: ${7 * GU}px;
   margin-right: ${5 * GU}px;
@@ -192,6 +227,7 @@ export const StyledSmallInfoCardsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   padding: ${2 * GU}px ${2 * GU}px 0;
+  position: relative;
   width: 100%;
 
   ${media.xs`

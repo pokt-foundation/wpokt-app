@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ConfirmTransaction from './ConfirmTransaction';
+import GraphFullscreen from './GraphFullscreen';
 import TransactionStatus from './TransactionStatus';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
@@ -18,6 +19,7 @@ const Modals: React.FC = () => {
           {(selectedModal === 'TRANSACTION_WAITING' ||
             selectedModal === 'TRANSACTION_APPROVED' ||
             selectedModal === 'TRANSACTION_REJECTED') && <TransactionStatus type={selectedModal} />}
+          {selectedModal === 'GRAPH_FULLSCREEN' && <GraphFullscreen />}
         </>
       )}
     </>

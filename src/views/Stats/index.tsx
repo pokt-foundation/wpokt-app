@@ -2,12 +2,14 @@ import React from 'react';
 import { CartesianGrid, LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
 import { colors, GU } from 'components/theme';
 
+import { ReactComponent as ExpandSvg } from 'assets/icons/expand.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
 import {
   StyledContentContainer,
   StyledChartContainer,
+  StyledExpandButton,
   StyledFarmContainer,
   StyledHeader,
   StyledHeaderLeft,
@@ -22,6 +24,8 @@ import { Card, InnerCardContainer, MediumInfoCard } from 'components/Cards';
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
+import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
+
 const data = [
   { time: 'Day 1', rewards: 1 },
   { time: 'Day 2', rewards: 2 },
@@ -30,6 +34,7 @@ const data = [
 ];
 
 const Stats: React.FC = () => {
+  const { onSelectModal } = React.useContext(DepositWithdrawalContext);
   const [farmSelected, setFarmSelected] = React.useState<boolean>(false);
 
   return (
@@ -89,6 +94,9 @@ const Stats: React.FC = () => {
                   />
                 </LineChart>
               </StyledChartContainer>
+              <StyledExpandButton onClick={() => onSelectModal('GRAPH_FULLSCREEN')}>
+                <ExpandSvg />
+              </StyledExpandButton>
             </StyledSmallInfoCardsContainer>
           )}
         </InnerCardContainer>
