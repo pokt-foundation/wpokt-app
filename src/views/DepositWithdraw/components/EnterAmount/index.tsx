@@ -8,6 +8,8 @@ import { ReactComponent as ApproveButtonActiveSvg } from 'assets/icons/approve_b
 import { ReactComponent as ApproveButtonDisabledSvg } from 'assets/icons/approve_button_disabled.svg';
 import { ReactComponent as DepositButtonActiveSvg } from 'assets/icons/deposit_button_active.svg';
 import { ReactComponent as DepositButtonDisabledSvg } from 'assets/icons/deposit_button_disabled.svg';
+import { ReactComponent as WithdrawButtonActiveSvg } from 'assets/icons/withdraw_button_active.svg';
+import { ReactComponent as WithdrawButtonDisabledSvg } from 'assets/icons/withdraw_button_disabled.svg';
 import { ReactComponent as MaxSvg } from 'assets/icons/max.svg';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
@@ -29,12 +31,13 @@ import { API as OnboardAPI } from 'libs/types';
 import useApproval from 'hooks/useApproval';
 
 interface IEnterAmount {
+  actionType: 'deposit' | 'withdraw';
   farmSelected: boolean;
   readyToTransact: (onboard: OnboardAPI | null, provider: Provider | null) => Promise<boolean>;
   setFarmSelected: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTransact, setFarmSelected }) => {
+export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, readyToTransact, setFarmSelected }) => {
   const { inputValue, onChangeInput, onSelectModal } = React.useContext(DepositWithdrawalContext);
   const { address, onboard, provider, signer } = React.useContext(Web3Context);
   const { wpoktBalance } = React.useContext(BalanceContext);
@@ -53,7 +56,6 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
     }
   }, [address, setFarmSelected, inputValue]);
 
-  // This is a placeholder, which will eventually launch the transaction status modal
   React.useEffect(() => {
     if (isApproving) {
       console.log('Approving...');
@@ -89,11 +91,13 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
         <StyledHeaderRight>
           <StyledLine />
           <div id={'wallet-balance'}>
-            <P2 color={colors.white}>
-              {wpoktBalance
-                ? `Wallet balance: ${TokenAmount.format(wpoktBalance, 18, { symbol: 'wPOKT' })}`
-                : 'Wallet balance: connect wallet'}
-            </P2>
+            {actionType === 'deposit' && (
+              <P2 color={colors.white}>
+                {wpoktBalance
+                  ? `Wallet balance: ${TokenAmount.format(wpoktBalance, 18, { symbol: 'wPOKT' })}`
+                  : 'Wallet balance: connect wallet'}
+              </P2>
+            )}
             <StyledMaxButton onClick={onMaxValue}>
               <div id={'max-svg'}>
                 <MaxSvg />
@@ -107,7 +111,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
       </StyledHeader>
       <StyledDepositInputContainer>
         <input
-          placeholder={'How much do you want to deposit?'}
+          placeholder={`How much do you want to ${actionType}?`}
           type={'number'}
           min={'0'}
           step={'0.01'}
@@ -120,7 +124,8 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ farmSelected, readyToTrans
           </button>
         ) : (
           <button disabled={isDisabled} onClick={onConfirmDeposit}>
-            {isDisabled ? <DepositButtonDisabledSvg /> : <DepositButtonActiveSvg />}
+            {actionType === 'deposit' && (isDisabled ? <DepositButtonDisabledSvg /> : <DepositButtonActiveSvg />)}
+            {actionType === 'withdraw' && (isDisabled ? <WithdrawButtonDisabledSvg /> : <WithdrawButtonActiveSvg />)}
           </button>
         )}
       </StyledDepositInputContainer>

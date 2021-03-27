@@ -2,6 +2,9 @@ import React from 'react';
 import 'styled-components/macro';
 import { colors } from 'components/theme';
 
+import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
+import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
+
 import {
   SmallInfoCard,
   SmallInfoCardExtraLinks,
@@ -18,14 +21,14 @@ import {
 import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
 
-import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
-import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
-
-interface IInfoCard {
+interface IDepositInfo {
   farmSelected: boolean;
 }
 
-export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
+export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
+  // const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const [showMore, setShowMore] = React.useState<boolean>(false);
+
   return (
     <div>
       <StyledHeader farmSelected={farmSelected}>
@@ -46,15 +49,16 @@ export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
-        <SmallInfoCard statType={'question'} statTitle={'APY'} statContent={'55.4 %'} />
-        <SmallInfoCard statType={'multiplier'} statTitle={'Multiplier'} statContent={'1.0 X'} />
-        <SmallInfoCard statType={'question'} statTitle={'TOTAL STAKED'} statContent={'86,976.98 wpokt'} />
-        <SmallInfoCard statType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
-        <SmallInfoCard statType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
+        <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={'50%'} />
+        <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
+        <SmallInfoCard iconType={'question'} statTitle={'TOTAL STAKED'} statContent={'12345 wPOKT'} />
+        <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
+        <SmallInfoCard iconType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
         <SmallInfoCardExtraLinks />
       </StyledSmallInfoCardsContainer>
-      <StyledMoreInfoContainer>
+      <StyledMoreInfoContainer showMore={showMore}>
         <button
+          onClick={() => setShowMore(!showMore)}
           css={`
             background: transparent;
             border: none;
@@ -72,6 +76,17 @@ export const InfoCard: React.FC<IInfoCard> = ({ farmSelected }) => {
           </Flex>
         </button>
       </StyledMoreInfoContainer>
+      {showMore && (
+        <>
+          <StyledSmallInfoCardsContainer>
+            <SmallInfoCard iconType={'question'} statTitle={'Farm Ownership'} statContent={'12%'} />
+            <SmallInfoCard iconType={'caret'} statTitle={'Apps'} statContent={'12'} />
+            <SmallInfoCard iconType={'question'} statTitle={'Usage'} statContent={'55.4%'} />
+            <SmallInfoCard iconType={'question'} statTitle={'xxxxxx'} statContent={'00.00'} />
+            <SmallInfoCardExtraLinks showOnDesktop={true} />
+          </StyledSmallInfoCardsContainer>
+        </>
+      )}
     </div>
   );
 };

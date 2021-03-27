@@ -48,6 +48,7 @@ export const H2 = styled.h2<ITypograhpy>`
   ${media.md`
     font-size: 1.6rem;
     letter-spacing: 3px;
+    line-height: 2rem;
   `}
 
   ${(props) =>
@@ -94,6 +95,24 @@ export const P2 = styled.p<ITypograhpy>`
         font-size: 1.4rem;
     `}
   
+  ${(props) =>
+    props.center &&
+    css`
+      text-align: center;
+    `}
+    
+  ${(props) =>
+    props.color &&
+    css`
+      color: ${props.color};
+    `}
+`;
+
+export const P3 = styled.p<ITypograhpy>`
+  font-family: PixelSplitter;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+
   ${(props) =>
     props.center &&
     css`

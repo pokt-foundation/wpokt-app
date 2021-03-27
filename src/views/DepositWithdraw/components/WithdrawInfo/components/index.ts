@@ -3,6 +3,32 @@ import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
 export { SmallInfoCard, SmallInfoCardExtraLinks } from './SmallInfoCard';
+export { MediumInfoCard } from './MediumInfoCard';
+
+export const StyledContentContainer = styled.div`
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  ${media.sm`
+    width: ${104 * GU}px;
+  `}
+
+  ${media.md`
+    width: ${138 * GU}px;
+  `}
+
+  ${media.lg`
+    width: ${164 * GU}px;
+  `}
+
+  ${media.xl`
+    width: ${240 * GU}px;
+  `}
+`;
 
 export const StyledFarmContainer = styled.div`
   height: ${7 * GU}px;
@@ -115,32 +141,6 @@ export const StyledLine = styled.div`
   `}
 `;
 
-export const StyledMoreInfoContainer = styled.div`
-  align-items: center;
-  background: ${colors.grey};
-  border: ${GU}px solid #000000;
-  border-top: none;
-  display: flex;
-  height: ${9 * GU}px;
-  justify-content: flex-end;
-  padding-right: ${5 * GU}px;
-  width: 100%;
-
-  div {
-    &:hover {
-      cursor: pointer;
-
-      div#selector-container {
-        transform: rotate(90deg) translateX(-2px);
-      }
-    }
-  }
-
-  ${media.xs`
-    height: ${10 * GU}px;
-  `}
-`;
-
 export const StyledRewardText = styled.p`
   color: ${colors.white};
   font-family: PixelSplitter;
@@ -156,27 +156,6 @@ export const StyledRewardText = styled.p`
   `}
 `;
 
-export const StyledSelectorContainer = styled.div`
-  fill: ${colors.white};
-  height: ${3 * GU}px;
-  margin-left: ${4 * GU}px;
-  transform: rotate(90deg);
-  transition: all 0.3s ease;
-  width: ${3 * GU}px;
-
-  ${media.xs`
-    height: ${4 * GU}px;
-    margin-left: ${4 * GU}px;
-    width: ${4 * GU}px;
-  `}
-
-  ${media.md`
-    height: ${4 * GU}px;
-    margin-left: ${5 * GU}px;
-    width: ${4 * GU}px;
-  `}
-`;
-
 export const StyledSmallInfoCardsContainer = styled.div`
   align-items: center;
   background: #fff;
@@ -184,14 +163,12 @@ export const StyledSmallInfoCardsContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  height: ${90 * GU}px;
   justify-content: space-between;
-  padding: ${2 * GU}px;
+  padding: ${2 * GU}px ${2 * GU}px 0;
   width: 100%;
 
   ${media.xs`
-    height: ${100 * GU}px;
-    padding: ${5 * GU}px;
+    padding: ${5 * GU}px ${5 * GU}px 0;
   `}
 
   ${media.sm`
@@ -199,6 +176,6 @@ export const StyledSmallInfoCardsContainer = styled.div`
   `}
 
   ${media.md`
-    padding: ${7 * GU}px;
+    padding: ${7 * GU}px ${7 * GU}px 0;
   `}
 `;

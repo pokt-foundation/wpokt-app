@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 
 import { TimeRemaining } from 'utils/types';
 
@@ -18,7 +18,7 @@ const ZERO = new BigNumber(0);
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
 const FARM_STATS_QUERY: DocumentNode = gql`
-  query FARM_STATS($farmAddress: ID!) {
+  query FARM_STATS($farmAddress: ID) {
     tokenGeysers(id: $farmAddress) {
       apy
       tvl
@@ -38,25 +38,17 @@ type FarmStatsResponse = {
   staked: BigNumberish;
   bonusPeriodSec: number;
   createdTimestamp: number;
-  totalUnlockedRewards: BigNumberish;
+  totalUnlockedRewards: string;
 };
 
-type FarmStatsHook = {
-  apy: BigNumber;
-  tvl: BigNumber;
-  totalStaked: BigNumber;
-  rewardUnlockRate: BigNumber;
-  timeRemaining: TimeRemaining | undefined;
-};
+export function useFarmStats(farmAddress: string) {
+  const [apy, setAPY] = React.useState(ZERO);
+  const [tvl, setTVL] = React.useState(ZERO);
+  const [totalStaked, setTotalStaked] = React.useState(ZERO);
+  const [rewardUnlockRate, setRewardUnlockRate] = React.useState(ZERO);
+  const [timeRemaining, setTimeRemaining] = React.useState<TimeRemaining>();
 
-export function useFarmStats(farmAddress: string): FarmStatsHook {
-  const [apy, setAPY] = useState(ZERO);
-  const [tvl, setTVL] = useState(ZERO);
-  const [totalStaked, setTotalStaked] = useState(ZERO);
-  const [rewardUnlockRate, setRewardUnlockRate] = useState(ZERO);
-  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>();
-
-  useEffect(() => {
+  React.useEffect(() => {
     let cancelled = false;
     let retryTimer: ReturnType<typeof setTimeout>;
 
@@ -71,6 +63,7 @@ export function useFarmStats(farmAddress: string): FarmStatsHook {
         const [{ apy, tvl, staked, bonusPeriodSec, createdTimestamp, totalUnlockedRewards }]: [
           FarmStatsResponse,
         ] = result.data.tokenGeysers;
+        console.log(result.data.tokenGeysers);
 
         const parsedAPY = new BigNumber(apy);
         const parsedTVL = new BigNumber(tvl);

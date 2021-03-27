@@ -160,6 +160,7 @@ export const StyledHeaderRight = styled.div`
     `}
 
     ${media.sm`
+      justify-content: flex-end;
       padding: ${7 * GU}px ${7 * GU}px ${7 * GU}px 0;
     `}
   }
@@ -182,7 +183,6 @@ export const StyledMaxButton = styled.button`
   display: flex;
   height: ${4 * GU}px;
   justify-content: center;
-  margin-left: ${3 * GU}px;
 
   div#max-svg {
     align-items: center;
@@ -230,7 +230,6 @@ export const StyledMaxButton = styled.button`
 
   ${media.xs`
     height: ${5 * GU}px;
-    margin-left: ${5 * GU}px;
   `}
 
   ${media.sm`
