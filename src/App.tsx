@@ -14,6 +14,7 @@ import { Web3Context } from 'contexts/Web3';
 
 import DepositWithdraw from 'views/DepositWithdraw';
 import MyFarms from 'views/MyFarms';
+import SalesInfo from 'views/SalesInfo';
 import Stats from 'views/Stats';
 
 const App: React.FC = () => {
@@ -95,6 +96,9 @@ const App: React.FC = () => {
                   New Farm
                 </div>
               </div>
+            </Route>
+            <Route exact path="/sales-info">
+              <SalesInfo />
             </Route>
             <Route exact path="/stats">
               <Stats />
