@@ -1,11 +1,19 @@
 import React from 'react';
-import { Bar, BarChart, ErrorBar, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import styled from 'styled-components';
-import { colors, GU } from 'components/theme';
+import { Bar, BarChart, ErrorBar, Tooltip, XAxis, YAxis } from 'recharts';
+import { colors } from 'components/theme';
 
+import { ReactComponent as BuyWpoktSvg } from 'assets/icons/buy_wpokt_button.svg';
+
+import {
+  StyledButtonContainer,
+  StyledChartContainer,
+  StyledContentContainer,
+  StyledContentTextContainer,
+  StyledInfoCard,
+} from './components';
 import { Card, InnerCardContainer } from 'components/Cards';
 import Spacer from 'components/Spacer';
-import { H1, P1, P2 } from 'components/Typography';
+import { H1, H2, P1, P2 } from 'components/Typography';
 
 const data = [
   { name: 'Day 1', max: 20000, min: 10000, error: [1000, 1000] },
@@ -17,18 +25,16 @@ const data = [
   { name: 'Day 7', max: 2000, min: 1000, error: [1200, 2000] },
 ];
 
-const lineWidth = 3;
-
 const SalesInfo: React.FC = () => {
   return (
     <>
       <Spacer size={'md'} />
       <Card>
         <InnerCardContainer borderBottom={false}>
-          <StyledGraphContainer>
-            <StyledGraphTextContainer>
+          <StyledContentContainer>
+            <StyledContentTextContainer>
               <H1 color={colors.white}>wPOKT Liquidity bootstrapping Event</H1>
-            </StyledGraphTextContainer>
+            </StyledContentTextContainer>
             <StyledChartContainer>
               <BarChart width={600} height={300} data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
                 <XAxis xAxisId={0} dataKey="name" hide />
@@ -42,12 +48,49 @@ const SalesInfo: React.FC = () => {
                 </Bar>
               </BarChart>
             </StyledChartContainer>
-            <StyledGraphTextContainer>
+            <StyledContentTextContainer>
               <P1 color={colors.white}>Price movement if nobody buys</P1>
               <Spacer size={'xs'} />
               <P2 color={colors.red}>89% wPokt sold</P2>
-            </StyledGraphTextContainer>
-          </StyledGraphContainer>
+            </StyledContentTextContainer>
+          </StyledContentContainer>
+          <Spacer size={'md'} />
+          <StyledInfoCard>
+            <P2 color={colors.white} center={true}>
+              {' '}
+              Welcome to the wPOKT distribution event. This distribution is the first opportunity to acquire wPOKT that
+              will enable holders to participate in wPOKT. The distribution will occur on Balancer using a Liquidity
+              Bootstrapping Pool. Before participating in wPOKT, we highly encourage users to read all of the wPOKT
+              documentation and information located in the links below. Welcome aboard and happy farming.
+            </P2>
+            <Spacer size={'md'} />
+            <H2 color={colors.white} center={true}>
+              WPOKT: 0,00006373 USDC/ DAI
+            </H2>
+          </StyledInfoCard>
+          <Spacer size={'md'} />
+          <StyledContentContainer>
+            <StyledContentTextContainer>
+              <H1 color={colors.white}>Resources</H1>
+            </StyledContentTextContainer>
+            <StyledButtonContainer>
+              <div>
+                <BuyWpoktSvg />
+              </div>
+              <div>
+                <BuyWpoktSvg />
+              </div>
+              <div>
+                <BuyWpoktSvg />
+              </div>
+              <div>
+                <BuyWpoktSvg />
+              </div>
+              <div>
+                <BuyWpoktSvg />
+              </div>
+            </StyledButtonContainer>
+          </StyledContentContainer>
         </InnerCardContainer>
       </Card>
       <Spacer size={'lg'} />
@@ -56,20 +99,3 @@ const SalesInfo: React.FC = () => {
 };
 
 export default SalesInfo;
-
-export const StyledChartContainer = styled(ResponsiveContainer)`
-  background: white;
-  min-height: ${125 * GU}px;
-`;
-
-const StyledGraphContainer = styled.div`
-  border: ${GU}px solid #000;
-`;
-
-const StyledGraphTextContainer = styled.div`
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  padding: ${5 * GU}px;
-  width: 100%;
-`;
