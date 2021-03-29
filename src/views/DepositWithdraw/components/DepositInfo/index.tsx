@@ -29,7 +29,7 @@ interface IDepositInfo {
 }
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
-  const { apy, tvl, totalStaked, rewardUnlockRate, timeRemaining } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(false);
   console.log(totalStaked.toString());
 

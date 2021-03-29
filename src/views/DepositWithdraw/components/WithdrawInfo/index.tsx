@@ -18,7 +18,11 @@ import {
 import { MediumInfoCard, SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import { H1, P2 } from 'components/Typography';
 
+import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+
 import { Web3Context } from 'contexts/Web3';
+
+import { useFarmStats } from 'hooks/useFarmStats';
 
 interface IWithdraw {
   farmSelected: boolean;
@@ -61,6 +65,7 @@ interface IWithdrawFarm {
 }
 
 const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
+  const { apy, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   return (
     <div>
       <StyledHeader farmSelected={farmSelected}>
@@ -76,13 +81,13 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
           <StyledLine />
           <div id={'estimated-reward'}>
             <P2 color={colors.white}>Yeild Earned</P2>
-            <StyledRewardText color={colors.white}>00.0000000 wPOKT</StyledRewardText>
+            <StyledRewardText color={colors.white}>{totalStaked.multipliedBy(apy).toFixed(6)} wPOKT*</StyledRewardText>
           </div>
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
         <StyledContentContainer>
-          <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={'10%'} />
+          <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${apy}%`} />
           <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
           <SmallInfoCard iconType={'question'} statTitle={'Farm Ownership'} statContent={'4%'} />
           <SmallInfoCard iconType={'caret'} statTitle={'Duration'} statContent={'2 Days Left'} statFill={38} />
@@ -90,8 +95,8 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
           <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={true} />
         </StyledContentContainer>
         <div>
-          <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Deposit'} icon={'chest'} size={'md'} />
-          <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Rewards Claimed'} icon={'rewards'} size={'md'} />
+          <MediumInfoCard amount={`${totalStaked} wPOKT`} header={'Total Deposit'} icon={'chest'} size={'md'} />
+          <MediumInfoCard amount={`${tvl} wPOKT`} header={'Rewards Claimed'} icon={'rewards'} size={'md'} />
         </div>
       </StyledSmallInfoCardsContainer>
     </div>

@@ -24,10 +24,15 @@ import { H1, H2, P2 } from 'components/Typography';
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { Web3Context } from 'contexts/Web3';
 
+import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+
+import { useFarmStats } from 'hooks/useFarmStats';
+
 import { shortenAddress } from 'utils';
 
 const ConfirmDeposit: React.FC = () => {
   const { inputValue, onCloseModal, onDeposit } = React.useContext(DepositWithdrawalContext);
+  const { apy } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const { address } = React.useContext(Web3Context);
 
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
@@ -106,7 +111,7 @@ const ConfirmDeposit: React.FC = () => {
               <P2 color={colors.white}>APY</P2>
             </StyledDetailHeader>
             <StyledContentContainer>
-              <P2 color={'#000'}>55,4 %</P2>
+              <P2 color={'#000'}>{apy} %</P2>
             </StyledContentContainer>
           </div>
           <div

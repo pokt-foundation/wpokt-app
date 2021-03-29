@@ -28,7 +28,10 @@ import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
+import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+
 import useApproval from 'hooks/useApproval';
+import { useFarmStats } from 'hooks/useFarmStats';
 
 interface IEnterAmount {
   actionType: 'deposit' | 'withdraw';
@@ -43,6 +46,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const { wpoktBalance } = React.useContext(BalanceContext);
 
   const { isApproved, isApproving, onApprove } = useApproval();
+  const { totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
 
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
 
@@ -76,8 +80,12 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   };
 
   const onMaxValue = () => {
-    const amount = new TokenAmount(wpoktBalance, 18);
-    onChangeInput(amount.format({ commify: false }));
+    if (actionType === 'deposit') {
+      const amount = new TokenAmount(wpoktBalance, 18);
+      onChangeInput(amount.format({ commify: false }));
+    } else if (actionType === 'withdraw') {
+      onChangeInput(totalStaked.toString());
+    }
   };
 
   return (
