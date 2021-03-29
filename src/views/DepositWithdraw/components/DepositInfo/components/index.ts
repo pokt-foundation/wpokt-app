@@ -129,12 +129,13 @@ export const StyledMoreInfoContainer = styled.div<IStyledMoreInfoContainer>`
   width: 100%;
 
   div {
-    &:hover {
-      cursor: pointer;
-
-      div#selector-container {
-        transform: rotate(90deg) translateX(-2px);
-      }
+    div#selector-container {
+      transform: rotate(0deg);
+      ${(props) =>
+        props.showMore &&
+        css`
+          transform: rotate(90deg);
+        `}
     }
   }
 
