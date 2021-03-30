@@ -41,7 +41,7 @@ const data = [
 
 const Stats: React.FC = () => {
   const { onSelectModal } = React.useContext(DepositWithdrawalContext);
-  const { rewardUnlockRate, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { rewardUnlockRate, timeRemaining, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const [farmSelected, setFarmSelected] = React.useState<boolean>(false);
 
   return (
@@ -90,7 +90,7 @@ const Stats: React.FC = () => {
                   size={'sm'}
                 />
                 <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Unlocked Rewards'} icon={'key'} size={'sm'} />
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Duration'} icon={'clock'} size={'sm'} />
+                <MediumInfoCard amount={`${timeRemaining?.days} Days`} header={'Duration'} icon={'clock'} size={'sm'} />
                 <MediumInfoCard
                   amount={rewardUnlockRate.toFixed(6)}
                   header={'Reward unlock Rate'}
