@@ -194,6 +194,7 @@ export const StyledSelectorContainer = styled.div<IStyledSelectorContainer>`
   height: ${5 * GU}px;
   margin-left: ${5 * GU}px;
   width: ${5 * GU}px;
+  transition: all 0.3s ease;
 
   ${(props) =>
     props.farmSelected &&

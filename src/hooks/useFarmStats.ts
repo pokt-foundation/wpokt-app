@@ -41,7 +41,15 @@ type FarmStatsResponse = {
   totalUnlockedRewards: string;
 };
 
-export function useFarmStats(farmAddress: string) {
+type FarmStatsReturnType = {
+  apy: BigNumber;
+  tvl: BigNumber;
+  totalStaked: BigNumber;
+  rewardUnlockRate: BigNumber;
+  timeRemaining?: TimeRemaining;
+};
+
+export function useFarmStats(farmAddress: string): FarmStatsReturnType {
   const [apy, setAPY] = React.useState(ZERO);
   const [tvl, setTVL] = React.useState(ZERO);
   const [totalStaked, setTotalStaked] = React.useState(ZERO);
@@ -76,7 +84,8 @@ export function useFarmStats(farmAddress: string) {
         const today = dayjs();
 
         // Calculate farm end date based on the bonus period (at this time, all rewards are unlocked)
-        const farmEndDate = dayjs.unix(createdTimestamp + bonusPeriodSec);
+        const farmEndDateSeconds = +createdTimestamp + +bonusPeriodSec;
+        const farmEndDate = dayjs.unix(farmEndDateSeconds);
         const farmTimeLeft = farmEndDate.diff(today, 'seconds');
 
         const timeRemaining: TimeRemaining = getTimeRemaining(farmTimeLeft);

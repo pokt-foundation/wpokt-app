@@ -24,6 +24,8 @@ import { Web3Context } from 'contexts/Web3';
 
 import { useFarmStats } from 'hooks/useFarmStats';
 
+import { commifyString } from 'utils';
+
 interface IWithdraw {
   farmSelected: boolean;
 }
@@ -65,7 +67,7 @@ interface IWithdrawFarm {
 }
 
 const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
-  const { apy, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apy, timeRemaining, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   return (
     <div>
       <StyledHeader farmSelected={farmSelected}>
@@ -81,22 +83,39 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
           <StyledLine />
           <div id={'estimated-reward'}>
             <P2 color={colors.white}>Yeild Earned</P2>
-            <StyledRewardText color={colors.white}>{totalStaked.multipliedBy(apy).toFixed(6)} wPOKT*</StyledRewardText>
+            <StyledRewardText color={colors.white}>
+              {commifyString(totalStaked.multipliedBy(apy).toFixed(6))} wPOKT*
+            </StyledRewardText>
           </div>
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
         <StyledContentContainer>
-          <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${apy}%`} />
+          <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${commifyString(apy.toFixed(2))}%`} />
           <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
           <SmallInfoCard iconType={'question'} statTitle={'Farm Ownership'} statContent={'4%'} />
-          <SmallInfoCard iconType={'caret'} statTitle={'Duration'} statContent={'2 Days Left'} statFill={38} />
+          <SmallInfoCard
+            iconType={'caret'}
+            statTitle={'Duration'}
+            statContent={`${timeRemaining?.days} Days Left`}
+            statFill={38}
+          />
           <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
           <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={true} />
         </StyledContentContainer>
         <div>
-          <MediumInfoCard amount={`${totalStaked} wPOKT`} header={'Total Deposit'} icon={'chest'} size={'md'} />
-          <MediumInfoCard amount={`${tvl} wPOKT`} header={'Rewards Claimed'} icon={'rewards'} size={'md'} />
+          <MediumInfoCard
+            amount={`${commifyString(totalStaked.toFixed(6))} wPOKT`}
+            header={'Total Deposit'}
+            icon={'chest'}
+            size={'md'}
+          />
+          <MediumInfoCard
+            amount={`${commifyString(tvl.toFixed(6))} wPOKT`}
+            header={'Rewards Claimed'}
+            icon={'rewards'}
+            size={'md'}
+          />
         </div>
       </StyledSmallInfoCardsContainer>
     </div>

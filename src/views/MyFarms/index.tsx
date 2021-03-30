@@ -75,7 +75,7 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
                 <SmallInfoCard iconType={'question'} statTitle={'Total Staked'} statContent={'23,456.3 wpokt'} />
                 <SmallInfoCard iconType={'caret'} statTitle={'Max Relays/Day'} statContent={'1 M'} />
-                <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
+                <SmallInfoCard iconType={'question'} statTitle={'Farm Usage'} statContent={'55.4%'} />
                 <SmallInfoCard iconType={'question'} statTitle={'Supported APps'} statContent={'12'} />
                 <SmallInfoCard iconType={'question'} statTitle={'Rewards unlocked'} statContent={'30%'} />
                 <SmallInfoCard iconType={'question'} statTitle={'Farm ownership'} statContent={'14%'} />

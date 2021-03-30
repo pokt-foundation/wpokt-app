@@ -24,7 +24,13 @@ import { Card, InnerCardContainer, MediumInfoCard } from 'components/Cards';
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
+import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
+
+import { useFarmStats } from 'hooks/useFarmStats';
+
+import { commifyString } from 'utils';
 
 const data = [
   { time: 'Day 1', rewards: 1 },
@@ -35,6 +41,7 @@ const data = [
 
 const Stats: React.FC = () => {
   const { onSelectModal } = React.useContext(DepositWithdrawalContext);
+  const { rewardUnlockRate, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const [farmSelected, setFarmSelected] = React.useState<boolean>(false);
 
   return (
@@ -56,7 +63,9 @@ const Stats: React.FC = () => {
               <div id={'estimated-reward'}>
                 <P2 color={colors.white}>Total Staked</P2>
                 <Flex align={'center'}>
-                  <StyledStakedText color={colors.white}>2,669.830235 wPOKT</StyledStakedText>
+                  <StyledStakedText color={colors.white}>
+                    {commifyString(totalStaked.toFixed(6))} wPOKT
+                  </StyledStakedText>
                   <StyledSelectorContainer farmSelected={farmSelected}>
                     <SelectorSvg />
                   </StyledSelectorContainer>
@@ -67,13 +76,23 @@ const Stats: React.FC = () => {
           {farmSelected && (
             <StyledSmallInfoCardsContainer>
               <StyledContentContainer>
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Staked'} icon={'chest'} size={'sm'} />
+                <MediumInfoCard
+                  amount={`${commifyString(totalStaked.toFixed(6))} wPOKT`}
+                  header={'Total Staked'}
+                  icon={'chest'}
+                  size={'sm'}
+                />
                 <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total  Rewards'} icon={'star'} size={'sm'} />
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Locked Rewards'} icon={'padlock'} size={'sm'} />
+                <MediumInfoCard
+                  amount={`${commifyString(tvl.toFixed(6))} wPOKT`}
+                  header={'Locked Rewards'}
+                  icon={'padlock'}
+                  size={'sm'}
+                />
                 <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Unlocked Rewards'} icon={'key'} size={'sm'} />
                 <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Duration'} icon={'clock'} size={'sm'} />
                 <MediumInfoCard
-                  amount={'5,563.865330 wPOKT'}
+                  amount={rewardUnlockRate.toFixed(6)}
                   header={'Reward unlock Rate'}
                   icon={'diamond'}
                   size={'sm'}

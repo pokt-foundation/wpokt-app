@@ -24,14 +24,15 @@ import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import { useFarmStats } from 'hooks/useFarmStats';
 
+import { commifyString } from 'utils';
+
 interface IDepositInfo {
   farmSelected: boolean;
 }
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
-  const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apy, totalStaked, timeRemaining } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(false);
-  console.log(totalStaked.toString());
 
   return (
     <div>
@@ -53,11 +54,20 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
-        <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${apy}%`} />
+        <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${commifyString(apy.toFixed(2))}%`} />
         <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
-        <SmallInfoCard iconType={'question'} statTitle={'TOTAL STAKED'} statContent={`${totalStaked} wPOKT`} />
+        <SmallInfoCard
+          iconType={'question'}
+          statTitle={'TOTAL STAKED'}
+          statContent={`${commifyString(totalStaked.toFixed(2))} wPOKT`}
+        />
         <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
-        <SmallInfoCard iconType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
+        <SmallInfoCard
+          iconType={'question'}
+          statTitle={'time left'}
+          statContent={`${timeRemaining?.days} days`}
+          statFill={38}
+        />
         <SmallInfoCardExtraLinks />
       </StyledSmallInfoCardsContainer>
       <StyledMoreInfoContainer showMore={showMore}>

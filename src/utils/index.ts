@@ -3,6 +3,12 @@ import { Provider } from '@ethersproject/abstract-provider';
 import ERC20ABI from 'abis/ERC20.json';
 import TokenGeyserABI from 'abis/TokenGeyser.json';
 
+export function commifyString(number: string): string {
+  const parts = number.split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return parts.join('.');
+}
+
 function bigNum(value: string | number): BigNumber {
   return BigNumber.from(value);
 }
