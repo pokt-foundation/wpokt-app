@@ -51,7 +51,7 @@ const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
               width: 100%;
             `}
           />
-          <StyledStatusContainer>
+          <StyledStatusContainer onClick={onCloseModal}>
             {type === 'TRANSACTION_APPROVED' && <ApprovedSvg />}
             {type === 'TRANSACTION_REJECTED' && <RejectedSvg />}
           </StyledStatusContainer>
