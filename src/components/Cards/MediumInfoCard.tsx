@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 import { media } from 'components/breakpoints';
@@ -153,9 +154,11 @@ export const MediumDepositWithdrawLinks: React.FC<IMediumDepositWithdrawLinks> =
 };
 
 export const MediumStatsFaqLinks: React.FC = () => {
+  const history = useHistory();
+
   return (
     <StyledLinksContainer>
-      <StyledLinkButton color={'#000'}>
+      <StyledLinkButton color={'#000'} onClick={() => history.replace('/stats')}>
         <P2 color={colors.white}>Stats</P2>
         <div
           css={`
