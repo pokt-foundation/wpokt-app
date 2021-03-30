@@ -119,6 +119,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
       </StyledHeader>
       <StyledDepositInputContainer>
         <input
+          autoFocus
           placeholder={`How much do you want to ${actionType}?`}
           type={'number'}
           min={'0'}
