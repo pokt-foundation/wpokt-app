@@ -33,6 +33,8 @@ import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 import useApproval from 'hooks/useApproval';
 import { useFarmStats } from 'hooks/useFarmStats';
 
+import { commifyString } from 'utils';
+
 interface IEnterAmount {
   actionType: 'deposit' | 'withdraw';
   farmSelected: boolean;
@@ -104,6 +106,13 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
                 {wpoktBalance
                   ? `Wallet balance: ${TokenAmount.format(wpoktBalance, 18, { symbol: 'wPOKT' })}`
                   : 'Wallet balance: connect wallet'}
+              </P2>
+            )}
+            {actionType === 'withdraw' && (
+              <P2 color={colors.white}>
+                {wpoktBalance
+                  ? `Total staked: ${commifyString(totalStaked.toFixed(2))} wPOKT`
+                  : 'Total staked: connect wallet'}
               </P2>
             )}
             <StyledMaxButton onClick={onMaxValue}>
