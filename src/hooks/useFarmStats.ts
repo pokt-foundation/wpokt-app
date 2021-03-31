@@ -71,7 +71,6 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         const [{ apy, tvl, staked, bonusPeriodSec, createdTimestamp, totalUnlockedRewards }]: [
           FarmStatsResponse,
         ] = result.data.tokenGeysers;
-        console.log(result.data.tokenGeysers);
 
         const parsedAPY = new BigNumber(apy);
         const parsedTVL = new BigNumber(tvl);
