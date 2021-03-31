@@ -42,7 +42,7 @@ const data = [
 const Stats: React.FC = () => {
   const { onSelectModal } = React.useContext(DepositWithdrawalContext);
   const { rewardUnlockRate, timeRemaining, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
-  const [farmSelected, setFarmSelected] = React.useState<boolean>(false);
+  const [farmSelected, setFarmSelected] = React.useState<boolean>(true);
 
   return (
     <>
