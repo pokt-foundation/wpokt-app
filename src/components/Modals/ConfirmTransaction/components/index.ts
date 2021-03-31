@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 import { media } from 'components/breakpoints';
 
+export { InsufficientFunds } from './InsufficientFunds';
+
 export const StyledCloseContainer = styled.button`
   align-items: center;
   background: transparent;
@@ -160,6 +162,12 @@ export const StyledModalContainer = styled.div`
   ${media.lg`
     width: ${120 * GU}px;
   `}
+`;
+
+export const StyledPiggyBankContainer = styled.div`
+  height: ${10 * GU}px;
+  width: ${12 * GU}px;
+  margin-right: ${4 * GU}px;
 `;
 
 export const StyledWarning = styled.div`

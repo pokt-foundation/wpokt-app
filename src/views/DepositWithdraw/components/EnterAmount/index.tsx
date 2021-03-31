@@ -1,4 +1,5 @@
 import React from 'react';
+import { BigNumber } from 'bignumber.js';
 import 'styled-components/macro';
 import TokenAmount from 'token-amount';
 import { Provider } from '@ethersproject/abstract-provider';
@@ -53,14 +54,18 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
 
   React.useEffect(() => {
-    if (inputValue === '' || inputValue === '0') {
+    if (
+      inputValue === '' ||
+      inputValue === '0' ||
+      new BigNumber(inputValue) > new BigNumber(TokenAmount.format(wpoktBalance, 18, { commify: false }))
+    ) {
       setIsDisabled(true);
       setFarmSelected(false);
     } else {
       setIsDisabled(false);
       setFarmSelected(true);
     }
-  }, [address, setFarmSelected, inputValue]);
+  }, [address, setFarmSelected, inputValue, wpoktBalance]);
 
   React.useEffect(() => {
     if (isApproving) {
