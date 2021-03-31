@@ -74,21 +74,21 @@ const SalesInfo: React.FC = () => {
               <H1 color={colors.white}>Resources</H1>
             </StyledContentTextContainer>
             <StyledButtonContainer>
-              <div>
+              <button>
                 <BuyWpoktSvg />
-              </div>
-              <div>
+              </button>
+              <button>
                 <BuyWpoktSvg />
-              </div>
-              <div>
+              </button>
+              <button>
                 <BuyWpoktSvg />
-              </div>
-              <div>
+              </button>
+              <button>
                 <BuyWpoktSvg />
-              </div>
-              <div>
+              </button>
+              <button>
                 <BuyWpoktSvg />
-              </div>
+              </button>
             </StyledButtonContainer>
           </StyledContentContainer>
         </InnerCardContainer>

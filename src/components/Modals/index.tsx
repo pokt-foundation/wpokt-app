@@ -34,7 +34,7 @@ const StyledBackground = styled.div`
   left: 50%;
   position: fixed;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   width: 100%;
   z-index: 9999;
 `;

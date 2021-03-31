@@ -10,19 +10,21 @@ export const StyledButtonContainer = styled.div`
   justify-content: space-around;
   padding: ${8 * GU}px ${10 * GU}px 0;
 
-  div {
+  button {
+    background: transparent;
+    border: none;
     margin-bottom: ${8 * GU}px;
     transition: all 0.2s ease;
 
     &:hover {
       cursor: pointer;
-      transform: translateY(${-GU}px);
+      transform: translate3d(0, ${-GU}px, 0);
     }
 
     &:active,
     &:focus {
       cursor: pointer;
-      transform: translateY(${GU}px);
+      transform: translate3d(0, ${GU}px, 0);
     }
 
     ${media.xs`

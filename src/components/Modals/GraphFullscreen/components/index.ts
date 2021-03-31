@@ -48,7 +48,7 @@ export const StyledModalContainer = styled.div`
   max-height: 100vh;
   position: fixed;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   width: ${74 * GU}px;
   z-index: 10000;
 

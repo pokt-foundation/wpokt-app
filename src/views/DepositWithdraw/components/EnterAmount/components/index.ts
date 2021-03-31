@@ -57,7 +57,7 @@ export const StyledDepositInputContainer = styled.div`
 
     &:active {
       cursor: pointer;
-      transform: translateY(2px);
+      transform: translate3d(0, 2px, 0);
     }
 
     ${media.xs`
@@ -69,14 +69,14 @@ export const StyledDepositInputContainer = styled.div`
       margin: 0;
       right: ${5 * GU}px;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translate3d(0, -50%, 0);
 
       &:hover {
-        transform: translateY(-52%);
+        transform: translate3d(0, -52%, 0);
       }
 
       &:active {
-        transform: translateY(-48%);
+        transform: translate3d(0, -48%, 0);
       }
     `}
 
@@ -84,11 +84,11 @@ export const StyledDepositInputContainer = styled.div`
       cursor: not-allowed;
 
       &:hover {
-        transform: translateY(-50%);
+        transform: translate3d(0, -50%, 0);
       }
 
       &:active {
-        transform: translateY(-50%);
+        transform: translate3d(0, -50%, 0);
       }
     }
   }
@@ -216,7 +216,7 @@ export const StyledMaxButton = styled.button`
     cursor: pointer;
 
     div#max-selector-svg {
-      transform: rotate(90deg) translateX(-2px);
+      transform: rotate(90deg) translate3d(-2px, 0, 0);
     }
   }
 
@@ -224,7 +224,7 @@ export const StyledMaxButton = styled.button`
     cursor: pointer;
 
     div#max-selector-svg {
-      transform: rotate(90deg) translateX(2px);
+      transform: rotate(90deg) translate3d(2px, 0, 0);
     }
   }
 

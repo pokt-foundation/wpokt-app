@@ -129,13 +129,8 @@ export const StyledMoreInfoContainer = styled.div<IStyledMoreInfoContainer>`
   width: 100%;
 
   div {
-    div#selector-container {
-      transform: rotate(0deg);
-      ${(props) =>
-        props.showMore &&
-        css`
-          transform: rotate(90deg);
-        `}
+    &:hover {
+      cursor: pointer;
     }
   }
 
@@ -147,6 +142,10 @@ export const StyledMoreInfoContainer = styled.div<IStyledMoreInfoContainer>`
     props.showMore &&
     css`
       border-bottom: none;
+
+      div#selector-container {
+        transform: rotate(90deg);
+      }
     `}
 `;
 
@@ -169,7 +168,6 @@ export const StyledSelectorContainer = styled.div`
   fill: ${colors.white};
   height: ${3 * GU}px;
   margin-left: ${4 * GU}px;
-  transform: rotate(90deg);
   transition: all 0.3s ease;
   width: ${3 * GU}px;
 

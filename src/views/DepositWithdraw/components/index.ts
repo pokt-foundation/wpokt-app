@@ -63,7 +63,7 @@ export const StyledSelectorContainer = styled.div`
   overflow: hidden;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate3d(0, -50%, 0);
   width: ${3 * GU}px;
 
   ${media.xs`
