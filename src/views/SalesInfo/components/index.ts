@@ -16,13 +16,13 @@ export const StyledButtonContainer = styled.div`
 
     &:hover {
       cursor: pointer;
-      transform: translateY(${-GU}px);
+      transform: translate3d(0, ${-GU}px, 0);
     }
 
     &:active,
     &:focus {
       cursor: pointer;
-      transform: translateY(${GU}px);
+      transform: translate3d(0, ${GU}px, 0);
     }
 
     ${media.xs`
