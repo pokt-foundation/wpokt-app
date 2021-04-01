@@ -23,8 +23,11 @@ const FARM_STATS_QUERY: DocumentNode = gql`
       apy
       tvl
       staked
+      durationSec
       bonusPeriodSec
       createdTimestamp
+      unlockedRewards
+      lockedRewards
       totalUnlockedRewards
     }
   }
