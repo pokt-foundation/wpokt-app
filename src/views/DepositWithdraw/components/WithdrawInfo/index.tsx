@@ -46,8 +46,10 @@ export const WithdrawInfo: React.FC<IWithdraw> = ({ farmSelected }) => {
         >
           <div
             css={`
+              max-height: 50px;
               min-height: 50px;
               margin-right: ${5 * GU}px;
+              max-width: 32px;
               min-width: 32px;
             `}
           >
