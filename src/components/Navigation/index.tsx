@@ -59,8 +59,8 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
             </StyledLink>
           </li>
           <li>
-            <StyledLink exact activeClassName="active" to="/my-farm">
-              My Farm
+            <StyledLink exact activeClassName="active" to="/my-farms">
+              My Farms
             </StyledLink>
           </li>
         </ul>

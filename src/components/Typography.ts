@@ -93,6 +93,7 @@ export const P2 = styled.p<ITypograhpy>`
 
   ${media.md`
         font-size: 1.4rem;
+        line-height: 1.8rem;
     `}
   
   ${(props) =>

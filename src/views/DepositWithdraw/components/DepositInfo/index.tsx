@@ -6,8 +6,6 @@ import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 
 import {
-  SmallInfoCard,
-  SmallInfoCardExtraLinks,
   StyledFarmContainer,
   StyledHeader,
   StyledHeaderLeft,
@@ -18,6 +16,7 @@ import {
   StyledSelectorContainer,
   StyledSmallInfoCardsContainer,
 } from './components';
+import { SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
 
@@ -26,7 +25,6 @@ interface IDepositInfo {
 }
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
-  // const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(false);
 
   return (
@@ -51,7 +49,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
       <StyledSmallInfoCardsContainer>
         <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={'50%'} />
         <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
-        <SmallInfoCard iconType={'question'} statTitle={'TOTAL STAKED'} statContent={'12345 wPOKT'} />
+        <SmallInfoCard iconType={'question'} statTitle={'TOTAL STAKED'} statContent={'1234.56 wPOKT'} />
         <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
         <SmallInfoCard iconType={'question'} statTitle={'time left'} statContent={'2 days'} statFill={38} />
         <SmallInfoCardExtraLinks />
@@ -83,7 +81,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
             <SmallInfoCard iconType={'caret'} statTitle={'Apps'} statContent={'12'} />
             <SmallInfoCard iconType={'question'} statTitle={'Usage'} statContent={'55.4%'} />
             <SmallInfoCard iconType={'question'} statTitle={'xxxxxx'} statContent={'00.00'} />
-            <SmallInfoCardExtraLinks showOnDesktop={true} />
+            <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={false} />
           </StyledSmallInfoCardsContainer>
         </>
       )}

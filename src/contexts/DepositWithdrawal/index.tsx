@@ -5,7 +5,13 @@ import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 import useWallet from 'hooks/useWallet';
 import { parseInputValue, stake, unstake } from 'utils';
 
-type IModalType = '' | 'CONFIRM_DEPOSIT' | 'TRANSACTION_WAITING' | 'TRANSACTION_APPROVED' | 'TRANSACTION_REJECTED';
+type IModalType =
+  | ''
+  | 'CONFIRM_DEPOSIT'
+  | 'TRANSACTION_WAITING'
+  | 'TRANSACTION_APPROVED'
+  | 'TRANSACTION_REJECTED'
+  | 'GRAPH_FULLSCREEN';
 type IActionType = 'deposit' | 'withdraw';
 
 export interface ContextValues {
@@ -94,6 +100,11 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
         setSelectedModal(modalType);
         break;
 
+      case 'GRAPH_FULLSCREEN':
+        setModalOpen(true);
+        setSelectedModal(modalType);
+        break;
+
       default:
         setModalOpen(false);
         break;
@@ -110,7 +121,6 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
       setDisplayValue(inputValue);
       const response = await stake(parseInputValue(inputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
       setInputValue('');
-
       if (typeof response === 'boolean') {
         return response;
       } else {

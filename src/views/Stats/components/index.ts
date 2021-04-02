@@ -1,6 +1,26 @@
 import styled, { css } from 'styled-components';
+import { ResponsiveContainer } from 'recharts';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
+
+export const StyledChartContainer = styled(ResponsiveContainer)`
+  min-height: ${75 * GU}px;
+  max-height: ${75 * GU}px;
+
+  ${media.sm`
+    min-height: ${100 * GU}px;
+    max-height: ${100 * GU}px;
+  `}
+
+  ${media.md`
+    min-height: ${125 * GU}px;
+    max-height: ${125 * GU}px;
+  `}
+
+  ${media.xl`
+    max-width: ${160 * GU}px;
+  `}
+`;
 
 export const StyledContentContainer = styled.div`
   align-items: center;
@@ -10,21 +30,44 @@ export const StyledContentContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
+  ${media.xl`
+    width: ${250 * GU}px;
+  `}
+`;
+
+export const StyledExpandButton = styled.button`
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: ${9 * GU}px;
+  top: ${180 * GU}px;
+
+  ${media.xs`
+    right: ${12 * GU}px;
+    top: ${200 * GU}px;
+  `}
+
   ${media.sm`
-    width: ${104 * GU}px;
+    right: ${12 * GU}px;
+    top: ${105 * GU}px;
   `}
 
   ${media.md`
-    width: ${138 * GU}px;
+    right: ${15 * GU}px;
+    top: ${115 * GU}px;
   `}
 
   ${media.lg`
-    width: ${164 * GU}px;
+    top: ${80 * GU}px;
   `}
 
   ${media.xl`
-    width: ${240 * GU}px;
+    top: ${10 * GU}px;
   `}
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledFarmContainer = styled.div`
@@ -52,6 +95,10 @@ export const StyledHeader = styled.div<IStyledHeader>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   ${media.sm`
     align-items: center;
@@ -138,7 +185,24 @@ export const StyledLine = styled.div`
   `}
 `;
 
-export const StyledRewardText = styled.p`
+interface IStyledSelectorContainer {
+  farmSelected: boolean;
+}
+
+export const StyledSelectorContainer = styled.div<IStyledSelectorContainer>`
+  fill: #fff;
+  height: ${5 * GU}px;
+  margin-left: ${5 * GU}px;
+  width: ${5 * GU}px;
+
+  ${(props) =>
+    props.farmSelected &&
+    css`
+      transform: rotate(90deg);
+    `}
+`;
+
+export const StyledStakedText = styled.p`
   color: ${colors.white};
   font-family: PixelSplitter;
   font-size: 1rem;
@@ -159,9 +223,11 @@ export const StyledSmallInfoCardsContainer = styled.div`
   border: ${GU}px solid #000000;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: ${2 * GU}px ${2 * GU}px 0;
+  position: relative;
   width: 100%;
 
   ${media.xs`
@@ -174,5 +240,9 @@ export const StyledSmallInfoCardsContainer = styled.div`
 
   ${media.md`
     padding: ${7 * GU}px ${7 * GU}px 0;
+  `}
+
+  ${media.lg`
+    flex-direction: row;
   `}
 `;
