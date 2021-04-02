@@ -7,26 +7,12 @@
 # Project Title
 
 Frontend for wPOKT, allowing wPOKT purchasers to stake and crowdsource infrastructure for their favorite applications.
-<div>
-  <a  href="https://godoc.org/github.com/pokt-network/pocket-core"><img src="https://img.shields.io/badge/godoc-reference-blue.svg"/></a>
-  <a  href="https://goreportcard.com/report/github.com/pokt-network/pocket-core"><img src="https://goreportcard.com/badge/github.com/pokt-network/pocket-core"/></a>
-  <a href="https://golang.org"><img  src="https://img.shields.io/badge/golang-v1.11-red.svg"/></a>
-  <a  href="https://github.com/tools/godep" ><img src="https://img.shields.io/badge/godep-dependency-71a3d9.svg"/></a>
-</div>
 
 ## Overview
-<div>
-    <a  href="https://github.com/pokt-network/pocket-core/releases"><img src="https://img.shields.io/github/release-pre/pokt-network/pocket-core.svg"/></a>
-    <a href="https://circleci.com/gh/pokt-network/pocket-core/tree/staging"><img src="https://circleci.com/gh/pokt-network/pocket-core/tree/staging.svg?style=svg"/></a>
-    <a  href="https://github.com/pokt-network/pocket-core/pulse"><img src="https://img.shields.io/github/contributors/pokt-network/pocket-core.svg"/></a>
-    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
-    <a href="https://github.com/pokt-network/pocket-core/pulse"><img src="https://img.shields.io/github/last-commit/pokt-network/pocket-core.svg"/></a>
-    <a href="https://github.com/pokt-network/pocket-core/pulls"><img src="https://img.shields.io/github/issues-pr/pokt-network/pocket-core.svg"/></a>
-    <a href="https://github.com/pokt-network/pocket-core/releases"><img src="https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-pink.svg"/></a>
-    <a href="https://github.com/pokt-network/pocket-core/issues"><img src="https://img.shields.io/github/issues-closed/pokt-network/pocket-core.svg"/></a>
-</div>
 
-Full Description
+The wPOKT app adds a new opportunity for users to profit from supporting Pocket Network’s economy: by staking wPOKT as a Farmer – earning farming rewards, subsidizing relays for Apps, and liquidizing the network. This creates a virtuous cycle that provides a compounded and synergic reward.
+
+By augmenting Pocket Network’s core market with a Data Farming economy, we direct liquidity farming mechanisms towards a noble purpose – being the supercharger on the flywheel of a true public good. This revolutionary new economy will coordinate DeFi “degenerates” towards a regenerative outcome – planting rather than extracting value – by decommissioning centralized points of failure and bringing crypto back to its decentralized roots.
 
 ## Rinkeby Addresses
 wPOKT: `0x2f363dd061cc8b3411c3c91c0cfac0fa1b62f656`\
@@ -34,6 +20,8 @@ TokenGeyser: `0x746218704841983de2ca941dd91598e68c369025`\
 wPOKT Pool: `0x7c2cf434e98940ad08ae3f26986235628b0904e7`
 
 ## Getting Started
+To get started, create a `.env` file:
+`cp .env.example .env`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -76,10 +64,8 @@ Full usage and options or a link to the docs.pokt.network site
 
 ## Running the tests
 
-Explain how to run the automated tests
-
 ```
-Give an example
+yarn test
 ```
 
 ## Contributing

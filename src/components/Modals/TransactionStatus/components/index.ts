@@ -73,7 +73,7 @@ export const StyledModalContainer = styled.div`
   padding: ${2 * GU}px;
   position: fixed;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   width: ${80 * GU}px;
   z-index: 10000;
 
@@ -92,7 +92,7 @@ export const StyledStatusContainer = styled.div`
   margin-right: ${5 * GU}px;
   left: 50%;
   position: absolute;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   width: ${8 * GU}px;
 
   ${media.sm`

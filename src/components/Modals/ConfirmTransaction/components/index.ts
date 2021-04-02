@@ -73,12 +73,12 @@ export const StyledDepositButtonContainer = styled.div`
 
     &:hover {
       cursor: pointer;
-      transform: translateY(-2px);
+      transform: translate3d(0, -2px, 0);
     }
 
     &:active {
       cursor: pointer;
-      transform: translateY(2px);
+      transform: translate3d(0, 2px, 0);
     }
   }
 `;
@@ -149,7 +149,7 @@ export const StyledModalContainer = styled.div`
   padding: ${2 * GU}px;
   position: fixed;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   width: ${75 * GU}px;
   z-index: 10000;
 
