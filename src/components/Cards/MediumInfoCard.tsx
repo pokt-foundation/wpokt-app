@@ -5,9 +5,14 @@ import { media } from 'components/breakpoints';
 
 import { ReactComponent as CaretSvg } from 'assets/icons/caret.svg';
 import { ReactComponent as ChestSvg } from 'assets/icons/chest.svg';
+import { ReactComponent as ClockSvg } from 'assets/icons/clock.svg';
+import { ReactComponent as DiamondSvg } from 'assets/icons/diamond.svg';
+import { ReactComponent as KeySvg } from 'assets/icons/key.svg';
+import { ReactComponent as MultiplierSvg } from 'assets/icons/multiplier.svg';
+import { ReactComponent as PadlockSvg } from 'assets/icons/padlock.svg';
 import { ReactComponent as RakeSvg } from 'assets/icons/rake.svg';
 import { ReactComponent as RewardsSvg } from 'assets/icons/rewards.svg';
-import { ReactComponent as MultiplierSvg } from 'assets/icons/multiplier.svg';
+import { ReactComponent as StarSvg } from 'assets/icons/star.svg';
 
 import Spacer from 'components/Spacer';
 import { H2, P2 } from 'components/Typography';
@@ -15,15 +20,21 @@ import { H2, P2 } from 'components/Typography';
 interface IMediumInfoCard {
   amount: string;
   header: string;
-  icon: 'chest' | 'rewards' | 'rake';
+  icon: 'chest' | 'clock' | 'diamond' | 'key' | 'padlock' | 'rake' | 'rewards' | 'star';
+  size: 'sm' | 'md';
 }
 
-export const MediumInfoCard: React.FC<IMediumInfoCard> = ({ amount, header, icon }) => {
+export const MediumInfoCard: React.FC<IMediumInfoCard> = ({ amount, header, icon, size }) => {
   return (
-    <StyledMediumInfoCardContainer>
+    <StyledMediumInfoCardContainer size={size}>
       {icon === 'chest' && <ChestSvg />}
+      {icon === 'clock' && <ClockSvg />}
+      {icon === 'diamond' && <DiamondSvg />}
+      {icon === 'key' && <KeySvg />}
+      {icon === 'padlock' && <PadlockSvg />}
       {icon === 'rake' && <RakeSvg />}
       {icon === 'rewards' && <RewardsSvg />}
+      {icon === 'star' && <StarSvg />}
       <div>
         <H2 color={colors.white}>{header}</H2>
         <Spacer size={'xs'} />
@@ -33,7 +44,11 @@ export const MediumInfoCard: React.FC<IMediumInfoCard> = ({ amount, header, icon
   );
 };
 
-const StyledMediumInfoCardContainer = styled.div`
+interface IStyledMediumInfoCardContainer {
+  size: 'sm' | 'md';
+}
+
+const StyledMediumInfoCardContainer = styled.div<IStyledMediumInfoCardContainer>`
   align-items: center;
   background: #000;
   display: flex;
@@ -41,30 +56,63 @@ const StyledMediumInfoCardContainer = styled.div`
   justify-content: flex-start;
   margin-bottom: ${2 * GU}px;
   padding: 0 ${6 * GU}px;
-  width: ${68 * GU}px;
 
   ${media.xs`
     margin-bottom: ${5 * GU}px;
-    width: ${100 * GU}px;
-  `}
-
-  ${media.sm`
-    width: ${52 * GU}px;
   `}
 
   ${media.md`
     height: ${28 * GU}px;
     margin-bottom: ${7 * GU}px;
-    width: ${70 * GU}px;
   `}
 
-  ${media.lg`
-    width: ${98 * GU}px;
-  `}
+  ${(props) =>
+    props.size === 'sm' &&
+    css`
+      width: 100%;
 
-  ${media.xl`
-    width: ${170 * GU}px;
-  `}
+      ${media.sm`
+        width: ${78 * GU}px;
+      `}
+
+      ${media.md`
+        width: ${104 * GU}px;
+      `}
+
+      ${media.lg`
+        width: ${84 * GU}px;
+      `}
+
+      ${media.xl`
+        width: ${121 * GU}px;
+      `}
+    `}
+
+    ${(props) =>
+    props.size === 'md' &&
+    css`
+      width: ${68 * GU}px;
+
+      ${media.xs`
+        width: ${100 * GU}px;
+      `}
+
+      ${media.sm`
+        width: ${52 * GU}px;
+      `}
+  
+      ${media.md`
+        width: ${70 * GU}px;
+      `}
+  
+      ${media.lg`
+        width: ${98 * GU}px;
+      `}
+  
+      ${media.xl`
+        width: ${170 * GU}px;
+      `}
+    `}
 
   div {
     margin-left: ${6 * GU}px;

@@ -1,6 +1,74 @@
 import styled, { css } from 'styled-components';
+import { ResponsiveContainer } from 'recharts';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
+
+export const StyledChartContainer = styled(ResponsiveContainer)`
+  min-height: ${75 * GU}px;
+  max-height: ${75 * GU}px;
+
+  ${media.sm`
+    min-height: ${100 * GU}px;
+    max-height: ${100 * GU}px;
+  `}
+
+  ${media.md`
+    min-height: ${125 * GU}px;
+    max-height: ${125 * GU}px;
+  `}
+
+  ${media.xl`
+    max-width: ${160 * GU}px;
+  `}
+`;
+
+export const StyledContentContainer = styled.div`
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  ${media.xl`
+    width: ${250 * GU}px;
+  `}
+`;
+
+export const StyledExpandButton = styled.button`
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: ${9 * GU}px;
+  top: ${180 * GU}px;
+
+  ${media.xs`
+    right: ${12 * GU}px;
+    top: ${200 * GU}px;
+  `}
+
+  ${media.sm`
+    right: ${12 * GU}px;
+    top: ${105 * GU}px;
+  `}
+
+  ${media.md`
+    right: ${15 * GU}px;
+    top: ${115 * GU}px;
+  `}
+
+  ${media.lg`
+    top: ${80 * GU}px;
+  `}
+
+  ${media.xl`
+    top: ${10 * GU}px;
+  `}
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 export const StyledFarmContainer = styled.div`
   height: ${7 * GU}px;
@@ -27,6 +95,10 @@ export const StyledHeader = styled.div<IStyledHeader>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   ${media.sm`
     align-items: center;
@@ -113,43 +185,24 @@ export const StyledLine = styled.div`
   `}
 `;
 
-interface IStyledMoreInfoContainer {
-  showMore: boolean;
+interface IStyledSelectorContainer {
+  farmSelected: boolean;
 }
 
-export const StyledMoreInfoContainer = styled.div<IStyledMoreInfoContainer>`
-  align-items: center;
-  background: ${colors.grey};
-  border: ${GU}px solid #000000;
-  border-top: none;
-  display: flex;
-  height: ${9 * GU}px;
-  justify-content: flex-end;
-  padding-right: ${5 * GU}px;
-  width: 100%;
-
-  div {
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  ${media.xs`
-    height: ${10 * GU}px;
-  `}
+export const StyledSelectorContainer = styled.div<IStyledSelectorContainer>`
+  fill: #fff;
+  height: ${5 * GU}px;
+  margin-left: ${5 * GU}px;
+  width: ${5 * GU}px;
 
   ${(props) =>
-    props.showMore &&
+    props.farmSelected &&
     css`
-      border-bottom: none;
-
-      div#selector-container {
-        transform: rotate(90deg);
-      }
+      transform: rotate(90deg);
     `}
 `;
 
-export const StyledRewardText = styled.p`
+export const StyledStakedText = styled.p`
   color: ${colors.white};
   font-family: PixelSplitter;
   font-size: 1rem;
@@ -164,35 +217,17 @@ export const StyledRewardText = styled.p`
   `}
 `;
 
-export const StyledSelectorContainer = styled.div`
-  fill: ${colors.white};
-  height: ${3 * GU}px;
-  margin-left: ${4 * GU}px;
-  transition: all 0.3s ease;
-  width: ${3 * GU}px;
-
-  ${media.xs`
-    height: ${4 * GU}px;
-    margin-left: ${4 * GU}px;
-    width: ${4 * GU}px;
-  `}
-
-  ${media.md`
-    height: ${4 * GU}px;
-    margin-left: ${5 * GU}px;
-    width: ${4 * GU}px;
-  `}
-`;
-
 export const StyledSmallInfoCardsContainer = styled.div`
   align-items: center;
   background: #fff;
   border: ${GU}px solid #000000;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: ${2 * GU}px ${2 * GU}px 0;
+  position: relative;
   width: 100%;
 
   ${media.xs`
@@ -205,5 +240,9 @@ export const StyledSmallInfoCardsContainer = styled.div`
 
   ${media.md`
     padding: ${7 * GU}px ${7 * GU}px 0;
+  `}
+
+  ${media.lg`
+    flex-direction: row;
   `}
 `;
