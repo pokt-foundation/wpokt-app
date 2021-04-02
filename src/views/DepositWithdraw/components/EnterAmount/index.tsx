@@ -1,5 +1,4 @@
 import React from 'react';
-import { BigNumber } from 'bignumber.js';
 import 'styled-components/macro';
 import TokenAmount from 'token-amount';
 import { Provider } from '@ethersproject/abstract-provider';
@@ -34,7 +33,7 @@ import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 import useApproval from 'hooks/useApproval';
 import { useFarmStats } from 'hooks/useFarmStats';
 
-import { commifyString } from 'utils';
+import { commifyString, parseInputValue } from 'utils';
 
 interface IEnterAmount {
   actionType: 'deposit' | 'withdraw';
@@ -64,16 +63,14 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   }, []);
 
   React.useEffect(() => {
-    if (
-      inputValue === '' ||
-      inputValue === '0' ||
-      new BigNumber(inputValue) > new BigNumber(TokenAmount.format(wpoktBalance, 18, { commify: false }))
-    ) {
-      setIsDisabled(true);
-      setFarmSelected(false);
-    } else {
-      setIsDisabled(false);
-      setFarmSelected(true);
+    if (wpoktBalance && wpoktBalance) {
+      if (inputValue === '' || inputValue === '0' || BigInt(parseInputValue(inputValue, 18)) > BigInt(wpoktBalance)) {
+        setIsDisabled(true);
+        setFarmSelected(false);
+      } else {
+        setIsDisabled(false);
+        setFarmSelected(true);
+      }
     }
   }, [address, setFarmSelected, inputValue, wpoktBalance]);
 
@@ -99,7 +96,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const onMaxValue = () => {
     if (actionType === 'deposit') {
       const amount = new TokenAmount(wpoktBalance, 18);
-      onChangeInput(amount.format({ commify: false }));
+      onChangeInput(amount.format({ commify: false, digits: 18 }));
     } else if (actionType === 'withdraw') {
       onChangeInput(totalStaked.toString());
     }
