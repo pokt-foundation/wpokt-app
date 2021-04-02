@@ -3,7 +3,7 @@ import { BigNumber } from 'bignumber.js';
 import 'styled-components/macro';
 import TokenAmount from 'token-amount';
 import { Provider } from '@ethersproject/abstract-provider';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 import { ReactComponent as ApproveButtonActiveSvg } from 'assets/icons/approve_button_active.svg';
 import { ReactComponent as ApproveButtonDisabledSvg } from 'assets/icons/approve_button_disabled.svg';
@@ -52,6 +52,16 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const { totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
 
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
+    function setFocus() {
+      if (window.innerWidth > 192 * GU) {
+        const amountEl = document.getElementById('input-amount');
+        amountEl?.focus();
+      }
+    }
+    setFocus();
+  }, []);
 
   React.useEffect(() => {
     if (
@@ -133,7 +143,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
       </StyledHeader>
       <StyledDepositInputContainer>
         <input
-          autoFocus
+          id={'input-amount'}
           placeholder={`How much do you want to ${actionType}?`}
           type={'number'}
           min={'0'}
