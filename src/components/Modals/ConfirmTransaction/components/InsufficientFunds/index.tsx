@@ -5,7 +5,11 @@ import { colors, GU } from 'components/theme';
 import { ReactComponent as CloseSvg } from 'assets/icons/close.svg';
 import { ReactComponent as PiggyBank } from 'assets/icons/piggy_bank.svg';
 
-import { StyledCloseContainer, StyledModalContainer, StyledPiggyBankContainer } from '../../components';
+import {
+  StyledCloseContainer,
+  StyledModalContainer,
+  StyledPiggyBankContainer,
+} from 'components/Modals/ConfirmTransaction/components';
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 

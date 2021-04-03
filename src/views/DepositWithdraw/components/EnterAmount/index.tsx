@@ -20,7 +20,7 @@ import {
   StyledLine,
   StyledDepositInputContainer,
   StyledMaxButton,
-} from './components';
+} from 'views/DepositWithdraw/components/EnterAmount/components';
 import { H2, P2 } from 'components/Typography';
 
 import { BalanceContext } from 'contexts/Balance';

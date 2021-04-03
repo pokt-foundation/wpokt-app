@@ -16,7 +16,7 @@ import {
   StyledModalContainer,
   StyledStatusContainer,
   StyledTractorContainer,
-} from './components';
+} from 'components/Modals/TransactionStatus/components';
 import { H1, P1 } from 'components/Typography';
 import Spacer from 'components/Spacer';
 

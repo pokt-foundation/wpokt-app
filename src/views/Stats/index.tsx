@@ -18,7 +18,7 @@ import {
   StyledSelectorContainer,
   StyledSmallInfoCardsContainer,
   StyledStakedText,
-} from './components';
+} from 'views/Stats/components';
 import { Flex } from 'components/Containers';
 import { Card, InnerCardContainer, MediumInfoCard } from 'components/Cards';
 import Spacer from 'components/Spacer';

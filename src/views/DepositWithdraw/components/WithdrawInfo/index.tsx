@@ -14,7 +14,7 @@ import {
   StyledLine,
   StyledRewardText,
   StyledSmallInfoCardsContainer,
-} from './components';
+} from 'views/DepositWithdraw/components/WithdrawInfo/components';
 import { MediumInfoCard, SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import { H1, P2 } from 'components/Typography';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ConfirmTransaction from './ConfirmTransaction';
-import GraphFullscreen from './GraphFullscreen';
-import TransactionStatus from './TransactionStatus';
+import ConfirmTransaction from 'components/Modals/ConfirmTransaction';
+import GraphFullscreen from 'components/Modals/GraphFullscreen';
+import TransactionStatus from 'components/Modals/TransactionStatus';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 

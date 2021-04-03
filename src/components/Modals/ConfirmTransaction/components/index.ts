@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 import { media } from 'components/breakpoints';
 
-export { InsufficientFunds } from './InsufficientFunds';
+export { InsufficientFunds } from 'components/Modals/ConfirmTransaction/components/InsufficientFunds';
 
 export const StyledCloseContainer = styled.button`
   align-items: center;

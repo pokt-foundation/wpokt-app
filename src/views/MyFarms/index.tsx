@@ -15,7 +15,7 @@ import {
   StyledSelectorContainer,
   StyledSmallInfoCardsContainer,
   StyledStakedText,
-} from './components';
+} from 'views/MyFarms/components';
 import { Flex } from 'components/Containers';
 import {
   Card,

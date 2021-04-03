@@ -1,12 +1,12 @@
 import React from 'react';
 import { Signer } from 'ethers';
 
-import useWallet from 'hooks/useWallet';
-import { approve } from 'utils';
-
 import { TOKEN_GEYSER_ADDRESS, WPOKT_ADDRESS } from 'constants/index';
 
-import useAllowance from './useAllowance';
+import useWallet from 'hooks/useWallet';
+import useAllowance from 'hooks/useAllowance';
+
+import { approve } from 'utils';
 
 interface IUseApprovalReturns {
   isApproved: boolean;

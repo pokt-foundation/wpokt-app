@@ -26,7 +26,7 @@ import {
   StyledModalContainer,
   StyledWarning,
   StyledWarningContainer,
-} from './components';
+} from 'components/Modals/ConfirmTransaction/components';
 import { Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
 import { H1, H2, P2, P3 } from 'components/Typography';
