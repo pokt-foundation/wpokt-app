@@ -72,33 +72,32 @@ export function useUserStats(userAddress: string, farmAddress: string): UserStat
           return;
         }
 
-        const [{ earned, stakes }]: [UserStatsResponse] = result.data.users;
+        const [{ earned: rawEarned, stakes: rawStakes }]: [UserStatsResponse] = result.data.users;
 
         const [{ globalSharesSec, bonusPeriodSec, createdTimestamp }]: [
           { globalSharesSec: BigNumber; bonusPeriodSec: number; createdTimestamp: number },
         ] = result.data.tokenGeysers;
 
         const today = dayjs();
-        const parsedEarned = new BigNumber(earned);
+        const parsedEarned = new BigNumber(rawEarned);
 
         let totalStakeShareSecs = ZERO;
         let parsedTotalStaked = ZERO;
-        for (let index = 0; index < stakes.length; index++) {
-          const stake: Stake = stakes[index];
+        for (let index = 0; index < rawStakes.length; index++) {
+          const stake: Stake = rawStakes[index];
           stake.amount = new BigNumber(stake.amount);
           parsedTotalStaked = parsedTotalStaked.plus(stake.amount);
           totalStakeShareSecs = totalStakeShareSecs.plus(stake.amount.times(today.unix() - stake.timestamp));
         }
 
-        const calculatedOwnershipShare = totalStakeShareSecs.div(globalSharesSec).times(new BigNumber(100));
-        const parsedStakes = stakes;
+        const calculatedOwnershipShare = totalStakeShareSecs.div(globalSharesSec).times(new BigNumber(100)).toNumber();
 
         const maxBonusDateSeconds = +createdTimestamp + +bonusPeriodSec;
         const maxBonusDate = dayjs.unix(maxBonusDateSeconds);
 
         let averageMultiplier = 0;
-        for (let index = 0; index < stakes.length; index++) {
-          const stake: Stake = stakes[index];
+        for (let index = 0; index < rawStakes.length; index++) {
+          const stake: Stake = rawStakes[index];
           const stakeWeight = stake.amount.div(parsedTotalStaked).toNumber();
 
           const stakeDate = dayjs.unix(stake.timestamp);
@@ -107,12 +106,14 @@ export function useUserStats(userAddress: string, farmAddress: string): UserStat
           averageMultiplier += weightedBonusMultiplier;
         }
 
+        const parsedStakes = rawStakes;
+
         if (!cancelled) {
           setEarned(parsedEarned);
           setStakes(parsedStakes);
           setTotalStaked(parsedTotalStaked);
           setWeightedMultiplier(averageMultiplier);
-          setOwnershipShare(calculatedOwnershipShare.toNumber());
+          setOwnershipShare(calculatedOwnershipShare);
         }
       } catch (err) {
         retryTimer = setTimeout(fetchUserStats, RETRY_EVERY);

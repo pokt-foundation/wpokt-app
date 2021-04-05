@@ -87,19 +87,28 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         }
 
         const [
-          { apy, tvl, staked, durationSec, createdTimestamp, unlockedRewards, lockedRewards, totalUnlockedRewards },
+          {
+            apy: rawApy,
+            tvl: rawTvl,
+            staked: rawStaked,
+            unlockedRewards: rawUnlockedRewards,
+            lockedRewards: rawLockedRewards,
+            totalUnlockedRewards: rawTotalUnlockedRewards,
+            durationSec,
+            createdTimestamp,
+          },
         ]: [
           // eslint-disable-next-line prettier/prettier
           FarmStatsResponse
         ] = result.data.tokenGeysers;
 
-        const parsedAPY = new BigNumber(apy);
-        const parsedTVL = new BigNumber(tvl);
-        const parsedStaked = new BigNumber(staked);
-        const parsedLockedRewards = new BigNumber(lockedRewards);
-        const parsedUnlockedRewards = new BigNumber(unlockedRewards);
+        const parsedAPY = new BigNumber(rawApy);
+        const parsedTVL = new BigNumber(rawTvl);
+        const parsedStaked = new BigNumber(rawStaked);
+        const parsedLockedRewards = new BigNumber(rawLockedRewards);
+        const parsedUnlockedRewards = new BigNumber(rawUnlockedRewards);
 
-        const parsedTotalUnlockedRewards = new BigNumber(totalUnlockedRewards);
+        const parsedTotalUnlockedRewards = new BigNumber(rawTotalUnlockedRewards);
         const parsedTotalRewards = parsedUnlockedRewards.plus(parsedLockedRewards);
 
         const unlockRate = parsedTotalUnlockedRewards.div(DAYS_IN_MONTH);
