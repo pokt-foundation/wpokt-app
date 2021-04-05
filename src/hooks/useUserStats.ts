@@ -95,16 +95,17 @@ export function useUserStats(userAddress: string, farmAddress: string): UserStat
         const maxBonusDateSeconds = +createdTimestamp + +bonusPeriodSec;
         const maxBonusDate = dayjs.unix(maxBonusDateSeconds);
 
-        let averageMultiplier = 0;
-        for (let index = 0; index < rawStakes.length; index++) {
-          const stake: Stake = rawStakes[index];
-          const stakeWeight = stake.amount.div(parsedTotalStaked).toNumber();
+        const reducer = (accumulator: number, currentValue: Stake) => {
+          const stakeWeight = currentValue.amount.div(parsedTotalStaked).toNumber();
 
-          const stakeDate = dayjs.unix(stake.timestamp);
+          const stakeDate = dayjs.unix(currentValue.timestamp);
           const secondsUntilMaxBonus = maxBonusDate.diff(stakeDate, 'seconds');
           const weightedBonusMultiplier = ((secondsUntilMaxBonus * MAX_MULTIPLIER) / bonusPeriodSec) * stakeWeight;
-          averageMultiplier += weightedBonusMultiplier;
-        }
+
+          return accumulator + weightedBonusMultiplier;
+        };
+
+        const averageMultiplier = rawStakes.reduce(reducer, 0);
 
         const parsedStakes = rawStakes;
 
