@@ -15,7 +15,7 @@ import {
   StyledSelectorContainer,
   StyledSmallInfoCardsContainer,
   StyledStakedText,
-} from './components';
+} from 'views/MyFarms/components';
 import { Flex } from 'components/Containers';
 import {
   Card,
@@ -41,7 +41,7 @@ const MyFarms: React.FC = () => {
   const history = useHistory();
   const { onSetActionType } = React.useContext(DepositWithdrawalContext);
   const { apy, timeRemaining, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
-  const [farmSelected, setFarmSelected] = React.useState<boolean>(false);
+  const [farmSelected, setFarmSelected] = React.useState<boolean>(true);
 
   const onDepositWithdrawLink = (actionType: 'deposit' | 'withdraw') => {
     onSetActionType(actionType);

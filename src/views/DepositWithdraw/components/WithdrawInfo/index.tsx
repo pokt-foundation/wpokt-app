@@ -14,7 +14,7 @@ import {
   StyledLine,
   StyledRewardText,
   StyledSmallInfoCardsContainer,
-} from './components';
+} from 'views/DepositWithdraw/components/WithdrawInfo/components';
 import { MediumInfoCard, SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import { H1, P2 } from 'components/Typography';
 
@@ -46,8 +46,10 @@ export const WithdrawInfo: React.FC<IWithdraw> = ({ farmSelected }) => {
         >
           <div
             css={`
+              max-height: 50px;
               min-height: 50px;
               margin-right: ${5 * GU}px;
+              max-width: 32px;
               min-width: 32px;
             `}
           >

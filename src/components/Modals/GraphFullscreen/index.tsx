@@ -5,7 +5,11 @@ import { colors, GU } from 'components/theme';
 
 import { ReactComponent as CloseSvg } from 'assets/icons/close.svg';
 
-import { StyledChartContainer, StyledCloseContainer, StyledModalContainer } from './components';
+import {
+  StyledChartContainer,
+  StyledCloseContainer,
+  StyledModalContainer,
+} from 'components/Modals/GraphFullscreen/components';
 import Spacer from 'components/Spacer';
 import { H1 } from 'components/Typography';
 

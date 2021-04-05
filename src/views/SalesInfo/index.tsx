@@ -10,7 +10,7 @@ import {
   StyledContentContainer,
   StyledContentTextContainer,
   StyledInfoCard,
-} from './components';
+} from 'views/SalesInfo/components';
 import { Card, InnerCardContainer } from 'components/Cards';
 import Spacer from 'components/Spacer';
 import { H1, H2, P1, P2 } from 'components/Typography';

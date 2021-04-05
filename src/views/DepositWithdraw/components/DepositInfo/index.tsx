@@ -15,7 +15,7 @@ import {
   StyledRewardText,
   StyledSelectorContainer,
   StyledSmallInfoCardsContainer,
-} from './components';
+} from 'views/DepositWithdraw/components/DepositInfo/components';
 import { SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
@@ -32,7 +32,7 @@ interface IDepositInfo {
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
   const { apy, totalStaked, timeRemaining } = useFarmStats(TOKEN_GEYSER_ADDRESS);
-  const [showMore, setShowMore] = React.useState<boolean>(false);
+  const [showMore, setShowMore] = React.useState<boolean>(true);
 
   return (
     <div>

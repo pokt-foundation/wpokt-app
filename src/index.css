@@ -152,3 +152,43 @@ code {
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
 }
+
+.bn-onboard-modal {
+  background: rgba(0, 0, 0, 0.6) !important;
+  z-index: 10000 !important;
+}
+
+.bn-onboard-custom .bn-onboard-modal-content {
+  color: #000;
+  border: 4px solid #000;
+  border-radius: 0;
+  font-family: 'PixelSplitter';
+  max-height: 90vh;
+  overflow: scroll;
+}
+
+.bn-onboard-custom .bn-onboard-modal-select-wallets {
+  justify-content: center;
+}
+
+.bn-onboard-custom .bn-onboard-icon-button {
+  border: 4px solid #000;
+  border-radius: 0;
+}
+
+.bn-onboard-custom .bn-onboard-icon-button:hover {
+  background: #F3B12E;
+}
+
+.bn-onboard-custom .bn-onboard-prepare-button {
+  color: #FFF;
+  background: #000;
+  border: 4px solid #000;
+  border-radius: 0;
+  transition: all .3s ease;
+}
+
+.bn-onboard-custom .bn-onboard-prepare-button:hover {
+  background: #F3B12E;
+  color: #000;
+}

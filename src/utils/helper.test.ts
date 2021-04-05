@@ -1,5 +1,5 @@
 import { getTimeRemaining } from 'utils/helpers';
-import { TimeRemaining } from './types';
+import { TimeRemaining } from 'utils/types';
 
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
