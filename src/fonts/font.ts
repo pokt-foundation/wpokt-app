@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import PixelSplitter from './PixelSplitter-Bold.ttf';
+import PixelSplitter from 'fonts//PixelSplitter-Bold.ttf';
 
 export default createGlobalStyle`
     @font-face {

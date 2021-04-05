@@ -95,6 +95,10 @@ export const StyledStatusContainer = styled.div`
   transform: translate3d(-50%, 0, 0);
   width: ${8 * GU}px;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   ${media.sm`
     bottom: -${6 * GU}px;
     height: ${15 * GU}px;

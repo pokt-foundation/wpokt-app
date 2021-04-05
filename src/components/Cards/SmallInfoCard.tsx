@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
@@ -164,9 +165,10 @@ interface ISmallInfoCardExtraLinks {
 }
 
 export const SmallInfoCardExtraLinks: React.FC<ISmallInfoCardExtraLinks> = ({ showOnDesktop, showOnMobile }) => {
+  const history = useHistory();
   return (
     <StyledExtraLinksContainer showOnDesktop={showOnDesktop} showOnMobile={showOnMobile}>
-      <StyledExtraLinksButton>
+      <StyledExtraLinksButton onClick={() => history.replace('/stats')}>
         Stats
         <CaretSvg />
       </StyledExtraLinksButton>

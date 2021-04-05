@@ -2,7 +2,7 @@ import React from 'react';
 import 'styled-components/macro';
 import TokenAmount from 'token-amount';
 import { Provider } from '@ethersproject/abstract-provider';
-import { colors } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 import { ReactComponent as ApproveButtonActiveSvg } from 'assets/icons/approve_button_active.svg';
 import { ReactComponent as ApproveButtonDisabledSvg } from 'assets/icons/approve_button_disabled.svg';
@@ -20,7 +20,7 @@ import {
   StyledLine,
   StyledDepositInputContainer,
   StyledMaxButton,
-} from './components';
+} from 'views/DepositWithdraw/components/EnterAmount/components';
 import { H2, P2 } from 'components/Typography';
 
 import { BalanceContext } from 'contexts/Balance';
@@ -28,7 +28,12 @@ import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
+import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+
 import useApproval from 'hooks/useApproval';
+import { useFarmStats } from 'hooks/useFarmStats';
+
+import { commifyString, parseInputValue } from 'utils';
 
 interface IEnterAmount {
   actionType: 'deposit' | 'withdraw';
@@ -43,18 +48,31 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const { wpoktBalance } = React.useContext(BalanceContext);
 
   const { isApproved, isApproving, onApprove } = useApproval();
+  const { totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
 
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
 
   React.useEffect(() => {
-    if (inputValue === '' || inputValue === '0') {
-      setIsDisabled(true);
-      setFarmSelected(false);
-    } else {
-      setIsDisabled(false);
-      setFarmSelected(true);
+    function setFocus() {
+      if (window.innerWidth > 192 * GU) {
+        const amountEl = document.getElementById('input-amount');
+        amountEl?.focus();
+      }
     }
-  }, [address, setFarmSelected, inputValue]);
+    setFocus();
+  }, []);
+
+  React.useEffect(() => {
+    if (wpoktBalance && wpoktBalance) {
+      if (inputValue === '' || inputValue === '0' || BigInt(parseInputValue(inputValue, 18)) > BigInt(wpoktBalance)) {
+        setIsDisabled(true);
+        setFarmSelected(false);
+      } else {
+        setIsDisabled(false);
+        setFarmSelected(true);
+      }
+    }
+  }, [address, setFarmSelected, inputValue, wpoktBalance]);
 
   React.useEffect(() => {
     if (isApproving) {
@@ -76,8 +94,12 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   };
 
   const onMaxValue = () => {
-    const amount = new TokenAmount(wpoktBalance, 18);
-    onChangeInput(amount.format({ commify: false }));
+    if (actionType === 'deposit') {
+      const amount = new TokenAmount(wpoktBalance, 18);
+      onChangeInput(amount.format({ commify: false, digits: 18 }));
+    } else if (actionType === 'withdraw') {
+      onChangeInput(totalStaked.toString());
+    }
   };
 
   return (
@@ -98,6 +120,13 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
                   : 'Wallet balance: connect wallet'}
               </P2>
             )}
+            {actionType === 'withdraw' && (
+              <P2 color={colors.white}>
+                {wpoktBalance
+                  ? `Total staked: ${commifyString(totalStaked.toFixed(2))} wPOKT`
+                  : 'Total staked: connect wallet'}
+              </P2>
+            )}
             <StyledMaxButton onClick={onMaxValue}>
               <div id={'max-svg'}>
                 <MaxSvg />
@@ -111,6 +140,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
       </StyledHeader>
       <StyledDepositInputContainer>
         <input
+          id={'input-amount'}
           placeholder={`How much do you want to ${actionType}?`}
           type={'number'}
           min={'0'}

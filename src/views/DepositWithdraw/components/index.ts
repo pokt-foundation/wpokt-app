@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
-export { EnterAmount } from './EnterAmount';
-export { DepositInfo } from './DepositInfo';
-export { WithdrawInfo } from './WithdrawInfo';
+export { EnterAmount } from 'views/DepositWithdraw/components/EnterAmount';
+export { DepositInfo } from 'views/DepositWithdraw/components/DepositInfo';
+export { WithdrawInfo } from 'views/DepositWithdraw/components/WithdrawInfo';
 
 interface IStyledButtonLarge {
   active: boolean;

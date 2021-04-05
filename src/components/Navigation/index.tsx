@@ -15,7 +15,7 @@ import {
   StyledNavigationContainer,
   StyledNavigationItems,
   StyledSandwichMenuContainer,
-} from './components';
+} from 'components/Navigation/components';
 import { Flex } from 'components/Containers';
 
 import { Web3Context } from 'contexts/Web3';

@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { media } from 'components/breakpoints';
 import { GU } from 'components/theme';
 
-export { SmallInfoCard, SmallInfoCardExtraLinks } from './SmallInfoCard';
-export { MediumInfoCard, MediumDepositWithdrawLinks, MediumStatsFaqLinks } from './MediumInfoCard';
+export { SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards/SmallInfoCard';
+export { MediumInfoCard, MediumDepositWithdrawLinks, MediumStatsFaqLinks } from 'components/Cards//MediumInfoCard';
 
 export const Card = styled.div`
   backdrop-filter: blur(${3 * GU}px);

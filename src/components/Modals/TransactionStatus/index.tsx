@@ -16,7 +16,7 @@ import {
   StyledModalContainer,
   StyledStatusContainer,
   StyledTractorContainer,
-} from './components';
+} from 'components/Modals/TransactionStatus/components';
 import { H1, P1 } from 'components/Typography';
 import Spacer from 'components/Spacer';
 
@@ -51,7 +51,7 @@ const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
               width: 100%;
             `}
           />
-          <StyledStatusContainer>
+          <StyledStatusContainer onClick={onCloseModal}>
             {type === 'TRANSACTION_APPROVED' && <ApprovedSvg />}
             {type === 'TRANSACTION_REJECTED' && <RejectedSvg />}
           </StyledStatusContainer>
