@@ -129,23 +129,13 @@ export const MediumDepositWithdrawLinks: React.FC<IMediumDepositWithdrawLinks> =
     <StyledLinksContainer>
       <StyledLinkButton color={colors.green} onClick={() => onDepositWithdrawLink('deposit')}>
         <P2 color={colors.white}>Deposit</P2>
-        <div
-          css={`
-            position: absolute;
-            right: ${4 * GU}px;
-          `}
-        >
+        <div>
           <CaretSvg />
         </div>
       </StyledLinkButton>
       <StyledLinkButton color={colors.red} onClick={() => onDepositWithdrawLink('withdraw')}>
         <P2 color={colors.white}>Withdraw</P2>
-        <div
-          css={`
-            position: absolute;
-            right: ${4 * GU}px;
-          `}
-        >
+        <div>
           <CaretSvg />
         </div>
       </StyledLinkButton>
@@ -160,23 +150,13 @@ export const MediumStatsFaqLinks: React.FC = () => {
     <StyledLinksContainer>
       <StyledLinkButton color={'#000'} onClick={() => history.replace('/stats')}>
         <P2 color={colors.white}>Stats</P2>
-        <div
-          css={`
-            position: absolute;
-            right: ${4 * GU}px;
-          `}
-        >
+        <div>
           <MultiplierSvg />
         </div>
       </StyledLinkButton>
       <StyledLinkButton color={'#000'}>
         <P2 color={colors.white}>Faq</P2>
-        <div
-          css={`
-            position: absolute;
-            right: ${4 * GU}px;
-          `}
-        >
+        <div>
           <MultiplierSvg />
         </div>
       </StyledLinkButton>
@@ -243,4 +223,9 @@ const StyledLinkButton = styled.button<IStyledLinkButton>`
     css`
       background: ${props.color};
     `}
+
+  div {
+    position: absolute;
+    right: ${4 * GU}px;
+  }
 `;
