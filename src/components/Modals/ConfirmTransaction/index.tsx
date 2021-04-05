@@ -127,7 +127,7 @@ const ConfirmTransaction: React.FC = () => {
                       <P2 color={colors.white}>APY</P2>
                     </StyledDetailHeader>
                     <StyledContentContainer>
-                      <P2 color={'#000'}>{apy.toString()} %</P2>
+                      <P2 color={'#000'}>{apy.toFixed(6)} %</P2>
                     </StyledContentContainer>
                   </div>
                   <div
