@@ -19,8 +19,8 @@ const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
 const FARM_STATS_QUERY: DocumentNode = gql`
   query FARM_STATS($farmAddress: ID!) {
-    tokenGeyser(where: { id: $farmAddress }) {
-      apy
+    tokenGeysers(where: { id: $farmAddress }) {
+      apr
       tvl
       staked
       durationSec
@@ -36,7 +36,7 @@ const FARM_STATS_QUERY: DocumentNode = gql`
 type BigNumberish = BigNumber.Value;
 
 type FarmStatsResponse = {
-  apy: BigNumberish;
+  apr: BigNumberish;
   tvl: BigNumberish;
   staked: BigNumberish;
   durationSec: number;
@@ -88,7 +88,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
 
         const [
           {
-            apy: rawApy,
+            apr: rawApy,
             tvl: rawTvl,
             staked: rawStaked,
             unlockedRewards: rawUnlockedRewards,
