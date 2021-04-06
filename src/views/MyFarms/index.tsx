@@ -32,15 +32,21 @@ import { H1, P2 } from 'components/Typography';
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
+import { Web3Context } from 'contexts/Web3';
 
 import { useFarmStats } from 'hooks/useFarmStats';
+import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString } from 'utils';
+import { commifyString, formatFillPercentage, formatRelays } from 'utils';
 
 const MyFarms: React.FC = () => {
   const history = useHistory();
   const { onSetActionType } = React.useContext(DepositWithdrawalContext);
-  const { apr, timeRemaining, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { address } = React.useContext(Web3Context);
+  const { apr, farmUsage, maxRelays, unlockedRewards, timeRemaining, totalStaked, totalTime } = useFarmStats(
+    TOKEN_GEYSER_ADDRESS,
+  );
+  const { earned, ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [farmSelected, setFarmSelected] = React.useState<boolean>(true);
 
   const onDepositWithdrawLink = (actionType: 'deposit' | 'withdraw') => {
@@ -85,27 +91,52 @@ const MyFarms: React.FC = () => {
                   statTitle={'APR'}
                   statContent={`${commifyString(apr.toFixed(2))}%`}
                 />
-                <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
+                <SmallInfoCard
+                  iconType={'caret'}
+                  statTitle={'Multiplier'}
+                  statContent={`${weightedMultiplier.toFixed(2)} X`}
+                />
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Total Staked'}
                   statContent={`${commifyString(totalStaked.toFixed(2))} wPOKT`}
                 />
-                <SmallInfoCard iconType={'caret'} statTitle={'Max Relays/Day'} statContent={'1 M'} />
-                <SmallInfoCard iconType={'question'} statTitle={'Farm Usage'} statContent={'55.4%'} />
-                <SmallInfoCard iconType={'question'} statTitle={'Supported APps'} statContent={'12'} />
-                <SmallInfoCard iconType={'question'} statTitle={'Rewards unlocked'} statContent={'30%'} />
-                <SmallInfoCard iconType={'question'} statTitle={'Farm ownership'} statContent={'14%'} />
+                <SmallInfoCard
+                  iconType={'caret'}
+                  statTitle={'Max Relays/Day'}
+                  statContent={`${formatRelays(maxRelays.toFixed(0))} M`}
+                />
+                <SmallInfoCard
+                  iconType={'question'}
+                  statTitle={'Farm Usage'}
+                  statContent={`${farmUsage.toFixed(2)}%`}
+                />
+                <SmallInfoCard iconType={'question'} statTitle={'Supported Apps'} statContent={'0'} />
+                <SmallInfoCard
+                  iconType={'question'}
+                  statTitle={'Rewards unlocked'}
+                  statContent={`${commifyString(unlockedRewards.toFixed(2))} wPOKT`}
+                />
+                <SmallInfoCard
+                  iconType={'question'}
+                  statTitle={'Farm ownership'}
+                  statContent={`${ownershipShare.toFixed(2)}%`}
+                />
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Duration'}
                   statContent={`${timeRemaining?.days} Days`}
-                  statFill={38}
+                  statFill={formatFillPercentage(timeRemaining, totalTime)}
                 />
                 <SmallInfoCardExtraLinks />
               </StyledContentContainer>
               <div>
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total Yield Earned'} icon={'rake'} size={'md'} />
+                <MediumInfoCard
+                  amount={`${commifyString(totalStaked.multipliedBy(earned).toFixed(6))} wPOKT*`}
+                  header={'Total Yield Earned'}
+                  icon={'rake'}
+                  size={'md'}
+                />
                 <MediumDepositWithdrawLinks onDepositWithdrawLink={onDepositWithdrawLink} />
                 <MediumStatsFaqLinks />
               </div>

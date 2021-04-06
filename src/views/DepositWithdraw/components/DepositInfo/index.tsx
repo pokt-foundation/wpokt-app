@@ -19,8 +19,8 @@ import {
 import { SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
-import { Web3Context } from 'contexts/Web3';
 
+import { Web3Context } from 'contexts/Web3';
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import { useFarmStats } from 'hooks/useFarmStats';
