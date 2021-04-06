@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 
@@ -32,6 +33,7 @@ const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
   return (
     <StyledModalContainer>
       <StyledCloseContainer onClick={onCloseModal}>
+        <VisuallyHidden>Close</VisuallyHidden>
         <CloseSvg />
       </StyledCloseContainer>
       <StyledInnerContainer>

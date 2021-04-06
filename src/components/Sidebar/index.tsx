@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 
@@ -15,6 +16,7 @@ const Sidebar: React.FC<ISidebar> = ({ setSidebar, sidebar }) => {
   return (
     <StyledSidebarBackground active={sidebar}>
       <StyledCloseContainer onClick={() => setSidebar(false)}>
+        <VisuallyHidden>Close</VisuallyHidden>
         <CloseSvg />
       </StyledCloseContainer>
       <StyledNav>
