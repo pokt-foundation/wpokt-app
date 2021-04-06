@@ -58,6 +58,7 @@ type FarmStatsReturnType = {
   totalRewards: BigNumber;
   rewardUnlockRate: BigNumber;
   timeRemaining?: TimeRemaining;
+  totalTime?: number;
 };
 
 export function useFarmStats(farmAddress: string): FarmStatsReturnType {
@@ -69,6 +70,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
   const [totalRewards, setTotalRewards] = React.useState(ZERO);
   const [rewardUnlockRate, setRewardUnlockRate] = React.useState(ZERO);
   const [timeRemaining, setTimeRemaining] = React.useState<TimeRemaining>();
+  const [totalTime, setTotalTime] = React.useState<number>(0);
 
   const [farmUsage, setFarmUsage] = React.useState(ZERO);
   const [maxRelays, setMaxRelays] = React.useState(ZERO);
@@ -121,6 +123,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         const farmTimeLeft = farmEndDate.diff(today, 'seconds');
 
         const timeRemaining: TimeRemaining = getTimeRemaining(farmTimeLeft);
+        const totalTime: number = +durationSec;
 
         const parsedMaxRelays = parsedStaked.times(new BigNumber(40));
         const parsedFarmUsage = parsedMaxRelays.div(farmGoalRelays).times(new BigNumber(100));
@@ -135,6 +138,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
           setTotalRewards(parsedTotalRewards);
           setTotalStaked(parsedStaked);
           setTimeRemaining(timeRemaining);
+          setTotalTime(totalTime);
           setRewardUnlockRate(unlockRate);
         }
       } catch (err) {
@@ -161,5 +165,6 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
     totalRewards,
     rewardUnlockRate,
     timeRemaining,
+    totalTime,
   };
 }
