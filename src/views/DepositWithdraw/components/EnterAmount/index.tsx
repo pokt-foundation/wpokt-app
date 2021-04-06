@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import 'styled-components/macro';
 import TokenAmount from 'token-amount';
 import { Provider } from '@ethersproject/abstract-provider';
@@ -128,6 +129,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
               </P2>
             )}
             <StyledMaxButton onClick={onMaxValue}>
+              <VisuallyHidden>Max</VisuallyHidden>
               <div id={'max-svg'}>
                 <MaxSvg />
               </div>
@@ -150,10 +152,12 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
         />
         {!isApproved ? (
           <button disabled={isDisabled} onClick={onConfirmDeposit}>
+            <VisuallyHidden>Approve</VisuallyHidden>
             {isDisabled ? <ApproveButtonDisabledSvg /> : <ApproveButtonActiveSvg />}
           </button>
         ) : (
           <button disabled={isDisabled} onClick={onConfirmDeposit}>
+            <VisuallyHidden>Deposit</VisuallyHidden>
             {actionType === 'deposit' && (isDisabled ? <DepositButtonDisabledSvg /> : <DepositButtonActiveSvg />)}
             {actionType === 'withdraw' && (isDisabled ? <WithdrawButtonDisabledSvg /> : <WithdrawButtonActiveSvg />)}
           </button>

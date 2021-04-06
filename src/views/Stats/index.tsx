@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import { CartesianGrid, LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
 import { colors, GU } from 'components/theme';
 
@@ -114,6 +115,7 @@ const Stats: React.FC = () => {
                 </LineChart>
               </StyledChartContainer>
               <StyledExpandButton onClick={() => onSelectModal('GRAPH_FULLSCREEN')}>
+                <VisuallyHidden>Expand</VisuallyHidden>
                 <ExpandSvg />
               </StyledExpandButton>
             </StyledSmallInfoCardsContainer>
