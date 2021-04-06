@@ -73,7 +73,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
         <SmallInfoCard
           iconType={'question'}
           statTitle={'time left'}
-          statContent={`${timeRemaining?.days} days`}
+          statContent={`${timeRemaining?.days} days left`}
           statFill={formatFillPercentage(timeRemaining, totalTime)}
         />
         <SmallInfoCardExtraLinks />

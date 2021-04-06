@@ -23,8 +23,9 @@ import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 import { Web3Context } from 'contexts/Web3';
 
 import { useFarmStats } from 'hooks/useFarmStats';
+import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString } from 'utils';
+import { commifyString, formatFillPercentage, formatRelays } from 'utils';
 
 interface IWithdraw {
   farmSelected: boolean;
@@ -58,18 +59,21 @@ export const WithdrawInfo: React.FC<IWithdraw> = ({ farmSelected }) => {
           <P2 color={colors.white}>Connect your Ethereum wallet to withdraw your funds</P2>
         </div>
       ) : (
-        <WithdrawFarm farmSelected={farmSelected} />
+        <WithdrawFarm address={address} farmSelected={farmSelected} />
       )}
     </>
   );
 };
 
 interface IWithdrawFarm {
+  address: string;
   farmSelected: boolean;
 }
 
-const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
-  const { apy, timeRemaining, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
+  const { apy, maxRelays, timeRemaining, totalStaked, totalTime, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { earned, ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
+
   return (
     <div>
       <StyledHeader farmSelected={farmSelected}>
@@ -86,7 +90,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
           <div id={'estimated-reward'}>
             <P2 color={colors.white}>Yeild Earned</P2>
             <StyledRewardText color={colors.white}>
-              {commifyString(totalStaked.multipliedBy(apy).toFixed(6))} wPOKT*
+              {commifyString(totalStaked.multipliedBy(earned).toFixed(6))} wPOKT*
             </StyledRewardText>
           </div>
         </StyledHeaderRight>
@@ -94,15 +98,27 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ farmSelected }) => {
       <StyledSmallInfoCardsContainer>
         <StyledContentContainer>
           <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${commifyString(apy.toFixed(2))}%`} />
-          <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
-          <SmallInfoCard iconType={'question'} statTitle={'Farm Ownership'} statContent={'4%'} />
+          <SmallInfoCard
+            iconType={'caret'}
+            statTitle={'Multiplier'}
+            statContent={`${weightedMultiplier.toFixed(2)} X`}
+          />
+          <SmallInfoCard
+            iconType={'question'}
+            statTitle={'Farm Ownership'}
+            statContent={`${ownershipShare.toFixed(2)}%`}
+          />
           <SmallInfoCard
             iconType={'caret'}
             statTitle={'Duration'}
-            statContent={`${timeRemaining?.days} Days Left`}
-            statFill={38}
+            statContent={`${timeRemaining?.days} days left`}
+            statFill={formatFillPercentage(timeRemaining, totalTime)}
           />
-          <SmallInfoCard iconType={'question'} statTitle={'MAX RELAYS/DAY'} statContent={'10 M '} />
+          <SmallInfoCard
+            iconType={'question'}
+            statTitle={'MAX RELAYS/DAY'}
+            statContent={`${formatRelays(maxRelays.toFixed(0))} M`}
+          />
           <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={true} />
         </StyledContentContainer>
         <div>
