@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import { NavLink } from 'react-router-dom';
 import 'styled-components/macro';
 
@@ -38,6 +39,7 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
     >
       <NavLink exact activeClassName="active" to="/">
         <StyledLogoContainer>
+          <VisuallyHidden>Home</VisuallyHidden>
           <LogoSvg />
         </StyledLogoContainer>
       </NavLink>
@@ -75,6 +77,7 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
           />
         </StyledConnectWalletButton>
         <StyledSandwichMenuContainer onClick={() => setSidebar(true)}>
+          <VisuallyHidden>Menu</VisuallyHidden>
           <SandwichMenu />
         </StyledSandwichMenuContainer>
       </Flex>

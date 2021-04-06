@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { colors, GU } from 'components/theme';
@@ -28,6 +29,7 @@ interface IMediumInfoCard {
 export const MediumInfoCard: React.FC<IMediumInfoCard> = ({ amount, header, icon, size }) => {
   return (
     <StyledMediumInfoCardContainer size={size}>
+      <VisuallyHidden>More Info</VisuallyHidden>
       {icon === 'chest' && <ChestSvg />}
       {icon === 'clock' && <ClockSvg />}
       {icon === 'diamond' && <DiamondSvg />}

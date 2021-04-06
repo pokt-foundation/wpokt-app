@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { media } from 'components/breakpoints';
@@ -24,10 +25,12 @@ export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill,
         <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
         {iconType === 'question' ? (
           <StyledSmallInfoCardButton>
+            <VisuallyHidden>More Info</VisuallyHidden>
             <QuestionMarkSvg />
           </StyledSmallInfoCardButton>
         ) : (
           <StyledSmallInfoCardButton>
+            <VisuallyHidden>More Info</VisuallyHidden>
             <MultiplierSvg />
           </StyledSmallInfoCardButton>
         )}

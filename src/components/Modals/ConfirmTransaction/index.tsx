@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import { BigNumber } from 'bignumber.js';
 import 'styled-components/macro';
 import { colors, GU } from 'components/theme';
@@ -93,6 +94,7 @@ const ConfirmTransaction: React.FC = () => {
               </StyledCoinContainer>
               <H1 color={colors.white}>Confirm Your {actionType === 'deposit' ? 'Deposit' : 'Withdraw'}</H1>
               <StyledCloseContainer onClick={onCloseModal}>
+                <VisuallyHidden>Close</VisuallyHidden>
                 <CloseSvg />
               </StyledCloseContainer>
             </div>
@@ -159,7 +161,16 @@ const ConfirmTransaction: React.FC = () => {
                     <P2 id={'address'} color={'#000'}>
                       {address ? shortenAddress(address, 10) : ''}
                     </P2>
-                    <button onClick={onCopy}>{!isCopied ? <CopySvg /> : 'Copied!'}</button>
+                    <button onClick={onCopy}>
+                      {!isCopied ? (
+                        <div>
+                          <VisuallyHidden>Copy</VisuallyHidden>
+                          <CopySvg />
+                        </div>
+                      ) : (
+                        'Copied!'
+                      )}
+                    </button>
                   </Flex>
                 </StyledContentContainer>
               </div>
@@ -205,10 +216,12 @@ const ConfirmTransaction: React.FC = () => {
             <StyledDepositButtonContainer>
               {actionType === 'deposit' ? (
                 <button onClick={onDeposit}>
+                  <VisuallyHidden>Deposit</VisuallyHidden>
                   <DepositButtonActiveSvg />
                 </button>
               ) : (
                 <button onClick={onWithdraw}>
+                  <VisuallyHidden>Withdraw</VisuallyHidden>
                   <WithdrawButtonActiveSvg />
                 </button>
               )}

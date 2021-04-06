@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 
@@ -50,6 +51,7 @@ export const InsufficientFunds: React.FC = () => {
           </StyledPiggyBankContainer>
           <H1 color={colors.white}>Insufficient wPOKT</H1>
           <StyledCloseContainer onClick={onCloseModal}>
+            <VisuallyHidden>Close</VisuallyHidden>
             <CloseSvg />
           </StyledCloseContainer>
         </div>
