@@ -48,7 +48,7 @@ type FarmStatsResponse = {
 };
 
 type FarmStatsReturnType = {
-  apy: BigNumber;
+  apr: BigNumber;
   tvl: BigNumber;
   maxRelays: BigNumber;
   farmUsage: BigNumber;
@@ -62,7 +62,7 @@ type FarmStatsReturnType = {
 };
 
 export function useFarmStats(farmAddress: string): FarmStatsReturnType {
-  const [apy, setAPY] = React.useState(ZERO);
+  const [apr, setAPR] = React.useState(ZERO);
   const [tvl, setTVL] = React.useState(ZERO);
   const [totalStaked, setTotalStaked] = React.useState(ZERO);
   const [unlockedRewards, setUnlockedRewards] = React.useState(ZERO);
@@ -90,7 +90,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
 
         const [
           {
-            apr: rawApy,
+            apr: rawApr,
             tvl: rawTvl,
             staked: rawStaked,
             unlockedRewards: rawUnlockedRewards,
@@ -104,7 +104,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
           FarmStatsResponse
         ] = result.data.tokenGeysers;
 
-        const parsedAPY = new BigNumber(rawApy);
+        const parsedAPR = new BigNumber(rawApr);
         const parsedTVL = new BigNumber(rawTvl);
         const parsedStaked = new BigNumber(rawStaked);
         const parsedLockedRewards = new BigNumber(rawLockedRewards);
@@ -129,7 +129,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         const parsedFarmUsage = parsedMaxRelays.div(farmGoalRelays).times(new BigNumber(100));
 
         if (!cancelled) {
-          setAPY(parsedAPY);
+          setAPR(parsedAPR);
           setTVL(parsedTVL);
           setMaxRelays(parsedMaxRelays);
           setFarmUsage(parsedFarmUsage);
@@ -155,7 +155,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
   }, [farmAddress]);
 
   return {
-    apy,
+    apr,
     tvl,
     farmUsage,
     maxRelays,

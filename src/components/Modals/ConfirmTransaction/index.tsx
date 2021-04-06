@@ -42,7 +42,7 @@ import { shortenAddress } from 'utils';
 
 const ConfirmTransaction: React.FC = () => {
   const { actionType, inputValue, onCloseModal, onDeposit, onWithdraw } = React.useContext(DepositWithdrawalContext);
-  const { apy, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apr, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const { address } = React.useContext(Web3Context);
 
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
@@ -124,10 +124,10 @@ const ConfirmTransaction: React.FC = () => {
                     `}
                   >
                     <StyledDetailHeader>
-                      <P2 color={colors.white}>APY</P2>
+                      <P2 color={colors.white}>APR</P2>
                     </StyledDetailHeader>
                     <StyledContentContainer>
-                      <P2 color={'#000'}>{apy.toFixed(6)} %</P2>
+                      <P2 color={'#000'}>{apr.toFixed(6)} %</P2>
                     </StyledContentContainer>
                   </div>
                   <div

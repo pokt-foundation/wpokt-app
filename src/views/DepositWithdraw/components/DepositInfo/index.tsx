@@ -34,7 +34,9 @@ interface IDepositInfo {
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
   const { address } = React.useContext(Web3Context);
-  const { apy, farmUsage, maxRelays, totalStaked, timeRemaining, totalTime } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apr, farmUsage, maxRelays, rewardUnlockRate, totalStaked, timeRemaining, totalTime } = useFarmStats(
+    TOKEN_GEYSER_ADDRESS,
+  );
   const { ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(true);
 
@@ -53,12 +55,12 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
           <StyledLine />
           <div id={'estimated-reward'}>
             <P2 color={colors.white}>Estimated Reward</P2>
-            <StyledRewardText color={colors.white}>{totalStaked.multipliedBy(apy).toFixed(6)} wPOKT*</StyledRewardText>
+            <StyledRewardText color={colors.white}>{totalStaked.multipliedBy(apr).toFixed(6)} wPOKT*</StyledRewardText>
           </div>
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
-        <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${commifyString(apy.toFixed(2))}%`} />
+        <SmallInfoCard iconType={'question'} statTitle={'APR'} statContent={`${commifyString(apr.toFixed(2))}%`} />
         <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={`${weightedMultiplier.toFixed(2)} X`} />
         <SmallInfoCard
           iconType={'question'}
@@ -108,7 +110,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
             />
             <SmallInfoCard iconType={'caret'} statTitle={'Apps'} statContent={'0'} />
             <SmallInfoCard iconType={'question'} statTitle={'Usage'} statContent={`${farmUsage.toFixed(2)}%`} />
-            <SmallInfoCard iconType={'question'} statTitle={'xxxxxx'} statContent={'00.00'} />
+            <SmallInfoCard iconType={'question'} statTitle={'Unlock Rate'} statContent={rewardUnlockRate.toFixed(2)} />
             <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={false} />
           </StyledSmallInfoCardsContainer>
         </>

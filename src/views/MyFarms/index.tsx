@@ -40,7 +40,7 @@ import { commifyString } from 'utils';
 const MyFarms: React.FC = () => {
   const history = useHistory();
   const { onSetActionType } = React.useContext(DepositWithdrawalContext);
-  const { apy, timeRemaining, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apr, timeRemaining, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const [farmSelected, setFarmSelected] = React.useState<boolean>(true);
 
   const onDepositWithdrawLink = (actionType: 'deposit' | 'withdraw') => {
@@ -82,8 +82,8 @@ const MyFarms: React.FC = () => {
               <StyledContentContainer>
                 <SmallInfoCard
                   iconType={'question'}
-                  statTitle={'APY'}
-                  statContent={`${commifyString(apy.toFixed(2))}%`}
+                  statTitle={'APR'}
+                  statContent={`${commifyString(apr.toFixed(2))}%`}
                 />
                 <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={'1.0 X'} />
                 <SmallInfoCard

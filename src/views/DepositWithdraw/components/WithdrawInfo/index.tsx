@@ -71,7 +71,9 @@ interface IWithdrawFarm {
 }
 
 const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
-  const { apy, maxRelays, timeRemaining, totalStaked, totalTime, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apr, maxRelays, totalRewards, timeRemaining, totalStaked, totalTime, unlockedRewards } = useFarmStats(
+    TOKEN_GEYSER_ADDRESS,
+  );
   const { earned, ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
 
   return (
@@ -97,7 +99,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
         <StyledContentContainer>
-          <SmallInfoCard iconType={'question'} statTitle={'APY'} statContent={`${commifyString(apy.toFixed(2))}%`} />
+          <SmallInfoCard iconType={'question'} statTitle={'APR'} statContent={`${commifyString(apr.toFixed(2))}%`} />
           <SmallInfoCard
             iconType={'caret'}
             statTitle={'Multiplier'}
@@ -123,13 +125,13 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
         </StyledContentContainer>
         <div>
           <MediumInfoCard
-            amount={`${commifyString(totalStaked.toFixed(6))} wPOKT`}
+            amount={`${commifyString(totalRewards.toFixed(6))} wPOKT`}
             header={'Total Deposit'}
             icon={'chest'}
             size={'md'}
           />
           <MediumInfoCard
-            amount={`${commifyString(tvl.toFixed(6))} wPOKT`}
+            amount={`${commifyString(unlockedRewards.toFixed(6))} wPOKT`}
             header={'Rewards Claimed'}
             icon={'rewards'}
             size={'md'}
