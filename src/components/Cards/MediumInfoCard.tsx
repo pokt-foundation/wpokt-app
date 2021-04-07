@@ -150,7 +150,7 @@ export const MediumStatsFaqLinks: React.FC = () => {
 
   return (
     <StyledLinksContainer>
-      <StyledLinkButton color={'#000'} onClick={() => history.replace('/stats')}>
+      <StyledLinkButton color={'#000'} onClick={() => history.push('/stats')}>
         <P2 color={colors.white}>Stats</P2>
         <div>
           <MultiplierSvg />

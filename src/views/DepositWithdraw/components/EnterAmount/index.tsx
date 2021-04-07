@@ -32,7 +32,7 @@ import { API as OnboardAPI } from 'libs/types';
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import useApproval from 'hooks/useApproval';
-import { useFarmStats } from 'hooks/useFarmStats';
+import { useUserStats } from 'hooks/useUserStats';
 
 import { commifyString, parseInputValue } from 'utils';
 
@@ -49,7 +49,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const { wpoktBalance } = React.useContext(BalanceContext);
 
   const { isApproved, isApproving, onApprove } = useApproval();
-  const { totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { totalStaked } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
 
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
 
@@ -65,7 +65,11 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
 
   React.useEffect(() => {
     if (wpoktBalance && wpoktBalance) {
-      if (inputValue === '' || inputValue === '0' || BigInt(parseInputValue(inputValue, 18)) > BigInt(wpoktBalance)) {
+      if (
+        inputValue === '' ||
+        inputValue === '0' ||
+        (BigInt(parseInputValue(inputValue, 18)) > BigInt(wpoktBalance) && actionType === 'deposit')
+      ) {
         setIsDisabled(true);
         setFarmSelected(false);
       } else {
@@ -73,7 +77,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
         setFarmSelected(true);
       }
     }
-  }, [address, setFarmSelected, inputValue, wpoktBalance]);
+  }, [actionType, address, setFarmSelected, inputValue, wpoktBalance]);
 
   React.useEffect(() => {
     if (isApproving) {

@@ -133,15 +133,20 @@ export const StyledGraphContainer = styled.div`
   `}
 `;
 
-export const StyledLink = styled.div`
+export const StyledLink = styled.button`
   align-items: center;
   background: #000;
+  border: none;
   box-sizing: border-box;
   display: flex;
   height: ${9 * GU}px;
   justify-content: space-between;
   padding: ${2 * GU}px;
   width: 47%;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledModalContainer = styled.div`

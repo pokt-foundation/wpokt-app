@@ -107,9 +107,9 @@ const App: React.FC = () => {
               <MyFarms />
             </Route>
           </Switch>
+          <Modals />
         </Router>
       </Wrapper>
-      <Modals />
     </>
   );
 };

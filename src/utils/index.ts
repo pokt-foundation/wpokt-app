@@ -25,6 +25,15 @@ export function formatFillPercentage(timeRemaining?: TimeRemaining, totalTime?: 
   }
 }
 
+export function formatDaysFromTimestamp(totalTime?: number): number {
+  if (totalTime && totalTime !== 0) {
+    const durationDays = totalTime / 86400;
+    return durationDays;
+  } else {
+    return 0;
+  }
+}
+
 function bigNum(value: string | number): BigNumber {
   return BigNumber.from(value);
 }

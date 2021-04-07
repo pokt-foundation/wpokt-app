@@ -171,7 +171,7 @@ export const SmallInfoCardExtraLinks: React.FC<ISmallInfoCardExtraLinks> = ({ sh
   const history = useHistory();
   return (
     <StyledExtraLinksContainer showOnDesktop={showOnDesktop} showOnMobile={showOnMobile}>
-      <StyledExtraLinksButton onClick={() => history.replace('/stats')}>
+      <StyledExtraLinksButton onClick={() => history.push('/stats')}>
         Stats
         <CaretSvg />
       </StyledExtraLinksButton>

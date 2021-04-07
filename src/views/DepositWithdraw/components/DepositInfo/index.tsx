@@ -34,10 +34,11 @@ interface IDepositInfo {
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
   const { address } = React.useContext(Web3Context);
-  const { apr, farmUsage, maxRelays, rewardUnlockRate, totalStaked, timeRemaining, totalTime } = useFarmStats(
+  const { apr, farmUsage, maxRelays, rewardUnlockRate, timeRemaining, totalTime } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { totalStaked, ownershipShare, weightedMultiplier } = useUserStats(
+    address ? address : '',
     TOKEN_GEYSER_ADDRESS,
   );
-  const { ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(true);
 
   return (
@@ -60,7 +61,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
-        <SmallInfoCard iconType={'question'} statTitle={'APR'} statContent={`${commifyString(apr.toFixed(2))}%`} />
+        <SmallInfoCard iconType={'question'} statTitle={'APR'} statContent={`${commifyString(apr.toFixed(6))}%`} />
         <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={`${weightedMultiplier.toFixed(2)} X`} />
         <SmallInfoCard
           iconType={'question'}
@@ -110,7 +111,11 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
             />
             <SmallInfoCard iconType={'caret'} statTitle={'Apps'} statContent={'0'} />
             <SmallInfoCard iconType={'question'} statTitle={'Usage'} statContent={`${farmUsage.toFixed(2)}%`} />
-            <SmallInfoCard iconType={'question'} statTitle={'Unlock Rate'} statContent={rewardUnlockRate.toFixed(2)} />
+            <SmallInfoCard
+              iconType={'question'}
+              statTitle={'Unlock Rate'}
+              statContent={commifyString(rewardUnlockRate.toFixed(2))}
+            />
             <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={false} />
           </StyledSmallInfoCardsContainer>
         </>
