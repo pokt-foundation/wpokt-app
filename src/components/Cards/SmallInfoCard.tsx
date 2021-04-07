@@ -127,7 +127,7 @@ interface ITypograhpy {
   color?: string;
 }
 
-export const StyledStatText = styled.p<ITypograhpy>`
+const StyledStatText = styled.p<ITypograhpy>`
   font-family: PixelSplitter;
   font-size: 1rem;
   line-height: 12px;
