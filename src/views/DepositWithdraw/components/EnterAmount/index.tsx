@@ -65,7 +65,11 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
 
   React.useEffect(() => {
     if (wpoktBalance && wpoktBalance) {
-      if (inputValue === '' || inputValue === '0' || BigInt(parseInputValue(inputValue, 18)) > BigInt(wpoktBalance)) {
+      if (
+        inputValue === '' ||
+        inputValue === '0' ||
+        (BigInt(parseInputValue(inputValue, 18)) > BigInt(wpoktBalance) && actionType === 'deposit')
+      ) {
         setIsDisabled(true);
         setFarmSelected(false);
       } else {
@@ -73,7 +77,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
         setFarmSelected(true);
       }
     }
-  }, [address, setFarmSelected, inputValue, wpoktBalance]);
+  }, [actionType, address, setFarmSelected, inputValue, wpoktBalance]);
 
   React.useEffect(() => {
     if (isApproving) {

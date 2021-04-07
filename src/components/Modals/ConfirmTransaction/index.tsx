@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import VisuallyHidden from '@reach/visually-hidden';
 import { BigNumber } from 'bignumber.js';
 import 'styled-components/macro';
@@ -38,14 +39,16 @@ import { Web3Context } from 'contexts/Web3';
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import { useFarmStats } from 'hooks/useFarmStats';
+import { useUserStats } from 'hooks/useUserStats';
 
 import { shortenAddress } from 'utils';
 
 const ConfirmTransaction: React.FC = () => {
+  const history = useHistory();
   const { actionType, inputValue, onCloseModal, onDeposit, onWithdraw } = React.useContext(DepositWithdrawalContext);
-  const { apr, totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const { address } = React.useContext(Web3Context);
-
+  const { apr } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { totalStaked, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
 
   const onCopy = () => {
@@ -66,9 +69,14 @@ const ConfirmTransaction: React.FC = () => {
     }
   };
 
+  const onStatsLink = () => {
+    history.push('/stats');
+    onCloseModal();
+  };
+
   return (
     <>
-      {actionType === 'withdraw' && new BigNumber(inputValue) > new BigNumber(totalStaked) ? (
+      {actionType === 'withdraw' && new BigNumber(inputValue).isGreaterThan(new BigNumber(totalStaked)) ? (
         <InsufficientFunds />
       ) : (
         <StyledModalContainer>
@@ -129,7 +137,7 @@ const ConfirmTransaction: React.FC = () => {
                       <P2 color={colors.white}>APR</P2>
                     </StyledDetailHeader>
                     <StyledContentContainer>
-                      <P2 color={'#000'}>{apr.toFixed(6)} %</P2>
+                      <P2 color={'#000'}>{apr.toFixed(6)}%</P2>
                     </StyledContentContainer>
                   </div>
                   <div
@@ -141,7 +149,7 @@ const ConfirmTransaction: React.FC = () => {
                       <P2 color={colors.white}>Multiplier</P2>
                     </StyledDetailHeader>
                     <StyledContentContainer>
-                      <P2 color={'#000'}>5.0x</P2>
+                      <P2 color={'#000'}>{weightedMultiplier.toFixed(2)} x</P2>
                     </StyledContentContainer>
                   </div>
                 </Flex>
@@ -203,7 +211,7 @@ const ConfirmTransaction: React.FC = () => {
                         <P2 color={colors.white}>FAQ</P2>
                         <MultiplierSvg />
                       </StyledLink>
-                      <StyledLink>
+                      <StyledLink onClick={onStatsLink}>
                         <P2 color={colors.white}>Stats</P2>
                         <MultiplierSvg />
                       </StyledLink>

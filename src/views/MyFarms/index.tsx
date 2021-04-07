@@ -52,7 +52,7 @@ const MyFarms: React.FC = () => {
 
   const onDepositWithdrawLink = (actionType: 'deposit' | 'withdraw') => {
     onSetActionType(actionType);
-    history.replace('/');
+    history.push('/');
   };
 
   return (
