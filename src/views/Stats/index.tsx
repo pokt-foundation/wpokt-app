@@ -31,7 +31,7 @@ import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 
 import { useFarmStats } from 'hooks/useFarmStats';
 
-import { commifyString } from 'utils';
+import { commifyString, formatDaysFromTimestamp } from 'utils';
 
 const data = [
   { time: 'Day 1', rewards: 1 },
@@ -42,7 +42,7 @@ const data = [
 
 const Stats: React.FC = () => {
   const { onSelectModal } = React.useContext(DepositWithdrawalContext);
-  const { lockedRewards, rewardUnlockRate, timeRemaining, totalRewards, totalStaked, unlockedRewards } = useFarmStats(
+  const { lockedRewards, rewardUnlockRate, totalRewards, totalStaked, totalTime, unlockedRewards } = useFarmStats(
     TOKEN_GEYSER_ADDRESS,
   );
   const [farmSelected, setFarmSelected] = React.useState<boolean>(true);
@@ -103,9 +103,14 @@ const Stats: React.FC = () => {
                   icon={'key'}
                   size={'sm'}
                 />
-                <MediumInfoCard amount={`${timeRemaining?.days} Days`} header={'Duration'} icon={'clock'} size={'sm'} />
                 <MediumInfoCard
-                  amount={rewardUnlockRate.toFixed(6)}
+                  amount={`${formatDaysFromTimestamp(totalTime)} Days`}
+                  header={'Duration'}
+                  icon={'clock'}
+                  size={'sm'}
+                />
+                <MediumInfoCard
+                  amount={commifyString(rewardUnlockRate.toFixed(6))}
                   header={'Reward unlock Rate'}
                   icon={'diamond'}
                   size={'sm'}

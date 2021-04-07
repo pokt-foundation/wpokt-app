@@ -43,10 +43,11 @@ const MyFarms: React.FC = () => {
   const history = useHistory();
   const { onSetActionType } = React.useContext(DepositWithdrawalContext);
   const { address } = React.useContext(Web3Context);
-  const { apr, farmUsage, maxRelays, unlockedRewards, timeRemaining, totalStaked, totalTime } = useFarmStats(
+  const { apr, farmUsage, maxRelays, unlockedRewards, timeRemaining, totalTime } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { earned, ownershipShare, totalStaked, weightedMultiplier } = useUserStats(
+    address ? address : '',
     TOKEN_GEYSER_ADDRESS,
   );
-  const { earned, ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [farmSelected, setFarmSelected] = React.useState<boolean>(true);
 
   const onDepositWithdrawLink = (actionType: 'deposit' | 'withdraw') => {
@@ -89,7 +90,7 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'APR'}
-                  statContent={`${commifyString(apr.toFixed(2))}%`}
+                  statContent={`${commifyString(apr.toFixed(6))}%`}
                 />
                 <SmallInfoCard
                   iconType={'caret'}
@@ -124,7 +125,7 @@ const MyFarms: React.FC = () => {
                 />
                 <SmallInfoCard
                   iconType={'question'}
-                  statTitle={'Duration'}
+                  statTitle={'Time Left'}
                   statContent={`${timeRemaining?.days} Days`}
                   statFill={formatFillPercentage(timeRemaining, totalTime)}
                 />

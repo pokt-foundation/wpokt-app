@@ -71,7 +71,7 @@ interface IWithdrawFarm {
 }
 
 const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
-  const { apr, maxRelays, totalRewards, timeRemaining, totalStaked, totalTime, unlockedRewards } = useFarmStats(
+  const { apr, maxRelays, totalRewards, timeRemaining, totalTime, unlockedRewards } = useFarmStats(
     TOKEN_GEYSER_ADDRESS,
   );
   const { earned, ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
@@ -91,15 +91,13 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
           <StyledLine />
           <div id={'estimated-reward'}>
             <P2 color={colors.white}>Yeild Earned</P2>
-            <StyledRewardText color={colors.white}>
-              {commifyString(totalStaked.multipliedBy(earned).toFixed(6))} wPOKT*
-            </StyledRewardText>
+            <StyledRewardText color={colors.white}>{commifyString(earned.toFixed(6))} wPOKT*</StyledRewardText>
           </div>
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
         <StyledContentContainer>
-          <SmallInfoCard iconType={'question'} statTitle={'APR'} statContent={`${commifyString(apr.toFixed(2))}%`} />
+          <SmallInfoCard iconType={'question'} statTitle={'APR'} statContent={`${commifyString(apr.toFixed(6))}%`} />
           <SmallInfoCard
             iconType={'caret'}
             statTitle={'Multiplier'}
@@ -112,7 +110,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
           />
           <SmallInfoCard
             iconType={'caret'}
-            statTitle={'Duration'}
+            statTitle={'Time Left'}
             statContent={`${timeRemaining?.days} days left`}
             statFill={formatFillPercentage(timeRemaining, totalTime)}
           />
