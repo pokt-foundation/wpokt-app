@@ -42,7 +42,9 @@ const data = [
 
 const Stats: React.FC = () => {
   const { onSelectModal } = React.useContext(DepositWithdrawalContext);
-  const { rewardUnlockRate, timeRemaining, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { lockedRewards, rewardUnlockRate, timeRemaining, totalRewards, totalStaked, unlockedRewards } = useFarmStats(
+    TOKEN_GEYSER_ADDRESS,
+  );
   const [farmSelected, setFarmSelected] = React.useState<boolean>(true);
 
   return (
@@ -83,14 +85,24 @@ const Stats: React.FC = () => {
                   icon={'chest'}
                   size={'sm'}
                 />
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total  Rewards'} icon={'star'} size={'sm'} />
                 <MediumInfoCard
-                  amount={`${commifyString(tvl.toFixed(6))} wPOKT`}
+                  amount={`${commifyString(totalRewards.toFixed(6))} wPOKT`}
+                  header={'Total  Rewards'}
+                  icon={'star'}
+                  size={'sm'}
+                />
+                <MediumInfoCard
+                  amount={`${commifyString(lockedRewards.toFixed(6))} wPOKT`}
                   header={'Locked Rewards'}
                   icon={'padlock'}
                   size={'sm'}
                 />
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Unlocked Rewards'} icon={'key'} size={'sm'} />
+                <MediumInfoCard
+                  amount={`${commifyString(unlockedRewards.toFixed(6))} wPOKT`}
+                  header={'Unlocked Rewards'}
+                  icon={'key'}
+                  size={'sm'}
+                />
                 <MediumInfoCard amount={`${timeRemaining?.days} Days`} header={'Duration'} icon={'clock'} size={'sm'} />
                 <MediumInfoCard
                   amount={rewardUnlockRate.toFixed(6)}

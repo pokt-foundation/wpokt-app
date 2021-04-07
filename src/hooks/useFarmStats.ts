@@ -48,7 +48,7 @@ type FarmStatsResponse = {
 };
 
 type FarmStatsReturnType = {
-  apy: BigNumber;
+  apr: BigNumber;
   tvl: BigNumber;
   maxRelays: BigNumber;
   farmUsage: BigNumber;
@@ -58,17 +58,19 @@ type FarmStatsReturnType = {
   totalRewards: BigNumber;
   rewardUnlockRate: BigNumber;
   timeRemaining?: TimeRemaining;
+  totalTime?: number;
 };
 
 export function useFarmStats(farmAddress: string): FarmStatsReturnType {
-  const [apy, setAPY] = React.useState(ZERO);
-  const [tvl, setTVL] = React.useState(ZERO);
+  const [apr, setApr] = React.useState(ZERO);
+  const [tvl, setTvl] = React.useState(ZERO);
   const [totalStaked, setTotalStaked] = React.useState(ZERO);
   const [unlockedRewards, setUnlockedRewards] = React.useState(ZERO);
   const [lockedRewards, setLockedRewards] = React.useState(ZERO);
   const [totalRewards, setTotalRewards] = React.useState(ZERO);
   const [rewardUnlockRate, setRewardUnlockRate] = React.useState(ZERO);
   const [timeRemaining, setTimeRemaining] = React.useState<TimeRemaining>();
+  const [totalTime, setTotalTime] = React.useState<number>(0);
 
   const [farmUsage, setFarmUsage] = React.useState(ZERO);
   const [maxRelays, setMaxRelays] = React.useState(ZERO);
@@ -88,7 +90,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
 
         const [
           {
-            apr: rawApy,
+            apr: rawApr,
             tvl: rawTvl,
             staked: rawStaked,
             unlockedRewards: rawUnlockedRewards,
@@ -102,8 +104,8 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
           FarmStatsResponse
         ] = result.data.tokenGeysers;
 
-        const parsedAPY = new BigNumber(rawApy);
-        const parsedTVL = new BigNumber(rawTvl);
+        const parsedApr = new BigNumber(rawApr);
+        const parsedTvl = new BigNumber(rawTvl);
         const parsedStaked = new BigNumber(rawStaked);
         const parsedLockedRewards = new BigNumber(rawLockedRewards);
         const parsedUnlockedRewards = new BigNumber(rawUnlockedRewards);
@@ -121,13 +123,14 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         const farmTimeLeft = farmEndDate.diff(today, 'seconds');
 
         const timeRemaining: TimeRemaining = getTimeRemaining(farmTimeLeft);
+        const totalTime: number = +durationSec;
 
         const parsedMaxRelays = parsedStaked.times(new BigNumber(40));
         const parsedFarmUsage = parsedMaxRelays.div(farmGoalRelays).times(new BigNumber(100));
 
         if (!cancelled) {
-          setAPY(parsedAPY);
-          setTVL(parsedTVL);
+          setApr(parsedApr);
+          setTvl(parsedTvl);
           setMaxRelays(parsedMaxRelays);
           setFarmUsage(parsedFarmUsage);
           setUnlockedRewards(parsedUnlockedRewards);
@@ -135,6 +138,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
           setTotalRewards(parsedTotalRewards);
           setTotalStaked(parsedStaked);
           setTimeRemaining(timeRemaining);
+          setTotalTime(totalTime);
           setRewardUnlockRate(unlockRate);
         }
       } catch (err) {
@@ -151,7 +155,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
   }, [farmAddress]);
 
   return {
-    apy,
+    apr,
     tvl,
     farmUsage,
     maxRelays,
@@ -161,5 +165,6 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
     totalRewards,
     rewardUnlockRate,
     timeRemaining,
+    totalTime,
   };
 }
