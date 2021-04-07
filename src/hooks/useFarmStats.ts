@@ -62,7 +62,7 @@ type FarmStatsReturnType = {
 };
 
 export function useFarmStats(farmAddress: string): FarmStatsReturnType {
-  const [apr, setAPR] = React.useState(ZERO);
+  const [apr, setApr] = React.useState(ZERO);
   const [tvl, setTVL] = React.useState(ZERO);
   const [totalStaked, setTotalStaked] = React.useState(ZERO);
   const [unlockedRewards, setUnlockedRewards] = React.useState(ZERO);
