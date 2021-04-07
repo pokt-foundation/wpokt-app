@@ -23,7 +23,7 @@ wPOKT Pool: `0x7c2cf434e98940ad08ae3f26986235628b0904e7`
 To get started, create a `.env` file:
 `cp .env.example .env`
 
-... and run `yarn` to install libraries.
+... then run `yarn` to install libraries.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -114,6 +114,37 @@ Component that holds small-sized Stat and FAQ links.
 ```
 showOnDesktop?: boolean;
 showOnMobile?: boolean;
+```
+
+#### `Button`
+Basic button to wrap SVGs.
+
+#### `Flex`
+Shortcut container to easily style with flex-box.
+
+**Properties:**
+```
+align?: 'flex-start' | 'center' | 'flex-end';
+direction?: string;
+full?: boolean;
+justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between';
+```
+
+#### `Spacer`
+Shortcut container for adding uniform spacing between components.
+
+**Properties:**
+```
+size: 'xs' | 'sm' | 'md' | 'lg';
+```
+
+#### Typography
+Styled typography. All typography take the same properties.
+
+**Properties:**
+```
+center?: boolean;
+color?: string;
 ```
 
 ## Running the tests
