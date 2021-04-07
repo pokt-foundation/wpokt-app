@@ -139,7 +139,7 @@ size: 'xs' | 'sm' | 'md' | 'lg';
 ```
 
 #### Typography
-Styled typography. All typography take the same properties.
+All typography takes the same properties.
 
 **Properties:**
 ```
