@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import 'styled-components/macro';
 import TokenAmount from 'token-amount';
 import { Provider } from '@ethersproject/abstract-provider';
@@ -31,7 +32,7 @@ import { API as OnboardAPI } from 'libs/types';
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import useApproval from 'hooks/useApproval';
-import { useFarmStats } from 'hooks/useFarmStats';
+import { useUserStats } from 'hooks/useUserStats';
 
 import { commifyString, parseInputValue } from 'utils';
 
@@ -48,7 +49,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const { wpoktBalance } = React.useContext(BalanceContext);
 
   const { isApproved, isApproving, onApprove } = useApproval();
-  const { totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { totalStaked } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
 
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
 
@@ -76,7 +77,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
         setFarmSelected(true);
       }
     }
-  }, [address, setFarmSelected, inputValue, wpoktBalance]);
+  }, [actionType, address, setFarmSelected, inputValue, wpoktBalance]);
 
   React.useEffect(() => {
     if (isApproving) {
@@ -132,6 +133,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
               </P2>
             )}
             <StyledMaxButton onClick={onMaxValue}>
+              <VisuallyHidden>Max</VisuallyHidden>
               <div id={'max-svg'}>
                 <MaxSvg />
               </div>
@@ -154,10 +156,12 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
         />
         {!isApproved ? (
           <button disabled={isDisabled} onClick={onConfirmDeposit}>
+            <VisuallyHidden>Approve</VisuallyHidden>
             {isDisabled ? <ApproveButtonDisabledSvg /> : <ApproveButtonActiveSvg />}
           </button>
         ) : (
           <button disabled={isDisabled} onClick={onConfirmDeposit}>
+            <VisuallyHidden>Deposit</VisuallyHidden>
             {actionType === 'deposit' && (isDisabled ? <DepositButtonDisabledSvg /> : <DepositButtonActiveSvg />)}
             {actionType === 'withdraw' && (isDisabled ? <WithdrawButtonDisabledSvg /> : <WithdrawButtonActiveSvg />)}
           </button>

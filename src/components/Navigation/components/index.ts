@@ -82,7 +82,9 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const StyledLogoContainer = styled.div`
+export const StyledLogoContainer = styled.button`
+  background: transparent;
+  border: none;
   fill: ${colors.white};
   height: ${5 * GU}px;
   transition: all 0.3s ease;

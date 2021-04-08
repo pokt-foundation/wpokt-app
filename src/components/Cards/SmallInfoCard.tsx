@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { media } from 'components/breakpoints';
@@ -24,10 +25,12 @@ export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill,
         <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
         {iconType === 'question' ? (
           <StyledSmallInfoCardButton>
+            <VisuallyHidden>More Info</VisuallyHidden>
             <QuestionMarkSvg />
           </StyledSmallInfoCardButton>
         ) : (
           <StyledSmallInfoCardButton>
+            <VisuallyHidden>More Info</VisuallyHidden>
             <MultiplierSvg />
           </StyledSmallInfoCardButton>
         )}
@@ -124,7 +127,7 @@ interface ITypograhpy {
   color?: string;
 }
 
-export const StyledStatText = styled.p<ITypograhpy>`
+const StyledStatText = styled.p<ITypograhpy>`
   font-family: PixelSplitter;
   font-size: 1rem;
   line-height: 12px;
@@ -168,7 +171,7 @@ export const SmallInfoCardExtraLinks: React.FC<ISmallInfoCardExtraLinks> = ({ sh
   const history = useHistory();
   return (
     <StyledExtraLinksContainer showOnDesktop={showOnDesktop} showOnMobile={showOnMobile}>
-      <StyledExtraLinksButton onClick={() => history.replace('/stats')}>
+      <StyledExtraLinksButton onClick={() => history.push('/stats')}>
         Stats
         <CaretSvg />
       </StyledExtraLinksButton>

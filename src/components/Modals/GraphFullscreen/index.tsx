@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import 'styled-components/macro';
 import { CartesianGrid, LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
 import { colors, GU } from 'components/theme';
@@ -40,6 +41,7 @@ const GraphFullscreen: React.FC = () => {
       >
         <H1 color={colors.white}>unlocked Rewards</H1>
         <StyledCloseContainer onClick={onCloseModal}>
+          <VisuallyHidden>Close</VisuallyHidden>
           <CloseSvg />
         </StyledCloseContainer>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import { Bar, BarChart, ErrorBar, Tooltip, XAxis, YAxis } from 'recharts';
 import { colors } from 'components/theme';
 
@@ -75,18 +76,23 @@ const SalesInfo: React.FC = () => {
             </StyledContentTextContainer>
             <StyledButtonContainer>
               <button>
+                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
                 <BuyWpoktSvg />
               </button>
               <button>
+                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
                 <BuyWpoktSvg />
               </button>
               <button>
+                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
                 <BuyWpoktSvg />
               </button>
               <button>
+                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
                 <BuyWpoktSvg />
               </button>
               <button>
+                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
                 <BuyWpoktSvg />
               </button>
             </StyledButtonContainer>

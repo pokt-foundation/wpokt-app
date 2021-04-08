@@ -1,4 +1,5 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
 import { CartesianGrid, LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
 import { colors, GU } from 'components/theme';
 
@@ -30,7 +31,7 @@ import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 
 import { useFarmStats } from 'hooks/useFarmStats';
 
-import { commifyString } from 'utils';
+import { commifyString, formatDaysFromTimestamp } from 'utils';
 
 const data = [
   { time: 'Day 1', rewards: 1 },
@@ -41,7 +42,9 @@ const data = [
 
 const Stats: React.FC = () => {
   const { onSelectModal } = React.useContext(DepositWithdrawalContext);
-  const { rewardUnlockRate, timeRemaining, totalStaked, tvl } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { lockedRewards, rewardUnlockRate, totalRewards, totalStaked, totalTime, unlockedRewards } = useFarmStats(
+    TOKEN_GEYSER_ADDRESS,
+  );
   const [farmSelected, setFarmSelected] = React.useState<boolean>(true);
 
   return (
@@ -82,17 +85,32 @@ const Stats: React.FC = () => {
                   icon={'chest'}
                   size={'sm'}
                 />
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Total  Rewards'} icon={'star'} size={'sm'} />
                 <MediumInfoCard
-                  amount={`${commifyString(tvl.toFixed(6))} wPOKT`}
+                  amount={`${commifyString(totalRewards.toFixed(6))} wPOKT`}
+                  header={'Total  Rewards'}
+                  icon={'star'}
+                  size={'sm'}
+                />
+                <MediumInfoCard
+                  amount={`${commifyString(lockedRewards.toFixed(6))} wPOKT`}
                   header={'Locked Rewards'}
                   icon={'padlock'}
                   size={'sm'}
                 />
-                <MediumInfoCard amount={'5,563.865330 wPOKT'} header={'Unlocked Rewards'} icon={'key'} size={'sm'} />
-                <MediumInfoCard amount={`${timeRemaining?.days} Days`} header={'Duration'} icon={'clock'} size={'sm'} />
                 <MediumInfoCard
-                  amount={rewardUnlockRate.toFixed(6)}
+                  amount={`${commifyString(unlockedRewards.toFixed(6))} wPOKT`}
+                  header={'Unlocked Rewards'}
+                  icon={'key'}
+                  size={'sm'}
+                />
+                <MediumInfoCard
+                  amount={`${formatDaysFromTimestamp(totalTime)} Days`}
+                  header={'Duration'}
+                  icon={'clock'}
+                  size={'sm'}
+                />
+                <MediumInfoCard
+                  amount={commifyString(rewardUnlockRate.toFixed(6))}
                   header={'Reward unlock Rate'}
                   icon={'diamond'}
                   size={'sm'}
@@ -114,6 +132,7 @@ const Stats: React.FC = () => {
                 </LineChart>
               </StyledChartContainer>
               <StyledExpandButton onClick={() => onSelectModal('GRAPH_FULLSCREEN')}>
+                <VisuallyHidden>Expand</VisuallyHidden>
                 <ExpandSvg />
               </StyledExpandButton>
             </StyledSmallInfoCardsContainer>

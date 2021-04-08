@@ -23,6 +23,8 @@ wPOKT Pool: `0x7c2cf434e98940ad08ae3f26986235628b0904e7`
 To get started, create a `.env` file:
 `cp .env.example .env`
 
+... then run `yarn` to install libraries.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Available Scripts
@@ -60,7 +62,90 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Documentation
 
-Full usage and options or a link to the docs.pokt.network site
+### Components
+All components were built with [`styled-components`](https://styled-components.com/).
+
+#### `Card`
+Primary card to hold content.
+
+#### `InnerCardContainer`
+An inner container to separate sections within a card.
+
+**Properties:**
+```
+borderBottom: boolean
+```
+
+#### `MediumInfoCard`
+Card for holding a medium amount of info.
+
+**Properties:**
+```
+amount: string;
+header: string;
+icon: 'chest' | 'clock' | 'diamond' | 'key' | 'padlock' | 'rake' | 'rewards' | 'star';
+size: 'sm' | 'md';
+```
+
+#### `SmallInfoCard`
+Card for holding a small amount of info.
+```
+statContent: string;
+statFill?: number;
+statTitle: string;
+iconType: 'question' | 'caret';
+```
+
+#### `MediumDepositWithdrawLinks`
+Styled link to switch between deposit and withdraw functions.
+
+**Properties:**
+```
+onDepositWithdrawLink: (actionType: 'deposit' | 'withdraw') => void;
+```
+
+#### `MediumStatsFaqLinks`
+Component that holds medium-sized Stat and FAQ links.
+
+#### `SmallInfoCardExtraLinks`
+Component that holds small-sized Stat and FAQ links.
+
+**Properties:**
+```
+showOnDesktop?: boolean;
+showOnMobile?: boolean;
+```
+
+#### `Button`
+Basic button to wrap SVGs.
+
+#### `Flex`
+Shortcut container to easily style with flex-box.
+
+**Properties:**
+```
+align?: 'flex-start' | 'center' | 'flex-end';
+direction?: string;
+full?: boolean;
+justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between';
+```
+
+#### `Spacer`
+Shortcut container for adding uniform spacing between components.
+
+**Properties:**
+```
+size: 'xs' | 'sm' | 'md' | 'lg';
+```
+
+#### Typography
+All typography takes the same properties.
+
+**Properties:**
+```
+center?: boolean;
+color?: string;
+```
 
 ## Running the tests
 
