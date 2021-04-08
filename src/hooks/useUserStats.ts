@@ -104,7 +104,11 @@ export function useUserStats(userAddress: string, farmAddress: string): UserStat
           return accumulator + weightedBonusMultiplier;
         };
 
-        const averageMultiplier = rawStakes.reduce(reducer, 0);
+        let averageMultiplier = rawStakes.reduce(reducer, 0);
+        // Multiplier increases linearly from 1 to 3, so it shouldn't be 0 even if you haven't staked.
+        if (averageMultiplier === 0) {
+          averageMultiplier = 1;
+        }
 
         const parsedStakes = rawStakes;
 
