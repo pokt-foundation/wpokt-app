@@ -110,7 +110,7 @@ const Stats: React.FC = () => {
                   size={'sm'}
                 />
                 <MediumInfoCard
-                  amount={commifyString(rewardUnlockRate.toFixed(6))}
+                  amount={`${commifyString(rewardUnlockRate.toFixed(6))} / month`}
                   header={'Reward unlock Rate'}
                   icon={'diamond'}
                   size={'sm'}
