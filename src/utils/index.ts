@@ -17,7 +17,7 @@ export function formatRelays(relays: string | BigInt): string {
 export function formatFillPercentage(timeLeft?: number, totalTime?: number): number {
   if (totalTime && totalTime !== 0 && timeLeft) {
     const fillPercentage = 100 * (timeLeft / totalTime);
-    return fillPercentage;
+    return Math.round(100 - fillPercentage);
   } else {
     return 0;
   }
