@@ -37,13 +37,13 @@ import { Web3Context } from 'contexts/Web3';
 import { useFarmStats } from 'hooks/useFarmStats';
 import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString, formatFillPercentage, formatRelays } from 'utils';
+import { commifyString, formatDaysFromTimestamp, formatFillPercentage, formatRelays } from 'utils';
 
 const MyFarms: React.FC = () => {
   const history = useHistory();
   const { onSetActionType } = React.useContext(DepositWithdrawalContext);
   const { address } = React.useContext(Web3Context);
-  const { apr, farmUsage, maxRelays, unlockedRewards, timeRemaining, totalTime } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apr, farmUsage, maxRelays, unlockedRewards, timeLeft, totalTime } = useFarmStats(TOKEN_GEYSER_ADDRESS);
   const { earned, ownershipShare, totalStaked, weightedMultiplier } = useUserStats(
     address ? address : '',
     TOKEN_GEYSER_ADDRESS,
@@ -126,8 +126,8 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Time Left'}
-                  statContent={`${timeRemaining?.days} Days`}
-                  statFill={formatFillPercentage(timeRemaining, totalTime)}
+                  statContent={`${formatDaysFromTimestamp(timeLeft)} Days`}
+                  statFill={formatFillPercentage(timeLeft, totalTime)}
                 />
                 <SmallInfoCardExtraLinks />
               </StyledContentContainer>

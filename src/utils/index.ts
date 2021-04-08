@@ -2,7 +2,6 @@ import { BigNumber, ContractInterface, ContractTransaction, ethers, Signer, util
 import { Provider } from '@ethersproject/abstract-provider';
 import ERC20ABI from 'abis/ERC20.json';
 import TokenGeyserABI from 'abis/TokenGeyser.json';
-import { TimeRemaining } from 'utils/types';
 
 export function commifyString(number: string): string {
   const parts = number.split('.');
@@ -15,11 +14,10 @@ export function formatRelays(relays: string | BigInt): string {
   return relaysByMillion.toString();
 }
 
-export function formatFillPercentage(timeRemaining?: TimeRemaining, totalTime?: number): number {
-  if (totalTime && totalTime !== 0 && timeRemaining) {
-    const durationDays = totalTime / 86400;
-    const fillPercentage = 100 * (timeRemaining?.days / durationDays);
-    return fillPercentage;
+export function formatFillPercentage(timeLeft?: number, totalTime?: number): number {
+  if (totalTime && totalTime !== 0 && timeLeft) {
+    const fillPercentage = 100 * (timeLeft / totalTime);
+    return Math.round(100 - fillPercentage);
   } else {
     return 0;
   }
@@ -28,7 +26,7 @@ export function formatFillPercentage(timeRemaining?: TimeRemaining, totalTime?: 
 export function formatDaysFromTimestamp(totalTime?: number): number {
   if (totalTime && totalTime !== 0) {
     const durationDays = totalTime / 86400;
-    return durationDays;
+    return Math.round(durationDays);
   } else {
     return 0;
   }
