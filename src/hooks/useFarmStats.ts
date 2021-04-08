@@ -56,6 +56,7 @@ type FarmStatsReturnType = {
   unlockedRewards: BigNumber;
   totalStaked: BigNumber;
   totalRewards: BigNumber;
+  totalUnlockedRewards: BigNumber;
   rewardUnlockRate: BigNumber;
   timeRemaining?: TimeRemaining;
   totalTime?: number;
@@ -68,6 +69,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
   const [unlockedRewards, setUnlockedRewards] = React.useState(ZERO);
   const [lockedRewards, setLockedRewards] = React.useState(ZERO);
   const [totalRewards, setTotalRewards] = React.useState(ZERO);
+  const [totalUnlockedRewards, setTotalUnlockedRewards] = React.useState(ZERO);
   const [rewardUnlockRate, setRewardUnlockRate] = React.useState(ZERO);
   const [timeRemaining, setTimeRemaining] = React.useState<TimeRemaining>();
   const [totalTime, setTotalTime] = React.useState<number>(0);
@@ -121,7 +123,6 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         const farmEndDateSeconds = +createdTimestamp + +durationSec;
         const farmEndDate = dayjs.unix(farmEndDateSeconds);
         const farmTimeLeft = farmEndDate.diff(today, 'seconds');
-
         const timeRemaining: TimeRemaining = getTimeRemaining(farmTimeLeft);
         const totalTime: number = +durationSec;
 
@@ -136,6 +137,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
           setUnlockedRewards(parsedUnlockedRewards);
           setLockedRewards(parsedLockedRewards);
           setTotalRewards(parsedTotalRewards);
+          setTotalUnlockedRewards(parsedTotalUnlockedRewards);
           setTotalStaked(parsedStaked);
           setTimeRemaining(timeRemaining);
           setTotalTime(totalTime);
@@ -163,6 +165,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
     unlockedRewards,
     totalStaked,
     totalRewards,
+    totalUnlockedRewards,
     rewardUnlockRate,
     timeRemaining,
     totalTime,

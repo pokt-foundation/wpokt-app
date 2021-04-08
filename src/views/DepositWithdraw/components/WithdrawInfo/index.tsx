@@ -71,7 +71,9 @@ interface IWithdrawFarm {
 }
 
 const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
-  const { apr, maxRelays, timeRemaining, totalStaked, totalTime, unlockedRewards } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { apr, maxRelays, timeRemaining, totalStaked, totalTime, unlockedRewards, totalUnlockedRewards } = useFarmStats(
+    TOKEN_GEYSER_ADDRESS,
+  );
   const { earned, ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
 
   return (
@@ -127,7 +129,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
             size={'md'}
           />
           <MediumInfoCard
-            amount={`${commifyString(unlockedRewards.toFixed(6))} wPOKT`}
+            amount={`${commifyString(totalUnlockedRewards.minus(unlockedRewards).toFixed(6))} wPOKT`}
             header={'Rewards Claimed'}
             icon={'rewards'}
             size={'md'}
