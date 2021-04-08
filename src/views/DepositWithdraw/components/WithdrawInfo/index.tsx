@@ -88,7 +88,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
         <StyledHeaderRight>
           <StyledLine />
           <div id={'estimated-reward'}>
-            <P2 color={colors.white}>Yeild Earned</P2>
+            <P2 color={colors.white}>Yield Earned</P2>
             <StyledRewardText color={colors.white}>{commifyString(earned.toFixed(6))} wPOKT*</StyledRewardText>
           </div>
         </StyledHeaderRight>
