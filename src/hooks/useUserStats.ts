@@ -21,6 +21,7 @@ const USER_STATS_QUERY: DocumentNode = gql`
       bonusPeriodSec
       globalSharesSec
       createdTimestamp
+      updated
     }
     users(where: { id: $userAddress }) {
       id
@@ -74,11 +75,10 @@ export function useUserStats(userAddress: string, farmAddress: string): UserStat
 
         const [{ earned: rawEarned, stakes: rawStakes }]: [UserStatsResponse] = result.data.users;
 
-        const [{ globalSharesSec, bonusPeriodSec, createdTimestamp }]: [
-          { globalSharesSec: BigNumber; bonusPeriodSec: number; createdTimestamp: number },
+        const [{ globalSharesSec, bonusPeriodSec, createdTimestamp, updated: updatedTimestamp }]: [
+          { globalSharesSec: BigNumber; bonusPeriodSec: number; createdTimestamp: number; updated: number },
         ] = result.data.tokenGeysers;
 
-        const today = dayjs();
         const parsedEarned = new BigNumber(rawEarned);
 
         let totalStakeShareSecs = ZERO;
@@ -87,7 +87,7 @@ export function useUserStats(userAddress: string, farmAddress: string): UserStat
           const stake: Stake = rawStakes[index];
           stake.amount = new BigNumber(stake.amount);
           parsedTotalStaked = parsedTotalStaked.plus(stake.amount);
-          totalStakeShareSecs = totalStakeShareSecs.plus(stake.amount.times(today.unix() - stake.timestamp));
+          totalStakeShareSecs = totalStakeShareSecs.plus(stake.amount.times(updatedTimestamp - stake.timestamp));
         }
 
         const calculatedOwnershipShare = totalStakeShareSecs.div(globalSharesSec).times(new BigNumber(100)).toNumber();
