@@ -133,7 +133,7 @@ const MyFarms: React.FC = () => {
               </StyledContentContainer>
               <div>
                 <MediumInfoCard
-                  amount={`${commifyString(totalStaked.multipliedBy(earned).toFixed(6))} wPOKT*`}
+                  amount={`${commifyString(earned.toFixed(6))} wPOKT*`}
                   header={'Total Yield Earned'}
                   icon={'rake'}
                   size={'md'}

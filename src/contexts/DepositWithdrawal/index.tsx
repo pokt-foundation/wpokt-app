@@ -119,7 +119,7 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
   const onDeposit = async (): Promise<boolean | ContractTransaction> => {
     if (signer) {
       setDisplayValue(inputValue);
-      const response = await stake(parseInputValue(inputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
+      const response = await stake(parseInputValue(inputValue, 6).toString(), TOKEN_GEYSER_ADDRESS, signer);
       setInputValue('');
       if (typeof response === 'boolean') {
         return response;
@@ -141,7 +141,7 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
   const onWithdraw = async (): Promise<boolean | ContractTransaction> => {
     if (signer) {
       setDisplayValue(inputValue);
-      const response = await unstake(parseInputValue(inputValue, 18).toString(), TOKEN_GEYSER_ADDRESS, signer);
+      const response = await unstake(parseInputValue(inputValue, 6).toString(), TOKEN_GEYSER_ADDRESS, signer);
       setInputValue('');
       if (typeof response === 'boolean') {
         return response;

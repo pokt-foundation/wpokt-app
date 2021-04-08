@@ -68,7 +68,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
       if (
         inputValue === '' ||
         inputValue === '0' ||
-        (BigInt(parseInputValue(inputValue, 18)) > BigInt(wpoktBalance) && actionType === 'deposit')
+        (BigInt(parseInputValue(inputValue, 6)) > BigInt(wpoktBalance) && actionType === 'deposit')
       ) {
         setIsDisabled(true);
         setFarmSelected(false);
@@ -100,8 +100,8 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
 
   const onMaxValue = () => {
     if (actionType === 'deposit') {
-      const amount = new TokenAmount(wpoktBalance, 18);
-      onChangeInput(amount.format({ commify: false, digits: 18 }));
+      const amount = new TokenAmount(wpoktBalance, 6);
+      onChangeInput(amount.format({ commify: false, digits: 6 }));
     } else if (actionType === 'withdraw') {
       onChangeInput(totalStaked.toString());
     }
@@ -121,7 +121,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
             {actionType === 'deposit' && (
               <P2 color={colors.white}>
                 {wpoktBalance
-                  ? `Wallet balance: ${TokenAmount.format(wpoktBalance, 18, { symbol: 'wPOKT' })}`
+                  ? `Wallet balance: ${TokenAmount.format(wpoktBalance, 6, { symbol: 'wPOKT' })}`
                   : 'Wallet balance: connect wallet'}
               </P2>
             )}
