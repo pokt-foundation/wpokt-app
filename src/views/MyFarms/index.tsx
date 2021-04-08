@@ -126,7 +126,7 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Time Left'}
-                  statContent={`${formatDaysFromTimestamp(timeLeft).toFixed(0)} Days`}
+                  statContent={`${formatDaysFromTimestamp(timeLeft)} Days`}
                   statFill={formatFillPercentage(timeLeft, totalTime)}
                 />
                 <SmallInfoCardExtraLinks />

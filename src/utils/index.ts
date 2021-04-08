@@ -26,7 +26,7 @@ export function formatFillPercentage(timeLeft?: number, totalTime?: number): num
 export function formatDaysFromTimestamp(totalTime?: number): number {
   if (totalTime && totalTime !== 0) {
     const durationDays = totalTime / 86400;
-    return durationDays;
+    return Math.round(durationDays);
   } else {
     return 0;
   }

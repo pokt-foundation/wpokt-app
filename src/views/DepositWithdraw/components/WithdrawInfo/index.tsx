@@ -111,7 +111,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
           <SmallInfoCard
             iconType={'caret'}
             statTitle={'Time Left'}
-            statContent={`${formatDaysFromTimestamp(timeLeft).toFixed(0)} days left`}
+            statContent={`${formatDaysFromTimestamp(timeLeft)} days left`}
             statFill={formatFillPercentage(timeLeft, totalTime)}
           />
           <SmallInfoCard
