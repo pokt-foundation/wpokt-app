@@ -1,13 +1,10 @@
 import React from 'react';
 
-import { TimeRemaining } from 'utils/types';
-
 import dayjs from 'dayjs';
 import gql from 'graphql-tag';
 import { Client } from 'urql';
 import { DocumentNode } from 'graphql';
 
-import { getTimeRemaining } from 'utils/helpers';
 import { WPOKT_SUBGRAPH_URL } from 'constants/index';
 import { BigNumber } from 'bignumber.js';
 
@@ -58,7 +55,7 @@ type FarmStatsReturnType = {
   totalRewards: BigNumber;
   totalUnlockedRewards: BigNumber;
   rewardUnlockRate: BigNumber;
-  timeRemaining?: TimeRemaining;
+  timeLeft?: number;
   totalTime?: number;
 };
 
@@ -71,7 +68,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
   const [totalRewards, setTotalRewards] = React.useState(ZERO);
   const [totalUnlockedRewards, setTotalUnlockedRewards] = React.useState(ZERO);
   const [rewardUnlockRate, setRewardUnlockRate] = React.useState(ZERO);
-  const [timeRemaining, setTimeRemaining] = React.useState<TimeRemaining>();
+  const [timeLeft, setTimeLeft] = React.useState<number>(0);
   const [totalTime, setTotalTime] = React.useState<number>(0);
 
   const [farmUsage, setFarmUsage] = React.useState(ZERO);
@@ -123,7 +120,6 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         const farmEndDateSeconds = +createdTimestamp + +durationSec;
         const farmEndDate = dayjs.unix(farmEndDateSeconds);
         const farmTimeLeft = farmEndDate.diff(today, 'seconds');
-        const timeRemaining: TimeRemaining = getTimeRemaining(farmTimeLeft);
         const totalTime: number = +durationSec;
 
         const parsedMaxRelays = parsedStaked.times(new BigNumber(40));
@@ -139,7 +135,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
           setTotalRewards(parsedTotalRewards);
           setTotalUnlockedRewards(parsedTotalUnlockedRewards);
           setTotalStaked(parsedStaked);
-          setTimeRemaining(timeRemaining);
+          setTimeLeft(farmTimeLeft);
           setTotalTime(totalTime);
           setRewardUnlockRate(unlockRate);
         }
@@ -167,7 +163,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
     totalRewards,
     totalUnlockedRewards,
     rewardUnlockRate,
-    timeRemaining,
+    timeLeft,
     totalTime,
   };
 }

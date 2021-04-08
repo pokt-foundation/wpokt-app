@@ -104,7 +104,7 @@ const Stats: React.FC = () => {
                   size={'sm'}
                 />
                 <MediumInfoCard
-                  amount={`${formatDaysFromTimestamp(totalTime)} Days`}
+                  amount={`${formatDaysFromTimestamp(totalTime).toFixed(0)} Days`}
                   header={'Duration'}
                   icon={'clock'}
                   size={'sm'}

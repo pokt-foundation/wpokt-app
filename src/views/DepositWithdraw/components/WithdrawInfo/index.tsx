@@ -25,7 +25,7 @@ import { Web3Context } from 'contexts/Web3';
 import { useFarmStats } from 'hooks/useFarmStats';
 import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString, formatFillPercentage, formatRelays } from 'utils';
+import { commifyString, formatDaysFromTimestamp, formatFillPercentage, formatRelays } from 'utils';
 
 interface IWithdraw {
   farmSelected: boolean;
@@ -71,7 +71,7 @@ interface IWithdrawFarm {
 }
 
 const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
-  const { apr, maxRelays, timeRemaining, totalStaked, totalTime, unlockedRewards, totalUnlockedRewards } = useFarmStats(
+  const { apr, maxRelays, timeLeft, totalStaked, totalTime, unlockedRewards, totalUnlockedRewards } = useFarmStats(
     TOKEN_GEYSER_ADDRESS,
   );
   const { earned, ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
@@ -111,8 +111,8 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
           <SmallInfoCard
             iconType={'caret'}
             statTitle={'Time Left'}
-            statContent={`${timeRemaining?.days} days left`}
-            statFill={formatFillPercentage(timeRemaining, totalTime)}
+            statContent={`${formatDaysFromTimestamp(timeLeft).toFixed(0)} days left`}
+            statFill={formatFillPercentage(timeLeft, totalTime)}
           />
           <SmallInfoCard
             iconType={'question'}

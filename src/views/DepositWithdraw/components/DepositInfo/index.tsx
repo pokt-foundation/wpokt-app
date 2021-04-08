@@ -26,7 +26,7 @@ import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 import { useFarmStats } from 'hooks/useFarmStats';
 import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString, formatFillPercentage, formatRelays } from 'utils';
+import { commifyString, formatDaysFromTimestamp, formatFillPercentage, formatRelays } from 'utils';
 
 interface IDepositInfo {
   farmSelected: boolean;
@@ -34,7 +34,7 @@ interface IDepositInfo {
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
   const { address } = React.useContext(Web3Context);
-  const { apr, farmUsage, maxRelays, rewardUnlockRate, timeRemaining, totalTime, totalStaked } = useFarmStats(
+  const { apr, farmUsage, maxRelays, rewardUnlockRate, timeLeft, totalTime, totalStaked } = useFarmStats(
     TOKEN_GEYSER_ADDRESS,
   );
   const { ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
@@ -75,8 +75,8 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
         <SmallInfoCard
           iconType={'question'}
           statTitle={'time left'}
-          statContent={`${timeRemaining?.days} days left`}
-          statFill={formatFillPercentage(timeRemaining, totalTime)}
+          statContent={`${formatDaysFromTimestamp(timeLeft).toFixed(0)} days left`}
+          statFill={formatFillPercentage(timeLeft, totalTime)}
         />
         <SmallInfoCardExtraLinks />
       </StyledSmallInfoCardsContainer>
