@@ -113,7 +113,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
             <SmallInfoCard
               iconType={'question'}
               statTitle={'Unlock Rate'}
-              statContent={commifyString(rewardUnlockRate.toFixed(2))}
+              statContent={`${commifyString(rewardUnlockRate.toFixed(2))} / Month`}
             />
             <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={false} />
           </StyledSmallInfoCardsContainer>
