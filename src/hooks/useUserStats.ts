@@ -11,7 +11,8 @@ import dayjs from 'dayjs';
 
 const RETRY_EVERY = 3000;
 const ZERO = new BigNumber(0);
-const MAX_MULTIPLIER = 3;
+// MAX_MULTIPLIER is actually 3, but the math takes from 0 to 2 which is 3.
+const MAX_MULTIPLIER = 2;
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
 
@@ -20,7 +21,6 @@ const USER_STATS_QUERY: DocumentNode = gql`
     tokenGeysers(where: { id: $farmAddress }) {
       bonusPeriodSec
       globalSharesSec
-      createdTimestamp
       updated
     }
     users(where: { id: $userAddress }) {
@@ -75,8 +75,8 @@ export function useUserStats(userAddress: string, farmAddress: string): UserStat
 
         const [{ earned: rawEarned, stakes: rawStakes }]: [UserStatsResponse] = result.data.users;
 
-        const [{ globalSharesSec, bonusPeriodSec, createdTimestamp, updated: updatedTimestamp }]: [
-          { globalSharesSec: BigNumber; bonusPeriodSec: number; createdTimestamp: number; updated: number },
+        const [{ globalSharesSec, bonusPeriodSec, updated: updatedTimestamp }]: [
+          { globalSharesSec: BigNumber; bonusPeriodSec: number; updated: number },
         ] = result.data.tokenGeysers;
 
         const parsedEarned = new BigNumber(rawEarned);
@@ -92,16 +92,15 @@ export function useUserStats(userAddress: string, farmAddress: string): UserStat
 
         const calculatedOwnershipShare = totalStakeShareSecs.div(globalSharesSec).times(new BigNumber(100)).toNumber();
 
-        const maxBonusDateSeconds = +createdTimestamp + +bonusPeriodSec;
-        const maxBonusDate = dayjs.unix(maxBonusDateSeconds);
+        const now = dayjs.unix(updatedTimestamp);
 
         const reducer = (accumulator: number, currentValue: Stake) => {
           const stakeWeight = currentValue.amount.div(parsedTotalStaked).toNumber();
 
           const stakeDate = dayjs.unix(currentValue.timestamp);
-          const secondsUntilMaxBonus = maxBonusDate.diff(stakeDate, 'seconds');
-          const weightedBonusMultiplier = ((secondsUntilMaxBonus * MAX_MULTIPLIER) / bonusPeriodSec) * stakeWeight;
-
+          const secondsAfterStake = now.diff(stakeDate, 'seconds');
+          const bonusMultiplier = (secondsAfterStake * MAX_MULTIPLIER) / bonusPeriodSec + 1;
+          const weightedBonusMultiplier = bonusMultiplier * stakeWeight;
           return accumulator + weightedBonusMultiplier;
         };
 
