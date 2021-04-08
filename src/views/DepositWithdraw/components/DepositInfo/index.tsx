@@ -34,11 +34,10 @@ interface IDepositInfo {
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
   const { address } = React.useContext(Web3Context);
-  const { apr, farmUsage, maxRelays, rewardUnlockRate, timeRemaining, totalTime } = useFarmStats(TOKEN_GEYSER_ADDRESS);
-  const { totalStaked, ownershipShare, weightedMultiplier } = useUserStats(
-    address ? address : '',
+  const { apr, farmUsage, maxRelays, rewardUnlockRate, timeRemaining, totalTime, totalStaked } = useFarmStats(
     TOKEN_GEYSER_ADDRESS,
   );
+  const { ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(true);
 
   return (
