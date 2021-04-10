@@ -1,6 +1,5 @@
 import React from 'react';
 
-import dayjs from 'dayjs';
 import gql from 'graphql-tag';
 import { Client } from 'urql';
 import { DocumentNode } from 'graphql';
@@ -8,8 +7,11 @@ import { DocumentNode } from 'graphql';
 import { WPOKT_SUBGRAPH_URL } from 'constants/index';
 import { BigNumber } from 'bignumber.js';
 
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
+
 const RETRY_EVERY = 3000;
-const DAYS_IN_MONTH = 30;
 const ZERO = new BigNumber(0);
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
@@ -122,11 +124,13 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         const farmEndDateSeconds = +createdTimestamp + +durationSec;
         const farmEndDate = dayjs.unix(farmEndDateSeconds);
         const farmTimeLeft = farmEndDate.diff(today, 'seconds');
+
         const totalTime: number = +durationSec;
+        const totalTimeInMonths = dayjs.duration(totalTime, 'seconds').asMonths();
 
         const parsedMaxRelays = parsedStaked.times(new BigNumber(40));
         const parsedFarmUsage = parsedMaxRelays.div(farmGoalRelays).times(new BigNumber(100));
-        const unlockRate = parsedTotalLockedRewards.div(new BigNumber(totalTime)).div(new BigNumber(DAYS_IN_MONTH));
+        const unlockRate = parsedTotalLockedRewards.div(new BigNumber(totalTimeInMonths));
 
         if (!cancelled) {
           setApr(parsedApr);
