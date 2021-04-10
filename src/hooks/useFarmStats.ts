@@ -9,7 +9,7 @@ import { WPOKT_SUBGRAPH_URL } from 'constants/index';
 import { BigNumber } from 'bignumber.js';
 
 const RETRY_EVERY = 3000;
-const DAYS_IN_MONTH = new BigNumber(dayjs().daysInMonth());
+const DAYS_IN_MONTH = 30;
 const ZERO = new BigNumber(0);
 
 const graphqlClient = new Client({ url: WPOKT_SUBGRAPH_URL ?? '' });
@@ -25,6 +25,7 @@ const FARM_STATS_QUERY: DocumentNode = gql`
       createdTimestamp
       unlockedRewards
       lockedRewards
+      totalLockedRewards
       totalUnlockedRewards
     }
   }
@@ -41,6 +42,7 @@ type FarmStatsResponse = {
   createdTimestamp: number;
   unlockedRewards: BigNumberish;
   lockedRewards: BigNumberish;
+  totalLockedRewards: BigNumberish;
   totalUnlockedRewards: BigNumberish;
 };
 
@@ -95,6 +97,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
             unlockedRewards: rawUnlockedRewards,
             lockedRewards: rawLockedRewards,
             totalUnlockedRewards: rawTotalUnlockedRewards,
+            totalLockedRewards,
             durationSec,
             createdTimestamp,
           },
@@ -109,10 +112,9 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
         const parsedLockedRewards = new BigNumber(rawLockedRewards);
         const parsedUnlockedRewards = new BigNumber(rawUnlockedRewards);
 
+        const parsedTotalLockedRewards = new BigNumber(totalLockedRewards);
         const parsedTotalUnlockedRewards = new BigNumber(rawTotalUnlockedRewards);
         const parsedTotalRewards = parsedUnlockedRewards.plus(parsedLockedRewards);
-
-        const unlockRate = parsedTotalUnlockedRewards.div(DAYS_IN_MONTH);
 
         const today = dayjs();
 
@@ -124,6 +126,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
 
         const parsedMaxRelays = parsedStaked.times(new BigNumber(40));
         const parsedFarmUsage = parsedMaxRelays.div(farmGoalRelays).times(new BigNumber(100));
+        const unlockRate = parsedTotalLockedRewards.div(new BigNumber(totalTime)).div(new BigNumber(DAYS_IN_MONTH));
 
         if (!cancelled) {
           setApr(parsedApr);
