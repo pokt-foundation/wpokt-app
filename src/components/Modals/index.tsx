@@ -15,7 +15,7 @@ const Modals: React.FC = () => {
       {modalOpen && (
         <>
           <StyledBackground onClick={onCloseModal} />
-          {selectedModal === 'CONFIRM_DEPOSIT' && <ConfirmTransaction />}
+          {selectedModal === 'CONFIRM_TRANSACTION' && <ConfirmTransaction />}
           {(selectedModal === 'TRANSACTION_WAITING' ||
             selectedModal === 'TRANSACTION_APPROVED' ||
             selectedModal === 'TRANSACTION_REJECTED') && <TransactionStatus type={selectedModal} />}

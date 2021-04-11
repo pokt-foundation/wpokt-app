@@ -7,7 +7,7 @@ import { parseInputValue, stake, unstake } from 'utils';
 
 type IModalType =
   | ''
-  | 'CONFIRM_DEPOSIT'
+  | 'CONFIRM_TRANSACTION'
   | 'TRANSACTION_WAITING'
   | 'TRANSACTION_APPROVED'
   | 'TRANSACTION_REJECTED'
@@ -83,7 +83,7 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
 
   const onSelectModal = (modalType: IModalType): void => {
     switch (modalType) {
-      case 'CONFIRM_DEPOSIT':
+      case 'CONFIRM_TRANSACTION':
         setModalOpen(true);
         setSelectedModal(modalType);
         break;
