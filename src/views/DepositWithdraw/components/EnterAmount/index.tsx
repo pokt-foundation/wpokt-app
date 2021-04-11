@@ -51,6 +51,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const { isApproved, isApproving, onApprove } = useApproval();
   const { totalStaked } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
 
+  const [didApprove, setDidApprove] = React.useState<boolean>(false);
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
 
   React.useEffect(() => {
@@ -81,17 +82,24 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
 
   React.useEffect(() => {
     if (isApproving) {
-      console.log('Approving...');
-    } else if (isApproved) {
-      console.log('Approved');
+      setDidApprove(true);
+      onSelectModal('TRANSACTION_WAITING');
     }
-  }, [isApproving, isApproved]);
+
+    if (didApprove && isApproved) {
+      onSelectModal('TRANSACTION_APPROVED');
+      setDidApprove(false);
+    } else if (didApprove && !isApproving) {
+      onSelectModal('TRANSACTION_REJECTED');
+      setDidApprove(false);
+    }
+  }, [didApprove, isApproved, isApproving, onSelectModal]);
 
   const onConfirmDeposit = async () => {
     readyToTransact(onboard, provider);
     if (address && signer && !isDisabled && farmSelected) {
       if (isApproved) {
-        onSelectModal('CONFIRM_DEPOSIT');
+        onSelectModal('CONFIRM_TRANSACTION');
       } else {
         onApprove();
       }

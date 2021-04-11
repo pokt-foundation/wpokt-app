@@ -65,9 +65,11 @@ const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
           </StyledTractorContainer>
         </StyledIconsContainer>
         <Spacer size={'md'} />
-        <P1 center={true} color={colors.white}>
-          {actionType === 'deposit' ? 'Deposit' : 'Withdraw'} {displayValue} wPOKT
-        </P1>
+        {displayValue !== '' && (
+          <P1 center={true} color={colors.white}>
+            {actionType === 'deposit' ? 'Deposit' : 'Withdraw'} {displayValue} wPOKT
+          </P1>
+        )}
       </StyledInnerContainer>
     </StyledModalContainer>
   );
