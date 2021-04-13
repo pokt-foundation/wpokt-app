@@ -121,7 +121,9 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Farm ownership'}
-                  statContent={`${ownershipShare > 0.01 ? ownershipShare.toFixed(2) : '< 0.01'}%`}
+                  statContent={`${
+                    ownershipShare > 0.01 || ownershipShare === 0 ? ownershipShare.toFixed(2) : '< 0.01'
+                  }%`}
                 />
                 <SmallInfoCard
                   iconType={'question'}

@@ -106,7 +106,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
             <SmallInfoCard
               iconType={'question'}
               statTitle={'Farm Ownership'}
-              statContent={`${ownershipShare > 0.01 ? ownershipShare.toFixed(2) : '< 0.01'}%`}
+              statContent={`${ownershipShare > 0.01 || ownershipShare === 0 ? ownershipShare.toFixed(2) : '< 0.01'}%`}
             />
             <SmallInfoCard iconType={'caret'} statTitle={'Apps'} statContent={'0'} />
             <SmallInfoCard iconType={'question'} statTitle={'Usage'} statContent={`${farmUsage.toFixed(2)}%`} />
