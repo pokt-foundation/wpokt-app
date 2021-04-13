@@ -29,7 +29,7 @@ import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
-import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+import { TOKEN_GEYSER_ADDRESS, WPOKT_DECIMALS } from 'constants/index';
 
 import useApproval from 'hooks/useApproval';
 import { useUserStats } from 'hooks/useUserStats';
@@ -69,7 +69,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
       if (
         inputValue === '' ||
         inputValue === '0' ||
-        (BigInt(parseInputValue(inputValue, 6)) > BigInt(wpoktBalance) && actionType === 'deposit')
+        (BigInt(parseInputValue(inputValue, WPOKT_DECIMALS)) > BigInt(wpoktBalance) && actionType === 'deposit')
       ) {
         setIsDisabled(true);
         setFarmSelected(false);
@@ -108,8 +108,8 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
 
   const onMaxValue = () => {
     if (actionType === 'deposit') {
-      const amount = new TokenAmount(wpoktBalance, 6);
-      onChangeInput(amount.format({ commify: false, digits: 6 }));
+      const amount = new TokenAmount(wpoktBalance, WPOKT_DECIMALS);
+      onChangeInput(amount.format({ commify: false, digits: WPOKT_DECIMALS }));
     } else if (actionType === 'withdraw') {
       onChangeInput(totalStaked.toString());
     }
@@ -129,7 +129,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
             {actionType === 'deposit' && (
               <P2 color={colors.white}>
                 {wpoktBalance
-                  ? `Wallet balance: ${TokenAmount.format(wpoktBalance, 6, { symbol: 'wPOKT' })}`
+                  ? `Wallet balance: ${TokenAmount.format(wpoktBalance, WPOKT_DECIMALS, { symbol: 'wPOKT' })}`
                   : 'Wallet balance: connect wallet'}
               </P2>
             )}

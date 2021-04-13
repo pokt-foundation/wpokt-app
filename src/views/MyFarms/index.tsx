@@ -29,7 +29,7 @@ import {
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
-import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+import { TOKEN_GEYSER_ADDRESS, WPOKT_DECIMALS } from 'constants/index';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { Web3Context } from 'contexts/Web3';
@@ -75,7 +75,7 @@ const MyFarms: React.FC = () => {
                 <P2 color={colors.white}>Total Staked</P2>
                 <Flex align={'center'}>
                   <StyledStakedText color={colors.white}>
-                    {commifyString(totalStaked.toFixed(6))} wPOKT
+                    {commifyString(totalStaked.toFixed(WPOKT_DECIMALS))} wPOKT
                   </StyledStakedText>
                   <StyledSelectorContainer farmSelected={farmSelected}>
                     <SelectorSvg />
@@ -90,7 +90,7 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'APR'}
-                  statContent={`${commifyString(apr.toFixed(6))}%`}
+                  statContent={`${commifyString(apr.toFixed(WPOKT_DECIMALS))}%`}
                 />
                 <SmallInfoCard
                   iconType={'caret'}
@@ -113,6 +113,7 @@ const MyFarms: React.FC = () => {
                   statContent={`${farmUsage.toFixed(2)}%`}
                 />
                 <SmallInfoCard iconType={'question'} statTitle={'Supported Apps'} statContent={'0'} />
+                {/* Note: If this is wPOKT, why do we have to fix it to 2 decimals? Subgraph? */}
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Rewards unlocked'}
@@ -135,7 +136,7 @@ const MyFarms: React.FC = () => {
               </StyledContentContainer>
               <div>
                 <MediumInfoCard
-                  amount={`${commifyString(earned.toFixed(6))} wPOKT*`}
+                  amount={`${commifyString(earned.toFixed(WPOKT_DECIMALS))} wPOKT*`}
                   header={'Total Yield Earned'}
                   icon={'rake'}
                   size={'md'}

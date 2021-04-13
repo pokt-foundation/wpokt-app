@@ -1,7 +1,7 @@
 import React from 'react';
 import { Signer, ContractTransaction } from 'ethers';
 
-import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+import { TOKEN_GEYSER_ADDRESS, WPOKT_DECIMALS } from 'constants/index';
 import useWallet from 'hooks/useWallet';
 import { parseInputValue, stake, unstake } from 'utils';
 
@@ -119,7 +119,11 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
   const onDeposit = async (): Promise<boolean | ContractTransaction> => {
     if (signer) {
       setDisplayValue(inputValue);
-      const response = await stake(parseInputValue(inputValue, 6).toString(), TOKEN_GEYSER_ADDRESS, signer);
+      const response = await stake(
+        parseInputValue(inputValue, WPOKT_DECIMALS).toString(),
+        TOKEN_GEYSER_ADDRESS,
+        signer,
+      );
       setInputValue('');
       if (typeof response === 'boolean') {
         return response;
@@ -141,7 +145,11 @@ export const DepositWithdrawalProvider: React.FC = ({ children }) => {
   const onWithdraw = async (): Promise<boolean | ContractTransaction> => {
     if (signer) {
       setDisplayValue(inputValue);
-      const response = await unstake(parseInputValue(inputValue, 6).toString(), TOKEN_GEYSER_ADDRESS, signer);
+      const response = await unstake(
+        parseInputValue(inputValue, WPOKT_DECIMALS).toString(),
+        TOKEN_GEYSER_ADDRESS,
+        signer,
+      );
       setInputValue('');
       if (typeof response === 'boolean') {
         return response;
