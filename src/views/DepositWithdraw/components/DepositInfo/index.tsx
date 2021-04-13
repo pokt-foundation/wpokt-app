@@ -70,7 +70,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
         <SmallInfoCard
           iconType={'question'}
           statTitle={'MAX RELAYS/DAY'}
-          statContent={`${formatRelays(maxRelays.toFixed(0))} M`}
+          statContent={`${formatRelays(maxRelays)} M`}
         />
         <SmallInfoCard
           iconType={'question'}

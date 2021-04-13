@@ -105,7 +105,7 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard
                   iconType={'caret'}
                   statTitle={'Max Relays/Day'}
-                  statContent={`${formatRelays(maxRelays.toFixed(0))} M`}
+                  statContent={`${formatRelays(maxRelays)} M`}
                 />
                 <SmallInfoCard
                   iconType={'question'}

@@ -117,7 +117,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
           <SmallInfoCard
             iconType={'question'}
             statTitle={'MAX RELAYS/DAY'}
-            statContent={`${formatRelays(maxRelays.toFixed(0))} M`}
+            statContent={`${formatRelays(maxRelays)} M`}
           />
           <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={true} />
         </StyledContentContainer>

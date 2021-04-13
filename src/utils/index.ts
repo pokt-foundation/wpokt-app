@@ -2,6 +2,7 @@ import { BigNumber, ContractInterface, ContractTransaction, ethers, Signer, util
 import { Provider } from '@ethersproject/abstract-provider';
 import ERC20ABI from 'abis/ERC20.json';
 import TokenGeyserABI from 'abis/TokenGeyser.json';
+import { BigNumber as BNJS } from 'bignumber.js';
 
 export function commifyString(number: string): string {
   const parts = number.split('.');
@@ -9,9 +10,11 @@ export function commifyString(number: string): string {
   return parts.join('.');
 }
 
-export function formatRelays(relays: string | BigInt): string {
-  const relaysByMillion = BigInt(relays) / 1000000n;
-  return relaysByMillion.toString();
+export function formatRelays(relays: string | BNJS): string {
+  const relaysByMillion = new BNJS(relays).div(new BNJS(1000000));
+  // eslint-disable-next-line prettier/prettier
+  
+  return relaysByMillion.toFixed(2);
 }
 
 export function formatFillPercentage(timeLeft?: number, totalTime?: number): number {
