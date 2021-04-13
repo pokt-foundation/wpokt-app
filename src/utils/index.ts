@@ -12,8 +12,6 @@ export function commifyString(number: string): string {
 
 export function formatRelays(relays: string | BNJS): string {
   const relaysByMillion = new BNJS(relays).div(new BNJS(1000000));
-  // eslint-disable-next-line prettier/prettier
-  
   return relaysByMillion.toFixed(2);
 }
 
