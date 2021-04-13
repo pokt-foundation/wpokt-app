@@ -106,7 +106,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
           <SmallInfoCard
             iconType={'question'}
             statTitle={'Farm Ownership'}
-            statContent={`${ownershipShare > 0.01 || ownershipShare === 0 ? ownershipShare.toFixed(2) : '< 0.01'}%`}
+            statContent={`${ownershipShare >= 0.01 || ownershipShare === 0 ? ownershipShare.toFixed(2) : '< 0.01'}%`}
           />
           <SmallInfoCard
             iconType={'caret'}
