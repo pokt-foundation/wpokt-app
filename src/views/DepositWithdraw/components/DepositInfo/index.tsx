@@ -1,5 +1,6 @@
 import React from 'react';
 import 'styled-components/macro';
+import { BigNumber } from 'bignumber.js';
 import { colors } from 'components/theme';
 
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
@@ -20,6 +21,7 @@ import { SmallInfoCard, SmallInfoCardExtraLinks } from 'components/Cards';
 import { Flex } from 'components/Containers';
 import { H1, P2 } from 'components/Typography';
 
+import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { Web3Context } from 'contexts/Web3';
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
@@ -33,12 +35,26 @@ interface IDepositInfo {
 }
 
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
+  const { inputValue } = React.useContext(DepositWithdrawalContext);
   const { address } = React.useContext(Web3Context);
-  const { apr, farmUsage, maxRelays, rewardUnlockRate, timeLeft, totalTime, totalStaked } = useFarmStats(
+  const { apr, farmUsage, lockedRewards, maxRelays, rewardUnlockRate, timeLeft, totalTime, totalStaked } = useFarmStats(
     TOKEN_GEYSER_ADDRESS,
   );
   const { ownershipShare, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [showMore, setShowMore] = React.useState<boolean>(true);
+  const [estimatedRewards, setEstimatedRewards] = React.useState<string>('Add deposit amount');
+
+  React.useEffect(() => {
+    if (inputValue !== '') {
+      if (lockedRewards.dividedBy(apr).isLessThan(new BigNumber(inputValue))) {
+        setEstimatedRewards(`Max estimate is ${commifyString(lockedRewards.toFixed(2))} wPOKT*`);
+      } else {
+        setEstimatedRewards(`${commifyString(new BigNumber(inputValue).multipliedBy(apr).toFixed(6))} wPOKT*`);
+      }
+    } else {
+      setEstimatedRewards('Add deposit amount');
+    }
+  }, [apr, inputValue, lockedRewards]);
 
   return (
     <div>
@@ -55,7 +71,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
           <StyledLine />
           <div id={'estimated-reward'}>
             <P2 color={colors.white}>Estimated Reward</P2>
-            <StyledRewardText color={colors.white}>{totalStaked.multipliedBy(apr).toFixed(6)} wPOKT*</StyledRewardText>
+            <StyledRewardText color={colors.white}>{estimatedRewards}</StyledRewardText>
           </div>
         </StyledHeaderRight>
       </StyledHeader>
