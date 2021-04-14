@@ -15,9 +15,10 @@ The wPOKT app adds a new opportunity for users to profit from supporting Pocket 
 By augmenting Pocket Network’s core market with a Data Farming economy, we direct liquidity farming mechanisms towards a noble purpose – being the supercharger on the flywheel of a true public good. This revolutionary new economy will coordinate DeFi “degenerates” towards a regenerative outcome – planting rather than extracting value – by decommissioning centralized points of failure and bringing crypto back to its decentralized roots.
 
 ## Rinkeby Addresses
-wPOKT: `0x2f363dd061cc8b3411c3c91c0cfac0fa1b62f656`\
-TokenGeyser: `0x746218704841983de2ca941dd91598e68c369025`\
-wPOKT Pool: `0x7c2cf434e98940ad08ae3f26986235628b0904e7`
+wPOKT: `0x362067F3833a232786354e1366b0d3797583C7E1`\
+TokenGeyser: `0xC32eB16f016b193966caC6980F5EB25d498E8DC9`\
+Unlocked wPOKT Pool: `0x39b79EF73F25413BBA2624f818eA924b74B83EBF`
+Locked wPOKT Pool: `0x5368e433d65E2De1188dC0B9a0B9a74e7DD1AC3A`
 
 ## Getting Started
 To get started, create a `.env` file:
