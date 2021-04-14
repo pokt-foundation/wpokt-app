@@ -37,7 +37,13 @@ import { Web3Context } from 'contexts/Web3';
 import { useFarmStats } from 'hooks/useFarmStats';
 import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString, formatDaysFromTimestamp, formatFillPercentage, formatRelays } from 'utils';
+import {
+  commifyString,
+  formatDaysFromTimestamp,
+  formatFillPercentage,
+  formatOwnershipShare,
+  formatRelays,
+} from 'utils';
 
 const MyFarms: React.FC = () => {
   const history = useHistory();
@@ -105,7 +111,7 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard
                   iconType={'caret'}
                   statTitle={'Max Relays/Day'}
-                  statContent={`${formatRelays(maxRelays.toFixed(0))} M`}
+                  statContent={`${formatRelays(maxRelays)} M`}
                 />
                 <SmallInfoCard
                   iconType={'question'}
@@ -121,9 +127,7 @@ const MyFarms: React.FC = () => {
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Farm ownership'}
-                  statContent={`${
-                    ownershipShare >= 0.01 || ownershipShare === 0 ? ownershipShare.toFixed(2) : '< 0.01'
-                  }%`}
+                  statContent={`${formatOwnershipShare(ownershipShare)}%`}
                 />
                 <SmallInfoCard
                   iconType={'question'}
