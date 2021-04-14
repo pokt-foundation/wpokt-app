@@ -25,7 +25,7 @@ import { Card, InnerCardContainer, MediumInfoCard } from 'components/Cards';
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
-import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+import { TOKEN_GEYSER_ADDRESS, WPOKT_DECIMALS } from 'constants/index';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 
@@ -67,7 +67,7 @@ const Stats: React.FC = () => {
                 <P2 color={colors.white}>Total Staked</P2>
                 <Flex align={'center'}>
                   <StyledStakedText color={colors.white}>
-                    {commifyString(totalStaked.toFixed(6))} wPOKT
+                    {commifyString(totalStaked.toFixed(WPOKT_DECIMALS))} wPOKT
                   </StyledStakedText>
                   <StyledSelectorContainer farmSelected={farmSelected}>
                     <SelectorSvg />
@@ -80,25 +80,25 @@ const Stats: React.FC = () => {
             <StyledSmallInfoCardsContainer>
               <StyledContentContainer>
                 <MediumInfoCard
-                  amount={`${commifyString(totalStaked.toFixed(6))} wPOKT`}
+                  amount={`${commifyString(totalStaked.toFixed(WPOKT_DECIMALS))} wPOKT`}
                   header={'Total Staked'}
                   icon={'chest'}
                   size={'sm'}
                 />
                 <MediumInfoCard
-                  amount={`${commifyString(totalRewards.toFixed(6))} wPOKT`}
+                  amount={`${commifyString(totalRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
                   header={'Total  Rewards'}
                   icon={'star'}
                   size={'sm'}
                 />
                 <MediumInfoCard
-                  amount={`${commifyString(lockedRewards.toFixed(6))} wPOKT`}
+                  amount={`${commifyString(lockedRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
                   header={'Locked Rewards'}
                   icon={'padlock'}
                   size={'sm'}
                 />
                 <MediumInfoCard
-                  amount={`${commifyString(unlockedRewards.toFixed(6))} wPOKT`}
+                  amount={`${commifyString(unlockedRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
                   header={'Unlocked Rewards'}
                   icon={'key'}
                   size={'sm'}
@@ -110,7 +110,7 @@ const Stats: React.FC = () => {
                   size={'sm'}
                 />
                 <MediumInfoCard
-                  amount={`${commifyString(rewardUnlockRate.toFixed(6))} / month`}
+                  amount={`${commifyString(rewardUnlockRate.toFixed(WPOKT_DECIMALS))} / month`}
                   header={'Reward unlock Rate'}
                   icon={'diamond'}
                   size={'sm'}
