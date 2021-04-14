@@ -37,6 +37,10 @@ function bigNum(value: string | number): BigNumber {
   return BigNumber.from(value);
 }
 
+export function formatOwnershipShare(share: number): string {
+  return share >= 0.01 || share === 0 ? share.toFixed(2) : '< 0.01';
+}
+
 /**
  * Format a decimal-based number back to a big number
  *

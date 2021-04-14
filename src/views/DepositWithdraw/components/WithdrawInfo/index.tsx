@@ -25,7 +25,13 @@ import { Web3Context } from 'contexts/Web3';
 import { useFarmStats } from 'hooks/useFarmStats';
 import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString, formatDaysFromTimestamp, formatFillPercentage, formatRelays } from 'utils';
+import {
+  commifyString,
+  formatDaysFromTimestamp,
+  formatFillPercentage,
+  formatOwnershipShare,
+  formatRelays,
+} from 'utils';
 
 interface IWithdraw {
   farmSelected: boolean;
@@ -106,7 +112,7 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
           <SmallInfoCard
             iconType={'question'}
             statTitle={'Farm Ownership'}
-            statContent={`${ownershipShare >= 0.01 || ownershipShare === 0 ? ownershipShare.toFixed(2) : '< 0.01'}%`}
+            statContent={`${formatOwnershipShare(ownershipShare)}%`}
           />
           <SmallInfoCard
             iconType={'caret'}

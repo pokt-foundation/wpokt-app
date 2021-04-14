@@ -26,7 +26,13 @@ import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 import { useFarmStats } from 'hooks/useFarmStats';
 import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString, formatDaysFromTimestamp, formatFillPercentage, formatRelays } from 'utils';
+import {
+  commifyString,
+  formatDaysFromTimestamp,
+  formatFillPercentage,
+  formatRelays,
+  formatOwnershipShare,
+} from 'utils';
 
 interface IDepositInfo {
   farmSelected: boolean;
@@ -106,7 +112,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
             <SmallInfoCard
               iconType={'question'}
               statTitle={'Farm Ownership'}
-              statContent={`${ownershipShare >= 0.01 || ownershipShare === 0 ? ownershipShare.toFixed(2) : '< 0.01'}%`}
+              statContent={`${formatOwnershipShare(ownershipShare)}%`}
             />
             <SmallInfoCard iconType={'caret'} statTitle={'Apps'} statContent={'0'} />
             <SmallInfoCard iconType={'question'} statTitle={'Usage'} statContent={`${farmUsage.toFixed(2)}%`} />
