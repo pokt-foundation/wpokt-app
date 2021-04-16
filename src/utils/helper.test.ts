@@ -18,7 +18,7 @@ describe('make sure time remaining works properly', () => {
   });
   it('calculates time remaining months', () => {
     const timeRemaining: TimeRemaining = getTimeRemaining(TWO_MONTHS);
-    expect(timeRemaining.months).toBe(0);
+    expect(timeRemaining.months).toBe(2);
   });
   it('calculates time remaining days', () => {
     const timeRemaining: TimeRemaining = getTimeRemaining(TWO_DAYS);
