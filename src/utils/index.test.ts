@@ -1,4 +1,3 @@
-import { BigNumber } from 'ethers';
 import { expect } from '@jest/globals';
 import { BigNumber as BNJS } from 'bignumber.js';
 
@@ -10,12 +9,6 @@ import {
   formatOwnershipShare,
   parseInputValue,
   shortenAddress,
-  getERC20Contract,
-  getTokenGeyserContract,
-  stake,
-  unstake,
-  approve,
-  getAllowance,
 } from 'utils';
 
 describe('Formatting functions', () => {
