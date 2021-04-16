@@ -25,7 +25,7 @@ const App: React.FC = () => {
   const readyToTransact = React.useCallback(async (onboard, provider): Promise<boolean> => {
     if (!provider) {
       const walletSelected = await onboard?.walletSelect();
-      if (!walletSelected) return false
+      if (!walletSelected) return false;
       // Husky test
     }
 
