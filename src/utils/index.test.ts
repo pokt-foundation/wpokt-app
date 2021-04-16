@@ -49,11 +49,11 @@ describe('Formatting functions', () => {
 
   it('should format format the share of ownership into a percentage', () => {
     expect(formatOwnershipShare(4)).toEqual('4.00');
-    expect(formatOwnershipShare(.001)).toEqual('< 0.01');
+    expect(formatOwnershipShare(0.001)).toEqual('< 0.01');
   });
 
   it('should shorten an ethereum address', () => {
     expect(shortenAddress('0x6C6Cf8276CCe6821Cb5D26447D35F082A3C3c66b')).toEqual('0x6C6C…c66b');
     expect(shortenAddress('0x6C6Cf8276CCe6821Cb5D26447D35F082A3C3c66b', 2)).toEqual('0x6C…6b');
   });
-})
+});
