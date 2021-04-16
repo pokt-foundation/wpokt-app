@@ -26,7 +26,6 @@ const App: React.FC = () => {
     if (!provider) {
       const walletSelected = await onboard?.walletSelect();
       if (!walletSelected) return false;
-      // Husky test
     }
 
     const ready = await onboard?.walletCheck();
