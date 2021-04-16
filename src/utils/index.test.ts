@@ -1,3 +1,4 @@
+import { BigNumber } from 'ethers';
 import { expect } from '@jest/globals';
 import { BigNumber as BNJS } from 'bignumber.js';
 
@@ -50,6 +51,11 @@ describe('Formatting functions', () => {
   it('should format format the share of ownership into a percentage', () => {
     expect(formatOwnershipShare(4)).toEqual('4.00');
     expect(formatOwnershipShare(0.001)).toEqual('< 0.01');
+  });
+
+  it('should parse string input value', () => {
+    expect(parseInputValue('123', 6).toString()).toEqual('123000000');
+    expect(parseInputValue('123456789', 6).toString()).toEqual('123456789000000');
   });
 
   it('should shorten an ethereum address', () => {
