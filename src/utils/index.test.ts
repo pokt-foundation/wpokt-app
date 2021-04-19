@@ -17,23 +17,32 @@ describe('Formatting functions', () => {
   });
 
   it('should commify strings', () => {
-    const commified = commifyString('123456789');
-    expect(commified).toEqual('123,456,789');
+    expect(commifyString('.123456789')).toEqual('.123456789');
+    expect(commifyString('123')).toEqual('123');
+    expect(commifyString('123456789')).toEqual('123,456,789');
+    expect(commifyString('123456.789')).toEqual('123,456.789');
   });
 
   it('should format BigNumber relays', () => {
-    const relays = formatRelays(new BNJS(100000000));
-    expect(relays).toEqual('100.00');
+    expect(formatRelays(new BNJS('123456789123456789123456789'))).toEqual('123456789123456789123.46');
+    expect(formatRelays(new BNJS(100000000))).toEqual('100.00');
+    expect(formatRelays(new BNJS(100000000.01))).toEqual('100.00');
+    expect(formatRelays(new BNJS(10))).toEqual('0.00');
+    expect(formatRelays(new BNJS('0.123456789123456789123456789'))).toEqual('0.00');
   });
 
   it('should format string relays', () => {
-    const relays = formatRelays('100000000');
-    expect(relays).toEqual('100.00');
+    expect(formatRelays('123456789123456789123456789')).toEqual('123456789123456789123.46');
+    expect(formatRelays('100000000')).toEqual('100.00');
+    expect(formatRelays('100000000.01')).toEqual('100.00');
+    expect(formatRelays('10')).toEqual('0.00');
+    expect(formatRelays('.123456789123456789123456789')).toEqual('0.00');
   });
 
   it('should format days left as a percentage', () => {
-    const fillPercentage = formatFillPercentage(500, 5000);
-    expect(fillPercentage).toEqual(90);
+    expect(formatFillPercentage(1, 5000)).toEqual(100);
+    expect(formatFillPercentage(500, 5000)).toEqual(90);
+    expect(formatFillPercentage(5000, 5000)).toEqual(0);
   });
 
   it('should format the number of days from time in seconds', () => {
@@ -47,8 +56,10 @@ describe('Formatting functions', () => {
   });
 
   it('should parse string input value', () => {
+    expect(parseInputValue('0.123456', 6).toString()).toEqual('123456');
     expect(parseInputValue('123', 6).toString()).toEqual('123000000');
     expect(parseInputValue('123456789', 6).toString()).toEqual('123456789000000');
+    expect(parseInputValue('123456789123456789123456789.123', 6).toString()).toEqual('123456789123456789123456789123000');
   });
 
   it('should shorten an ethereum address', () => {
