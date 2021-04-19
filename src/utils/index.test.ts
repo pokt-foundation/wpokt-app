@@ -59,7 +59,9 @@ describe('Formatting functions', () => {
     expect(parseInputValue('0.123456', 6).toString()).toEqual('123456');
     expect(parseInputValue('123', 6).toString()).toEqual('123000000');
     expect(parseInputValue('123456789', 6).toString()).toEqual('123456789000000');
-    expect(parseInputValue('123456789123456789123456789.123', 6).toString()).toEqual('123456789123456789123456789123000');
+    expect(parseInputValue('123456789123456789123456789.123', 6).toString()).toEqual(
+      '123456789123456789123456789123000',
+    );
   });
 
   it('should shorten an ethereum address', () => {
