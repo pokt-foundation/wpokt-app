@@ -22,7 +22,7 @@ import { H1, P2 } from 'components/Typography';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 import { Web3Context } from 'contexts/Web3';
-import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
+import { TOKEN_GEYSER_ADDRESS, WPOKT_DECIMALS } from 'constants/index';
 
 import { useFarmStats } from 'hooks/useFarmStats';
 import { useUserStats } from 'hooks/useUserStats';
@@ -43,7 +43,6 @@ interface IDepositInfo {
 export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
   const { inputValue } = React.useContext(DepositWithdrawalContext);
   const { address } = React.useContext(Web3Context);
-
   const { apr, farmUsage, maxRelays, rewardUnlockRate, timeLeft, totalTime, totalStaked } = useFarmStats(
     TOKEN_GEYSER_ADDRESS,
   );
@@ -68,7 +67,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
           <div id={'estimated-reward'}>
             <P2 color={colors.white}>Estimated Reward</P2>
             <StyledRewardText color={colors.white}>
-              {estimatedReward.toNumber() !== 0 ? estimatedReward.toFixed(6) : 0}
+              {estimatedReward.toNumber() !== 0 ? estimatedReward.toFixed(WPOKT_DECIMALS) : 0}
             </StyledRewardText>
           </div>
         </StyledHeaderRight>
