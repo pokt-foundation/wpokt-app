@@ -105,7 +105,7 @@ export function useFarmStats(farmAddress: string): FarmStatsReturnType {
           },
         ]: [
           // eslint-disable-next-line prettier/prettier
-          FarmStatsResponse
+          FarmStatsResponse,
         ] = result.data.tokenGeysers;
 
         const parsedApr = new BigNumber(rawApr);
