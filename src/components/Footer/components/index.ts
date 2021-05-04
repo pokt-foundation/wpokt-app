@@ -10,32 +10,6 @@ export const StyledFooterContainer = styled.footer`
   z-index: 999;
 `;
 
-export const StyledInnerContainer = styled.div`
-  margin: 0 auto;
-  padding: ${GU * 20}px 0;
-  width: ${80 * GU}px;
-
-  ${media.xs`
-    width: ${120 * GU}px;
-  `}
-
-  ${media.sm`
-    width: ${190 * GU}px;
-  `}
-
-  ${media.md`
-    width: ${247 * GU}px;
-  `}
-
-  ${media.lg`
-    width: ${300 * GU}px;
-  `}
-
-  ${media.xl`
-    width: ${450 * GU}px;
-  `}
-`;
-
 export const StyledLayerContainer = styled.div`
   align-items: center;
   display: flex;

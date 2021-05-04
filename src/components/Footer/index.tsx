@@ -9,24 +9,28 @@ import { ReactComponent as TwitterSvg } from 'assets/icons/twitter.svg';
 import { ReactComponent as TelegramSvg } from 'assets/icons/telegram.svg';
 
 import {
-  StyledInnerContainer,
   StyledLink,
   StyledFooterContainer,
   StyledNavigationItems,
   StyledSocialContainer,
   StyledLayerContainer,
 } from 'components/Footer/components';
+import { Container } from 'components/Containers';
 import Spacer from 'components/Spacer';
 import { P1, P2 } from 'components/Typography';
 
 const Footer: React.FC = () => {
   return (
     <StyledFooterContainer>
-      <StyledInnerContainer>
+      <Container
+        css={`
+          padding: ${GU * 20}px 0;
+        `}
+      >
         <TopLayer />
         <Spacer size={'md'} />
         <BottomLayer />
-      </StyledInnerContainer>
+      </Container>
     </StyledFooterContainer>
   );
 };

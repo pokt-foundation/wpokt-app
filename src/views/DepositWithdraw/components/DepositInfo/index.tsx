@@ -67,7 +67,7 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
           <div id={'estimated-reward'}>
             <P2 color={colors.white}>Estimated Reward</P2>
             <StyledRewardText color={colors.white}>
-              {estimatedReward.toNumber() !== 0 ? estimatedReward.toFixed(WPOKT_DECIMALS) : 0} wPOKT
+              {estimatedReward.toNumber() !== 0 ? estimatedReward.toFixed(WPOKT_DECIMALS) : 0} wPOKT*
             </StyledRewardText>
           </div>
         </StyledHeaderRight>
