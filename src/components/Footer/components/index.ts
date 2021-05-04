@@ -3,6 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
+// MAIN CONTAINERS
+export const StyledFooterContainer = styled.footer`
+  background: #000;
+  color: #fff;
+  z-index: 999;
+`;
+
 export const StyledInnerContainer = styled.div`
   margin: 0 auto;
   padding: ${GU * 20}px 0;
@@ -29,6 +36,24 @@ export const StyledInnerContainer = styled.div`
   `}
 `;
 
+export const StyledLayerContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
+
+  ${media.lg`
+    flex-direction: row;
+  `}
+
+  ${media.xl`
+    width: ${300 * GU}px;
+  `}
+`;
+
+// EXTRA COMPONENTS
 export const StyledLink = styled(NavLink)`
   align-items: center;
   color: ${colors.white};
@@ -76,38 +101,15 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const StyledLowerLayer = styled.div``;
-
-export const StyledNavigationContainer = styled.footer`
-  background: #000;
-  color: #fff;
-  z-index: 999;
-`;
-
-export const StyledSocialContainer = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: ${GU * 45}px;
-
-  a {
-    fill: #fff;
-    transition: all 0.3s ease;
-    &:hover {
-      fill: ${colors.yellow};
-    }
-  }
-`;
-
 export const StyledNavigationItems = styled.ul`
-  color: ${colors.white};
-  font-size: 1rem;
-  font-wight: 700;
-  text-transform: uppercase;
   align-items: center;
+  color: ${colors.white};
   display: flex;
   flex-direction: row;
+  font-size: 1rem;
+  font-wight: 700;
   justify-content: space-between;
+  text-transform: uppercase;
   width: ${80 * GU}px;
 
   ${media.xs`
@@ -125,8 +127,8 @@ export const StyledNavigationItems = styled.ul`
   `}
 
   li {
-    transition: all 0.3s ease;
     letter-spacing: 3px;
+    transition: all 0.3s ease;
 
     ${media.md`
       letter-spacing: 5px;
@@ -155,20 +157,17 @@ export const StyledNavigationItems = styled.ul`
   }
 `;
 
-export const StyledTopLayer = styled.div`
+export const StyledSocialContainer = styled.div`
   align-items: center;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  margin: 0 auto;
-  width: 100%;
+  width: ${GU * 45}px;
 
-  ${media.lg`
-    flex-direction: row;
-    width: 70%;
-  `}
-
-  ${media.xl`
-    width: 60%;
-  `}
+  a {
+    fill: #fff;
+    transition: all 0.3s ease;
+    &:hover {
+      fill: ${colors.yellow};
+    }
+  }
 `;

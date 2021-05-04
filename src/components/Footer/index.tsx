@@ -1,7 +1,7 @@
 import React from 'react';
 import 'styled-components/macro';
 import { media } from 'components/breakpoints';
-import { GU } from 'components/theme';
+import { colors, GU } from 'components/theme';
 
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 import { ReactComponent as DiscrodSvg } from 'assets/icons/discord.svg';
@@ -11,23 +11,23 @@ import { ReactComponent as TelegramSvg } from 'assets/icons/telegram.svg';
 import {
   StyledInnerContainer,
   StyledLink,
-  StyledLowerLayer,
-  StyledNavigationContainer,
+  StyledFooterContainer,
   StyledNavigationItems,
   StyledSocialContainer,
-  StyledTopLayer,
+  StyledLayerContainer,
 } from 'components/Footer/components';
 import Spacer from 'components/Spacer';
+import { P1, P2 } from 'components/Typography';
 
 const Footer: React.FC = () => {
   return (
-    <StyledNavigationContainer>
+    <StyledFooterContainer>
       <StyledInnerContainer>
         <TopLayer />
-        <Spacer size={'lg'} />
-        <StyledLowerLayer>Lower Layer</StyledLowerLayer>
+        <Spacer size={'md'} />
+        <BottomLayer />
       </StyledInnerContainer>
-    </StyledNavigationContainer>
+    </StyledFooterContainer>
   );
 };
 
@@ -35,7 +35,7 @@ export default Footer;
 
 const TopLayer: React.FC = () => {
   return (
-    <StyledTopLayer>
+    <StyledLayerContainer>
       <StyledNavigationItems>
         <li>
           <a
@@ -83,6 +83,41 @@ const TopLayer: React.FC = () => {
           <TelegramSvg />
         </a>
       </StyledSocialContainer>
-    </StyledTopLayer>
+    </StyledLayerContainer>
+  );
+};
+
+const BottomLayer: React.FC = () => {
+  return (
+    <StyledLayerContainer>
+      <P2 color={'#fff'}>
+        By using this app you accept Pocket{' '}
+        <a
+          css={`
+            color: ${colors.green};
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          `}
+          href={'/'}
+          target={'_blank'}
+          rel={'noreferrer noopener'}
+        >
+          Terms of Service
+        </a>
+      </P2>
+      <Spacer size={'md'} />
+      <P1
+        color={'#fff'}
+        css={`
+          font-family: 'Podkova', serif;
+          text-transform: uppercase;
+        `}
+      >
+        ©2021 Pocket Network Inc.
+      </P1>
+    </StyledLayerContainer>
   );
 };
