@@ -5,6 +5,7 @@ import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
 import { GU } from 'components/theme';
 
+import Footer from 'components/Footer';
 import Modals from 'components/Modals';
 import Navigation from 'components/Navigation';
 import Sidebar from 'components/Sidebar';
@@ -107,6 +108,7 @@ const App: React.FC = () => {
               <MyFarms />
             </Route>
           </Switch>
+          <Footer />
           <Modals />
         </Router>
       </Wrapper>
