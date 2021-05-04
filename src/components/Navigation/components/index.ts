@@ -46,7 +46,6 @@ export const StyledConnectWalletButton = styled.button<IStyledConnectWalletButto
     width: ${50 * GU}px;
   `}
   ${media.xl`
-    border: ${GU}px solid ${colors.white};
     font-size: 1.4rem;
     height: ${13 * GU}px;
     width: ${56 * GU}px;
