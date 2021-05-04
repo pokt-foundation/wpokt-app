@@ -188,18 +188,14 @@ export const StyledNavigationItems = styled.nav`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    width: ${100 * GU}px;
+    width: ${75 * GU}px;
 
     ${media.md`
-      width: ${135 * GU}px;
-    `}
-
-    ${media.lg`
-      width: ${155 * GU}px;
+      width: ${100 * GU}px;
     `}
 
     ${media.xl`
-      width: ${175 * GU}px;
+      width: ${125 * GU}px;
     `}
 
     li {

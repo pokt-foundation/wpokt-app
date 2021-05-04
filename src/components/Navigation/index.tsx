@@ -46,13 +46,8 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
       <StyledNavigationItems>
         <ul>
           <li>
-            <StyledLink exact activeClassName="active" to="/propose">
-              Propose App
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink exact activeClassName="active" to="/new-farm">
-              New Farm
+            <StyledLink exact activeClassName="active" to="/">
+              Home
             </StyledLink>
           </li>
           <li>
