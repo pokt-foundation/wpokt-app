@@ -66,9 +66,33 @@ export const StyledConnectWalletButton = styled.button<IStyledConnectWalletButto
 `;
 
 export const StyledLink = styled(NavLink)`
+  align-items: center;
   color: ${colors.white};
+  display: flex;
   text-decoration: none;
   transition: all 0.3s ease;
+
+  div {
+    height: ${3 * GU}px;
+    margin-right: ${3 * GU}px;
+    width: ${3 * GU}px;
+
+    ${media.lg`
+      height: ${4 * GU}px;
+      margin-right: ${4 * GU}px;
+      width: ${4 * GU}px;
+    `}
+
+    ${media.xl`
+      height: ${5 * GU}px;
+      margin-right: ${5 * GU}px;
+      width: ${5 * GU}px;
+    `}
+  }
+
+  svg {
+    fill: #000};
+  }
 
   &:hover {
     color: ${colors.yellow};
@@ -78,6 +102,9 @@ export const StyledLink = styled(NavLink)`
   }
   &.active {
     color: ${colors.yellow};
+    svg {
+      fill: ${colors.yellow};
+    }
   }
 `;
 
@@ -192,6 +219,10 @@ export const StyledNavigationItems = styled.nav`
 
     ${media.md`
       width: ${100 * GU}px;
+    `}
+
+    ${media.lg`
+      width: ${115 * GU}px;
     `}
 
     ${media.xl`
