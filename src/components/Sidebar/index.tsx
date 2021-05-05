@@ -28,23 +28,10 @@ const Sidebar: React.FC<ISidebar> = ({ setSidebar, sidebar }) => {
                 width: ${5 * GU}px;
               `}
             >
-              <SelectorSvg fill={window.location.pathname === '/propose' ? colors.yellow : 'transparent'} />
+              <SelectorSvg fill={window.location.pathname === '/' ? colors.yellow : 'transparent'} />
             </div>
-            <StyledLink onClick={() => setSidebar(false)} exact activeClassName="active" to="/propose">
-              Propose App
-            </StyledLink>
-          </li>
-          <li>
-            <div
-              css={`
-                height: ${5 * GU}px;
-                width: ${5 * GU}px;
-              `}
-            >
-              <SelectorSvg fill={window.location.pathname === '/new-farm' ? colors.yellow : 'transparent'} />
-            </div>
-            <StyledLink onClick={() => setSidebar(false)} exact activeClassName="active" to="/new-farm">
-              New Farm
+            <StyledLink onClick={() => setSidebar(false)} exact activeClassName="active" to="/">
+              Home
             </StyledLink>
           </li>
           <li>

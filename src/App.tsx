@@ -3,8 +3,8 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import 'styled-components/macro';
 import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
-import { GU } from 'components/theme';
 
+import Footer from 'components/Footer';
 import Modals from 'components/Modals';
 import Navigation from 'components/Navigation';
 import Sidebar from 'components/Sidebar';
@@ -47,56 +47,6 @@ const App: React.FC = () => {
             <Route exact path="/">
               <DepositWithdraw readyToTransact={readyToTransact} />
             </Route>
-            <Route exact path="/propose">
-              <div
-                css={`
-                  align-items: center;
-                  display: flex;
-                  height: 100vh;
-                  justify-content: center;
-                  width: 100%;
-                `}
-              >
-                <div
-                  css={`
-                    align-items: center;
-                    background: white;
-                    display: flex;
-                    height: ${12 * GU}px;
-                    justify-content: center;
-                    text-align: center;
-                    width: ${50 * GU}px;
-                  `}
-                >
-                  Propose App
-                </div>
-              </div>
-            </Route>
-            <Route exact path="/new-farm">
-              <div
-                css={`
-                  align-items: center;
-                  display: flex;
-                  height: 100vh;
-                  justify-content: center;
-                  width: 100%;
-                `}
-              >
-                <div
-                  css={`
-                    align-items: center;
-                    background: white;
-                    display: flex;
-                    height: ${12 * GU}px;
-                    justify-content: center;
-                    text-align: center;
-                    width: ${50 * GU}px;
-                  `}
-                >
-                  New Farm
-                </div>
-              </div>
-            </Route>
             <Route exact path="/sales-info">
               <SalesInfo />
             </Route>
@@ -107,6 +57,7 @@ const App: React.FC = () => {
               <MyFarms />
             </Route>
           </Switch>
+          <Footer />
           <Modals />
         </Router>
       </Wrapper>
