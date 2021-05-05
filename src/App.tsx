@@ -35,10 +35,6 @@ const App: React.FC = () => {
     return ready;
   }, []);
 
-  React.useEffect(() => {
-    readyToTransact(onboard, provider);
-  }, [onboard, provider, readyToTransact]);
-
   return (
     <>
       <GlobalFonts />
