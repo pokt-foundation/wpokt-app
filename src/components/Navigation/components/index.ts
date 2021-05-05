@@ -72,7 +72,8 @@ export const StyledLink = styled(NavLink)`
   text-decoration: none;
   transition: all 0.3s ease;
 
-  div {
+  svg {
+    fill: #000;
     height: ${3 * GU}px;
     margin-right: ${3 * GU}px;
     width: ${3 * GU}px;
@@ -88,10 +89,6 @@ export const StyledLink = styled(NavLink)`
       margin-right: ${5 * GU}px;
       width: ${5 * GU}px;
     `}
-  }
-
-  svg {
-    fill: #000};
   }
 
   &:hover {
