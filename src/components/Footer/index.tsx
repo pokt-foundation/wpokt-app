@@ -103,7 +103,7 @@ const BottomLayer: React.FC = () => {
           text-transform: uppercase;
         `}
       >
-        ©2021 Pocket Network Inc.
+        ©{new Date().getFullYear()} Pocket Network Inc.
       </P1>
     </StyledLayerContainer>
   );
