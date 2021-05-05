@@ -102,37 +102,6 @@ export const StyledFarmContainer = styled.div`
   `}
 `;
 
-export const StyledGraphAndWarningContainer = styled.div`
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-
-  ${media.sm`
-    flex-direction: row;
-  `}
-`;
-
-export const StyledGraphContainer = styled.div`
-  height: ${29 * GU}px;
-  margin: 0 auto ${5 * GU}px;
-  width: ${65 * GU}px;
-
-  ${media.xs`
-    margin: 0 auto ${6 * GU}px;
-  `}
-
-  ${media.sm`
-    height: ${20 * GU}px;
-    margin: 0;
-    width: ${45 * GU}px;
-  `}
-
-  ${media.lg`
-    height: ${29 * GU}px;
-    width: ${65 * GU}px;
-  `}
-`;
-
 export const StyledLink = styled.button`
   align-items: center;
   background: #000;
@@ -179,19 +148,6 @@ export const StyledWarning = styled.div`
   background: #000;
   box-sizing: border-box;
   height: ${18 * GU}px;
+  margin: 0 ${GU * 3}px;
   padding: ${3 * GU}px;
-  width: 100%;
-`;
-
-export const StyledWarningContainer = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: ${29 * GU}px;
-  justify-content: space-between;
-  width: 100%;
-
-  ${media.sm`
-    width: 50%;
-  `}
 `;
