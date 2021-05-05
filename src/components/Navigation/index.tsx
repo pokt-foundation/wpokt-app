@@ -7,6 +7,7 @@ import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
 import MetaMaskImage from 'assets/images/metamask.png';
 import NavigationBarImage from 'assets/images/navigation_bar_long.png';
 import { ReactComponent as SandwichMenu } from 'assets/icons/sandwich_menu.svg';
+import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
 import {
   StyledLink,
@@ -46,22 +47,20 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
       <StyledNavigationItems>
         <ul>
           <li>
-            <StyledLink exact activeClassName="active" to="/propose">
-              Propose App
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink exact activeClassName="active" to="/new-farm">
-              New Farm
+            <StyledLink exact activeClassName="active" to="/">
+              <SelectorSvg />
+              Home
             </StyledLink>
           </li>
           <li>
             <StyledLink exact activeClassName="active" to="/stats">
+              <SelectorSvg />
               Stats
             </StyledLink>
           </li>
           <li>
             <StyledLink exact activeClassName="active" to="/my-farms">
+              <SelectorSvg />
               My Farms
             </StyledLink>
           </li>

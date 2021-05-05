@@ -46,7 +46,6 @@ export const StyledConnectWalletButton = styled.button<IStyledConnectWalletButto
     width: ${50 * GU}px;
   `}
   ${media.xl`
-    border: ${GU}px solid ${colors.white};
     font-size: 1.4rem;
     height: ${13 * GU}px;
     width: ${56 * GU}px;
@@ -67,9 +66,30 @@ export const StyledConnectWalletButton = styled.button<IStyledConnectWalletButto
 `;
 
 export const StyledLink = styled(NavLink)`
+  align-items: center;
   color: ${colors.white};
+  display: flex;
   text-decoration: none;
   transition: all 0.3s ease;
+
+  svg {
+    fill: #000;
+    height: ${3 * GU}px;
+    margin-right: ${3 * GU}px;
+    width: ${3 * GU}px;
+
+    ${media.lg`
+      height: ${4 * GU}px;
+      margin-right: ${4 * GU}px;
+      width: ${4 * GU}px;
+    `}
+
+    ${media.xl`
+      height: ${5 * GU}px;
+      margin-right: ${5 * GU}px;
+      width: ${5 * GU}px;
+    `}
+  }
 
   &:hover {
     color: ${colors.yellow};
@@ -79,6 +99,9 @@ export const StyledLink = styled(NavLink)`
   }
   &.active {
     color: ${colors.yellow};
+    svg {
+      fill: ${colors.yellow};
+    }
   }
 `;
 
@@ -189,18 +212,18 @@ export const StyledNavigationItems = styled.nav`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    width: ${100 * GU}px;
+    width: ${75 * GU}px;
 
     ${media.md`
-      width: ${135 * GU}px;
+      width: ${100 * GU}px;
     `}
 
     ${media.lg`
-      width: ${155 * GU}px;
+      width: ${115 * GU}px;
     `}
 
     ${media.xl`
-      width: ${175 * GU}px;
+      width: ${125 * GU}px;
     `}
 
     li {
