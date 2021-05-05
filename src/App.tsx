@@ -66,7 +66,7 @@ const App: React.FC = () => {
           <Footer />
           <Modals />
         </Router>
-        <ReactTooltipStyled id="custom-event" globalEventOff={'click'} event="click" />
+        <StyledReactTooltip id="custom-event" globalEventOff={'click'} event="click" />
       </Wrapper>
     </>
   );
@@ -74,9 +74,8 @@ const App: React.FC = () => {
 
 export default App;
 
-const ReactTooltipStyled = styled(ReactTooltip)`
-  max-width: 200px;
-  opacity: 1;
+const StyledReactTooltip = styled(ReactTooltip)`
+  max-width: ${GU * 50}px;
   &.type-dark {
     background: black;
     -webkit-box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
@@ -87,21 +86,25 @@ const ReactTooltipStyled = styled(ReactTooltip)`
     padding: ${GU * 5}px;
   }
   &.type-dark.place-top {
+    opacity: 1;
     &:after {
       border-top-color: #fff;
     }
   }
   &.type-dark.place-bottom {
+    opacity: 1;
     &:after {
       border-bottom-color: #fff;
     }
   }
   &.type-dark.place-right {
+    opacity: 1;
     &:after {
       border-right-color: #fff;
     }
   }
   &.type-dark.place-left {
+    opacity: 1;
     &:after {
       border-left-color: #fff;
     }

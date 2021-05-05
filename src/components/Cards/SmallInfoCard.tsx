@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import VisuallyHidden from '@reach/visually-hidden';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
@@ -12,26 +13,28 @@ import { ReactComponent as MultiplierSvg } from 'assets/icons/multiplier.svg';
 import { ReactComponent as QuestionMarkSvg } from 'assets/icons/question_mark.svg';
 
 interface ISmallInfoCard {
+  iconType: 'question' | 'caret';
   statContent: string;
   statFill?: number;
   statTitle: string;
-  iconType: 'question' | 'caret';
+  tooltip: string;
 }
 
-export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill, statTitle, iconType }) => {
-  const tip =
-    'The APR (Annual Percentage Rate) is an annual rate of rewards on wPOKT staked. While most projects used APY, APR is a more accurate way to measure wPOKT returns as wPOKT is non-compounding.';
+export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ iconType, statContent, statFill, statTitle, tooltip }) => {
+  React.useEffect(() => {
+    ReactTooltip.rebuild();
+  }, []);
   return (
     <StyledSmallInfoCard>
       <StyledSmallInfoCardHeader>
         <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
         {iconType === 'question' ? (
-          <StyledSmallInfoCardButton data-for="custom-event" data-tip={tip} data-event="click focus">
+          <StyledSmallInfoCardButton data-for="custom-event" data-tip={tooltip} data-event="click focus">
             <VisuallyHidden>More Info</VisuallyHidden>
             <QuestionMarkSvg />
           </StyledSmallInfoCardButton>
         ) : (
-          <StyledSmallInfoCardButton>
+          <StyledSmallInfoCardButton data-for="custom-event" data-tip={tooltip} data-event="click focus">
             <VisuallyHidden>More Info</VisuallyHidden>
             <MultiplierSvg />
           </StyledSmallInfoCardButton>
