@@ -1,16 +1,10 @@
 import React from 'react';
-import VisuallyHidden from '@reach/visually-hidden';
-import { CartesianGrid, LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
-import { colors, GU } from 'components/theme';
+import { colors } from 'components/theme';
 
-import { ReactComponent as ExpandSvg } from 'assets/icons/expand.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 
 import {
-  StyledContentContainer,
-  StyledChartContainer,
-  StyledExpandButton,
   StyledFarmContainer,
   StyledHeader,
   StyledHeaderLeft,
@@ -27,21 +21,11 @@ import { H1, P2 } from 'components/Typography';
 
 import { TOKEN_GEYSER_ADDRESS, WPOKT_DECIMALS } from 'constants/index';
 
-import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
-
 import { useFarmStats } from 'hooks/useFarmStats';
 
 import { commifyString, formatDaysFromTimestamp } from 'utils';
 
-const data = [
-  { time: 'Day 1', rewards: 1 },
-  { time: 'Day 2', rewards: 2 },
-  { time: 'Day 3', rewards: 4 },
-  { time: 'Day 4', rewards: 3 },
-];
-
 const Stats: React.FC = () => {
-  const { onSelectModal } = React.useContext(DepositWithdrawalContext);
   const { lockedRewards, rewardUnlockRate, totalRewards, totalStaked, totalTime, unlockedRewards } = useFarmStats(
     TOKEN_GEYSER_ADDRESS,
   );
@@ -78,63 +62,42 @@ const Stats: React.FC = () => {
           </StyledHeader>
           {farmSelected && (
             <StyledSmallInfoCardsContainer>
-              <StyledContentContainer>
-                <MediumInfoCard
-                  amount={`${commifyString(totalStaked.toFixed(WPOKT_DECIMALS))} wPOKT`}
-                  header={'Total Staked'}
-                  icon={'chest'}
-                  size={'sm'}
-                />
-                <MediumInfoCard
-                  amount={`${commifyString(totalRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
-                  header={'Total  Rewards'}
-                  icon={'star'}
-                  size={'sm'}
-                />
-                <MediumInfoCard
-                  amount={`${commifyString(lockedRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
-                  header={'Locked Rewards'}
-                  icon={'padlock'}
-                  size={'sm'}
-                />
-                <MediumInfoCard
-                  amount={`${commifyString(unlockedRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
-                  header={'Unlocked Rewards'}
-                  icon={'key'}
-                  size={'sm'}
-                />
-                <MediumInfoCard
-                  amount={`${formatDaysFromTimestamp(totalTime)} Days`}
-                  header={'Duration'}
-                  icon={'clock'}
-                  size={'sm'}
-                />
-                <MediumInfoCard
-                  amount={`${commifyString(rewardUnlockRate.toFixed(WPOKT_DECIMALS))} / month`}
-                  header={'Reward unlock Rate'}
-                  icon={'diamond'}
-                  size={'sm'}
-                />
-              </StyledContentContainer>
-              <StyledChartContainer>
-                <LineChart data={data} margin={{ top: 50, right: 30, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="time" height={75} stroke={'#000'} tickMargin={15} />
-                  <YAxis stroke={'#000'} tickMargin={15} />
-                  <Tooltip />
-                  <Line
-                    dot={{ strokeWidth: 2 * GU }}
-                    strokeWidth={GU}
-                    type={'linear'}
-                    dataKey="rewards"
-                    stroke={colors.yellow}
-                  />
-                </LineChart>
-              </StyledChartContainer>
-              <StyledExpandButton onClick={() => onSelectModal('GRAPH_FULLSCREEN')}>
-                <VisuallyHidden>Expand</VisuallyHidden>
-                <ExpandSvg />
-              </StyledExpandButton>
+              <MediumInfoCard
+                amount={`${commifyString(totalStaked.toFixed(WPOKT_DECIMALS))} wPOKT`}
+                header={'Total Staked'}
+                icon={'chest'}
+                size={'sm'}
+              />
+              <MediumInfoCard
+                amount={`${commifyString(totalRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
+                header={'Total  Rewards'}
+                icon={'star'}
+                size={'sm'}
+              />
+              <MediumInfoCard
+                amount={`${commifyString(lockedRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
+                header={'Locked Rewards'}
+                icon={'padlock'}
+                size={'sm'}
+              />
+              <MediumInfoCard
+                amount={`${commifyString(unlockedRewards.toFixed(WPOKT_DECIMALS))} wPOKT`}
+                header={'Unlocked Rewards'}
+                icon={'key'}
+                size={'sm'}
+              />
+              <MediumInfoCard
+                amount={`${formatDaysFromTimestamp(totalTime)} Days`}
+                header={'Duration'}
+                icon={'clock'}
+                size={'sm'}
+              />
+              <MediumInfoCard
+                amount={`${commifyString(rewardUnlockRate.toFixed(WPOKT_DECIMALS))} / month`}
+                header={'Reward unlock Rate'}
+                icon={'diamond'}
+                size={'sm'}
+              />
             </StyledSmallInfoCardsContainer>
           )}
         </InnerCardContainer>
