@@ -16,7 +16,7 @@ import {
   StyledSmallInfoCardsContainer,
   StyledStakedText,
 } from 'views/MyFarms/components';
-import { Flex } from 'components/Containers';
+import { Container, Flex } from 'components/Containers';
 import {
   Card,
   InnerCardContainer,
@@ -152,6 +152,14 @@ const MyFarms: React.FC = () => {
           )}
         </InnerCardContainer>
       </Card>
+      <Spacer size={'sm'} />
+      <Container>
+        <P2>
+          *Estimated values do not represent or guarantee the actual results of any transaction or stake. In addition,
+          other metrics and calculations shown on the app have not been independently verified or audited. Use at your
+          own risk.
+        </P2>
+      </Container>
       <Spacer size={'lg'} />
     </>
   );

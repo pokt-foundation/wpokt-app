@@ -13,8 +13,9 @@ import {
   WithdrawInfo,
 } from 'views/DepositWithdraw/components';
 import { Card, InnerCardContainer } from 'components/Cards';
-import { Flex } from 'components/Containers';
+import { Container, Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
+import { P2 } from 'components/Typography';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
 
@@ -80,6 +81,14 @@ const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
           {actionType === 'withdraw' && <WithdrawInfo farmSelected={farmSelected} />}
         </InnerCardContainer>
       </Card>
+      <Spacer size={'sm'} />
+      <Container>
+        <P2>
+          *Estimated values do not represent or guarantee the actual results of any transaction or stake. In addition,
+          other metrics and calculations shown on the app have not been independently verified or audited. Use at your
+          own risk.
+        </P2>
+      </Container>
       <Spacer size={'lg'} />
     </>
   );
