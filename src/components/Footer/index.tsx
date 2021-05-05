@@ -4,7 +4,7 @@ import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
 import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
-import { ReactComponent as DiscrodSvg } from 'assets/icons/discord.svg';
+import { ReactComponent as DiscordSvg } from 'assets/icons/discord.svg';
 import { ReactComponent as TwitterSvg } from 'assets/icons/twitter.svg';
 import { ReactComponent as TelegramSvg } from 'assets/icons/telegram.svg';
 
@@ -78,7 +78,7 @@ const TopLayer: React.FC = () => {
       <Spacer size={'md'} />
       <StyledSocialContainer>
         <a href={'https://discord.com/invite/uYs6Esum3r'} target={'_blank'} rel={'noreferrer noopener'}>
-          <DiscrodSvg />
+          <DiscordSvg />
         </a>
         <a href={'https://twitter.com/POKTnetwork'} target={'_blank'} rel={'noreferrer noopener'}>
           <TwitterSvg />
