@@ -16,6 +16,7 @@ import DepositWithdraw from 'views/DepositWithdraw';
 import MyFarms from 'views/MyFarms';
 import SalesInfo from 'views/SalesInfo';
 import Stats from 'views/Stats';
+import TermsOfUse from 'views/TermsOfUse';
 
 const App: React.FC = () => {
   const { onboard, provider } = React.useContext(Web3Context);
@@ -55,6 +56,9 @@ const App: React.FC = () => {
             </Route>
             <Route exact path="/my-farms">
               <MyFarms />
+            </Route>
+            <Route exact path="/terms-of-use">
+              <TermsOfUse />
             </Route>
           </Switch>
           <Footer />
