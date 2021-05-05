@@ -19,12 +19,14 @@ interface ISmallInfoCard {
 }
 
 export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill, statTitle, iconType }) => {
+  const tip =
+    'The APR (Annual Percentage Rate) is an annual rate of rewards on wPOKT staked. While most projects used APY, APR is a more accurate way to measure wPOKT returns as wPOKT is non-compounding.';
   return (
     <StyledSmallInfoCard>
       <StyledSmallInfoCardHeader>
         <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
         {iconType === 'question' ? (
-          <StyledSmallInfoCardButton>
+          <StyledSmallInfoCardButton data-for="custom-event" data-tip={tip} data-event="click focus">
             <VisuallyHidden>More Info</VisuallyHidden>
             <QuestionMarkSvg />
           </StyledSmallInfoCardButton>
@@ -80,7 +82,7 @@ const StyledSmallInfoCardContent = styled.div`
     `}
 `;
 
-const StyledSmallInfoCardButton = styled.button`
+const StyledSmallInfoCardButton = styled.a`
   background: transparent;
   border: none;
 

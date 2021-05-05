@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import 'styled-components/macro';
+import ReactTooltip from 'react-tooltip';
+import styled from 'styled-components/macro';
 import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
+import { GU } from 'components/theme';
 
 import Footer from 'components/Footer';
 import Modals from 'components/Modals';
@@ -64,9 +66,44 @@ const App: React.FC = () => {
           <Footer />
           <Modals />
         </Router>
+        <ReactTooltipStyled id="custom-event" globalEventOff={'click'} event="click" />
       </Wrapper>
     </>
   );
 };
 
 export default App;
+
+const ReactTooltipStyled = styled(ReactTooltip)`
+  max-width: 200px;
+  opacity: 1;
+  &.type-dark {
+    background: black;
+    -webkit-box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
+    -moz-box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
+    box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
+    font-size: 1rem;
+    line-height: 15px;
+    padding: ${GU * 5}px;
+  }
+  &.type-dark.place-top {
+    &:after {
+      border-top-color: #fff;
+    }
+  }
+  &.type-dark.place-bottom {
+    &:after {
+      border-bottom-color: #fff;
+    }
+  }
+  &.type-dark.place-right {
+    &:after {
+      border-right-color: #fff;
+    }
+  }
+  &.type-dark.place-left {
+    &:after {
+      border-left-color: #fff;
+    }
+  }
+`;
