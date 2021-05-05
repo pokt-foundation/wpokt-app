@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
-// MAIN CONTAINERS
 export const StyledFooterContainer = styled.footer`
   background: #000;
   color: #fff;
@@ -27,7 +26,6 @@ export const StyledLayerContainer = styled.div`
   `}
 `;
 
-// EXTRA COMPONENTS
 export const StyledLink = styled(NavLink)`
   align-items: center;
   color: ${colors.white};
