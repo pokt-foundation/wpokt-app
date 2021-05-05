@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { media } from 'components/breakpoints';
+import { GU } from 'components/theme';
 
 interface IFlex {
   align?: 'flex-start' | 'center' | 'flex-end';
@@ -6,6 +8,31 @@ interface IFlex {
   full?: boolean;
   justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between';
 }
+
+export const Container = styled.div`
+  margin: 0 auto;
+  width: ${80 * GU}px;
+
+  ${media.xs`
+    width: ${120 * GU}px;
+  `}
+
+  ${media.sm`
+    width: ${190 * GU}px;
+  `}
+
+  ${media.md`
+    width: ${247 * GU}px;
+  `}
+
+  ${media.lg`
+    width: ${300 * GU}px;
+  `}
+
+  ${media.xl`
+    width: ${450 * GU}px;
+  `}
+`;
 
 export const Flex = styled.div<IFlex>`
   display: flex;

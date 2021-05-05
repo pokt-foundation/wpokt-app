@@ -48,25 +48,19 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
         <ul>
           <li>
             <StyledLink exact activeClassName="active" to="/">
-              <div>
-                <SelectorSvg />
-              </div>
+              <SelectorSvg />
               Home
             </StyledLink>
           </li>
           <li>
             <StyledLink exact activeClassName="active" to="/stats">
-              <div>
-                <SelectorSvg />
-              </div>
+              <SelectorSvg />
               Stats
             </StyledLink>
           </li>
           <li>
             <StyledLink exact activeClassName="active" to="/my-farms">
-              <div>
-                <SelectorSvg />
-              </div>
+              <SelectorSvg />
               My Farms
             </StyledLink>
           </li>
