@@ -4,7 +4,6 @@ import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components/macro';
 import type {} from 'styled-components/cssprop';
 import GlobalFonts from 'fonts/font';
-import { GU } from 'components/theme';
 
 import Footer from 'components/Footer';
 import Modals from 'components/Modals';
