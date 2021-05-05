@@ -103,27 +103,36 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
         <StyledContentContainer>
-          <SmallInfoCard iconType={'question'} statTitle={'APR'} statContent={`${commifyString(apr.toFixed(6))}%`} />
+          <SmallInfoCard
+            iconType={'question'}
+            statTitle={'APR'}
+            statContent={`${commifyString(apr.toFixed(6))}%`}
+            tooltip={`My Estimated APR (Annual Percentage Rate) is an annual rate of rewards on wPOKT staked. While most projects used APY, APR is a more accurate way to measure wPOKT returns as wPOKT is non-compounding. This is a current Farm-wide APR.`}
+          />
           <SmallInfoCard
             iconType={'caret'}
             statTitle={'Multiplier'}
             statContent={`${weightedMultiplier.toFixed(2)} X`}
+            tooltip={`The Multiplier increases the longer you stake, up to 3x. This gives you more pool ownership and incentivizes long-term staking which provides usage stability for DApps. `}
           />
           <SmallInfoCard
             iconType={'question'}
             statTitle={'Farm Ownership'}
             statContent={`${formatOwnershipShare(ownershipShare)}%`}
+            tooltip={`Farm ownership is your rights to the Unlocked Rewards measured as a percentage.`}
           />
           <SmallInfoCard
             iconType={'caret'}
             statTitle={'Time Left'}
             statContent={`${formatDaysFromTimestamp(timeLeft)} days left`}
             statFill={formatFillPercentage(timeLeft, totalTime)}
+            tooltip={`The remaining number of days for which pool rewards will unlocked at the current rate.`}
           />
           <SmallInfoCard
             iconType={'question'}
             statTitle={'MAX RELAYS/DAY'}
             statContent={`${formatRelays(maxRelays)} M`}
+            tooltip={`The amount of relays you are contributing to DApps by staking in this Farm. The more you stake, the more access DApps get to Pocket Network.`}
           />
           <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={true} />
         </StyledContentContainer>
