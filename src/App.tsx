@@ -14,7 +14,6 @@ import { Web3Context } from 'contexts/Web3';
 
 import DepositWithdraw from 'views/DepositWithdraw';
 import MyFarms from 'views/MyFarms';
-import ProposeApp from 'views/ProposeApp';
 import SalesInfo from 'views/SalesInfo';
 import Stats from 'views/Stats';
 
@@ -47,9 +46,6 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/">
               <DepositWithdraw readyToTransact={readyToTransact} />
-            </Route>
-            <Route exact path="/propose-app">
-              <ProposeApp />
             </Route>
             <Route exact path="/sales-info">
               <SalesInfo />

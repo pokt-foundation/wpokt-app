@@ -1,15 +1,12 @@
 import React from 'react';
 import 'styled-components/macro';
-import { media } from 'components/breakpoints';
 import { colors, GU } from 'components/theme';
 
-import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
 import { ReactComponent as DiscordSvg } from 'assets/icons/discord.svg';
 import { ReactComponent as TwitterSvg } from 'assets/icons/twitter.svg';
 import { ReactComponent as TelegramSvg } from 'assets/icons/telegram.svg';
 
 import {
-  StyledLink,
   StyledFooterContainer,
   StyledNavigationItems,
   StyledSocialContainer,
@@ -42,22 +39,7 @@ const TopLayer: React.FC = () => {
     <StyledLayerContainer>
       <StyledNavigationItems>
         <li>
-          <a
-            css={`
-              margin-right: ${6 * GU}px;
-
-              ${media.lg`
-                margin-right: ${8 * GU}px;
-              `}
-
-              ${media.xl`
-                margin-right: ${10 * GU}px;
-              `}
-            `}
-            href={'https://discord.gg/FK4A8AFrHZ'}
-            target={'_blank'}
-            rel={'noreferrer noopener'}
-          >
+          <a href={'https://discord.gg/FK4A8AFrHZ'} target={'_blank'} rel={'noreferrer noopener'}>
             Support
           </a>
         </li>
@@ -67,12 +49,13 @@ const TopLayer: React.FC = () => {
           </a>
         </li>
         <li>
-          <StyledLink exact activeClassName="active" to="/propose-app">
-            <div>
-              <SelectorSvg />
-            </div>
+          <a
+            href={'https://form.typeform.com/to/KEDKrQ0x?typeform-medium=embed-snippet'}
+            target={'_blank'}
+            rel={'noreferrer noopener'}
+          >
             Propose App
-          </StyledLink>
+          </a>
         </li>
       </StyledNavigationItems>
       <Spacer size={'md'} />
