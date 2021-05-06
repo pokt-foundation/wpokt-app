@@ -101,7 +101,8 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
       if (isApproved) {
         onSelectModal('CONFIRM_TRANSACTION');
       } else {
-        onApprove();
+        await onApprove();
+        onSelectModal('CONFIRM_TRANSACTION');
       }
     }
   };
