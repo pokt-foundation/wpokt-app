@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components/macro';
 import type {} from 'styled-components/cssprop';
