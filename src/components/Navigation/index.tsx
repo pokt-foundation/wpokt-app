@@ -25,11 +25,11 @@ import { Web3Context } from 'contexts/Web3';
 import { shortenAddress } from 'utils';
 
 interface INavigation {
-  readyToTransact: () => Promise<boolean | undefined>;
+  onConnectButton: () => Promise<boolean | undefined>;
   setSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
+const Navigation: React.FC<INavigation> = ({ onConnectButton, setSidebar }) => {
   const { address } = React.useContext(Web3Context);
 
   return (
@@ -67,7 +67,7 @@ const Navigation: React.FC<INavigation> = ({ readyToTransact, setSidebar }) => {
         </ul>
       </StyledNavigationItems>
       <Flex align={'center'}>
-        <StyledConnectWalletButton connected={address ? true : false} onClick={readyToTransact}>
+        <StyledConnectWalletButton connected={address ? true : false} onClick={onConnectButton}>
           {address ? shortenAddress(address) : 'Connect'}
           <StyledMetaMaskImageContainer
             css={`

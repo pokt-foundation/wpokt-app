@@ -34,6 +34,8 @@ export const BalanceProvider: React.FC = ({ children }) => {
       fetchBalances(address, provider);
       const refreshInterval = setInterval(() => fetchBalances(address, provider), 10000);
       return () => clearInterval(refreshInterval);
+    } else {
+      setWpoktBalance('0');
     }
     return () => null;
   }, [address, fetchBalances, provider]);

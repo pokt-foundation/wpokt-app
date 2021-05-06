@@ -11,7 +11,6 @@ import { ReactComponent as CopySvg } from 'assets/icons/copy.svg';
 import { ReactComponent as DepositButtonActiveSvg } from 'assets/icons/deposit_button_active.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 import { ReactComponent as MultiplierSvg } from 'assets/icons/multiplier.svg';
-import { ReactComponent as RewardsGraphSvg } from 'assets/icons/rewards_graph.svg';
 import { ReactComponent as WithdrawButtonActiveSvg } from 'assets/icons/withdraw_button_active.svg';
 
 import {
@@ -22,12 +21,9 @@ import {
   StyledDepositButtonContainer,
   StyledDetailHeader,
   StyledFarmContainer,
-  StyledGraphAndWarningContainer,
-  StyledGraphContainer,
   StyledLink,
   StyledModalContainer,
   StyledWarning,
-  StyledWarningContainer,
 } from 'components/Modals/ConfirmTransaction/components';
 import { Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
@@ -191,33 +187,28 @@ const ConfirmTransaction: React.FC = () => {
                   <P2 color={'#000'}>{inputValue} wPOKT</P2>
                 </StyledContentContainer>
                 <Spacer size={'xs'} />
-                <StyledGraphAndWarningContainer>
-                  <StyledGraphContainer>
-                    <RewardsGraphSvg />
-                  </StyledGraphContainer>
-                  <StyledWarningContainer>
-                    <StyledWarning>
-                      <P3 color={colors.white}>Give it a second thought...</P3>
-                      <Spacer size={'xs'} />
-                      <P3 color={colors.white}>If you keep your stake longer you could earn more rewards.</P3>
-                    </StyledWarning>
-                    <Flex
-                      css={`
-                        width: 100%;
-                      `}
-                      justify={'space-between'}
-                    >
-                      <StyledLink>
-                        <P2 color={colors.white}>FAQ</P2>
-                        <MultiplierSvg />
-                      </StyledLink>
-                      <StyledLink onClick={onStatsLink}>
-                        <P2 color={colors.white}>Stats</P2>
-                        <MultiplierSvg />
-                      </StyledLink>
-                    </Flex>
-                  </StyledWarningContainer>
-                </StyledGraphAndWarningContainer>
+                <StyledWarning>
+                  <P3 color={colors.white}>Give it a second thought...</P3>
+                  <Spacer size={'xs'} />
+                  <P3 color={colors.white}>If you keep your stake longer you could earn more rewards.</P3>
+                </StyledWarning>
+                <Spacer size={'xs'} />
+                <Flex
+                  css={`
+                    box-sizing: border-box;
+                    margin: 0 ${GU * 3}px;
+                  `}
+                  justify={'space-between'}
+                >
+                  <StyledLink>
+                    <P2 color={colors.white}>FAQ</P2>
+                    <MultiplierSvg />
+                  </StyledLink>
+                  <StyledLink onClick={onStatsLink}>
+                    <P2 color={colors.white}>Stats</P2>
+                    <MultiplierSvg />
+                  </StyledLink>
+                </Flex>
                 <Spacer size={'sm'} />
               </div>
             )}

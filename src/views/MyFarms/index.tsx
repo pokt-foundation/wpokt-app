@@ -134,7 +134,7 @@ const MyFarms: React.FC = () => {
                   iconType={'question'}
                   statTitle={'Rewards unlocked'}
                   statContent={`${commifyString(unlockedRewards.toFixed(2))} wPOKT`}
-                  tooltip={` `}
+                  tooltip={`The rewards eligible for claiming by farmers with ownership. The amount of these rewards that you can claim is equivalent to your percent ownership of the farm. This number includes all claimed and unclaimed rewards.`}
                 />
                 <SmallInfoCard
                   iconType={'question'}
