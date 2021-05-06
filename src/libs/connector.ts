@@ -18,14 +18,18 @@ export function initOnboard(subscriptions: Subscriptions): OnboardAPI {
       wallets: [
         { walletName: 'metamask' },
         {
+          walletName: 'ledger',
+          rpcUrl: RPC_URL,
+        },
+        {
           walletName: 'trezor',
           appUrl: 'https://reactdemo.blocknative.com',
           email: 'aaron@blocknative.com',
           rpcUrl: RPC_URL,
         },
         {
-          walletName: 'ledger',
-          rpcUrl: RPC_URL,
+          walletName: 'walletConnect',
+          infuraKey: 'd5e29c9b9a9d4116a7348113f57770a8',
         },
         { walletName: 'authereum', disableNotifications: true },
         {
@@ -43,10 +47,6 @@ export function initOnboard(subscriptions: Subscriptions): OnboardAPI {
         { walletName: 'fortmatic', apiKey: 'pk_test_886ADCAB855632AA' },
         { walletName: 'torus' },
         { walletName: 'trust', rpcUrl: RPC_URL },
-        {
-          walletName: 'walletConnect',
-          infuraKey: 'd5e29c9b9a9d4116a7348113f57770a8',
-        },
         { walletName: 'opera' },
         { walletName: 'operaTouch' },
         { walletName: 'imToken', rpcUrl: RPC_URL },
