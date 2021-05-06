@@ -148,6 +148,6 @@ export const StyledWarning = styled.div`
   background: #000;
   box-sizing: border-box;
   height: ${18 * GU}px;
-  margin: 0 ${GU * 3}px;
+  margin: 0 ${3 * GU}px;
   padding: ${3 * GU}px;
 `;
