@@ -88,7 +88,7 @@ const BottomLayer: React.FC = () => {
               text-decoration: underline;
             }
           `}
-          href={'/'}
+          href={'/terms-of-use'}
           target={'_blank'}
           rel={'noreferrer noopener'}
         >

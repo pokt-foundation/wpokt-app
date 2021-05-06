@@ -73,23 +73,36 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
         </StyledHeaderRight>
       </StyledHeader>
       <StyledSmallInfoCardsContainer>
-        <SmallInfoCard iconType={'question'} statTitle={'APR'} statContent={`${commifyString(apr.toFixed(6))}%`} />
-        <SmallInfoCard iconType={'caret'} statTitle={'Multiplier'} statContent={`${weightedMultiplier.toFixed(2)} X`} />
+        <SmallInfoCard
+          iconType={'question'}
+          statTitle={'APR'}
+          statContent={`${commifyString(apr.toFixed(6))}%`}
+          tooltip={`My Estimated APR (Annual Percentage Rate) is an annual rate of rewards on wPOKT staked. While most projects used APY, APR is a more accurate way to measure wPOKT returns as wPOKT is non-compounding. This is a current Farm-wide APR.`}
+        />
+        <SmallInfoCard
+          iconType={'caret'}
+          statTitle={'Multiplier'}
+          statContent={`${weightedMultiplier.toFixed(2)} X`}
+          tooltip={`The Multiplier increases the longer you stake, up to 3x. This gives you more pool ownership and incentivizes long-term staking which provides usage stability for DApps. `}
+        />
         <SmallInfoCard
           iconType={'question'}
           statTitle={'TOTAL STAKED'}
           statContent={`${commifyString(totalStaked.toFixed(2))} wPOKT`}
+          tooltip={`The total number of wPOKT staked in the Farm.`}
         />
         <SmallInfoCard
           iconType={'question'}
           statTitle={'MAX RELAYS/DAY'}
           statContent={`${formatRelays(maxRelays)} M`}
+          tooltip={`The amount of relays allowed by this Farm per the protocol rules on Pocket Network. The more relays, the more DApps can use Pocket Network.`}
         />
         <SmallInfoCard
           iconType={'question'}
           statTitle={'time left'}
           statContent={`${formatDaysFromTimestamp(timeLeft)} days left`}
           statFill={formatFillPercentage(timeLeft, totalTime)}
+          tooltip={`The remaining number of days for which pool rewards will unlocked at the current rate.`}
         />
         <SmallInfoCardExtraLinks />
       </StyledSmallInfoCardsContainer>
@@ -120,13 +133,25 @@ export const DepositInfo: React.FC<IDepositInfo> = ({ farmSelected }) => {
               iconType={'question'}
               statTitle={'Farm Ownership'}
               statContent={`${formatOwnershipShare(ownershipShare)}%`}
+              tooltip={`Farm ownership is your rights to the Unlocked Rewards measured as a percentage.`}
             />
-            <SmallInfoCard iconType={'caret'} statTitle={'Apps'} statContent={'0'} />
-            <SmallInfoCard iconType={'question'} statTitle={'Usage'} statContent={`${farmUsage.toFixed(2)}%`} />
+            <SmallInfoCard
+              iconType={'caret'}
+              statTitle={'Apps'}
+              statContent={'0'}
+              tooltip={`The number of applications using the Farm's relays.`}
+            />
+            <SmallInfoCard
+              iconType={'question'}
+              statTitle={'Usage'}
+              statContent={`${farmUsage.toFixed(2)}%`}
+              tooltip={`Usage is a measurement of how over/understaked a farm is in comparison to the max Max Relays it was intended to provide. Overstaking (>100%) means that there is likely more demand to new create pools.`}
+            />
             <SmallInfoCard
               iconType={'question'}
               statTitle={'Unlock Rate'}
               statContent={`${commifyString(rewardUnlockRate.toFixed(2))} / Month`}
+              tooltip={`The unlock rate is the rate at which rewards are unlocked in a given period. Your Farm Ownership determines how many of these rewards you have a right to.`}
             />
             <SmallInfoCardExtraLinks showOnDesktop={true} showOnMobile={false} />
           </StyledSmallInfoCardsContainer>

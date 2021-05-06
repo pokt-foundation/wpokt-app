@@ -97,44 +97,57 @@ const MyFarms: React.FC = () => {
                   iconType={'question'}
                   statTitle={'APR'}
                   statContent={`${commifyString(apr.toFixed(WPOKT_DECIMALS))}%`}
+                  tooltip={`My Estimated APR (Annual Percentage Rate) is an annual rate of rewards on wPOKT staked. While most projects used APY, APR is a more accurate way to measure wPOKT returns as wPOKT is non-compounding. This is a current Farm-wide APR.`}
                 />
                 <SmallInfoCard
                   iconType={'caret'}
                   statTitle={'Multiplier'}
                   statContent={`${weightedMultiplier.toFixed(2)} X`}
+                  tooltip={`The Multiplier increases the longer you stake, up to 3x. This gives you more pool ownership and incentivizes long-term staking which provides usage stability for DApps. `}
                 />
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Total Staked'}
                   statContent={`${commifyString(totalStaked.toFixed(2))} wPOKT`}
+                  tooltip={`The total number of wPOKT staked in the Farm.`}
                 />
                 <SmallInfoCard
                   iconType={'caret'}
                   statTitle={'Max Relays/Day'}
                   statContent={`${formatRelays(maxRelays)} M`}
+                  tooltip={`The amount of relays you are contributing to DApps by staking in this Farm. The more you stake, the more access DApps get to Pocket Network.`}
                 />
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Farm Usage'}
                   statContent={`${farmUsage.toFixed(2)}%`}
+                  tooltip={`Farm usage is a measurement of how over/understaked a farm is in comparison to the max Max Relays it was intended to provide. Overstaking (>100%) means that there is likely more demand to new create pools.`}
                 />
-                <SmallInfoCard iconType={'question'} statTitle={'Supported Apps'} statContent={'0'} />
+                <SmallInfoCard
+                  iconType={'question'}
+                  statTitle={'Supported Apps'}
+                  statContent={'0'}
+                  tooltip={`The number of applications using the Farm's relays.`}
+                />
                 {/* Note: If this is wPOKT, why do we have to fix it to 2 decimals? Subgraph? */}
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Rewards unlocked'}
                   statContent={`${commifyString(unlockedRewards.toFixed(2))} wPOKT`}
+                  tooltip={`The rewards eligible for claiming by farmers with ownership. The amount of these rewards that you can claim is equivalent to your percent ownership of the farm. This number includes all claimed and unclaimed rewards.`}
                 />
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Farm ownership'}
                   statContent={`${formatOwnershipShare(ownershipShare)}%`}
+                  tooltip={`Farm ownership is your rights to the Unlocked Rewards measured as a percentage.`}
                 />
                 <SmallInfoCard
                   iconType={'question'}
                   statTitle={'Time Left'}
                   statContent={`${formatDaysFromTimestamp(timeLeft)} Days`}
                   statFill={formatFillPercentage(timeLeft, totalTime)}
+                  tooltip={`The remaining number of days for which pool rewards will unlocked at the current rate.`}
                 />
                 <SmallInfoCardExtraLinks />
               </StyledContentContainer>

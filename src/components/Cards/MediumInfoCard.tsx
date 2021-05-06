@@ -87,7 +87,7 @@ const StyledMediumInfoCardContainer = styled.div<IStyledMediumInfoCardContainer>
       `}
 
       ${media.xl`
-        width: ${121 * GU}px;
+        width: ${135 * GU}px;
       `}
     `}
 
