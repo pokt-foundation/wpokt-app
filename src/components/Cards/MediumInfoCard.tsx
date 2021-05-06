@@ -157,7 +157,16 @@ export const MediumStatsFaqLinks: React.FC = () => {
         </div>
       </StyledLinkButton>
       <StyledLinkButton color={'#000'}>
-        <P2 color={colors.white}>Faq</P2>
+        <a
+          css={`
+            text-decoration: none;
+          `}
+          href={'https://forum.pokt.network/t/wpokt-faq/780'}
+          target={'_blank'}
+          rel={'noreferrer noopener'}
+        >
+          <P2 color={colors.white}>Faq</P2>
+        </a>
         <div>
           <MultiplierSvg />
         </div>

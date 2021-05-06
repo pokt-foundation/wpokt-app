@@ -15,6 +15,7 @@ import { ReactComponent as WithdrawButtonActiveSvg } from 'assets/icons/withdraw
 
 import {
   InsufficientFunds,
+  StyledATag,
   StyledCloseContainer,
   StyledCoinContainer,
   StyledContentContainer,
@@ -200,10 +201,14 @@ const ConfirmTransaction: React.FC = () => {
                   `}
                   justify={'space-between'}
                 >
-                  <StyledLink>
+                  <StyledATag
+                    href={'https://forum.pokt.network/t/wpokt-faq/780'}
+                    target={'_blank'}
+                    rel={'noreferrer noopener'}
+                  >
                     <P2 color={colors.white}>FAQ</P2>
                     <MultiplierSvg />
-                  </StyledLink>
+                  </StyledATag>
                   <StyledLink onClick={onStatsLink}>
                     <P2 color={colors.white}>Stats</P2>
                     <MultiplierSvg />
