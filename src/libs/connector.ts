@@ -2,7 +2,7 @@ import Onboard from 'bnc-onboard';
 import getRpcUrl from 'libs/rpc';
 import { Subscriptions, API as OnboardAPI } from 'libs/types';
 
-const NETWORK_ID = 42;
+const NETWORK_ID = 1;
 const RPC_URL = getRpcUrl(NETWORK_ID);
 const DAPP_ID = process.env.REACT_APP_ONBOARD_API_KEY;
 
