@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components/macro';
 import type {} from 'styled-components/cssprop';
+import { API as OnboardAPI } from 'libs/types';
 import GlobalFonts from 'fonts/font';
 import { GU } from 'components/theme';
 
@@ -35,13 +36,28 @@ const App: React.FC = () => {
     return ready;
   }, []);
 
+  const onConnectButton = React.useCallback(async (onboard: OnboardAPI | null, provider): Promise<boolean> => {
+    if (!provider) {
+      const walletSelected = await onboard?.walletSelect();
+      if (!walletSelected) return false;
+      const ready = onboard ? await onboard?.walletCheck() : false;
+      return ready;
+    } else {
+      onboard?.walletReset();
+      const walletSelected = await onboard?.walletSelect();
+      if (!walletSelected) return false;
+      const ready = onboard ? await onboard?.walletCheck() : false;
+      return ready;
+    }
+  }, []);
+
   return (
     <>
       <GlobalFonts />
       <Wrapper>
         <Router>
           <Sidebar setSidebar={setSidebar} sidebar={sidebar} />
-          <Navigation readyToTransact={() => readyToTransact(onboard, provider)} setSidebar={setSidebar} />
+          <Navigation onConnectButton={() => onConnectButton(onboard, provider)} setSidebar={setSidebar} />
           <Switch>
             <Route exact path="/">
               <DepositWithdraw readyToTransact={readyToTransact} />
