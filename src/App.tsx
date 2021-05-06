@@ -39,13 +39,17 @@ const App: React.FC = () => {
   const onConnectButton = React.useCallback(async (onboard: OnboardAPI | null, provider): Promise<boolean> => {
     if (!provider) {
       const walletSelected = await onboard?.walletSelect();
-      if (!walletSelected) return false;
+      if (!walletSelected) {
+        return false;
+      }
       const ready = onboard ? await onboard?.walletCheck() : false;
       return ready;
     } else {
       onboard?.walletReset();
       const walletSelected = await onboard?.walletSelect();
-      if (!walletSelected) return false;
+      if (!walletSelected) {
+        return false;
+      }
       const ready = onboard ? await onboard?.walletCheck() : false;
       return ready;
     }
