@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { colors, GU } from 'components/theme';
 import { media } from 'components/breakpoints';
 
@@ -94,6 +94,7 @@ export const StyledStatusContainer = styled.div`
   position: absolute;
   transform: translate3d(-50%, 0, 0);
   width: ${8 * GU}px;
+  z-index: 10001;
 
   &:hover {
     cursor: pointer;
@@ -111,30 +112,56 @@ interface IStyledTractorContainer {
   type: 'TRANSACTION_WAITING' | 'TRANSACTION_APPROVED' | 'TRANSACTION_REJECTED';
 }
 
+const driveAnimationSmall = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(${40 * GU}px); }
+`;
+
+const driveAnimationLarge = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(${60 * GU}px); }
+`;
+
+const flipAnimation = keyframes`
+  0% { transform: rotate(0) translateX(0); }
+  50% { transform: rotate(-90deg) translateX(10px);   }
+  100% { transform: rotate(-70deg) translateX(0);   }
+`;
+
 export const StyledTractorContainer = styled.div<IStyledTractorContainer>`
   bottom: ${GU}px;
-  height: ${12 * GU}px;
-  margin-right: ${5 * GU}px;
+  height: ${25 * GU}px;
   position: absolute;
-  left: ${6 * GU}px;
-  width: ${12 * GU}px;
+  left: ${0 * GU}px;
+  margin-bottom: ${-5 * GU}px;
+  width: ${25 * GU}px;
 
   ${media.sm`
-    height: ${15 * GU}px;
-    margin-right: ${5 * GU}px;
-    width: ${15 * GU}px;
+    height: ${30 * GU}px;
+    margin-bottom: ${-6 * GU}px;
+    width: ${30 * GU}px;
   `}
 
   ${(props) =>
     props.type === 'TRANSACTION_APPROVED' &&
     css`
-      left: auto;
       right: ${10 * GU}px;
+      animation-name: ${driveAnimationSmall};
+      animation-duration: 6s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+
+      ${media.sm`
+        animation-name: ${driveAnimationLarge};
+      `}
     `}
 
   ${(props) =>
     props.type === 'TRANSACTION_REJECTED' &&
     css`
-      transform: rotate(-70deg);
+      animation-name: ${flipAnimation};
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
     `}
 `;
