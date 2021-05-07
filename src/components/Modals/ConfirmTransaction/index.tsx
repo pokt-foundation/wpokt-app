@@ -28,9 +28,10 @@ import {
 } from 'components/Modals/ConfirmTransaction/components';
 import { Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
-import { H1, H2, P2, P3 } from 'components/Typography';
+import { H1, H2, P2 } from 'components/Typography';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
+import { TotalStakedContext } from 'contexts/TotalStaked';
 import { Web3Context } from 'contexts/Web3';
 
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
@@ -43,9 +44,10 @@ import { shortenAddress } from 'utils';
 const ConfirmTransaction: React.FC = () => {
   const history = useHistory();
   const { actionType, inputValue, onCloseModal, onDeposit, onWithdraw } = React.useContext(DepositWithdrawalContext);
+  const { totalStaked } = React.useContext(TotalStakedContext);
   const { address } = React.useContext(Web3Context);
   const { apr } = useFarmStats(TOKEN_GEYSER_ADDRESS);
-  const { totalStaked, weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
+  const { weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
 
   const onCopy = () => {
@@ -189,23 +191,23 @@ const ConfirmTransaction: React.FC = () => {
                 </StyledContentContainer>
                 <Spacer size={'xs'} />
                 <StyledWarning>
-                  <P3
+                  <P2
                     color={colors.white}
                     css={`
                       font-family: 'Quantico', sans-serif;
                     `}
                   >
                     Give it a second thought...
-                  </P3>
+                  </P2>
                   <Spacer size={'xs'} />
-                  <P3
+                  <P2
                     color={colors.white}
                     css={`
                       font-family: 'Quantico', sans-serif;
                     `}
                   >
                     If you keep your stake longer you could earn more rewards.
-                  </P3>
+                  </P2>
                 </StyledWarning>
                 <Spacer size={'xs'} />
                 <Flex

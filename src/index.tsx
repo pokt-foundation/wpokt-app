@@ -6,16 +6,19 @@ import reportWebVitals from './reportWebVitals';
 
 import { BalanceProvider } from 'contexts/Balance';
 import { DepositWithdrawalProvider } from 'contexts/DepositWithdrawal';
+import { TotalStakedProvider } from 'contexts/TotalStaked';
 import { Web3Provider } from 'contexts/Web3';
 
 ReactDOM.render(
   <React.StrictMode>
     <Web3Provider>
-      <BalanceProvider>
-        <DepositWithdrawalProvider>
-          <App />
-        </DepositWithdrawalProvider>
-      </BalanceProvider>
+      <TotalStakedProvider>
+        <BalanceProvider>
+          <DepositWithdrawalProvider>
+            <App />
+          </DepositWithdrawalProvider>
+        </BalanceProvider>
+      </TotalStakedProvider>
     </Web3Provider>
   </React.StrictMode>,
   document.getElementById('root'),

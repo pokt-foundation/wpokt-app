@@ -26,15 +26,15 @@ import { H2, P2 } from 'components/Typography';
 
 import { BalanceContext } from 'contexts/Balance';
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
+import { TotalStakedContext } from 'contexts/TotalStaked';
 import { Web3Context } from 'contexts/Web3';
 import { API as OnboardAPI } from 'libs/types';
 
-import { TOKEN_GEYSER_ADDRESS, WPOKT_DECIMALS } from 'constants/index';
+import { WPOKT_DECIMALS } from 'constants/index';
 
 import useApproval from 'hooks/useApproval';
-import { useUserStats } from 'hooks/useUserStats';
 
-import { commifyString, parseInputValue } from 'utils';
+import { parseInputValue } from 'utils';
 
 interface IEnterAmount {
   actionType: 'deposit' | 'withdraw';
@@ -47,9 +47,9 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
   const { inputValue, onChangeInput, onSelectModal } = React.useContext(DepositWithdrawalContext);
   const { address, onboard, provider, signer } = React.useContext(Web3Context);
   const { wpoktBalance } = React.useContext(BalanceContext);
+  const { totalStaked } = React.useContext(TotalStakedContext);
 
   const { isApproved, isApproving, onApprove } = useApproval();
-  const { totalStaked } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
 
   const [didApprove, setDidApprove] = React.useState<boolean>(false);
   const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
@@ -136,8 +136,8 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
             )}
             {actionType === 'withdraw' && (
               <P2 color={colors.white}>
-                {wpoktBalance
-                  ? `Total staked: ${commifyString(totalStaked.toFixed(2))} wPOKT`
+                {totalStaked
+                  ? `Total staked: ${TokenAmount.format(totalStaked, WPOKT_DECIMALS, { symbol: 'wPOKT' })}`
                   : 'Total staked: connect wallet'}
               </P2>
             )}
