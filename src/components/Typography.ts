@@ -4,6 +4,7 @@ import { media } from 'components/breakpoints';
 interface ITypograhpy {
   center?: boolean;
   color?: string;
+  paragraphFont?: boolean;
   weight?: number;
 }
 
@@ -83,6 +84,12 @@ export const P1 = styled.p<ITypograhpy>`
     `}
 
   ${(props) =>
+    props.paragraphFont &&
+    css`
+      font-family: 'Quantico', sans-serif;
+    `}
+
+  ${(props) =>
     props.weight &&
     css`
       font-weight: ${props.weight};
@@ -116,6 +123,12 @@ export const P2 = styled.p<ITypograhpy>`
     `}
 
   ${(props) =>
+    props.paragraphFont &&
+    css`
+      font-family: 'Quantico', sans-serif;
+    `}
+
+  ${(props) =>
     props.weight &&
     css`
       font-weight: ${props.weight};
@@ -137,6 +150,12 @@ export const P3 = styled.p<ITypograhpy>`
     props.color &&
     css`
       color: ${props.color};
+    `}
+
+  ${(props) =>
+    props.paragraphFont &&
+    css`
+      font-family: 'Quantico', sans-serif;
     `}
 
   ${(props) =>
