@@ -41,7 +41,7 @@ const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
       <StyledInnerContainer>
         <H1 center={true} color={colors.white}>
           {type === 'TRANSACTION_WAITING' && 'Waiting for confirmation'}
-          {type === 'TRANSACTION_APPROVED' && 'Transaction Approved'}
+          {type === 'TRANSACTION_APPROVED' && 'Transaction Confirmed'}
           {type === 'TRANSACTION_REJECTED' && 'Transaction Failed'}
         </H1>
         <Spacer size={'md'} />
