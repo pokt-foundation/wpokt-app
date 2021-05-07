@@ -4,6 +4,23 @@ import { media } from 'components/breakpoints';
 
 export { InsufficientFunds } from 'components/Modals/ConfirmTransaction/components/InsufficientFunds';
 
+export const StyledATag = styled.a`
+  align-items: center;
+  background: #000;
+  border: none;
+  box-sizing: border-box;
+  display: flex;
+  height: ${9 * GU}px;
+  justify-content: space-between;
+  padding: ${2 * GU}px;
+  text-decoration: none;
+  width: 47%;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const StyledCloseContainer = styled.button`
   align-items: center;
   background: transparent;

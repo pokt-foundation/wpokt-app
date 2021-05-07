@@ -181,7 +181,11 @@ export const SmallInfoCardExtraLinks: React.FC<ISmallInfoCardExtraLinks> = ({ sh
         <CaretSvg />
       </StyledExtraLinksButton>
       <Spacer size={'xs'} />
-      <StyledExtraLinksButton>
+      <StyledExtraLinksButton
+        href={'https://forum.pokt.network/t/wpokt-faq/780'}
+        target={'_blank'}
+        rel={'noreferrer noopener'}
+      >
         FAQ
         <CaretSvg />
       </StyledExtraLinksButton>
@@ -244,7 +248,7 @@ const StyledExtraLinksContainer = styled.div<IStyledExtraLinksContainer>`
     `}
 `;
 
-const StyledExtraLinksButton = styled.button`
+const StyledExtraLinksButton = styled.a`
   align-items: center;
   background: #000;
   border: none;
@@ -255,6 +259,7 @@ const StyledExtraLinksButton = styled.button`
   height: ${12 * GU}px;
   justify-content: space-between;
   padding: 0 ${5 * GU}px;
+  text-decoration: none;
   width: 100%;
 
   &:hover {
