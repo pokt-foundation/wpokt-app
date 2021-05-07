@@ -24,7 +24,7 @@ const TermsOfUse: React.FC = () => {
           <Spacer size={'sm'} />
           <H2>Date of Last Update: July 2, 2020</H2>
           <Spacer size={'md'} />
-          <P2>
+          <P2 paragraphFont={true}>
             These Terms of Use (“Terms”) are entered into between you and Pocket Network Inc., a Delaware Corporation,
             and Pocket Network Foundation, a Cayman Islands Foundation Company (Pocket Network Inc. and Pocket Network
             Foundation are referred to as “we,” “us,” or “our”). All references to “you” or “your” (as applicable) mean
@@ -32,7 +32,7 @@ const TermsOfUse: React.FC = () => {
             manner.
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             By accessing or using the Websites and Services, you agree to be bound by these Terms and any other rules or
             policies that we adopt and publish from time to time, which are incorporated herein by reference (which
             collectively constitute the “Agreement“). This Agreement govern your access to and use of the website (URL:
@@ -43,9 +43,9 @@ const TermsOfUse: React.FC = () => {
             Agreement.
           </P2>
           <Spacer size={'sm'} />
-          <P2>Access and Availability</P2>
+          <P2 paragraphFont={true}>Access and Availability</P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Conditions of Use. Your access and use of the Websites and Services are conditional upon your acceptance of
             and compliance with this Agreement. Access and Use by Organization. If you access or use the Website and
             Services on behalf of an organization, you represent and warrant that you have the authority to enter into
@@ -69,7 +69,7 @@ const TermsOfUse: React.FC = () => {
             so. Accounts and Security Information.
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Account Registration. You may be required to register an account with us to have access or use some of our
             Services. Your registration for and use of our accounts are subject to the additional terms of use notified
             to you at the time of your account registration, which form part of this Agreement. Security Information. To
@@ -83,7 +83,7 @@ const TermsOfUse: React.FC = () => {
             Privacy
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Privacy Policy. We are committed to protecting the privacy of your information. Please review our Privacy
             Policy for details about how we process your personal data in connection with your access and use of the
             Websites and Services. The Privacy Policy is available here. Cookies. We use necessary cookies to make the
@@ -92,7 +92,7 @@ const TermsOfUse: React.FC = () => {
             information about how we use cookies, please read our Privacy Policy. Open Source Software
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Download and Availability. We may make the source code for certain software we develop available for
             download as open source software on the Websites or on https://github.com/pokt-network. If you use any such
             open source software, you agree to be bound by and comply with the license terms that apply to such open
@@ -103,7 +103,7 @@ const TermsOfUse: React.FC = () => {
             with you. Intellectual Property
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Ownership. The Websites and Services are owned by us and protected by copyright, trademark, and other
             intellectual property rights and laws of applicable countries, unless otherwise specifically indicated. You
             agree to abide by all applicable proprietary rights and laws, as well as any trademark or copyright notices
@@ -128,7 +128,7 @@ const TermsOfUse: React.FC = () => {
             non-exclusive license and not a transfer of title. Third-Party Resources
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Third-Party Resources. We may display information, links and other material on our Websites relating to
             third-party software, hardware, services, networks, blockchains (whether public or private), websites or
             other resources (collectively, the “Third-Party Resources”) for your convenience only. Your use of any
@@ -158,7 +158,7 @@ const TermsOfUse: React.FC = () => {
             Third-Party Blockchain Services. Warranties and Disclaimers
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             ‘As is’ / ‘as available’. The Websites and Services are provided on the “as is” and “as available” basis
             without warranty or condition of any kind, either express or implied, including, but not limited to, the
             implied terms of satisfactory quality, merchantability or fitness for a particular purpose.No Warranty. We
@@ -171,7 +171,7 @@ const TermsOfUse: React.FC = () => {
             and Indemnification
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Limitation of Liability. In no event shall we be liable for damages of any kind (including any direct,
             indirect, special, incidental, consequential, or punitive damages) arising out of or in connection with your
             access to, use of, or inability to use, the Website and Services. In addition, we are not liable for any
@@ -186,7 +186,7 @@ const TermsOfUse: React.FC = () => {
             violation of any rights of another person or entity. Acceptable Use Policy
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Acceptable Use. You must only use the Website and Services for their stated or intended purpose and in
             accordance with this Agreement and all applicable laws and regulations. If you acquire POKT tokens (“POKT”)
             through the Website and Services, you agree to acquire POKT subject to the Company’s POKT purchase terms and
@@ -225,7 +225,7 @@ const TermsOfUse: React.FC = () => {
             attempt to do any of the foregoing. No Solicitation or Advice
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             No Offer; No Solicitation. The information and any materials contained in the Websites or Services should
             not be considered as an offer or solicitation to buy or sell POKT, provide financial advice, create a
             trading platform, facilitate or take deposits or provide any other financial services of any kind in any
@@ -237,7 +237,7 @@ const TermsOfUse: React.FC = () => {
             appropriate professional advice when necessary. General Release.
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             To the fullest extent permitted by applicable laws and regulations, you release us and our directors,
             officers, agents, representatives, co-branders or other partners, and employees from responsibility,
             liability, claims, demands, and/or damages (actual and consequential) of every kind and nature, known and
@@ -245,7 +245,7 @@ const TermsOfUse: React.FC = () => {
             users and the acts or omissions of third parties.
           </P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             IF YOU ARE A CALIFORNIA RESIDENT, YOU HEREBY WAIVE ANY RIGHTS YOU MAY HAVE UNDER CALIFORNIA CIVIL CODE §
             1542 WHICH PROVIDES THAT “A GENERAL RELEASE DOES NOT EXTEND TO CLAIMS THAT THE CREDITOR OR RELEASING PARTY
             DOES NOT KNOW OR SUSPECT TO EXIST IN HIS OR HER FAVOR AT THE TIME OF EXECUTING THE RELEASE AND THAT, IF
@@ -255,9 +255,9 @@ const TermsOfUse: React.FC = () => {
             FAVOR AT THE TIME OF AGREEING TO THIS RELEASE.
           </P2>
           <Spacer size={'sm'} />
-          <P2>Miscellaneous</P2>
+          <P2 paragraphFont={true}>Miscellaneous</P2>
           <Spacer size={'sm'} />
-          <P2>
+          <P2 paragraphFont={true}>
             Governing Law. The validity, interpretation, construction and performance of this Agreement, and all acts
             and transactions pursuant hereto and the rights and obligations of the parties hereto shall be governed,
             construed and interpreted in accordance with the laws of the state of Delaware, without giving effect to
@@ -299,17 +299,19 @@ const TermsOfUse: React.FC = () => {
             operation of law, contract, or otherwise. Contact
           </P2>
           <Spacer size={'sm'} />
-          <P2>If you have any questions or feedback about this Agreement, please contact us at:</P2>
+          <P2 paragraphFont={true}>
+            If you have any questions or feedback about this Agreement, please contact us at:
+          </P2>
           <Spacer size={'sm'} />
-          <P2>Pocket Network, Inc.</P2>
+          <P2 paragraphFont={true}>Pocket Network, Inc.</P2>
           <Spacer size={'sm'} />
-          <P2>802 E Whiting St</P2>
+          <P2 paragraphFont={true}>802 E Whiting St</P2>
           <Spacer size={'sm'} />
-          <P2>Tampa, FL 33602</P2>
+          <P2 paragraphFont={true}>Tampa, FL 33602</P2>
           <Spacer size={'sm'} />
-          <P2>hola@pokt.network</P2>
+          <P2 paragraphFont={true}>hola@pokt.network</P2>
           <Spacer size={'sm'} />
-          <P2>Date of Last Update: July 2, 2020</P2>
+          <P2 paragraphFont={true}>Date of Last Update: July 2, 2020</P2>
         </InnerCardContainer>
       </Card>
       <Spacer size={'lg'} />

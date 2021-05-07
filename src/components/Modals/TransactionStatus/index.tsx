@@ -1,13 +1,15 @@
 import React from 'react';
+import Lottie from 'lottie-react';
 import VisuallyHidden from '@reach/visually-hidden';
 import 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 
+import animationData from 'assets/animations/tractor_pending_animation.json';
 import { ReactComponent as ApprovedSvg } from 'assets/icons/approved.svg';
 import { ReactComponent as CloseSvg } from 'assets/icons/close.svg';
 import { ReactComponent as FarmSvg } from 'assets/icons/farm.svg';
 import { ReactComponent as RejectedSvg } from 'assets/icons/rejected.svg';
-import { ReactComponent as TractorSvg } from 'assets/icons/tractor.svg';
+// import { ReactComponent as TractorSvg } from 'assets/icons/tractor.svg';
 
 import {
   StyledCloseContainer,
@@ -39,7 +41,7 @@ const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
       <StyledInnerContainer>
         <H1 center={true} color={colors.white}>
           {type === 'TRANSACTION_WAITING' && 'Waiting for confirmation'}
-          {type === 'TRANSACTION_APPROVED' && 'Transaction Approved'}
+          {type === 'TRANSACTION_APPROVED' && 'Transaction Confirmed'}
           {type === 'TRANSACTION_REJECTED' && 'Transaction Failed'}
         </H1>
         <Spacer size={'md'} />
@@ -61,7 +63,7 @@ const TransactionStatus: React.FC<ITransactionStatus> = ({ type }) => {
             <FarmSvg />
           </StyledFarmContainer>
           <StyledTractorContainer type={type}>
-            <TractorSvg />
+            <Lottie animationData={animationData} />
           </StyledTractorContainer>
         </StyledIconsContainer>
         <Spacer size={'md'} />

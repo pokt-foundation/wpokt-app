@@ -83,7 +83,7 @@ const Deposit: React.FC<IDeposit> = ({ readyToTransact }) => {
       </Card>
       <Spacer size={'sm'} />
       <Container>
-        <P2>
+        <P2 weight={700} paragraphFont={true}>
           *Estimated values do not represent or guarantee the actual results of any transaction or stake. In addition,
           other metrics and calculations shown on the app have not been independently verified or audited. Use at your
           own risk.

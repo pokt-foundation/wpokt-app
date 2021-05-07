@@ -12,7 +12,7 @@ import { ReactComponent as DepositButtonDisabledSvg } from 'assets/icons/deposit
 import { ReactComponent as WithdrawButtonActiveSvg } from 'assets/icons/withdraw_button_active.svg';
 import { ReactComponent as WithdrawButtonDisabledSvg } from 'assets/icons/withdraw_button_disabled.svg';
 import { ReactComponent as MaxSvg } from 'assets/icons/max.svg';
-import { ReactComponent as SelectorSvg } from 'assets/icons/selector.svg';
+import { ReactComponent as MaxSelectorSvg } from 'assets/icons/max_selector.svg';
 
 import {
   StyledHeader,
@@ -147,7 +147,7 @@ export const EnterAmount: React.FC<IEnterAmount> = ({ actionType, farmSelected, 
                 <MaxSvg />
               </div>
               <div id={'max-selector-svg'}>
-                <SelectorSvg />
+                <MaxSelectorSvg />
               </div>
             </StyledMaxButton>
           </div>

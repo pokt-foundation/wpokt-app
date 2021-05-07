@@ -92,13 +92,15 @@ export default App;
 
 const StyledReactTooltip = styled(ReactTooltip)`
   max-width: ${GU * 50}px;
+  font-family: 'Quantico', sans-serif;
   &.type-dark {
     background: black;
     -webkit-box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
     -moz-box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
     box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
-    font-size: 1rem;
-    line-height: 15px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 20px;
     padding: ${GU * 5}px;
   }
   &.type-dark.place-top {

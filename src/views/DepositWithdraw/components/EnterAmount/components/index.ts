@@ -202,7 +202,6 @@ export const StyledMaxButton = styled.button`
     fill: ${colors.yellow};
     height: ${2 * GU}px;
     margin-left: ${2 * GU}px;
-    transform: rotate(90deg);
     transition: all 0.2s ease;
     width: ${2 * GU}px;
 
@@ -216,7 +215,7 @@ export const StyledMaxButton = styled.button`
     cursor: pointer;
 
     div#max-selector-svg {
-      transform: rotate(90deg) translate3d(-2px, 0, 0);
+      transform: translate3d(0, -2px, 0);
     }
   }
 
@@ -224,7 +223,7 @@ export const StyledMaxButton = styled.button`
     cursor: pointer;
 
     div#max-selector-svg {
-      transform: rotate(90deg) translate3d(2px, 0, 0);
+      transform: translate3d(0, 2px, 0);
     }
   }
 

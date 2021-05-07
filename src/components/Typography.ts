@@ -4,6 +4,8 @@ import { media } from 'components/breakpoints';
 interface ITypograhpy {
   center?: boolean;
   color?: string;
+  paragraphFont?: boolean;
+  weight?: number;
 }
 
 export const H1 = styled.h1<ITypograhpy>`
@@ -80,6 +82,18 @@ export const P1 = styled.p<ITypograhpy>`
     css`
       color: ${props.color};
     `}
+
+  ${(props) =>
+    props.paragraphFont &&
+    css`
+      font-family: 'Quantico', sans-serif;
+    `}
+
+  ${(props) =>
+    props.weight &&
+    css`
+      font-weight: ${props.weight};
+    `}
 `;
 
 export const P2 = styled.p<ITypograhpy>`
@@ -88,13 +102,13 @@ export const P2 = styled.p<ITypograhpy>`
   line-height: 1.2rem;
 
   ${media.xs`
-        font-size: 1rem;
-    `}
+    font-size: 1rem;
+  `}
 
   ${media.md`
-        font-size: 1.4rem;
-        line-height: 1.8rem;
-    `}
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+  `}
   
   ${(props) =>
     props.center &&
@@ -106,6 +120,18 @@ export const P2 = styled.p<ITypograhpy>`
     props.color &&
     css`
       color: ${props.color};
+    `}
+
+  ${(props) =>
+    props.paragraphFont &&
+    css`
+      font-family: 'Quantico', sans-serif;
+    `}
+
+  ${(props) =>
+    props.weight &&
+    css`
+      font-weight: ${props.weight};
     `}
 `;
 
@@ -124,5 +150,17 @@ export const P3 = styled.p<ITypograhpy>`
     props.color &&
     css`
       color: ${props.color};
+    `}
+
+  ${(props) =>
+    props.paragraphFont &&
+    css`
+      font-family: 'Quantico', sans-serif;
+    `}
+
+  ${(props) =>
+    props.weight &&
+    css`
+      font-weight: ${props.weight};
     `}
 `;
