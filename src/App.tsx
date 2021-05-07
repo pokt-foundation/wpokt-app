@@ -99,6 +99,7 @@ const StyledReactTooltip = styled(ReactTooltip)`
     -moz-box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
     box-shadow: inset 0px 0px 0px ${GU * 0.5}px #fff;
     font-size: 1.4rem;
+    font-weight: 700;
     line-height: 20px;
     padding: ${GU * 5}px;
   }

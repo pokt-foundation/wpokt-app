@@ -189,9 +189,23 @@ const ConfirmTransaction: React.FC = () => {
                 </StyledContentContainer>
                 <Spacer size={'xs'} />
                 <StyledWarning>
-                  <P3 color={colors.white}>Give it a second thought...</P3>
+                  <P3
+                    color={colors.white}
+                    css={`
+                      font-family: 'Quantico', sans-serif;
+                    `}
+                  >
+                    Give it a second thought...
+                  </P3>
                   <Spacer size={'xs'} />
-                  <P3 color={colors.white}>If you keep your stake longer you could earn more rewards.</P3>
+                  <P3
+                    color={colors.white}
+                    css={`
+                      font-family: 'Quantico', sans-serif;
+                    `}
+                  >
+                    If you keep your stake longer you could earn more rewards.
+                  </P3>
                 </StyledWarning>
                 <Spacer size={'xs'} />
                 <Flex
