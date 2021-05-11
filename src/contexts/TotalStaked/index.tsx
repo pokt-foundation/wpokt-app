@@ -7,6 +7,8 @@ import { Web3Context } from 'contexts/Web3';
 
 import { getTokenGeyserContract } from 'utils';
 
+const RETRY_DELAY = 10000;
+
 export interface ContextValues {
   // eslint-disable-next-line
   totalStaked?: any;
@@ -32,7 +34,7 @@ export const TotalStakedProvider: React.FC = ({ children }) => {
   React.useEffect((): (() => void) => {
     if (address && signer) {
       fetchTotalStaked(address, signer);
-      const refreshInterval = setInterval(() => fetchTotalStaked(address, signer), 10000);
+      const refreshInterval = setInterval(() => fetchTotalStaked(address, signer), RETRY_DELAY);
       return () => clearInterval(refreshInterval);
     } else {
       setTotalStaked('0');
