@@ -105,9 +105,9 @@ const WithdrawFarm: React.FC<IWithdrawFarm> = ({ address, farmSelected }) => {
         <StyledContentContainer>
           <SmallInfoCard
             iconType={'question'}
-            statTitle={'APR'}
+            statTitle={'Farm APR'}
             statContent={`${commifyString(apr.toFixed(6))}%`}
-            tooltip={`My Estimated APR (Annual Percentage Rate) is an annual rate of rewards on wPOKT staked. While most projects used APY, APR is a more accurate way to measure wPOKT returns as wPOKT is non-compounding. This is a current Farm-wide APR.`}
+            tooltip={`The APR (Annual Percentage Rate) is an annual rate of rewards on wPOKT staked. While most projects used APY, APR is a more accurate way to measure wPOKT returns as wPOKT is non-compounding. This is a current Farm-wide APR.`}
           />
           <SmallInfoCard
             iconType={'caret'}
