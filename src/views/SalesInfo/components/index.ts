@@ -3,6 +3,8 @@ import { ResponsiveContainer } from 'recharts';
 import { GU } from 'components/theme';
 import { media } from 'components/breakpoints';
 
+export { SalesInfoStatCard } from './SalesInfoStatCard';
+
 export const StyledButtonContainer = styled.div`
   align-items: center;
   display: flex;

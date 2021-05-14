@@ -1,4 +1,5 @@
 import React from 'react';
+import 'styled-components/macro';
 import VisuallyHidden from '@reach/visually-hidden';
 import { Bar, BarChart, ErrorBar, Tooltip, XAxis, YAxis } from 'recharts';
 import { colors } from 'components/theme';
@@ -6,6 +7,7 @@ import { colors } from 'components/theme';
 import { ReactComponent as BuyWpoktSvg } from 'assets/icons/buy_wpokt_button.svg';
 
 import {
+  SalesInfoStatCard,
   StyledButtonContainer,
   StyledChartContainer,
   StyledContentContainer,
@@ -13,6 +15,7 @@ import {
   StyledInfoCard,
 } from 'views/SalesInfo/components';
 import { Card, InnerCardContainer } from 'components/Cards';
+import { Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
 import { H1, H2, P1, P2 } from 'components/Typography';
 
@@ -32,6 +35,46 @@ const SalesInfo: React.FC = () => {
       <Spacer size={'md'} />
       <Card>
         <InnerCardContainer borderBottom={false}>
+          <StyledContentContainer>
+            <StyledInfoCard>
+              <P2 color={colors.white} center={true}>
+                {' '}
+                Welcome to the wPOKT distribution event. This distribution is the first opportunity to acquire wPOKT
+                that will enable holders to participate in wPOKT. The distribution will occur on Balancer using a
+                Liquidity Bootstrapping Pool. Before participating in wPOKT, we highly encourage users to read all of
+                the wPOKT documentation and information located in the links below. Welcome aboard and happy farming.
+              </P2>
+              <Spacer size={'md'} />
+              <H2 color={colors.white} center={true}>
+                WPOKT: 0,00006373 USDC/ DAI
+              </H2>
+            </StyledInfoCard>
+          </StyledContentContainer>
+          <Spacer size={'md'} />
+          <Flex
+            css={`
+              flex-wrap: wrap;
+            `}
+            align={'flex-start'}
+            justify={'space-between'}
+          >
+            <div>
+              <SalesInfoStatCard statContent={'2:00:00:00'} statTitle={'Sale Ends'} />
+              <Spacer size={'xs'} />
+            </div>
+            <div>
+              <SalesInfoStatCard statContent={'1.98 USDC'} statTitle={'Latest Price'} />
+              <Spacer size={'xs'} />
+            </div>
+            <div>
+              <SalesInfoStatCard statContent={'4,080'} statTitle={'Farmers'} />
+              <Spacer size={'md'} />
+            </div>
+            <div>
+              <SalesInfoStatCard statContent={'9,332,236 USDC'} statTitle={'USDC Traded'} />
+              <Spacer size={'md'} />
+            </div>
+          </Flex>
           <StyledContentContainer>
             <StyledContentTextContainer>
               <H1 color={colors.white}>wPOKT Liquidity bootstrapping Event</H1>
@@ -55,20 +98,6 @@ const SalesInfo: React.FC = () => {
               <P2 color={colors.red}>89% wPokt sold</P2>
             </StyledContentTextContainer>
           </StyledContentContainer>
-          <Spacer size={'md'} />
-          <StyledInfoCard>
-            <P2 color={colors.white} center={true}>
-              {' '}
-              Welcome to the wPOKT distribution event. This distribution is the first opportunity to acquire wPOKT that
-              will enable holders to participate in wPOKT. The distribution will occur on Balancer using a Liquidity
-              Bootstrapping Pool. Before participating in wPOKT, we highly encourage users to read all of the wPOKT
-              documentation and information located in the links below. Welcome aboard and happy farming.
-            </P2>
-            <Spacer size={'md'} />
-            <H2 color={colors.white} center={true}>
-              WPOKT: 0,00006373 USDC/ DAI
-            </H2>
-          </StyledInfoCard>
           <Spacer size={'md'} />
           <StyledContentContainer>
             <StyledContentTextContainer>
