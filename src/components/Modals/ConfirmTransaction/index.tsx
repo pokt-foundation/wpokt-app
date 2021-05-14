@@ -31,22 +31,23 @@ import Spacer from 'components/Spacer';
 import { H1, H2, P2 } from 'components/Typography';
 
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
-import { TotalStakedContext } from 'contexts/TotalStaked';
 import { Web3Context } from 'contexts/Web3';
 
 import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
 
 import { useFarmStats } from 'hooks/useFarmStats';
+import useTotalStated from 'hooks/useTotalStaked';
 import { useUserStats } from 'hooks/useUserStats';
 
-import { shortenAddress } from 'utils';
+import { WPOKT_DECIMALS } from 'constants/index';
+import { parseInputValue, shortenAddress } from 'utils';
 
 const ConfirmTransaction: React.FC = () => {
   const history = useHistory();
   const { actionType, inputValue, onCloseModal, onDeposit, onWithdraw } = React.useContext(DepositWithdrawalContext);
-  const { totalStaked } = React.useContext(TotalStakedContext);
   const { address } = React.useContext(Web3Context);
   const { apr } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { totalStaked } = useTotalStated();
   const { weightedMultiplier } = useUserStats(address ? address : '', TOKEN_GEYSER_ADDRESS);
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
 
@@ -73,9 +74,15 @@ const ConfirmTransaction: React.FC = () => {
     onCloseModal();
   };
 
+  const areFundsInsufficient = () => {
+    const inputBigNum = new BigNumber(parseInputValue(inputValue, WPOKT_DECIMALS).toString());
+    const totalStakedBigNum = new BigNumber(totalStaked);
+    return inputBigNum.isGreaterThan(totalStakedBigNum);
+  };
+
   return (
     <>
-      {actionType === 'withdraw' && new BigNumber(inputValue).isGreaterThan(new BigNumber(totalStaked)) ? (
+      {actionType === 'withdraw' && areFundsInsufficient() ? (
         <InsufficientFunds />
       ) : (
         <StyledModalContainer>
