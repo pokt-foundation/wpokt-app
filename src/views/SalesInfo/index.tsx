@@ -7,12 +7,13 @@ import { colors } from 'components/theme';
 import { ReactComponent as BuyWpoktSvg } from 'assets/icons/buy_wpokt_button.svg';
 
 import {
+  PartnersContainer,
   SalesInfoStatCard,
-  StyledButtonContainer,
   StyledChartContainer,
   StyledContentContainer,
   StyledContentTextContainer,
   StyledInfoCard,
+  StyledPartnersContainer,
 } from 'views/SalesInfo/components';
 import { Card, InnerCardContainer } from 'components/Cards';
 import { Flex } from 'components/Containers';
@@ -101,10 +102,17 @@ const SalesInfo: React.FC = () => {
           <Spacer size={'md'} />
           <StyledContentContainer>
             <StyledContentTextContainer>
+              <H1 color={colors.white}>Launch Partners</H1>
+            </StyledContentTextContainer>
+            <PartnersContainer />
+          </StyledContentContainer>
+          <Spacer size={'md'} />
+          <StyledContentContainer>
+            <StyledContentTextContainer>
               <H1 color={colors.white}>Resources</H1>
             </StyledContentTextContainer>
-            <StyledButtonContainer>
-              <button>
+            <StyledPartnersContainer>
+              {/* <button>
                 <VisuallyHidden>Buy wPOKT</VisuallyHidden>
                 <BuyWpoktSvg />
               </button>
@@ -123,8 +131,8 @@ const SalesInfo: React.FC = () => {
               <button>
                 <VisuallyHidden>Buy wPOKT</VisuallyHidden>
                 <BuyWpoktSvg />
-              </button>
-            </StyledButtonContainer>
+              </button> */}
+            </StyledPartnersContainer>
           </StyledContentContainer>
         </InnerCardContainer>
       </Card>
