@@ -1,6 +1,6 @@
 import React from 'react';
 import 'styled-components/macro';
-import { Bar, BarChart, ErrorBar, Tooltip, XAxis, YAxis } from 'recharts';
+import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 import { colors } from 'components/theme';
 
 import {
@@ -19,13 +19,34 @@ import Spacer from 'components/Spacer';
 import { H1, H2, P1, P2 } from 'components/Typography';
 
 const data = [
-  { name: 'Day 1', max: 20000, min: 10000, error: [1000, 1000] },
-  { name: 'Day 2', max: 45000, min: 34000, errorNegative: [10000, 2000] },
-  { name: 'Day 3', max: 32000, min: 24000, errorNegative: [10000, 2000] },
-  { name: 'Day 4', max: 10000, min: 4000, error: [2000, 10000] },
-  { name: 'Day 5', max: 20000, min: 11000, error: [2000, 10000] },
-  { name: 'Day 6', max: 30000, min: 4000, error: [2000, 20000] },
-  { name: 'Day 7', max: 2000, min: 1000, error: [1200, 2000] },
+  {
+    date: 'May 20th',
+    price: 4000,
+  },
+  {
+    date: 'May 21st',
+    price: 3000,
+  },
+  {
+    date: 'May 23rd',
+    price: 2000,
+  },
+  {
+    date: 'May 24th',
+    price: 2780,
+  },
+  {
+    date: 'May 25th',
+    price: 1890,
+  },
+  {
+    date: 'May 26th',
+    price: 2390,
+  },
+  {
+    date: 'May 27th',
+    price: 3490,
+  },
 ];
 
 const SalesInfo: React.FC = () => {
@@ -79,17 +100,35 @@ const SalesInfo: React.FC = () => {
               <H1 color={colors.white}>wPOKT Liquidity bootstrapping Event</H1>
             </StyledContentTextContainer>
             <StyledChartContainer>
-              <BarChart width={600} height={300} data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                <XAxis xAxisId={0} dataKey="name" hide />
-                <XAxis xAxisId={1} dataKey="name" tickMargin={10} />
-                <YAxis domain={[0, 50000]} />
-                <Tooltip cursor={{ fill: 'transparent' }} />
-                <Bar barSize={10} xAxisId={0} dataKey="max" fill={colors.green} />
-                <Bar barSize={10} xAxisId={1} dataKey="min" fill={colors.white}>
-                  <ErrorBar dataKey="error" width={4} strokeWidth={2} stroke={colors.green} />
-                  <ErrorBar dataKey="errorNegative" width={4} strokeWidth={2} stroke={colors.red} />
-                </Bar>
-              </BarChart>
+              <LineChart
+                width={500}
+                height={300}
+                data={data}
+                margin={{
+                  top: 50,
+                  right: 30,
+                  left: 20,
+                  bottom: 30,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis tickMargin={20} dataKey="date" />
+                <YAxis />
+                <Tooltip
+                  content={({ active, payload, label }) => {
+                    if (payload && payload.length) {
+                      return (
+                        <div className="custom-tooltip">
+                          <P2>{label}</P2>
+                          <P2 color={colors.green}>Price: {payload[0].value} USDC</P2>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }}
+                />
+                <Line strokeWidth={4} type="monotone" dataKey="price" stroke={colors.green} activeDot={{ r: 8 }} />
+              </LineChart>
             </StyledChartContainer>
             <StyledContentTextContainer>
               <P1 color={colors.white}>Price movement if nobody buys</P1>
