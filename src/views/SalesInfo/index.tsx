@@ -1,19 +1,17 @@
 import React from 'react';
 import 'styled-components/macro';
-import VisuallyHidden from '@reach/visually-hidden';
 import { Bar, BarChart, ErrorBar, Tooltip, XAxis, YAxis } from 'recharts';
 import { colors } from 'components/theme';
 
-import { ReactComponent as BuyWpoktSvg } from 'assets/icons/buy_wpokt_button.svg';
-
 import {
   PartnersContainer,
+  ResourcesLink,
   SalesInfoStatCard,
   StyledChartContainer,
   StyledContentContainer,
   StyledContentTextContainer,
   StyledInfoCard,
-  StyledPartnersContainer,
+  StyledResourcesContainer,
 } from 'views/SalesInfo/components';
 import { Card, InnerCardContainer } from 'components/Cards';
 import { Flex } from 'components/Containers';
@@ -111,28 +109,17 @@ const SalesInfo: React.FC = () => {
             <StyledContentTextContainer>
               <H1 color={colors.white}>Resources</H1>
             </StyledContentTextContainer>
-            <StyledPartnersContainer>
-              {/* <button>
-                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
-                <BuyWpoktSvg />
-              </button>
-              <button>
-                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
-                <BuyWpoktSvg />
-              </button>
-              <button>
-                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
-                <BuyWpoktSvg />
-              </button>
-              <button>
-                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
-                <BuyWpoktSvg />
-              </button>
-              <button>
-                <VisuallyHidden>Buy wPOKT</VisuallyHidden>
-                <BuyWpoktSvg />
-              </button> */}
-            </StyledPartnersContainer>
+            <StyledResourcesContainer>
+              <ResourcesLink route={'/'} text={'Get wPOKT'} />
+              <ResourcesLink route={'/'} text={'Balancer Pool'} />
+              <ResourcesLink href={'https://forum.pokt.network/t/wpokt-faq/780'} text={'wPOKT FAQ'} />
+              <ResourcesLink route={'/'} text={'Distribution FAQ'} />
+              <ResourcesLink
+                href={'https://forum.pokt.network/t/introducing-wpokt-a-regenerative-farming-program/378'}
+                text={'Green Paper'}
+              />
+              <ResourcesLink href={'https://pokt.network/'} text={'Pocket Network'} />
+            </StyledResourcesContainer>
           </StyledContentContainer>
         </InnerCardContainer>
       </Card>

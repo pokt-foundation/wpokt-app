@@ -4,6 +4,7 @@ import { GU } from 'components/theme';
 import { media } from 'components/breakpoints';
 
 export { PartnersContainer } from './PartnersContainer';
+export { ResourcesLink } from './ResourcesLink';
 export { SalesInfoStatCard } from './SalesInfoStatCard';
 
 export const StyledPartnersContainer = styled.div`
@@ -31,6 +32,17 @@ export const StyledPartnersContainer = styled.div`
   ${media.xl`
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, ${34 * GU}px);
+  `}
+`;
+
+export const StyledResourcesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: ${4 * GU}px ${4 * GU}px 0;
+
+  ${media.xs`
+    padding: ${8 * GU}px ${8 * GU}px 0;
   `}
 `;
 
