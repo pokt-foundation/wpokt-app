@@ -18,38 +18,33 @@ import { Flex } from 'components/Containers';
 import Spacer from 'components/Spacer';
 import { H1, H2, P1, P2 } from 'components/Typography';
 
-const data = [
-  {
-    date: 'May 20th',
-    price: 4000,
-  },
-  {
-    date: 'May 21st',
-    price: 3000,
-  },
-  {
-    date: 'May 23rd',
-    price: 2000,
-  },
-  {
-    date: 'May 24th',
-    price: 2780,
-  },
-  {
-    date: 'May 25th',
-    price: 1890,
-  },
-  {
-    date: 'May 26th',
-    price: 2390,
-  },
-  {
-    date: 'May 27th',
-    price: 3490,
-  },
-];
+interface IData {
+  price: string;
+  created_at: string;
+}
 
 const SalesInfo: React.FC = () => {
+  const [data, setData] = React.useState<IData[]>([]);
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const response = await fetch('http://localhost:3000/prices');
+    const rawData = await response.json();
+    const formattedData: IData[] = [];
+    rawData.data.forEach((data: IData) => {
+      const formattedDate = new Date(data.created_at);
+      const newData = {
+        price: data.price,
+        created_at: formattedDate.toLocaleDateString(),
+      };
+      formattedData.push(newData);
+    });
+    setData(formattedData);
+  };
+
   return (
     <>
       <Spacer size={'md'} />
@@ -112,7 +107,7 @@ const SalesInfo: React.FC = () => {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis tickMargin={20} dataKey="date" />
+                <XAxis tickMargin={20} dataKey="created_at" />
                 <YAxis />
                 <Tooltip
                   content={({ active, payload, label }) => {
