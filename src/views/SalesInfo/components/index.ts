@@ -49,6 +49,7 @@ export const StyledResourcesContainer = styled.div`
 export const StyledChartContainer = styled(ResponsiveContainer)`
   background: white;
   min-height: ${125 * GU}px;
+  font-size: 1rem;
 `;
 
 export const StyledContentContainer = styled.div`
