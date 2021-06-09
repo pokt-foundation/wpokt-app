@@ -31,7 +31,7 @@ const SalesInfo: React.FC = () => {
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch('http://localhost:3000/prices');
+    const response = await fetch(process.env.REACT_APP_PRICE_FETCHER_URL || '');
     const rawData = await response.json();
     const formattedData: IData[] = [];
     rawData.data.forEach((data: IData) => {
