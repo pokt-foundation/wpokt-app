@@ -3,47 +3,53 @@ import { ResponsiveContainer } from 'recharts';
 import { GU } from 'components/theme';
 import { media } from 'components/breakpoints';
 
-export const StyledButtonContainer = styled.div`
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: ${8 * GU}px ${10 * GU}px 0;
+export { PartnersContainer } from './PartnersContainer';
+export { ResourcesLink } from './ResourcesLink';
+export { SalesInfoStatCard } from './SalesInfoStatCard';
 
-  button {
-    background: transparent;
-    border: none;
-    margin-bottom: ${8 * GU}px;
-    transition: all 0.2s ease;
-
-    &:hover {
-      cursor: pointer;
-      transform: translate3d(0, ${-GU}px, 0);
-    }
-
-    &:active,
-    &:focus {
-      cursor: pointer;
-      transform: translate3d(0, ${GU}px, 0);
-    }
-
-    ${media.xs`
-      margin-bottom: ${15 * GU}px;
-    `}
-  }
+export const StyledPartnersContainer = styled.div`
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(9, ${16 * GU}px);
+  padding: ${4 * GU}px;
 
   ${media.xs`
-    padding: ${15 * GU}px ${10 * GU}px 0;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, ${20 * GU}px);
+    padding: ${8 * GU}px;
   `}
 
-  ${media.md`
-    padding: ${15 * GU}px ${50 * GU}px 0;
+  ${media.sm`
+    grid-template-rows: repeat(5, ${30 * GU}px);
+  `}
+
+  ${media.lg`
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, ${30 * GU}px);
+  `}
+
+  ${media.xl`
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, ${34 * GU}px);
+  `}
+`;
+
+export const StyledResourcesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: ${4 * GU}px ${4 * GU}px 0;
+
+  ${media.xs`
+    padding: ${8 * GU}px ${8 * GU}px 0;
   `}
 `;
 
 export const StyledChartContainer = styled(ResponsiveContainer)`
   background: white;
   min-height: ${125 * GU}px;
+  font-size: 1rem;
 `;
 
 export const StyledContentContainer = styled.div`

@@ -1,5 +1,6 @@
 import React from 'react';
 import VisuallyHidden from '@reach/visually-hidden';
+import TokenAmount from 'token-amount';
 import 'styled-components/macro';
 import { colors, GU } from 'components/theme';
 
@@ -14,17 +15,13 @@ import {
 import Spacer from 'components/Spacer';
 import { H1, P2 } from 'components/Typography';
 
+import { WPOKT_DECIMALS } from 'constants/index';
 import { DepositWithdrawalContext } from 'contexts/DepositWithdrawal';
-
-import { TOKEN_GEYSER_ADDRESS } from 'constants/index';
-
-import { useFarmStats } from 'hooks/useFarmStats';
-
-import { commifyString } from 'utils';
+import useTotalStated from 'hooks/useTotalStaked';
 
 export const InsufficientFunds: React.FC = () => {
   const { onCloseModal } = React.useContext(DepositWithdrawalContext);
-  const { totalStaked } = useFarmStats(TOKEN_GEYSER_ADDRESS);
+  const { totalStaked } = useTotalStated();
 
   return (
     <StyledModalContainer>
@@ -65,8 +62,8 @@ export const InsufficientFunds: React.FC = () => {
           </P2>
           <Spacer size={'sm'} />
           <P2 center={true} color={'#000'}>
-            Please enter {commifyString(totalStaked.toFixed(2))} wpokt or less, review the value or keep your stake
-            longer to reach a higher yield.
+            Please enter {TokenAmount.format(totalStaked, WPOKT_DECIMALS)} wpokt or less, review the value or keep your
+            stake longer to reach a higher yield.
           </P2>
         </div>
       </div>

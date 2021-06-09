@@ -9,18 +9,16 @@ import { colors, GU } from 'components/theme';
 import Spacer from 'components/Spacer';
 
 import { ReactComponent as CaretSvg } from 'assets/icons/caret.svg';
-import { ReactComponent as MultiplierSvg } from 'assets/icons/multiplier.svg';
 import { ReactComponent as QuestionMarkSvg } from 'assets/icons/question_mark.svg';
 
 interface ISmallInfoCard {
-  iconType: 'question' | 'caret';
   statContent: string;
   statFill?: number;
   statTitle: string;
   tooltip: string;
 }
 
-export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ iconType, statContent, statFill, statTitle, tooltip }) => {
+export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ statContent, statFill, statTitle, tooltip }) => {
   React.useEffect(() => {
     ReactTooltip.rebuild();
   }, []);
@@ -28,17 +26,10 @@ export const SmallInfoCard: React.FC<ISmallInfoCard> = ({ iconType, statContent,
     <StyledSmallInfoCard>
       <StyledSmallInfoCardHeader>
         <StyledStatText color={colors.white}>{statTitle}</StyledStatText>
-        {iconType === 'question' ? (
-          <StyledSmallInfoCardButton data-for="custom-event" data-tip={tooltip} data-event="click focus">
-            <VisuallyHidden>More Info</VisuallyHidden>
-            <QuestionMarkSvg />
-          </StyledSmallInfoCardButton>
-        ) : (
-          <StyledSmallInfoCardButton data-for="custom-event" data-tip={tooltip} data-event="click focus">
-            <VisuallyHidden>More Info</VisuallyHidden>
-            <MultiplierSvg />
-          </StyledSmallInfoCardButton>
-        )}
+        <StyledSmallInfoCardButton data-for="custom-event" data-tip={tooltip} data-event="click focus">
+          <VisuallyHidden>More Info</VisuallyHidden>
+          <QuestionMarkSvg />
+        </StyledSmallInfoCardButton>
       </StyledSmallInfoCardHeader>
       <StyledSmallInfoCardContent>
         <StyledInfoCardContentFill fill={statFill ? statFill : 0} />

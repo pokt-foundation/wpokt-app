@@ -17,7 +17,7 @@ export interface ContextValues {
 }
 
 // eslint-disable-next-line
-const useWallet = (): any => {
+const useWallet = (): ContextValues => {
   return { ...React.useContext(Web3Context) };
 };
 
